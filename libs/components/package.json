@@ -1,0 +1,57 @@
+{
+  "name": "@dldc/components",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "exports": {
+    "./Backdrop": "./dist/Backdrop.js",
+    "./Button": "./dist/Button.js",
+    "./ButtonLike": "./dist/ButtonLike.js",
+    "./ButtonLink": "./dist/ButtonLink.js",
+    "./DesignContext": "./dist/DesignContext/index.js",
+    "./Frame": "./dist/Frame.js",
+    "./FrameContent": "./dist/FrameContent/index.js",
+    "./FrameGroup": "./dist/FrameGroup.js",
+    "./FrameInputContent": "./dist/FrameInputContent.js",
+    "./FrameNestedContent": "./dist/FrameNestedContent.js",
+    "./IconBox": "./dist/IconBox.js",
+    "./LoadingIcon": "./dist/LoadingIcon.js",
+    "./NonEmptyList": "./dist/NonEmptyList.js",
+    "./Paper": "./dist/Paper.js",
+    "./Prose": "./dist/Prose.js",
+    "./Scrollbars": "./dist/Scrollbars.js",
+    "./package.json": "./package.json",
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "lib:build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@config/typescript": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vanilla-extract/rollup-plugin": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "@ariakit/react": "catalog:",
+    "@dldc/css-engine": "workspace:^",
+    "@dldc/design": "workspace:^",
+    "@dldc/styles": "workspace:^",
+    "@dldc/utils": "workspace:^",
+    "@phosphor-icons/react": "catalog:",
+    "@vanilla-extract/css": "catalog:",
+    "clsx": "catalog:",
+    "overlayscrollbars": "catalog:",
+    "overlayscrollbars-react": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "type-fest": "catalog:"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+}

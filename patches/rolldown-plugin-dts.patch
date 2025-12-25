@@ -1,0 +1,48 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 609782b559d06aeaa4422c96f3d0fa5ca4d0ebb9..2fbef79e17cb4a7b25b3d6dc4b974146032a2d28 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -1,8 +1,12 @@
+ const __cjs_require = globalThis.process.getBuiltinModule("module").createRequire(import.meta.url);
+-import { a as RE_JSON, c as RE_VUE, d as filename_to_dts, f as replaceTemplateName, i as RE_JS, l as filename_dts_to, n as RE_DTS, o as RE_NODE_MODULES, p as resolveTemplateFn, r as RE_DTS_MAP, s as RE_TS, t as RE_CSS, u as filename_js_to_dts } from "./filename-Cqnsj8Gp.mjs";
+-import { n as globalContext, r as invalidateContextFile, t as createContext } from "./context-CEOWNXv9.mjs";
+-import Debug from "obug";
++import { isDeclarationType, isIdentifierOf, isTypeOf, resolveString, walkAST } from "ast-kit";
++import { createResolver } from "dts-resolver";
++import { getTsconfig, parseTsconfig } from "get-tsconfig";
+ import MagicString from "magic-string";
++import Debug from "obug";
++import { ResolverFactory, isolatedDeclaration } from "rolldown/experimental";
++import { t as createContext, n as globalContext, r as invalidateContextFile } from "./context-CEOWNXv9.mjs";
++import { t as RE_CSS, n as RE_DTS, r as RE_DTS_MAP, i as RE_JS, a as RE_JSON, o as RE_NODE_MODULES, s as RE_TS, c as RE_VUE, l as filename_dts_to, u as filename_js_to_dts, d as filename_to_dts, f as replaceTemplateName, p as resolveTemplateFn } from "./filename-Cqnsj8Gp.mjs";
+ const {
+   generate
+ } = __cjs_require("@babel/generator");
+@@ -10,7 +14,6 @@ const {
+   parse
+ } = __cjs_require("@babel/parser");
+ const t = __cjs_require("@babel/types");
+-import { isDeclarationType, isIdentifierOf, isTypeOf, resolveString, walkAST } from "ast-kit";
+ const {
+   fork,
+   spawn
+@@ -27,10 +30,7 @@ const {
+   tmpdir
+ } = globalThis.process.getBuiltinModule("node:os");
+ const path = globalThis.process.getBuiltinModule("node:path");
+-import { ResolverFactory, isolatedDeclaration } from "rolldown/experimental";
+ const process = globalThis.process;
+-import { getTsconfig, parseTsconfig } from "get-tsconfig";
+-import { createResolver } from "dts-resolver";
+ 
+ //#region src/banner.ts
+ function createBannerPlugin({ banner, footer }) {
+@@ -944,7 +944,7 @@ function createDtsResolvePlugin({ cwd, tsconfig, tsconfigRaw, resolve, resolver,
+ 					external: true,
+ 					moduleSideEffects: sideEffects
+ 				};
+-				if (RE_CSS.test(id)) return external;
++				// if (RE_CSS.test(id)) return external;
+ 				const rolldownResolution = await this.resolve(id, importer, options);
+ 				const dtsResolution = await resolveDtsPath(id, importer, rolldownResolution);
+ 				if (!dtsResolution) return isFilePath(id) ? null : external;

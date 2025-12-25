@@ -1,0 +1,40 @@
+{
+  "name": "@dldc/design",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "exports": {
+    "./animations": "./dist/animations/index.js",
+    "./colors": "./dist/colors/index.js",
+    "./conditions": "./dist/conditions.js",
+    "./core": "./dist/core/index.js",
+    "./helpers": "./dist/helpers/index.js",
+    "./size": "./dist/size/index.js",
+    "./variants": "./dist/variants/index.js",
+    "./package.json": "./package.json",
+    "./styles.css": "./dist/styles.css"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "lib:build": "tsdown",
+    "lib:build:watch": "tsdown --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dldc/css-engine": "workspace:^",
+    "@dldc/utils": "workspace:^",
+    "@vanilla-extract/css": "catalog:",
+    "csstype": "catalog:",
+    "type-fest": "catalog:"
+  },
+  "devDependencies": {
+    "@config/typescript": "workspace:*",
+    "@types/node": "catalog:",
+    "@vanilla-extract/rollup-plugin": "catalog:",
+    "rolldown-plugin-dts": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
+}

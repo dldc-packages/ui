@@ -1,0 +1,25 @@
+{
+  "name": "@dldc/utils",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "exports": {
+    "./math": "./dist/math.js",
+    "./object": "./dist/object.js",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/demo.js",
+  "module": "./dist/demo.js",
+  "types": "./dist/demo.d.ts",
+  "scripts": {
+    "lib:build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@config/typescript": "workspace:*",
+    "@types/node": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
+}
