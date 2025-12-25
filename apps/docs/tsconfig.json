@@ -1,5 +1,7 @@
 {
   "extends": "@config/typescript/vite.json",
-  "compilerOptions": {},
+  "compilerOptions": {
+    "rootDir": "."
+  },
   "exclude": ["node_modules", "dist"]
 }

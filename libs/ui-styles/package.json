@@ -1,0 +1,46 @@
+{
+  "name": "@dldc/ui-styles",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./backdrop": "./dist/backdrop/index.js",
+    "./common": "./dist/common/index.js",
+    "./ellipsis": "./dist/ellipsis/index.js",
+    "./frame": "./dist/frame/index.js",
+    "./frame-content": "./dist/frame-content/index.js",
+    "./frame-group": "./dist/frame-group/index.js",
+    "./frame-input": "./dist/frame-input/index.js",
+    "./icon": "./dist/icon/index.js",
+    "./modal": "./dist/modal/index.js",
+    "./paper": "./dist/paper/index.js",
+    "./prose": "./dist/prose/index.js",
+    "./stack": "./dist/stack/index.js",
+    "./package.json": "./package.json",
+    "./styles.css": "./dist/styles.css"
+  },
+  "scripts": {
+    "lib:build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dldc/ui-core": "workspace:^",
+    "@dldc/utils": "workspace:^",
+    "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/css-utils": "catalog:",
+    "@vanilla-extract/dynamic": "catalog:",
+    "@vanilla-extract/recipes": "catalog:",
+    "clsx": "catalog:",
+    "type-fest": "catalog:"
+  },
+  "devDependencies": {
+    "@config/typescript": "workspace:*",
+    "@types/node": "catalog:",
+    "@vanilla-extract/rollup-plugin": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
+}

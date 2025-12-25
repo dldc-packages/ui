@@ -11,9 +11,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@dldc/components": "workspace:^",
-    "@dldc/design": "workspace:^",
-    "@dldc/styles": "workspace:^",
+    "@dldc/ui-components": "workspace:^",
+    "@dldc/ui-core": "workspace:^",
+    "@dldc/ui-styles": "workspace:^",
     "overlayscrollbars": "catalog:",
     "overlayscrollbars-react": "catalog:",
     "react": "catalog:",

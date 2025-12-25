@@ -1,6 +1,5 @@
-import { Paper } from "@dldc/components/Paper";
-import { css } from "@dldc/design/core";
+import { Paper } from "@dldc/ui-components/Paper";
 
 export function App() {
-  return <Paper sigils={[css({ background: "blue" }), css({ background: "green" })]}>This is paper</Paper>;
+  return <Paper>This is paper</Paper>;
 }

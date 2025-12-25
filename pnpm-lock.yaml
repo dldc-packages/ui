@@ -100,15 +100,15 @@ importers:
 
   apps/docs:
     dependencies:
-      '@dldc/components':
+      '@dldc/ui-components':
         specifier: workspace:^
-        version: link:../../libs/components
-      '@dldc/design':
+        version: link:../../libs/ui-components
+      '@dldc/ui-core':
         specifier: workspace:^
-        version: link:../../libs/design
-      '@dldc/styles':
+        version: link:../../libs/ui-core
+      '@dldc/ui-styles':
         specifier: workspace:^
-        version: link:../../libs/styles
+        version: link:../../libs/ui-styles
       overlayscrollbars:
         specifier: 'catalog:'
         version: 2.13.0
@@ -149,14 +149,14 @@ importers:
 
   config/typescript: {}
 
-  libs/components:
+  libs/ui-components:
     dependencies:
-      '@dldc/design':
+      '@dldc/ui-core':
         specifier: workspace:^
-        version: link:../design
-      '@dldc/styles':
+        version: link:../ui-core
+      '@dldc/ui-styles':
         specifier: workspace:^
-        version: link:../styles
+        version: link:../ui-styles
       '@dldc/utils':
         specifier: workspace:^
         version: link:../utils
@@ -207,7 +207,7 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
-  libs/design:
+  libs/ui-core:
     dependencies:
       '@dldc/utils':
         specifier: workspace:^
@@ -241,11 +241,11 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
-  libs/styles:
+  libs/ui-styles:
     dependencies:
-      '@dldc/design':
+      '@dldc/ui-core':
         specifier: workspace:^
-        version: link:../design
+        version: link:../ui-core
       '@dldc/utils':
         specifier: workspace:^
         version: link:../utils

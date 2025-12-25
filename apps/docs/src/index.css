@@ -1,6 +1,6 @@
-@layer overlayscrollbars, design, styles, components;
+@layer overlayscrollbars, ui-core, ui-styles, ui-components;
 
 @import "overlayscrollbars/overlayscrollbars.css" layer(overlayscrollbars);
-@import "@dldc/styles/styles.css" layer(styles);
-@import "@dldc/design/styles.css" layer(design);
-@import "@dldc/styles/styles.css" layer(components);
+@import "@dldc/ui-styles/styles.css" layer(ui-styles);
+@import "@dldc/ui-core/styles.css" layer(ui-core);
+@import "@dldc/ui-components/styles.css" layer(ui-components);
