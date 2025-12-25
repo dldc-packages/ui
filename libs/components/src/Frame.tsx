@@ -1,21 +1,16 @@
-import * as Ariakit from "@ariakit/react";
 import { TPaletteColor } from "@dldc/design/colors";
 import { TDesignVariant } from "@dldc/design/variants";
 import { frameStyles } from "@dldc/styles/frame";
 import { frameContentStyles } from "@dldc/styles/frame-content";
 import clsx from "clsx";
-import { ElementType, Ref } from "react";
+import { cloneElement, ElementType, ReactElement, Ref } from "react";
 import {
   designPropsSplitter,
   SizeContextProvider,
   TDesignProps,
   useContainerDesignProps,
 } from "./DesignContext/index.js";
-import {
-  frameContentPropsSplitter,
-  TFrameContentProps,
-  useFrameContent,
-} from "./FrameContent/index.js";
+import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "./FrameContent/index.js";
 import { pipePropsSplitters } from "./utils/propsSplitters.js";
 import { ComponentPropsBaseWith } from "./utils/propsTypes.js";
 
@@ -23,6 +18,10 @@ export type FrameProps = ComponentPropsBaseWith<
   ElementType,
   TFrameContentProps &
     TDesignProps & {
+      /**
+       * This props only impact styling but is never forwarded to the underlying element.
+       * Use `render={<button disabled={true} />}` to pass native props to the underlying element.
+       */
       disabled?: boolean;
 
       color?: TPaletteColor;
@@ -35,10 +34,9 @@ export type FrameProps = ComponentPropsBaseWith<
        */
       baseVariant?: TDesignVariant;
 
-      // Forward to Element
-      render?: Ariakit.RoleProps["render"];
-
       interactive?: boolean;
+
+      render?: ReactElement;
 
       // Data attributes
       "data-hover"?: boolean;
@@ -47,13 +45,10 @@ export type FrameProps = ComponentPropsBaseWith<
 >;
 
 export function Frame(inProps: FrameProps) {
-  const [{ localDesign, localFrameContent }, props] = pipePropsSplitters(
-    inProps,
-    {
-      localDesign: designPropsSplitter,
-      localFrameContent: frameContentPropsSplitter,
-    },
-  );
+  const [{ localDesign, localFrameContent }, props] = pipePropsSplitters(inProps, {
+    localDesign: designPropsSplitter,
+    localFrameContent: frameContentPropsSplitter,
+  });
 
   const {
     color,
@@ -68,26 +63,19 @@ export function Frame(inProps: FrameProps) {
     style,
     className,
     ref,
+    render,
 
     ...htmlProps
   } = props;
 
   const isDisabledAndInteractive = disabled && interactive;
 
-  const {
-    hoverVariant,
-    variant,
-    height,
-    contentHeight,
-    spacing,
-    rounded,
-    depth,
-  } = useContainerDesignProps(localDesign, baseVariant);
-
-  const { startPadding, endPadding, fragment, noLayout } = useFrameContent(
-    localFrameContent,
-    children,
+  const { hoverVariant, variant, height, contentHeight, spacing, rounded, depth } = useContainerDesignProps(
+    localDesign,
+    baseVariant,
   );
+
+  const { startPadding, endPadding, fragment, noLayout } = useFrameContent(localFrameContent, children);
 
   const [baseClass, baseInline] = frameStyles({
     height,
@@ -101,32 +89,28 @@ export function Frame(inProps: FrameProps) {
     highlighted,
   });
 
-  const [contentClass, contentInline] = frameContentStyles(
-    contentHeight,
-    spacing,
-    startPadding,
-    endPadding,
-    noLayout,
-  );
+  const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 
-  return (
-    <Ariakit.Role
+  const base = (
+    <div
       className={clsx(baseClass, contentClass, className)}
       style={{ ...baseInline, ...contentInline, ...style }}
       aria-disabled={isDisabledAndInteractive}
       ref={ref as Ref<HTMLDivElement>}
       {...htmlProps}
     >
-      <SizeContextProvider
-        height={height}
-        contentHeight={contentHeight}
-        rounded={rounded}
-        depth={depth}
-      >
+      <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>
         {fragment}
       </SizeContextProvider>
-    </Ariakit.Role>
+    </div>
   );
+
+  if (!render) {
+    return base;
+  }
+
+  // Merge base props into the custom render element
+  return cloneElement(render, render.props);
 }
 
 Frame.displayName = "Frame";

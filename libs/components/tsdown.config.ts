@@ -5,9 +5,7 @@ export default defineConfig({
   entry: ["src/*.{ts,tsx}", "./src/*/index.{ts,tsx}"],
   platform: "neutral",
   dts: true,
-  plugins: [
-    vanillaExtractPlugin({ extract: { name: "styles.css", sourcemap: false } }),
-  ],
+  plugins: [vanillaExtractPlugin({ extract: { name: "styles.css", sourcemap: false } })],
   exports: {
     customExports(pkg) {
       pkg["./styles.css"] = "./dist/styles.css";

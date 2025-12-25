@@ -1,4 +1,3 @@
-import * as Ariakit from "@ariakit/react";
 import { TPaletteColor } from "@dldc/design/colors";
 import { TDesignProps } from "./DesignContext";
 import { Frame } from "./Frame";
@@ -14,9 +13,6 @@ export type ButtonProps = ComponentPropsBaseWith<
       color?: TPaletteColor;
       type?: "button" | "submit" | "reset" | undefined;
 
-      // Forward to Button
-      render?: Ariakit.ButtonProps["render"];
-
       // Data attributes
       "data-hover"?: boolean;
       "data-focus-visible"?: boolean;
@@ -24,27 +20,16 @@ export type ButtonProps = ComponentPropsBaseWith<
 >;
 
 export function Button(inProps: ButtonProps) {
-  const {
-    type = "button",
-    render,
-    disabled = false,
-    ref,
-    ...frameProps
-  } = inProps;
+  const { type = "button", disabled = false, ref, ...frameProps } = inProps;
 
   return (
-    <Ariakit.Button
+    <Frame
       type={type}
       disabled={disabled}
       ref={ref}
-      render={
-        <Frame
-          disabled={disabled}
-          render={render ?? <button />}
-          interactive
-          {...frameProps}
-        />
-      }
+      render={<button disabled={disabled} />}
+      interactive
+      {...frameProps}
     />
   );
 }

@@ -18,17 +18,7 @@ type IconBoxProps = ComponentPropsBaseWith<
 >;
 
 export function IconBox(props: IconBoxProps) {
-  const {
-    icon,
-    alt,
-    color,
-    weight,
-    size,
-    mirrored,
-    className,
-    style,
-    ...htmlProps
-  } = props;
+  const { icon, alt, color, weight, size, mirrored, className, style, ...htmlProps } = props;
   const parentIconProps = useContext(IconContext);
 
   const mergedProps = useMemo(
@@ -47,11 +37,7 @@ export function IconBox(props: IconBoxProps) {
 
   return (
     <IconContext.Provider value={mergedProps}>
-      <div
-        className={clsx(iconClas, className)}
-        style={{ ...inlineStyles, ...style }}
-        {...htmlProps}
-      >
+      <div className={clsx(iconClas, className)} style={{ ...inlineStyles, ...style }} {...htmlProps}>
         {icon}
       </div>
     </IconContext.Provider>

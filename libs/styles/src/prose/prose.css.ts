@@ -1,11 +1,5 @@
 import { colorsVars, opacity } from "@dldc/design/colors";
-import {
-  createGlobalTheme,
-  createTheme,
-  globalStyle,
-  GlobalStyleRule,
-  style,
-} from "@vanilla-extract/css";
+import { createGlobalTheme, createTheme, globalStyle, GlobalStyleRule, style } from "@vanilla-extract/css";
 import { designContentSizeVar } from "../common/index.js";
 import { em, rem, round } from "./utils.js";
 
@@ -122,12 +116,9 @@ globalStyleWithNotProse(`${proseBaseClass} blockquote`, {
   borderInlineStartColor: proseVars.quoteBorders,
   quotes: '"\\201C""\\201D""\\2018""\\2019"',
 });
-globalStyleWithNotProse(
-  `${proseBaseClass} blockquote p:first-of-type::before`,
-  {
-    content: "open-quote",
-  }
-);
+globalStyleWithNotProse(`${proseBaseClass} blockquote p:first-of-type::before`, {
+  content: "open-quote",
+});
 globalStyleWithNotProse(`${proseBaseClass} blockquote p:last-of-type::after`, {
   content: "close-quote",
 });
@@ -386,7 +377,7 @@ globalStyleWithNotProse(
   {
     marginTop: em(8, 14),
     marginBottom: em(8, 14),
-  }
+  },
 );
 globalStyleWithNotProse(`${proseSizeDynamicClass} dl`, {
   marginTop: em(16, 14),
@@ -430,27 +421,21 @@ globalStyleWithNotProse(`${proseSizeDynamicClass} thead th:first-child`, {
 globalStyleWithNotProse(`${proseSizeDynamicClass} thead th:last-child`, {
   paddingInlineEnd: "0",
 });
-globalStyleWithNotProse(
-  `${proseSizeDynamicClass} tbody td, ${proseSizeDynamicClass} tfoot td`,
-  {
-    paddingTop: em(8, 12),
-    paddingInlineEnd: em(12, 12),
-    paddingBottom: em(8, 12),
-    paddingInlineStart: em(12, 12),
-  }
-);
+globalStyleWithNotProse(`${proseSizeDynamicClass} tbody td, ${proseSizeDynamicClass} tfoot td`, {
+  paddingTop: em(8, 12),
+  paddingInlineEnd: em(12, 12),
+  paddingBottom: em(8, 12),
+  paddingInlineStart: em(12, 12),
+});
 globalStyleWithNotProse(
   `${proseSizeDynamicClass} tbody td:first-child, ${proseSizeDynamicClass} tfoot td:first-child`,
   {
     paddingInlineStart: "0",
-  }
+  },
 );
-globalStyleWithNotProse(
-  `${proseSizeDynamicClass} tbody td:last-child, ${proseSizeDynamicClass} tfoot td:last-child`,
-  {
-    paddingInlineEnd: "0",
-  }
-);
+globalStyleWithNotProse(`${proseSizeDynamicClass} tbody td:last-child, ${proseSizeDynamicClass} tfoot td:last-child`, {
+  paddingInlineEnd: "0",
+});
 globalStyleWithNotProse(`${proseSizeDynamicClass} figure`, {
   marginTop: em(16, 12),
   marginBottom: em(16, 12),

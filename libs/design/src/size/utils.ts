@@ -14,9 +14,7 @@ export function sizeToRemString(size: TDesignSize | (string & {})): string {
 
 export function sizeToFontSize(size: TDesignSize | (string & {})) {
   const lineHeightRem = sizeToRem(size);
-  const fontSizeRem =
-    lineHeightRem -
-    0.56 * Math.exp(-Math.pow(1.76 - lineHeightRem, 2) / Math.pow(0.8, 2));
+  const fontSizeRem = lineHeightRem - 0.56 * Math.exp(-Math.pow(1.76 - lineHeightRem, 2) / Math.pow(0.8, 2));
   const fontSizeRemRounded = Math.round(fontSizeRem * 16) / 16; // Round to 2px
   return `${fontSizeRemRounded}rem`;
 }
@@ -42,10 +40,7 @@ export function powerSize(size: number, power: number = 0.68): number {
   return roundToSize(val);
 }
 
-export function autoContentHeight(
-  height: number,
-  heightRatio = BASE_HEIGHT_RATIO
-): number {
+export function autoContentHeight(height: number, heightRatio = BASE_HEIGHT_RATIO): number {
   return clamp(powerSize(height, heightRatio), MIN_HEIGHT, height);
 }
 

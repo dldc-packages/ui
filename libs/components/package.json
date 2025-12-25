@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": false,
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./Backdrop": "./dist/Backdrop.js",
     "./Button": "./dist/Button.js",
@@ -27,18 +30,7 @@
     "lib:build": "tsdown",
     "typecheck": "tsc --noEmit"
   },
-  "devDependencies": {
-    "@config/typescript": "workspace:*",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "@vanilla-extract/rollup-plugin": "catalog:",
-    "tsdown": "catalog:",
-    "typescript": "catalog:"
-  },
   "dependencies": {
-    "@ariakit/react": "catalog:",
-    "@dldc/css-engine": "workspace:^",
     "@dldc/design": "workspace:^",
     "@dldc/styles": "workspace:^",
     "@dldc/utils": "workspace:^",
@@ -51,7 +43,13 @@
     "react-dom": "catalog:",
     "type-fest": "catalog:"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts"
+  "devDependencies": {
+    "@config/typescript": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vanilla-extract/rollup-plugin": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
 }

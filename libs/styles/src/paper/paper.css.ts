@@ -1,9 +1,4 @@
-import {
-  colorsVars,
-  NEUTRAL_COLOR_SHADES,
-  opacity,
-  TNeutralColorShade,
-} from "@dldc/design/colors";
+import { colorsVars, NEUTRAL_COLOR_SHADES, opacity, TNeutralColorShade } from "@dldc/design/colors";
 import { sizeToRemString } from "@dldc/design/size";
 import { style } from "@vanilla-extract/css";
 
@@ -16,9 +11,6 @@ export const paperBaseClass = style({
 
 export const paperClass = Object.fromEntries(
   NEUTRAL_COLOR_SHADES.map((key) => {
-    return [
-      key,
-      style([paperBaseClass, { backgroundColor: colorsVars.neutral[key] }]),
-    ];
-  })
+    return [key, style([paperBaseClass, { backgroundColor: colorsVars.neutral[key] }])];
+  }),
 ) as Record<TNeutralColorShade, string>;

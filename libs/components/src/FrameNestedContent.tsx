@@ -8,30 +8,20 @@ import {
   TDesignProps,
   useContainerDesignProps,
 } from "./DesignContext/index.js";
-import {
-  frameContentPropsSplitter,
-  TFrameContentProps,
-  useFrameContent,
-} from "./FrameContent/index.js";
+import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "./FrameContent/index.js";
 import { pipePropsSplitters } from "./utils/propsSplitters.js";
 import { ComponentPropsBaseWith } from "./utils/propsTypes.js";
 
-type FrameNestedContentProps = ComponentPropsBaseWith<
-  "div",
-  TFrameContentProps & TDesignProps
->;
+type FrameNestedContentProps = ComponentPropsBaseWith<"div", TFrameContentProps & TDesignProps>;
 
 /**
  * This component let you nest Frame content
  */
 export function FrameNestedContent(inProps: FrameNestedContentProps) {
-  const [{ localDesign, localFrameContent }, props] = pipePropsSplitters(
-    inProps,
-    {
-      localDesign: designPropsSplitter,
-      localFrameContent: frameContentPropsSplitter,
-    },
-  );
+  const [{ localDesign, localFrameContent }, props] = pipePropsSplitters(inProps, {
+    localDesign: designPropsSplitter,
+    localFrameContent: frameContentPropsSplitter,
+  });
 
   const {
     children,
@@ -42,22 +32,12 @@ export function FrameNestedContent(inProps: FrameNestedContentProps) {
     ...htmlProps
   } = props;
 
-  const { spacing, contentHeight, height, rounded, depth } =
-    useContainerDesignProps(localDesign, "subtle");
+  const { spacing, contentHeight, height, rounded, depth } = useContainerDesignProps(localDesign, "subtle");
 
-  const { startPadding, endPadding, fragment } = useFrameContent(
-    localFrameContent,
-    children,
-  );
+  const { startPadding, endPadding, fragment } = useFrameContent(localFrameContent, children);
 
   const [heightClass, heightInline] = heightStyles(height);
-  const [contentClass, contentInline] = frameContentStyles(
-    contentHeight,
-    spacing,
-    startPadding,
-    endPadding,
-    false,
-  );
+  const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, false);
 
   return (
     <div
@@ -66,12 +46,7 @@ export function FrameNestedContent(inProps: FrameNestedContentProps) {
       {...htmlProps}
     >
       <DefaultDesignProvider {...localDesign} height={null}>
-        <SizeContextProvider
-          height={height}
-          contentHeight={contentHeight}
-          rounded={rounded}
-          depth={depth}
-        >
+        <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>
           {fragment}
         </SizeContextProvider>
       </DefaultDesignProvider>

@@ -25,13 +25,7 @@ export function FrameInputContent(inProps: FrameInputContentProps) {
     };
   }, [onChange, onValueChange]);
 
-  return (
-    <input
-      className={clsx(frameInputContentClass, className)}
-      onChange={inputOnChange}
-      {...inputProps}
-    />
-  );
+  return <input className={clsx(frameInputContentClass, className)} onChange={inputOnChange} {...inputProps} />;
 }
 
 FrameInputContent.displayName = "FrameInputContent";

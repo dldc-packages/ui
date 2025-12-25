@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": false,
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./animations": "./dist/animations/index.js",
     "./colors": "./dist/colors/index.js",
@@ -14,16 +17,12 @@
     "./package.json": "./package.json",
     "./styles.css": "./dist/styles.css"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "lib:build": "tsdown",
     "lib:build:watch": "tsdown --watch",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@dldc/css-engine": "workspace:^",
     "@dldc/utils": "workspace:^",
     "@vanilla-extract/css": "catalog:",
     "csstype": "catalog:",

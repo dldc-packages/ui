@@ -18,10 +18,7 @@ export function powerSize(size: number, power: number = 0.68): number {
   return roundToSize(val);
 }
 
-export function autoContentHeight(
-  height: number,
-  heightRatio = BASE_HEIGHT_RATIO
-): number {
+export function autoContentHeight(height: number, heightRatio = BASE_HEIGHT_RATIO): number {
   return clamp(powerSize(height, heightRatio), MIN_HEIGHT, height);
 }
 

@@ -1,8 +1,4 @@
-import {
-  TDesignHeight,
-  TDesignRounded,
-  TDesignSpacing,
-} from "@dldc/design/size";
+import { TDesignHeight, TDesignRounded, TDesignSpacing } from "@dldc/design/size";
 import { TDesignVariant } from "@dldc/design/variants";
 
 export interface TDesignProps {

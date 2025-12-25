@@ -1,9 +1,5 @@
-import * as Ariakit from "@ariakit/react";
 import { TPaletteColor } from "@dldc/design/colors";
-import {
-  frameGroupSeparatorStyles,
-  frameGroupStyles,
-} from "@dldc/styles/frame-group";
+import { frameGroupSeparatorStyles, frameGroupStyles } from "@dldc/styles/frame-group";
 import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
 import {
@@ -65,11 +61,7 @@ export function FrameGroup(inProps: FrameGroupProps) {
 
   return (
     <DefaultDesignProvider {...localDesign}>
-      <Ariakit.Role
-        className={clsx(baseClass, className)}
-        style={{ ...baseInline, ...style }}
-        {...divProps}
-      >
+      <div className={clsx(baseClass, className)} style={{ ...baseInline, ...style }} {...divProps}>
         {Children.map(childrenFiltered, (child, i) => {
           if (!child) return null;
 
@@ -77,20 +69,11 @@ export function FrameGroup(inProps: FrameGroupProps) {
           const isLast = i === childrenLength - 1;
           const roundStart = roundedStart && isFirst;
           const roundEnd = roundedEnd && isLast;
-          const roundedBase =
-            roundStart && roundEnd
-              ? "all"
-              : roundStart
-                ? "start"
-                : roundEnd
-                  ? "end"
-                  : "none";
+          const roundedBase = roundStart && roundEnd ? "all" : roundStart ? "start" : roundEnd ? "end" : "none";
 
           return (
             <Fragment>
-              {innerDividers && !isFirst && (
-                <span className={separatorClass} style={separatorInline} />
-              )}
+              {innerDividers && !isFirst && <span className={separatorClass} style={separatorInline} />}
               {cloneElement(child as any, {
                 ["data-first"]: roundedBase === "start" ? "true" : undefined,
                 ["data-last"]: roundedBase === "end" ? "true" : undefined,
@@ -99,7 +82,7 @@ export function FrameGroup(inProps: FrameGroupProps) {
             </Fragment>
           );
         })}
-      </Ariakit.Role>
+      </div>
     </DefaultDesignProvider>
   );
 }

@@ -1,28 +1,14 @@
 import { colorsVars, dynamicColorVars, opacity } from "@dldc/design/colors";
-import {
-  _after,
-  _betweenChild,
-  _firstChild,
-  _lastChild,
-  isAfter,
-  isBefore,
-  isHover,
-} from "@dldc/design/conditions";
+import { _after, _betweenChild, _firstChild, _lastChild, isAfter, isBefore, isHover } from "@dldc/design/conditions";
 import { sizeToRemString } from "@dldc/design/size";
 import { TDesignVariant } from "@dldc/design/variants";
-import {
-  ComplexStyleRule,
-  createVar,
-  globalStyle,
-  style,
-  styleVariants,
-} from "@vanilla-extract/css";
+import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
 import { frameInteractiveClass } from "../frame/frame.css.js";
 
 export const separatorWidthVar = createVar(
   { syntax: "length", initialValue: sizeToRemString("0_x"), inherits: true },
-  "separator-width"
+  "separator-width",
 );
 
 export const frameGroupClass = style({
@@ -89,54 +75,42 @@ const CHILD_CASES = [
   },
 ];
 
-CHILD_CASES.forEach(
-  ({
-    baseClass,
-    TopRight,
-    BottomRight,
-    BottomLeft,
-    TopLeft,
-    Right,
-    Left,
-    right,
-    left,
-  }) => {
-    // Remove radius inside
-    globalStyle(`${baseClass} ${_firstChild}`, {
-      [`border${TopRight}Radius`]: 0,
-      [`border${BottomRight}Radius`]: 0,
-    });
-    globalStyle(`${baseClass} ${_betweenChild}`, { borderRadius: 0 });
-    globalStyle(`${baseClass} ${_lastChild}`, {
-      [`border${TopLeft}Radius`]: 0,
-      [`border${BottomLeft}Radius`]: 0,
-    });
+CHILD_CASES.forEach(({ baseClass, TopRight, BottomRight, BottomLeft, TopLeft, Right, Left, right, left }) => {
+  // Remove radius inside
+  globalStyle(`${baseClass} ${_firstChild}`, {
+    [`border${TopRight}Radius`]: 0,
+    [`border${BottomRight}Radius`]: 0,
+  });
+  globalStyle(`${baseClass} ${_betweenChild}`, { borderRadius: 0 });
+  globalStyle(`${baseClass} ${_lastChild}`, {
+    [`border${TopLeft}Radius`]: 0,
+    [`border${BottomLeft}Radius`]: 0,
+  });
 
-    // Remove border inside
-    globalStyle(`${baseClass} ${_firstChild + isBefore}`, {
-      [`border${Right}Width`]: 0,
-    });
-    globalStyle(`${baseClass} ${_betweenChild + isBefore}`, {
-      [`border${Left}Width`]: 0,
-      [`border${Right}Width`]: 0,
-    });
-    globalStyle(`${baseClass} ${_lastChild + isBefore}`, {
-      [`border${Left}Width`]: 0,
-    });
+  // Remove border inside
+  globalStyle(`${baseClass} ${_firstChild + isBefore}`, {
+    [`border${Right}Width`]: 0,
+  });
+  globalStyle(`${baseClass} ${_betweenChild + isBefore}`, {
+    [`border${Left}Width`]: 0,
+    [`border${Right}Width`]: 0,
+  });
+  globalStyle(`${baseClass} ${_lastChild + isBefore}`, {
+    [`border${Left}Width`]: 0,
+  });
 
-    // Align focus border with separator outside
-    globalStyle(`${baseClass} ${_firstChild + isAfter}`, {
-      [right]: calc.negate(separatorWidthVar),
-    });
-    globalStyle(`${baseClass} ${_betweenChild + isAfter}`, {
-      [left]: calc.negate(separatorWidthVar),
-      [right]: calc.negate(separatorWidthVar),
-    });
-    globalStyle(`${baseClass} ${_lastChild + isAfter}`, {
-      [left]: calc.negate(separatorWidthVar),
-    });
-  }
-);
+  // Align focus border with separator outside
+  globalStyle(`${baseClass} ${_firstChild + isAfter}`, {
+    [right]: calc.negate(separatorWidthVar),
+  });
+  globalStyle(`${baseClass} ${_betweenChild + isAfter}`, {
+    [left]: calc.negate(separatorWidthVar),
+    [right]: calc.negate(separatorWidthVar),
+  });
+  globalStyle(`${baseClass} ${_lastChild + isAfter}`, {
+    [left]: calc.negate(separatorWidthVar),
+  });
+});
 
 export const frameGroupSeparatorClass = style({
   alignSelf: "stretch",
@@ -185,16 +159,10 @@ export const frameGroupSeparatorVariantClass = styleVariants({
  * Special case for Surface variant: when a frame is hovered rigth before of after the separator,
  * the separator :before should have same color as the hovered frame border
  */
-globalStyle(
-  `${frameGroupSeparatorVariantClass.surface}:has(+ ${frameInteractiveClass + isHover})`,
-  {
-    backgroundColor: opacity(colorsVars.white, 10),
-  }
-);
+globalStyle(`${frameGroupSeparatorVariantClass.surface}:has(+ ${frameInteractiveClass + isHover})`, {
+  backgroundColor: opacity(colorsVars.white, 10),
+});
 
-globalStyle(
-  `${frameInteractiveClass + isHover} + ${frameGroupSeparatorVariantClass.surface}`,
-  {
-    backgroundColor: opacity(colorsVars.white, 10),
-  }
-);
+globalStyle(`${frameInteractiveClass + isHover} + ${frameGroupSeparatorVariantClass.surface}`, {
+  backgroundColor: opacity(colorsVars.white, 10),
+});

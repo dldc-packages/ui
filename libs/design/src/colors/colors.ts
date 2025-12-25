@@ -300,9 +300,7 @@ export const colorsShades = {
 
 export type TNeutralColorShade = keyof typeof colorsShades.neutral;
 
-export const NEUTRAL_COLOR_SHADES = Object.keys(
-  colorsShades.neutral
-) as TNeutralColorShade[];
+export const NEUTRAL_COLOR_SHADES = Object.keys(colorsShades.neutral) as TNeutralColorShade[];
 
 export const colors = {
   inherit: "inherit",
@@ -316,7 +314,5 @@ export const colors = {
 export type TColor = typeof colors;
 
 export type TColorPath = {
-  [C in keyof TColor]: TColor[C] extends Record<string, string>
-    ? `${C & string}.${keyof TColor[C] & string}`
-    : C;
+  [C in keyof TColor]: TColor[C] extends Record<string, string> ? `${C & string}.${keyof TColor[C] & string}` : C;
 }[keyof TColor];

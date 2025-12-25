@@ -18,8 +18,7 @@ type FrameSideSlotProps = {
 };
 
 export function FrameSideSlot(props: FrameSideSlotProps) {
-  const { slot, icon, loading, isItemMainIcon, isIconOnly, style, className } =
-    props;
+  const { slot, icon, loading, isItemMainIcon, isIconOnly, style, className } = props;
 
   if (slot) {
     return <Fragment>{slot}</Fragment>;

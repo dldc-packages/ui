@@ -6,20 +6,16 @@ export function opacity(colorVar: string, value: number): string {
 }
 
 export type TMapColors<Val> = {
-  [C in keyof TColor]: TColor[C] extends Record<string, string>
-    ? { [K in keyof TColor[C]]: Val }
-    : Val;
+  [C in keyof TColor]: TColor[C] extends Record<string, string> ? { [K in keyof TColor[C]]: Val } : Val;
 };
 
-export function mapColorsVars<Val>(
-  mapper: (colVar: string) => Val
-): TMapColors<Val> {
+export function mapColorsVars<Val>(mapper: (colVar: string) => Val): TMapColors<Val> {
   return mapColorsVarsInternal(colorsVars, mapper) as TMapColors<Val>;
 }
 
 export function mapColorsVarsInternal<Val>(
   input: Record<string, any>,
-  mapper: (colVar: string) => Val
+  mapper: (colVar: string) => Val,
 ): Record<string, any> {
   const result: Record<string, any> = {};
 

@@ -15,6 +15,4 @@ export const DEFAULT_DESIGN: TDefaultDesignContext = {
   hoverVariant: null,
 };
 
-export const DESIGN_KEYS = Object.keys(DEFAULT_DESIGN) as Array<
-  keyof TDefaultDesignContext
->;
+export const DESIGN_KEYS = Object.keys(DEFAULT_DESIGN) as Array<keyof TDefaultDesignContext>;

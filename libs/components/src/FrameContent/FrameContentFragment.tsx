@@ -49,10 +49,7 @@ export interface TFrameContentResult {
   noLayout: boolean;
 }
 
-export function useFrameContent(
-  props: TFrameContentProps,
-  content?: React.ReactNode,
-): TFrameContentResult {
+export function useFrameContent(props: TFrameContentProps, content?: React.ReactNode): TFrameContentResult {
   const {
     startIcon,
     loading,
@@ -69,52 +66,24 @@ export function useFrameContent(
   const hasEndSlot = Boolean(endSlot || endIcon);
   const hasChildren = Boolean(content);
   // Special case for start icon/slot only
-  const iconOnly =
-    (hasStartSlot && !hasChildren && !hasEndSlot) ||
-    (hasEndSlot && !hasStartSlot && !hasChildren);
+  const iconOnly = (hasStartSlot && !hasChildren && !hasEndSlot) || (hasEndSlot && !hasStartSlot && !hasChildren);
   const isEmpty = !hasStartSlot && !hasChildren && !hasEndSlot;
 
-  const defaultStartPadding = noLayout
-    ? "none"
-    : isEmpty
-      ? "icon"
-      : iconOnly
-        ? "icon"
-        : hasStartSlot
-          ? "icon"
-          : "text";
+  const defaultStartPadding = noLayout ? "none" : isEmpty ? "icon" : iconOnly ? "icon" : hasStartSlot ? "icon" : "text";
   const startPaddingResolved: TFrameContentPaddingResolved =
     startPadding === "auto" ? defaultStartPadding : startPadding;
 
-  const defaultEndPadding = noLayout
-    ? "none"
-    : isEmpty
-      ? "icon"
-      : iconOnly
-        ? "icon"
-        : hasEndSlot
-          ? "icon"
-          : "text";
-  const endPaddingResolved: TFrameContentPaddingResolved =
-    endPadding === "auto" ? defaultEndPadding : endPadding;
+  const defaultEndPadding = noLayout ? "none" : isEmpty ? "icon" : iconOnly ? "icon" : hasEndSlot ? "icon" : "text";
+  const endPaddingResolved: TFrameContentPaddingResolved = endPadding === "auto" ? defaultEndPadding : endPadding;
 
   const fragment = (
     <Fragment>
       {hasStartSlot && (
-        <FrameSideSlot
-          icon={startIcon}
-          loading={loading}
-          slot={startSlot}
-          isItemMainIcon
-          isIconOnly={iconOnly}
-        />
+        <FrameSideSlot icon={startIcon} loading={loading} slot={startSlot} isItemMainIcon isIconOnly={iconOnly} />
       )}
       {hasChildren &&
         (typeof content === "string" ? (
-          <span
-            className={ellipsisClass}
-            style={{ flex: 1, textAlign: "left" }}
-          >
+          <span className={ellipsisClass} style={{ flex: 1, textAlign: "left" }}>
             {content}
           </span>
         ) : (
@@ -152,22 +121,17 @@ const FRAME_CONTENT_PROPS_KEYS = Object.keys({
   noLayout: "noLayout",
 } satisfies { [K in keyof Required<TFrameContentProps>]: K });
 
-export const frameContentPropsSplitter: TPropsSplitter<TFrameContentProps> = (
-  props,
-) => {
+export const frameContentPropsSplitter: TPropsSplitter<TFrameContentProps> = (props) => {
   const result: Partial<TFrameContentProps> = {};
   FRAME_CONTENT_PROPS_KEYS.forEach((key) => {
     if (key in props) {
-      result[key as keyof TFrameContentProps] =
-        props[key as keyof TFrameContentProps];
+      result[key as keyof TFrameContentProps] = props[key as keyof TFrameContentProps];
     }
   });
   return result;
 };
 
-export function FrameContentFragment(
-  props: TFrameContentProps & { children?: React.ReactNode },
-) {
+export function FrameContentFragment(props: TFrameContentProps & { children?: React.ReactNode }) {
   return useFrameContent(props, props.children).fragment;
 }
 

@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": false,
   "type": "module",
+  "main": "./dist/demo.js",
+  "module": "./dist/demo.js",
+  "types": "./dist/demo.d.ts",
   "exports": {
     "./math": "./dist/math.js",
     "./object": "./dist/object.js",
     "./package.json": "./package.json"
   },
-  "main": "./dist/demo.js",
-  "module": "./dist/demo.js",
-  "types": "./dist/demo.d.ts",
   "scripts": {
     "lib:build": "tsdown",
     "typecheck": "tsc --noEmit"

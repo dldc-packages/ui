@@ -12,9 +12,7 @@ import {
   TParentDesignContext,
 } from "./types.js";
 
-export const ParentDesignContext = createContext<TParentDesignContext | null>(
-  null,
-);
+export const ParentDesignContext = createContext<TParentDesignContext | null>(null);
 
 export function SizeContextProvider({
   height,
@@ -23,22 +21,13 @@ export function SizeContextProvider({
   children,
   depth,
 }: PropsWithChildren<TParentDesignContext>) {
-  const value = useMemo(
-    () => ({ height, contentHeight, rounded, depth }),
-    [height, contentHeight, rounded, depth],
-  );
-  return (
-    <ParentDesignContext.Provider value={value}>
-      {children}
-    </ParentDesignContext.Provider>
-  );
+  const value = useMemo(() => ({ height, contentHeight, rounded, depth }), [height, contentHeight, rounded, depth]);
+  return <ParentDesignContext.Provider value={value}>{children}</ParentDesignContext.Provider>;
 }
 
 SizeContextProvider.displayName = "SizeContextProvider";
 
-export function designPropsSplitter(
-  props: BaseRecord,
-): Partial<TDefaultDesignContext> {
+export function designPropsSplitter(props: BaseRecord): Partial<TDefaultDesignContext> {
   const result: Partial<TDefaultDesignContext> = {};
   DESIGN_KEYS.forEach((key) => {
     if (key in props && props[key] !== undefined) {
@@ -57,13 +46,9 @@ export function useContainerDesignProps(
   return resolveContainerDesignProps(sizeCtx, deepCtx, localProps, baseVariant);
 }
 
-export const NestedDefaultDesignContext =
-  createContext<TNestedDefaultDesignContext | null>(null);
+export const NestedDefaultDesignContext = createContext<TNestedDefaultDesignContext | null>(null);
 
-export function NestedDefaultDesignProvider({
-  children,
-  values,
-}: PropsWithChildren<{ values: TNestedDesignValues }>) {
+export function NestedDefaultDesignProvider({ children, values }: PropsWithChildren<{ values: TNestedDesignValues }>) {
   const sizeCtx = useContext(ParentDesignContext);
   const parentNestedCtx = useContext(NestedDefaultDesignContext);
 
@@ -88,21 +73,10 @@ export function NestedDefaultDesignProvider({
     return { depth, values: result };
   }, [depth, parentValues, values]);
 
-  return (
-    <NestedDefaultDesignContext.Provider value={value}>
-      {children}
-    </NestedDefaultDesignContext.Provider>
-  );
+  return <NestedDefaultDesignContext.Provider value={value}>{children}</NestedDefaultDesignContext.Provider>;
 }
 
-export function DefaultDesignProvider({
-  children,
-  ...props
-}: PropsWithChildren<Partial<TDefaultDesignContext>>) {
+export function DefaultDesignProvider({ children, ...props }: PropsWithChildren<Partial<TDefaultDesignContext>>) {
   const values = useMemo(() => [withoutUndefined(props)], [props]);
-  return (
-    <NestedDefaultDesignProvider values={values}>
-      {children}
-    </NestedDefaultDesignProvider>
-  );
+  return <NestedDefaultDesignProvider values={values}>{children}</NestedDefaultDesignProvider>;
 }

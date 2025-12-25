@@ -1,4 +1,3 @@
-import * as Ariakit from "@ariakit/react";
 import { TPaletteColor } from "@dldc/design/colors";
 import { TDesignProps } from "./DesignContext";
 import { Frame } from "./Frame";
@@ -25,14 +24,7 @@ export type ButtonLinkProps = ComponentPropsBaseWith<
 export function ButtonLink(inProps: ButtonLinkProps) {
   const { href, ...frameProps } = inProps;
 
-  return (
-    <Ariakit.Role
-      href={href}
-      render={<Frame render={<a />} />}
-      interactive
-      {...(frameProps as any)}
-    />
-  );
+  return <Frame {...frameProps} render={<a href={href} />} interactive />;
 }
 
 ButtonLink.displayName = "ButtonLink";

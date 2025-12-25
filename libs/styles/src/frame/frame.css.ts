@@ -1,9 +1,4 @@
-import {
-  colorsVars,
-  dynamicColorVars,
-  opacity,
-  TPaletteColor,
-} from "@dldc/design/colors";
+import { colorsVars, dynamicColorVars, opacity, TPaletteColor } from "@dldc/design/colors";
 import {
   _after,
   _before,
@@ -19,13 +14,7 @@ import {
 } from "@dldc/design/conditions";
 import { sizeToRemString } from "@dldc/design/size";
 import { TDesignVariant } from "@dldc/design/variants";
-import {
-  ComplexStyleRule,
-  createVar,
-  globalStyle,
-  style,
-  styleVariants,
-} from "@vanilla-extract/css";
+import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
 export const borderWidthVar = createVar("border-width");
 export const focusBorderWidthVar = createVar("focus-border-width");
@@ -140,12 +129,9 @@ globalStyle(`${frameInteractiveClass}${isHover} [data-item-main-icon]`, {
   opacity: 1,
 });
 
-globalStyle(
-  `${frameInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`,
-  {
-    opacity: 0.6,
-  }
-);
+globalStyle(`${frameInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, {
+  opacity: 0.6,
+});
 
 globalStyle(`${frameInteractiveClass}${isFocusWithin} [data-item-main-icon]`, {
   opacity: 1,
