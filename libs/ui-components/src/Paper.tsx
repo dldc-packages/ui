@@ -11,7 +11,7 @@ export type PaperProps = ComponentPropsBaseWith<
 >;
 
 export function Paper(inProps: PaperProps) {
-  const { className, style, background, ...props } = inProps;
+  const { className, background, ...props } = inProps;
 
   const paperClassResolved = background ? paperClass[background] : paperBaseClass;
 

@@ -4,24 +4,21 @@ import { Frame } from "./Frame";
 import { TFrameContentProps } from "./FrameContent";
 import { ComponentPropsBaseWith } from "./utils/propsTypes";
 
-export type ButtonProps = ComponentPropsBaseWith<
-  "button",
-  TFrameContentProps &
-    TDesignProps & {
-      disabled?: boolean;
+export type ButtonSpecificProps = TFrameContentProps &
+  TDesignProps & {
+    disabled?: boolean;
 
-      color?: TPaletteColor;
-      type?: "button" | "submit" | "reset" | undefined;
+    color?: TPaletteColor;
+    type?: "button" | "submit" | "reset" | undefined;
 
-      // Data attributes
-      "data-hover"?: boolean;
-      "data-focus-visible"?: boolean;
-    }
->;
+    // Data attributes
+    "data-hover"?: boolean;
+    "data-focus-visible"?: boolean;
+  };
 
-export function Button(inProps: ButtonProps) {
-  const { type = "button", disabled = false, ref, ...frameProps } = inProps;
+export type ButtonProps = ComponentPropsBaseWith<"button", ButtonSpecificProps>;
 
+export function Button({ type = "button", disabled = false, ref, ...frameProps }: ButtonProps) {
   return (
     <Frame
       type={type}

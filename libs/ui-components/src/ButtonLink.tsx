@@ -12,9 +12,6 @@ export type ButtonLinkProps = ComponentPropsBaseWith<
 
       color?: TPaletteColor;
 
-      // Forward to Button
-      render?: React.ReactElement<any>;
-
       // Data attributes
       "data-hover"?: boolean;
       "data-focus-visible"?: boolean;

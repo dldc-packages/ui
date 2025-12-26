@@ -1,6 +1,9 @@
-@layer overlayscrollbars, ui-core, ui-styles, ui-components;
+@layer theme, base, ui-core, ui-styles, ui-components, overlayscrollbars, components, utilities;
 
-@import "overlayscrollbars/overlayscrollbars.css" layer(overlayscrollbars);
+@import "tailwindcss";
+@plugin "@dldc/ui-core-tailwind-plugin";
+
 @import "@dldc/ui-styles/styles.css" layer(ui-styles);
 @import "@dldc/ui-core/styles.css" layer(ui-core);
 @import "@dldc/ui-components/styles.css" layer(ui-components);
+@import "overlayscrollbars/overlayscrollbars.css" layer(overlayscrollbars);

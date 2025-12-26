@@ -9,7 +9,6 @@ export type ButtonLikeProps = ComponentPropsBaseWith<
   TFrameContentProps &
     TDesignProps & {
       disabled?: boolean;
-
       color?: TPaletteColor;
     }
 >;

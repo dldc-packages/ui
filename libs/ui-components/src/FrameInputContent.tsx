@@ -12,9 +12,7 @@ export type FrameInputContentProps = ComponentPropsBaseWith<
   }
 >;
 
-export function FrameInputContent(inProps: FrameInputContentProps) {
-  const { className, onValueChange, onChange, ...inputProps } = inProps;
-
+export function FrameInputContent({ className, onValueChange, onChange, ...props }: FrameInputContentProps) {
   const inputOnChange = useMemo(() => {
     if (!onValueChange && !onChange) {
       return undefined;
@@ -25,7 +23,7 @@ export function FrameInputContent(inProps: FrameInputContentProps) {
     };
   }, [onChange, onValueChange]);
 
-  return <input className={clsx(frameInputContentClass, className)} onChange={inputOnChange} {...inputProps} />;
+  return <input className={clsx(frameInputContentClass, className)} onChange={inputOnChange} {...props} />;
 }
 
 FrameInputContent.displayName = "FrameInputContent";

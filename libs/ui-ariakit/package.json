@@ -1,0 +1,33 @@
+{
+  "name": "@dldc/ui-ariakit",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./button": "./dist/button.js",
+    "./checkbox": "./dist/checkbox.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "lib:build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ariakit/react": "catalog:",
+    "@dldc/ui-components": "workspace:^",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "type-fest": "catalog:"
+  },
+  "devDependencies": {
+    "@config/typescript": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
+}

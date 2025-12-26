@@ -4,8 +4,6 @@ import { ComponentPropsBase } from "./utils/propsTypes";
 
 export type BackdropProps = ComponentPropsBase<"div">;
 
-export function Backdrop(inProps: BackdropProps) {
-  const { className, ...props } = inProps;
-
+export function Backdrop({ className, ...props }: BackdropProps) {
   return <div className={clsx(backdropClass, className)} {...props} />;
 }

@@ -34,7 +34,6 @@
     "@dldc/ui-core": "workspace:^",
     "@dldc/ui-styles": "workspace:^",
     "@dldc/utils": "workspace:^",
-    "@phosphor-icons/react": "catalog:",
     "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:",
     "overlayscrollbars": "catalog:",
