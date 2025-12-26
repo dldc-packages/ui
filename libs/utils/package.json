@@ -15,6 +15,7 @@
   },
   "scripts": {
     "lib:build": "tsdown",
+    "lib:build:watch": "tsdown --watch",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -1,8 +1,11 @@
+import { useLatestRef } from "@dldc/hooks/use-latest-ref";
+import { useLocalStorageState } from "@dldc/hooks/use-local-storage-state";
 import { Button } from "@dldc/ui-ariakit/button";
 import { ButtonLike } from "@dldc/ui-components/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
 import { ArrowLeftRightIcon, PlusIcon } from "lucide-react";
 import { Fragment, useCallback, useMemo, type JSX, type SetStateAction } from "react";
+
 // import { Button } from "../shared/components/button/Button";
 // import { ButtonLike } from "../shared/components/button/ButtonLike";
 // import { FrameGroup } from "../shared/components/frame/FrameGroup";
@@ -242,7 +245,7 @@ export function Variants<Dims extends TDimensions>({
                         gridRow: 1 + rowOffset + rowIndex,
                         minWidth: cellMinWidth,
                       }}
-                      css={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+                      className="flex flex-col items-center"
                       key={key}
                     >
                       {render(data as any, key)}

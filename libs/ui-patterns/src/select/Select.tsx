@@ -1,6 +1,7 @@
 import * as Ariakit from "@ariakit/react";
 import { Button } from "@dldc/ui-ariakit/button";
-import { DefaultDesignProvider, designPropsSplitter } from "@dldc/ui-components/DesignContext";
+import { DefaultDesignProvider, designPropsSplitter } from "@dldc/ui-components/design-context";
+import { FrameContentFragment } from "@dldc/ui-components/frame-content";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignSize } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
@@ -9,7 +10,6 @@ import { CaretDownIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { ComponentPropsWithRef, Ref, useMemo } from "react";
 import { Merge } from "type-fest";
-import { FrameContentFragment } from "../../../ui-components/dist/frame-content/FrameContentFragment";
 import { SelectItem } from "./SelectItem";
 import { listWrappertClass } from "./styles.css";
 import { TSelectItem } from "./types";
