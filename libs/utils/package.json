@@ -8,14 +8,18 @@
   "types": "./dist/demo.d.ts",
   "exports": {
     "./math": "./dist/math.js",
+    "./measure-text": "./dist/measure-text.js",
     "./object": "./dist/object.js",
+    "./props-splitters": "./dist/props-splitters.js",
     "./package.json": "./package.json"
   },
   "scripts": {
     "lib:build": "tsdown",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "type-fest": "catalog:"
+  },
   "devDependencies": {
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",

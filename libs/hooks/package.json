@@ -1,0 +1,46 @@
+{
+  "name": "@dldc/hooks",
+  "version": "0.0.0",
+  "private": false,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./use-async-process": "./dist/use-async-process.js",
+    "./use-atom-from-value": "./dist/use-atom-from-value.js",
+    "./use-is-mobile": "./dist/use-is-mobile.js",
+    "./use-latest-ref": "./dist/use-latest-ref.js",
+    "./use-local-storage-state": "./dist/use-local-storage-state.js",
+    "./use-lock-body-scroll": "./dist/use-lock-body-scroll.js",
+    "./use-media-query": "./dist/use-media-query.js",
+    "./use-memo-equal": "./dist/use-memo-equal.js",
+    "./use-memo-record": "./dist/use-memo-record.js",
+    "./use-merge-refs": "./dist/use-merge-refs.js",
+    "./use-resize": "./dist/use-resize.js",
+    "./use-switch-delay": "./dist/use-switch-delay.js",
+    "./use-text-width": "./dist/use-text-width.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "lib:build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dldc/utils": "workspace:^",
+    "@react-hookz/deep-equal": "catalog:",
+    "jotai": "catalog:",
+    "nanoid": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "type-fest": "catalog:"
+  },
+  "devDependencies": {
+    "@config/typescript": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
+}

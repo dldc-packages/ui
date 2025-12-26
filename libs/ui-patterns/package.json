@@ -1,5 +1,5 @@
 {
-  "name": "@dldc/ui-components",
+  "name": "@dldc/ui-patterns",
   "version": "0.0.0",
   "private": false,
   "type": "module",
@@ -7,31 +7,22 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "./backdrop": "./dist/backdrop/index.js",
-    "./button": "./dist/button/index.js",
-    "./design-context": "./dist/design-context/index.js",
-    "./frame": "./dist/frame/index.js",
-    "./frame-content": "./dist/frame-content/index.js",
-    "./icon-box": "./dist/icon-box/index.js",
-    "./loading-icon": "./dist/loading-icon/index.js",
-    "./paper": "./dist/paper/index.js",
-    "./prose": "./dist/prose/index.js",
-    "./scrollbars": "./dist/scrollbars/index.js",
-    "./package.json": "./package.json",
-    "./styles.css": "./dist/styles.css"
+    "./button": "./dist/button.js",
+    "./checkbox": "./dist/checkbox.js",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "lib:build": "tsdown",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@ariakit/react": "catalog:",
+    "@dldc/ui-ariakit": "workspace:^",
+    "@dldc/ui-components": "workspace:^",
     "@dldc/ui-core": "workspace:^",
-    "@dldc/ui-styles": "workspace:^",
     "@dldc/utils": "workspace:^",
     "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:",
-    "overlayscrollbars": "catalog:",
-    "overlayscrollbars-react": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "type-fest": "catalog:"

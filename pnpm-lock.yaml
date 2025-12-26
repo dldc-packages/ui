@@ -9,6 +9,9 @@ catalogs:
     '@ariakit/react':
       specifier: 0.4.20
       version: 0.4.20
+    '@react-hookz/deep-equal':
+      specifier: ^3.0.4
+      version: 3.0.4
     '@tailwindcss/vite':
       specifier: ^4.1.18
       version: 4.1.18
@@ -43,7 +46,7 @@ catalogs:
       specifier: ^0.5.7
       version: 0.5.7
     '@vanilla-extract/rollup-plugin':
-      specifier: ^1.5.1
+      specifier: 1.5.1
       version: 1.5.1
     '@vitejs/plugin-react-swc':
       specifier: ^4.2.2
@@ -60,9 +63,15 @@ catalogs:
     history:
       specifier: ^5.3.0
       version: 5.3.0
+    jotai:
+      specifier: ^2.16.1
+      version: 2.16.1
     lucide-react:
       specifier: ^0.562.0
       version: 0.562.0
+    nanoid:
+      specifier: ^5.1.6
+      version: 5.1.6
     overlayscrollbars:
       specifier: 2.13.0
       version: 2.13.0
@@ -224,6 +233,49 @@ importers:
 
   config/typescript: {}
 
+  libs/hooks:
+    dependencies:
+      '@dldc/utils':
+        specifier: workspace:^
+        version: link:../utils
+      '@react-hookz/deep-equal':
+        specifier: 'catalog:'
+        version: 3.0.4
+      jotai:
+        specifier: 'catalog:'
+        version: 2.16.1(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3)
+      nanoid:
+        specifier: 'catalog:'
+        version: 5.1.6
+      react:
+        specifier: 'catalog:'
+        version: 19.2.3
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.3(react@19.2.3)
+      type-fest:
+        specifier: 'catalog:'
+        version: 5.3.1
+    devDependencies:
+      '@config/typescript':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 25.0.3
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.7)
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.18.3(typescript@5.9.3)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
   libs/ui-ariakit:
     dependencies:
       '@ariakit/react':
@@ -372,6 +424,61 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
+  libs/ui-patterns:
+    dependencies:
+      '@ariakit/react':
+        specifier: 'catalog:'
+        version: 0.4.20(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@dldc/ui-ariakit':
+        specifier: workspace:^
+        version: link:../ui-ariakit
+      '@dldc/ui-components':
+        specifier: workspace:^
+        version: link:../ui-components
+      '@dldc/ui-core':
+        specifier: workspace:^
+        version: link:../ui-core
+      '@dldc/utils':
+        specifier: workspace:^
+        version: link:../utils
+      '@vanilla-extract/css':
+        specifier: 'catalog:'
+        version: 1.18.0
+      clsx:
+        specifier: 'catalog:'
+        version: 2.1.1
+      react:
+        specifier: 'catalog:'
+        version: 19.2.3
+      react-dom:
+        specifier: 'catalog:'
+        version: 19.2.3(react@19.2.3)
+      type-fest:
+        specifier: 'catalog:'
+        version: 5.3.1
+    devDependencies:
+      '@config/typescript':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 25.0.3
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.7
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.7)
+      '@vanilla-extract/rollup-plugin':
+        specifier: 'catalog:'
+        version: 1.5.1(rollup@4.53.2)
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.18.3(typescript@5.9.3)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
   libs/ui-styles:
     dependencies:
       '@dldc/ui-core':
@@ -416,6 +523,10 @@ importers:
         version: 5.9.3
 
   libs/utils:
+    dependencies:
+      type-fest:
+        specifier: 'catalog:'
+        version: 5.3.1
     devDependencies:
       '@config/typescript':
         specifier: workspace:*
@@ -1014,6 +1125,11 @@ packages:
 
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
+
+  '@react-hookz/deep-equal@3.0.4':
+    resolution: {integrity: sha512-QpcSUTP1I0lI8/GvSEvclkoEGRWjbYxuUWaecxr8eJRceivGF18wHoJwaej2NYxMn7SqhKaZ9JYQvmdATiSG8A==}
+    engines: {node: '>=18.0.0'}
+    deprecated: PACKAGE IS DEPRECATED AND WILL BE DETED SOON, USE @ver0/deep-equal INSTEAD
 
   '@rolldown/binding-android-arm64@1.0.0-beta.47':
     resolution: {integrity: sha512-vPP9/MZzESh9QtmvQYojXP/midjgkkc1E4AdnPPAzQXo668ncHJcVLKjJKzoBdsQmaIvNjrMdsCwES8vTQHRQw==}
@@ -1902,6 +2018,24 @@ packages:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
 
+  jotai@2.16.1:
+    resolution: {integrity: sha512-vrHcAbo3P7Br37C8Bv6JshMtlKMPqqmx0DDREtTjT4nf3QChDrYdbH+4ik/9V0cXA57dK28RkJ5dctYvavcIlg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@babel/core': '>=7.0.0'
+      '@babel/template': '>=7.0.0'
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -2108,6 +2242,11 @@ packages:
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@5.1.6:
+    resolution: {integrity: sha512-c7+7RQ+dMB5dPwwCp4ee1/iV/q2P6aK1mTZcfr1BTuVlyW9hJYiMPybJCcnBlQtuSmTIWNeazm/zqNoZSSElBg==}
+    engines: {node: ^18 || >=20}
     hasBin: true
 
   node-releases@2.0.27:
@@ -2940,6 +3079,8 @@ snapshots:
     dependencies:
       quansync: 1.0.0
 
+  '@react-hookz/deep-equal@3.0.4': {}
+
   '@rolldown/binding-android-arm64@1.0.0-beta.47':
     optional: true
 
@@ -3745,6 +3886,13 @@ snapshots:
 
   jiti@2.6.1: {}
 
+  jotai@2.16.1(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3):
+    optionalDependencies:
+      '@babel/core': 7.28.5
+      '@babel/template': 7.27.2
+      '@types/react': 19.2.7
+      react: 19.2.3
+
   js-tokens@4.0.0: {}
 
   jsesc@3.1.0: {}
@@ -4058,6 +4206,8 @@ snapshots:
   ms@2.1.3: {}
 
   nanoid@3.3.11: {}
+
+  nanoid@5.1.6: {}
 
   node-releases@2.0.27: {}
 

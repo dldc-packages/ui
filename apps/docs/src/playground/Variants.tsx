@@ -1,5 +1,6 @@
 import { Button } from "@dldc/ui-ariakit/button";
-import { FrameGroup } from "@dldc/ui-components/FrameGroup";
+import { ButtonLike } from "@dldc/ui-components/button";
+import { FrameGroup } from "@dldc/ui-components/frame";
 import { ArrowLeftRightIcon, PlusIcon } from "lucide-react";
 import { Fragment, useCallback, useMemo, type JSX, type SetStateAction } from "react";
 // import { Button } from "../shared/components/button/Button";
@@ -109,22 +110,28 @@ export function Variants<Dims extends TDimensions>({
   const presetItems = useMemo(() => {
     return [
       ...Object.keys(presets).map(
-        (key): TSelectItem<string> => ({
+        (key) => ({
           value: key,
           content: key,
-        }),
+        }), // TSelectItem<string>
       ),
       { value: "", content: "--NO PRESET--" },
     ];
   }, [presets]);
 
   return (
-    <VStack css={{ gap: "2", alignItems: "stretch" }}>
-      <HStack gap="4">
-        {title && <styled.h2 css={{ textStyle: "7", px: "6" }}>{title}</styled.h2>}
-        <HStack gap="4">
+    <div className="flex flex-col gap-2 items-stretch">
+      <div className="flex flex-row gap-4">
+        {title && (
+          <h2
+          // css={{ textStyle: "7", px: "6" }}
+          >
+            {title}
+          </h2>
+        )}
+        <div className="flex flex-row gap-4">
           <FrameGroup color="blue" variant="solid">
-            <ButtonLike css={{ textTransform: "uppercase", fontWeight: "bold" }}>Preset</ButtonLike>
+            <ButtonLike className="uppercase font-bold">Preset</ButtonLike>
             <Select<string>
               label="preset"
               labelHidden
@@ -137,7 +144,7 @@ export function Variants<Dims extends TDimensions>({
                   setPreset(value);
                 }
               }}
-              renderSelect={<Button css={{ minW: "[100px]" }} />}
+              renderSelect={<Button className="min-w-[100px]" />}
             />
           </FrameGroup>
           <MultiSelect<keyof Dims & string>
@@ -162,10 +169,10 @@ export function Variants<Dims extends TDimensions>({
           <Button onClick={() => resetAxis()} color="red" variant="subtle" hoverVariant="surface">
             Reset
           </Button>
-        </HStack>
-      </HStack>
-      <HStack css={{ gap: "8", alignItems: "start" }}>
-        <VStack css={{ gap: "3", pt: "4", alignItems: "stretch" }}>
+        </div>
+      </div>
+      <div className="flex flex-row gap-8 items-start">
+        <div className="flex flex-col gap-3 pt-4 items-stretch">
           {Object.entries(dimensions)
             .filter(([key]) => !colAxis.includes(key) && !rowAxis.includes(key))
             .map(([dimKey, dim]) => {
@@ -179,64 +186,42 @@ export function Variants<Dims extends TDimensions>({
                     content: key,
                   }))}
                   onChange={(value) => setSelected({ ...selected, [dimKey]: value })}
-                  renderSelect={<Button css={{ flex: "1" }} />}
+                  renderSelect={<Button className="flex-1" />}
                   renderWrapper={<FrameGroup color="teal" />}
-                  renderLabel={
-                    <ButtonLike css={{ flex: "1", textTransform: "uppercase", fontWeight: "bold", minW: "[150px]" }}>
-                      {dimKey}
-                    </ButtonLike>
-                  }
+                  renderLabel={<ButtonLike className="flex-1 uppercase font-bold min-w-[150px]">{dimKey}</ButtonLike>}
                 />
               );
             })}
           <Button onClick={() => setSelected(defaultSelected)} color="red" variant="subtle">
             Reset
           </Button>
-        </VStack>
-        <styled.div css={{ maxH: "[90vh]", overflow: "auto", flex: "1" }}>
-          <Grid css={{ gap: "4", py: "4" }}>
+        </div>
+        <div className="max-h-[90vh] overflow-auto flex-1">
+          <div className="grid gap-4 py-4">
             {cols.length > 1 &&
               cols.map((col, colIndex) => {
                 const colName = Object.values(col).join(" & ");
                 return (
-                  <styled.div
+                  <div
                     key={`col-${colIndex}`}
                     style={{ gridColumn: 1 + colOffset + colIndex, gridRow: 1 }}
-                    css={{
-                      textAlign: "center",
-                      bg: "white/5",
-                      rounded: "1_x",
-                      textTransform: "uppercase",
-                      fontWeight: "bold",
-                      p: "1",
-                      textStyle: "4",
-                    }}
+                    className="text-center bg-white/5 rounded-1_x uppercase font-bold p-1"
                   >
                     {colName}
-                  </styled.div>
+                  </div>
                 );
               })}
             {rows.length > 1 &&
               rows.map((row, rowIndex) => {
                 const rowName = Object.values(row).join(" & ");
                 return (
-                  <styled.div
+                  <div
                     key={`row-${rowIndex}`}
                     style={{ gridColumn: 1, gridRow: 1 + rowOffset + rowIndex }}
-                    css={{
-                      display: "flex",
-                      bg: "white/5",
-                      rounded: "1_x",
-                      textTransform: "uppercase",
-                      fontWeight: "bold",
-                      p: "1",
-                      textStyle: "4",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
+                    className="flex bg-white/5 rounded-1_x uppercase font-bold p-1 items-center justify-center"
                   >
                     {rowName}
-                  </styled.div>
+                  </div>
                 );
               })}
             {cols.map((col, colIndex) => (
@@ -251,7 +236,7 @@ export function Variants<Dims extends TDimensions>({
                   }, {});
                   const key = `cell-${colIndex}-${rowIndex}`;
                   return (
-                    <styled.div
+                    <div
                       style={{
                         gridColumn: 1 + colOffset + colIndex,
                         gridRow: 1 + rowOffset + rowIndex,
@@ -261,15 +246,15 @@ export function Variants<Dims extends TDimensions>({
                       key={key}
                     >
                       {render(data as any, key)}
-                    </styled.div>
+                    </div>
                   );
                 })}
               </Fragment>
             ))}
-          </Grid>
-        </styled.div>
-      </HStack>
-    </VStack>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -378,7 +363,7 @@ function useVariantsState<Dims extends TDimensions>({
     }
     if (parsed.selected) {
       Object.entries(parsed.selected).forEach(([key, value]) => {
-        if (allDims.includes(key) && dimensions[key][value]) {
+        if (allDims.includes(key) && dimensions[key]![value]) {
           (restored.selected as any)[key] = value;
         }
       });
