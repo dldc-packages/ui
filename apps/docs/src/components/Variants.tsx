@@ -3,6 +3,7 @@ import { useLocalStorageState } from "@dldc/hooks/use-local-storage-state";
 import { Button } from "@dldc/ui-ariakit/button";
 import { ButtonLike } from "@dldc/ui-components/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
+import { Select } from "@dldc/ui-patterns/select";
 import { ArrowLeftRightIcon, PlusIcon } from "lucide-react";
 import { Fragment, useCallback, useMemo, type JSX, type SetStateAction } from "react";
 
@@ -288,13 +289,13 @@ function MultiSelect<T extends string>({ label, onChange, options, selected }: M
 
   return (
     <FrameGroup variant="solid" color="blue">
-      <ButtonLike css={{ textTransform: "uppercase", fontWeight: "bold" }}>{label}</ButtonLike>
+      <ButtonLike className="uppercase font-bold">{label}</ButtonLike>
       {selected.map((selectedItem, index) => {
         return (
           <Select<T | "REMOVE">
             key={index}
             value={selectedItem}
-            renderSelect={<Button css={{ minWidth: "[100px]" }} />}
+            renderSelect={<Button className="min-w-[100px]" />}
             items={[
               ...options.map((option) => ({
                 value: option,

@@ -15,6 +15,7 @@
     "@dldc/ui-ariakit": "workspace:^",
     "@dldc/ui-components": "workspace:^",
     "@dldc/ui-core": "workspace:^",
+    "@dldc/ui-patterns": "workspace:^",
     "@dldc/ui-styles": "workspace:^",
     "@tailwindcss/vite": "catalog:",
     "@tanstack/react-router": "catalog:",

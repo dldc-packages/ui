@@ -163,6 +163,9 @@ importers:
       '@dldc/ui-core':
         specifier: workspace:^
         version: link:../../libs/ui-core
+      '@dldc/ui-patterns':
+        specifier: workspace:^
+        version: link:../../libs/ui-patterns
       '@dldc/ui-styles':
         specifier: workspace:^
         version: link:../../libs/ui-styles

@@ -7,7 +7,8 @@
     "lint:fix": "oxlint --fix --type-aware .",
     "build": "turbo run build",
     "libs:build": "turbo run build --filter='./libs/*'",
-    "all:typecheck": "pnpm run -r --parallel typecheck"
+    "all:typecheck": "pnpm run -r --parallel typecheck",
+    "libs:watch": "turbo watch --filter='./libs/*' build"
   },
   "devDependencies": {
     "oxfmt": "catalog:",

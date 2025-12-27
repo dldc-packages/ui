@@ -3,10 +3,10 @@
  * If onHightlightedCell is provided, call it when a cell is hovered and add a highlight style to the cell
  */
 
-import { Scrollbars } from "@dldc/ui-components/Scrollbars";
+import { Paper } from "@dldc/ui-components/paper";
+import { Scrollbars } from "@dldc/ui-components/scrollbars";
 import { useCallback, useState } from "react";
 import { Fragment } from "react/jsx-runtime";
-import { Paper } from "../../../../libs/ui-components/dist/paper/Paper";
 
 export interface HeighligedCellParams<TRow, TColumn> {
   key: string;
