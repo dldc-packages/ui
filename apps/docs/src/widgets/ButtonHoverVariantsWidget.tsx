@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { css } from "../../styled-system/css";
 import { Grid } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
-import { HighlightedGrid } from "../playground/HighlightedGrid";
+import { CodeHighlight } from "../components/CodeHighlight";
+import { HighlightedGrid } from "../components/HighlightedGrid";
 import { Button, ButtonProps } from "../shared/components/button/Button";
 import { TDesignVariant } from "../shared/design/types";
 

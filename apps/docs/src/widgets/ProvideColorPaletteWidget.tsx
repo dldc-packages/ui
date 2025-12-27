@@ -1,7 +1,7 @@
 import { css } from "../../styled-system/css";
 import { Grid, Paper } from "../../styled-system/jsx";
 import { hstack } from "../../styled-system/patterns";
-import { CodeHighlight } from "../playground/CodeHighlight";
+import { CodeHighlight } from "../components/CodeHighlight";
 import { Button } from "../shared/components/button/Button";
 import { ButtonLike } from "../shared/components/button/ButtonLike";
 import { Input } from "../shared/components/form/Input";

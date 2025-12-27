@@ -1,12 +1,15 @@
 import * as Ariakit from "@ariakit/react";
+import {
+  DefaultDesignProvider,
+  designPropsSplitter,
+  useContainerDesignProps,
+} from "@dldc/ui-components/design-context";
+import { useFrameContent } from "@dldc/ui-components/frame-content";
+import { heightStyles } from "@dldc/ui-styles/common";
+import { frameContentStyles } from "@dldc/ui-styles/frame-content";
+import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import { CheckIcon } from "@phosphor-icons/react";
-import { css, cx } from "../../../../styled-system/css";
-import { frameContentStyles } from "../../design/frameContent";
-import { selectItemClass } from "../../design/select";
-import { heightStyles } from "../../design/styles";
-import { pipePropsSplitters } from "../../utils/propsSplitters";
-import { DefaultDesignProvider, designPropsSplitter, useContainerDesignProps } from "../core/DesignContext";
-import { useFrameContentFragment } from "../frame/FrameContentFragment";
+import clsx from "clsx";
 import { TSelectItem } from "./types";
 
 interface SelectItemProps extends Ariakit.SelectItemProps {
@@ -26,7 +29,7 @@ export function SelectItem(inProps: SelectItemProps) {
   }
   const checked = Ariakit.useStoreState(store, (state) => state.value === item.value);
 
-  const { startPadding, endPadding, fragment, noLayout } = useFrameContentFragment(
+  const { startPadding, endPadding, fragment, noLayout } = useFrameContent(
     {
       endIcon: checked ? <Ariakit.SelectItemCheck render={<CheckIcon children={null} />} /> : item.endIcon,
       startIcon: item.icon,
@@ -35,13 +38,19 @@ export function SelectItem(inProps: SelectItemProps) {
   );
 
   const { height, contentHeight, spacing } = useContainerDesignProps(localDesign, "subtle");
-  const [heightCss, heightInline] = heightStyles(height);
-  const [contentCss, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
+  const [heightClass, heightInline] = heightStyles(height);
+  const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 
   return (
     <Ariakit.SelectItem
       {...htmlProps}
-      className={cx(css(heightCss, selectItemClass, contentCss, item.hidden && { display: "none" }), className)}
+      className={clsx(
+        heightClass,
+        // selectItemClass,
+        contentClass,
+        // item.hidden && { display: "none" },
+        className,
+      )}
       style={{ ...style, ...heightInline, ...contentInline }}
       disabled={item.disabled || item.hidden}
       value={item.value}

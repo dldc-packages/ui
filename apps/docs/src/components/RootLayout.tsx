@@ -1,67 +1,89 @@
+import { buildMenuTree, type MenuItem } from "@/utils/buildMenuTree";
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
+interface MenuItemProps {
+  item: MenuItem;
+  location: ReturnType<typeof useLocation>;
+  level?: number;
+}
+
+function MenuItem({ item, location, level = 0 }: MenuItemProps) {
+  const isActive = item.path && location.pathname === item.path;
+  const hasChildren = item.children && item.children.length > 0;
+  const paddingLeft = `${0.75 + level * 1.25}rem`;
+
+  if (!item.path) {
+    // Item without a path - just render the label as text
+    return (
+      <li>
+        <div
+          className="px-4 py-3 text-sm font-semibold text-neutral-400 uppercase tracking-wide"
+          style={{ paddingLeft }}
+        >
+          {item.label}
+        </div>
+        {hasChildren && (
+          <ul className="space-y-0">
+            {item.children!.map((child) => (
+              <MenuItem key={child.path || child.label} item={child} location={location} level={level + 1} />
+            ))}
+          </ul>
+        )}
+      </li>
+    );
+  }
+
+  return (
+    <li>
+      <Link
+        to={item.path}
+        className={`block px-4 py-2 rounded-md transition-colors text-sm ${
+          isActive ? "bg-blue-900 text-blue-200 font-medium" : "text-neutral-300 hover:bg-neutral-700"
+        }`}
+        style={{ paddingLeft }}
+      >
+        {item.label}
+      </Link>
+
+      {hasChildren && (
+        <ul className="space-y-0">
+          {item.children!.map((child) => (
+            <MenuItem key={child.path || child.label} item={child} location={location} level={level + 1} />
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
 export function RootLayout({ children }: RootLayoutProps) {
   const location = useLocation();
   const { routesByPath } = useRouter();
 
-  // Generate menu items from routes
-  const menuItems = Object.entries(routesByPath)
-    .filter(([path]) => path !== "/__root")
-    .map(([path]) => {
-      const label =
-        path === "/"
-          ? "Home"
-          : path
-              .replace(/^\/|\/$/g, "")
-              .split("/")
-              .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-              .join(" ");
-      return { path, label };
-    })
-    .sort((a, b) => {
-      if (a.path === "/") return -1;
-      if (b.path === "/") return 1;
-      return a.path.localeCompare(b.path);
-    });
+  const menuItems = buildMenuTree(Object.keys(routesByPath));
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="grid grid-cols-[250px_1fr] gap-3">
       {/* Sidebar */}
-      <aside className="w-[200px] border-r border-gray-200 bg-white shadow-sm">
+      <aside className="bg-neutral-900 shadow-sm sticky top-0 h-screen rounded-md border border-neutral-700">
         <nav className="flex flex-col h-full overflow-y-auto">
-          <div className="px-6 py-8 border-b border-gray-200">
-            <h1 className="text-2xl font-bold text-gray-900">UI Docs</h1>
+          <div className="px-6 py-8 border-b border-neutral-700">
+            <h1 className="text-2xl font-bold text-neutral-100">UI Docs</h1>
           </div>
 
-          <ul className="flex-1 space-y-1 px-4 py-6">
+          <ul className="flex-1 space-y-0 px-3 py-6">
             {menuItems.map((item) => (
-              <li key={item.path}>
-                <Link
-                  to={item.path}
-                  className={`block px-4 py-2.5 rounded-lg transition-colors ${
-                    location.pathname === item.path
-                      ? "bg-blue-100 text-blue-700 font-medium"
-                      : "text-gray-700 hover:bg-gray-100"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              </li>
+              <MenuItem key={item.path || item.label} item={item} location={location} />
             ))}
           </ul>
-
-          <div className="border-t border-gray-200 px-6 py-4 text-xs text-gray-500">
-            <p>© 2025 DLDC UI</p>
-          </div>
         </nav>
       </aside>
 
-      {/* Main content */}
-      <main className="flex-1 overflow-auto">
+      <main className="">
         <div className="h-full">{children}</div>
       </main>
     </div>

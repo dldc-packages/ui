@@ -1,5 +1,5 @@
 import { Grid, Paper } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
+import { CodeHighlight } from "../components/CodeHighlight";
 import { Button } from "../shared/components/button/Button";
 import { DefaultDesignProvider } from "../shared/components/core/DesignContext";
 import { Frame } from "../shared/components/frame/Frame";

@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "typecheck": "tsc",
+    "typecheck:watch": "tsc --watch",
+    "build": "vite build",
     "dev": "vite",
-    "lint": "oxlint",
-    "preview": "vite preview",
-    "typecheck": "tsc"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@dldc/hooks": "workspace:^",

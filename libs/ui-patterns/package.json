@@ -7,13 +7,13 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    "./button": "./dist/button.js",
-    "./checkbox": "./dist/checkbox.js",
-    "./package.json": "./package.json"
+    ".": "./dist/index.js",
+    "./package.json": "./package.json",
+    "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "lib:build": "tsdown",
-    "lib:build:watch": "tsdown --watch",
+    "build": "tsdown",
+    "build:watch": "tsdown --watch",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "@dldc/ui-ariakit": "workspace:^",
     "@dldc/ui-components": "workspace:^",
     "@dldc/ui-core": "workspace:^",
+    "@dldc/ui-styles": "workspace:^",
     "@dldc/utils": "workspace:^",
     "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:",

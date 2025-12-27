@@ -14,7 +14,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "tailwindCSS.experimental.configFile": {
-    "apps/docs/src/index.css": "apps/docs/src/**"
+    "apps/docs/src/index.css": "apps/docs/**"
   },
   "[tailwindcss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

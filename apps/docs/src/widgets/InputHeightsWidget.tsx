@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Grid } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
-import { HighlightedGrid } from "../playground/HighlightedGrid";
+import { CodeHighlight } from "../components/CodeHighlight";
+import { HighlightedGrid } from "../components/HighlightedGrid";
 import { Input } from "../shared/components/form/Input";
 import { TDesignHeight } from "../shared/design/types";
 import { printElement } from "../utils/printElement";

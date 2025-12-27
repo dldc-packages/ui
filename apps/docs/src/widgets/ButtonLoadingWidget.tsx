@@ -1,8 +1,8 @@
 import { CaretDownIcon, UserIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { Grid } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
-import { HighlightedGrid } from "../playground/HighlightedGrid";
+import { CodeHighlight } from "../components/CodeHighlight";
+import { HighlightedGrid } from "../components/HighlightedGrid";
 import { Button } from "../shared/components/button/Button";
 
 export function ButtonLoadingWidget() {

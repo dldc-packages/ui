@@ -2,8 +2,8 @@ import { Button, type ButtonProps } from "@dldc/ui-ariakit/button";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState } from "react";
-import { CodeHighlight } from "../playground/CodeHighlight";
-import { HighlightedGrid } from "../playground/HighlightedGrid";
+import { CodeHighlight } from "../components/CodeHighlight";
+import { HighlightedGrid } from "../components/HighlightedGrid";
 
 export function ButtonColorsVariantsWidget() {
   const colors: TPaletteColor[] = [

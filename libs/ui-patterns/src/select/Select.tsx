@@ -2,6 +2,7 @@ import * as Ariakit from "@ariakit/react";
 import { Button } from "@dldc/ui-ariakit/button";
 import { DefaultDesignProvider, designPropsSplitter } from "@dldc/ui-components/design-context";
 import { FrameContentFragment } from "@dldc/ui-components/frame-content";
+import { Label } from "@dldc/ui-components/label";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignSize } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
@@ -64,7 +65,7 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
   });
 
   const {
-    color,
+    color: _color,
     disabled = false,
 
     items,
@@ -141,11 +142,7 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
                   endIcon={caret && <Ariakit.SelectArrow render={<CaretDownIcon children={null} />} />}
                   startIcon={selectedItem.icon}
                 >
-                  {selectedIsEmpty ? (
-                    <span className={css({ opacity: 0.5 })}>{selectedItem.content}</span>
-                  ) : (
-                    selectedItem.content
-                  )}
+                  {selectedIsEmpty ? <span className="opacity-50">{selectedItem.content}</span> : selectedItem.content}
                 </FrameContentFragment>
               )
             ) : null}
@@ -156,31 +153,12 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
           gutter={4}
           portal
           render={
-            <styled.div
-              css={{
-                overflow: "hidden",
-                background: "neutral.800",
-                rounded: "2",
-                borderWidth: "0__x",
-                borderColor: "white/10",
-                boxShadow: "md",
-                outline: "none",
-                width: "[min-content]",
-              }}
-            />
+            <div className="bg-neutral-800 rounded-[0.5rem] border-0.5 border-white/10 shadow-md outline-none w-[min-content]" />
           }
           sameWidth={sameWidth}
           unmountOnHide
         >
-          <styled.div
-            css={{
-              p: "1",
-              minW: "var(--popover-anchor-width)",
-              maxW: "var(--popover-available-width)",
-              maxH: "var(--popover-available-height)",
-              overflowY: "auto",
-            }}
-          >
+          <div className="p-2 min-w-[var(--popover-anchor-width)] max-w-[var(--popover-available-width)] max-h-[var(--popover-available-height)] overflow-y-auto">
             {items.map((item) => (
               <SelectItem
                 item={item}
@@ -188,7 +166,7 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
                 // nestedHeight={contentHeight}
               />
             ))}
-          </styled.div>
+          </div>
         </Ariakit.SelectPopover>
       </Ariakit.SelectProvider>
     </DefaultDesignProvider>

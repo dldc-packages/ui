@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Grid, Paper } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
+import { CodeHighlight } from "../components/CodeHighlight";
 import { Input } from "../shared/components/form/Input";
 import { printElement } from "../utils/printElement";
 

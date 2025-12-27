@@ -1,5 +1,5 @@
 import { Grid } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
+import { CodeHighlight } from "../components/CodeHighlight";
 import { Button } from "../shared/components/button/Button";
 import { ButtonLike } from "../shared/components/button/ButtonLike";
 import { FrameGroup } from "../shared/components/frame/FrameGroup";

@@ -8,6 +8,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     "./backdrop": "./dist/backdrop/index.js",
+    "./checkbox": "./dist/checkbox/index.js",
     "./common": "./dist/common/index.js",
     "./ellipsis": "./dist/ellipsis/index.js",
     "./frame": "./dist/frame/index.js",
@@ -15,6 +16,7 @@
     "./frame-group": "./dist/frame-group/index.js",
     "./frame-input": "./dist/frame-input/index.js",
     "./icon": "./dist/icon/index.js",
+    "./label": "./dist/label/index.js",
     "./modal": "./dist/modal/index.js",
     "./paper": "./dist/paper/index.js",
     "./prose": "./dist/prose/index.js",
@@ -23,8 +25,8 @@
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
-    "lib:build": "tsdown",
-    "lib:build:watch": "tsdown --watch",
+    "build": "tsdown",
+    "build:watch": "tsdown --watch",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

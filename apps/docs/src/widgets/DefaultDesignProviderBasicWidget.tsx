@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Grid, HStack, Paper, styled, VStack } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
-import { HighlightedGrid } from "../playground/HighlightedGrid";
+import { CodeHighlight } from "../components/CodeHighlight";
+import { HighlightedGrid } from "../components/HighlightedGrid";
 import { Button } from "../shared/components/button/Button";
 import { DefaultDesignProvider } from "../shared/components/core/DesignContext";
 import { Input } from "../shared/components/form/Input";

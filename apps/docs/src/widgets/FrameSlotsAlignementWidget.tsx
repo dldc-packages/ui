@@ -3,8 +3,8 @@ import { useState } from "react";
 import { css } from "../../styled-system/css";
 import { Grid, VStack } from "../../styled-system/jsx";
 import { prose } from "../../styled-system/recipes";
-import { CodeHighlight } from "../playground/CodeHighlight";
-import { HighlightedGrid } from "../playground/HighlightedGrid";
+import { CodeHighlight } from "../components/CodeHighlight";
+import { HighlightedGrid } from "../components/HighlightedGrid";
 import { Frame } from "../shared/components/frame/Frame";
 import { printElement } from "../utils/printElement";
 

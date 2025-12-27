@@ -1,6 +1,6 @@
 import { ChartBarIcon, FileTextIcon, UserIcon } from "@phosphor-icons/react";
 import { Grid, Paper } from "../../styled-system/jsx";
-import { CodeHighlight } from "../playground/CodeHighlight";
+import { CodeHighlight } from "../components/CodeHighlight";
 import { Button } from "../shared/components/button/Button";
 import { FrameGroup } from "../shared/components/frame/FrameGroup";
 import { printElement } from "../utils/printElement";
