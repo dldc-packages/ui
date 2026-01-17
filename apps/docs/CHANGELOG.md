@@ -1,0 +1,17 @@
+# @dldc/ui-docs
+
+## 1.0.0
+
+### Major Changes
+
+- 1cfe762: First release
+
+### Patch Changes
+
+- Updated dependencies [1cfe762]
+  - @dldc/hooks@1.0.0
+  - @dldc/ui-ariakit@1.0.0
+  - @dldc/ui-components@1.0.0
+  - @dldc/ui-core@1.0.0
+  - @dldc/ui-patterns@1.0.0
+  - @dldc/ui-styles@1.0.0
