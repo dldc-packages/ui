@@ -8,9 +8,11 @@
     "build": "turbo run build",
     "libs:build": "turbo run build --filter='./libs/*'",
     "all:typecheck": "pnpm run -r --parallel typecheck",
-    "libs:watch": "turbo watch --filter='./libs/*' build"
+    "libs:watch": "turbo watch --filter='./libs/*' build",
+    "changeset": "changeset"
   },
   "devDependencies": {
+    "@changesets/cli": "catalog:",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
