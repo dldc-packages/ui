@@ -1,10 +1,9 @@
-import { UserIcon } from "@phosphor-icons/react";
+import { ButtonLike } from "@dldc/ui-components/button";
+import type { TDesignHeight } from "@dldc/ui-core/size";
+import { UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { ButtonLike } from "../shared/components/button/ButtonLike";
-import { TDesignHeight } from "../shared/design/types";
 
 export function ButtonLikeHeightsWidget() {
   const sizes: TDesignHeight[] = ["3", "4", "5", "6", "7", "8", "10", "12"];
@@ -16,7 +15,7 @@ export function ButtonLikeHeightsWidget() {
   const [highlighted, setHighlighted] = useState<{ size: TDesignHeight; content: (typeof contents)[number] } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<ButtonLike height="${highlighted.size}"${highlighted.content.props.startIcon ? " startIcon={<UserIcon />}" : ""}>${highlighted.content.label}</ButtonLike>`
@@ -32,6 +31,6 @@ export function ButtonLikeHeightsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { size: cell.row, content: cell.column } : null)}
       />
-    </Grid>
+    </div>
   );
 }

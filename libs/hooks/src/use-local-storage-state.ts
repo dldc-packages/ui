@@ -5,13 +5,11 @@ export type TRestoreLocalStorageState<T> = (stored: unknown | null) => T;
 
 export function useLocalStorageState<T>(
   key: string | null,
-  defaultValue: TRestoreLocalStorageState<T>
+  defaultValue: TRestoreLocalStorageState<T>,
 ): [T, Dispatch<SetStateAction<T>>] {
   const restoreRef = useLatestRef<() => T>(() => {
     const defaultValueFn =
-      typeof defaultValue === "function"
-        ? (defaultValue as TRestoreLocalStorageState<T>)
-        : () => defaultValue;
+      typeof defaultValue === "function" ? (defaultValue as TRestoreLocalStorageState<T>) : () => defaultValue;
     if (!key) {
       return defaultValueFn(null);
     }

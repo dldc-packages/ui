@@ -4,6 +4,6 @@ import { Merge } from "type-fest";
 
 export type ButtonProps = Merge<AKButton.ButtonProps, CButton.ButtonSpecificProps>;
 
-export function Button({ render = <CButton.Button />, ...props }: ButtonProps) {
-  return <AKButton.Button render={render} {...props} />;
+export function Button({ render, ...props }: ButtonProps) {
+  return <AKButton.Button render={<CButton.Button render={render} />} {...props} />;
 }

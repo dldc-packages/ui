@@ -9,7 +9,9 @@ import {
 import { designContentSizeVar } from "../common/index.js";
 import { em, rem, round } from "./utils.js";
 
-const isNotProse = `:not(:where([class~="not-prose"],[class~="not-prose"] *))`;
+export const notProseClass = style({});
+
+const isNotProse = `:not(:where([class~="${notProseClass}"],[class~="${notProseClass}"] *))`;
 
 function globalStyleWithNotProse(selector: string, rules: GlobalStyleRule) {
   globalStyle(`:where(${selector})${isNotProse}`, rules);
@@ -35,8 +37,6 @@ export const proseVars = createGlobalTheme(":root", {
   thBorders: colorsVars.neutral["300"],
   tdBorders: colorsVars.neutral["200"],
 });
-
-export const notProseClass = style({});
 
 export const proseBaseClass = style({});
 
@@ -126,7 +126,7 @@ globalStyleWithNotProse(
   `${proseBaseClass} blockquote p:first-of-type::before`,
   {
     content: "open-quote",
-  }
+  },
 );
 globalStyleWithNotProse(`${proseBaseClass} blockquote p:last-of-type::after`, {
   content: "close-quote",
@@ -386,7 +386,7 @@ globalStyleWithNotProse(
   {
     marginTop: em(8, 14),
     marginBottom: em(8, 14),
-  }
+  },
 );
 globalStyleWithNotProse(`${proseSizeDynamicClass} dl`, {
   marginTop: em(16, 14),
@@ -437,19 +437,19 @@ globalStyleWithNotProse(
     paddingInlineEnd: em(12, 12),
     paddingBottom: em(8, 12),
     paddingInlineStart: em(12, 12),
-  }
+  },
 );
 globalStyleWithNotProse(
   `${proseSizeDynamicClass} tbody td:first-child, ${proseSizeDynamicClass} tfoot td:first-child`,
   {
     paddingInlineStart: "0",
-  }
+  },
 );
 globalStyleWithNotProse(
   `${proseSizeDynamicClass} tbody td:last-child, ${proseSizeDynamicClass} tfoot td:last-child`,
   {
     paddingInlineEnd: "0",
-  }
+  },
 );
 globalStyleWithNotProse(`${proseSizeDynamicClass} figure`, {
   marginTop: em(16, 12),

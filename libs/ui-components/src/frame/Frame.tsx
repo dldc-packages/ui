@@ -4,9 +4,10 @@ import { frameStyles } from "@dldc/ui-styles/frame";
 import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
-import { cloneElement, ElementType, ReactElement, Ref } from "react";
+import { ElementType, ReactElement, Ref } from "react";
 import { designPropsSplitter, SizeContextProvider, TDesignProps, useContainerDesignProps } from "../design-context";
 import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index.js";
+import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
 
 export type FrameProps = ComponentPropsBaseWith<
@@ -86,7 +87,9 @@ export function Frame(inProps: FrameProps) {
 
   const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 
-  const base = (
+  // Merge base props into the custom render element
+  return mergeRender(
+    render,
     <div
       className={clsx(baseClass, contentClass, className)}
       style={{ ...baseInline, ...contentInline, ...style }}
@@ -97,15 +100,8 @@ export function Frame(inProps: FrameProps) {
       <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>
         {fragment}
       </SizeContextProvider>
-    </div>
+    </div>,
   );
-
-  if (!render) {
-    return base;
-  }
-
-  // Merge base props into the custom render element
-  return cloneElement(render, render.props);
 }
 
 Frame.displayName = "Frame";

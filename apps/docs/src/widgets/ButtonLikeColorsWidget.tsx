@@ -1,10 +1,10 @@
-import { UserIcon } from "@phosphor-icons/react";
+import { ButtonLike } from "@dldc/ui-components/button";
+import type { TPaletteColor } from "@dldc/ui-core/colors";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
+import { UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { ButtonLike } from "../shared/components/button/ButtonLike";
-import { TDesignVariant, TPaletteColor } from "../shared/design/types";
 
 export function ButtonLikeColorsWidget() {
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
@@ -13,7 +13,7 @@ export function ButtonLikeColorsWidget() {
   const [highlighted, setHighlighted] = useState<{ variant: TDesignVariant; color: TPaletteColor } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<ButtonLike variant="${highlighted.variant}" color="${highlighted.color}" startIcon={<UserIcon />}>${highlighted.color}</ButtonLike>`
@@ -29,6 +29,6 @@ export function ButtonLikeColorsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { variant: cell.row, color: cell.column } : null)}
       />
-    </Grid>
+    </div>
   );
 }

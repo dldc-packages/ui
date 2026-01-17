@@ -1,10 +1,10 @@
-import { UserIcon } from "@phosphor-icons/react";
+import { Frame } from "@dldc/ui-components/frame";
+import type { TPaletteColor } from "@dldc/ui-core/colors";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
+import { UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
-import { TDesignVariant, TPaletteColor } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function FrameDisabledWidget() {
@@ -14,7 +14,7 @@ export function FrameDisabledWidget() {
   const [highlighted, setHighlighted] = useState<{ color: TPaletteColor; variant: TDesignVariant } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -40,6 +40,6 @@ export function FrameDisabledWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { color: cell?.column, variant: cell?.row } : null)}
       />
-    </Grid>
+    </div>
   );
 }

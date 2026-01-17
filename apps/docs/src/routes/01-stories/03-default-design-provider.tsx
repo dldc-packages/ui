@@ -1,0 +1,84 @@
+import { StoryLayout } from "@/components/StoryLayout";
+import { DefaultDesignProviderBasicWidget } from "@/widgets/DefaultDesignProviderBasicWidget";
+import { DefaultDesignProviderNestedWidget } from "@/widgets/DefaultDesignProviderNestedWidget";
+import { ProvideColorPaletteWidget } from "@/widgets/ProvideColorPaletteWidget";
+import { Prose } from "@dldc/ui-components/prose";
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/01-stories/03-default-design-provider")({
+  component: RouteComponent,
+});
+
+function RouteComponent() {
+  return (
+    <StoryLayout>
+      <Prose invert>
+        <h1>Default Design Provider</h1>
+        <p>
+          <code>DefaultDesignProvider</code> is a context provider that sets default design properties for all child
+          components. It allows you to establish consistent design defaults across a component tree without having to
+          pass props to each individual component.
+        </p>
+        <p>
+          This provider is particularly useful for creating design variations, managing nested component hierarchies,
+          and maintaining design consistency across complex UI structures.
+        </p>
+        <h2>Basic Usage</h2>
+        <p>
+          Use <code>DefaultDesignProvider</code> to set default design properties that will be inherited by all child
+          components. Any component that uses the design system will automatically pick up these defaults.
+        </p>
+      </Prose>
+      <DefaultDesignProviderBasicWidget />
+      <Prose invert>
+        <h2>Nested Providers</h2>
+        <p>
+          <code>DefaultDesignProvider</code> can be nested to create hierarchical design contexts. Inner providers
+          override properties from outer providers, allowing for fine-grained control over design inheritance.
+        </p>
+        <p>
+          The nested design system automatically calculates appropriate sizes, spacing, and rounded values for deeply
+          nested components, ensuring visual harmony across the hierarchy.
+        </p>
+      </Prose>
+      <DefaultDesignProviderNestedWidget />
+      <Prose invert>
+        <h2>Available Properties</h2>
+        <p>
+          <code>DefaultDesignProvider</code> accepts all design properties that can be passed to individual components:
+        </p>
+        <ul>
+          <li>
+            <code>height</code> - Sets the default height for all child components
+          </li>
+          <li>
+            <code>contentHeight</code> - Controls the internal content sizing
+          </li>
+          <li>
+            <code>rounded</code> - Sets the border radius for child components
+          </li>
+          <li>
+            <code>spacing</code> - Controls spacing and padding values
+          </li>
+          <li>
+            <code>variant</code> - Sets the visual variant (solid, surface, subtle, ghost, input)
+          </li>
+          <li>
+            <code>hoverVariant</code> - Controls the hover state appearance
+          </li>
+        </ul>
+        <p>
+          These properties use the same type system as individual components, supporting both numeric values and the
+          4px-based sizing system with fractional support (e.g., "7", "7_x", "7x").
+        </p>
+      </Prose>
+      <Prose invert>
+        <h2>Setting color</h2>
+        <p>
+          To provide color to a group of elements, use the <code>colorPaletteClass</code> styles
+        </p>
+      </Prose>
+      <ProvideColorPaletteWidget />
+    </StoryLayout>
+  );
+}

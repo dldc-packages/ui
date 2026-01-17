@@ -10,7 +10,7 @@ export function useAtomFromValue<T>(value: T) {
   useEffect(() => {
     if ((import.meta as any)?.env?.DEV && typeof value === "function") {
       console.error(
-        "useAtomFromValue should not be used with a function as argument, wrap your function in a useMemo(() => ({ fn }), [])"
+        "useAtomFromValue should not be used with a function as argument, wrap your function in a useMemo(() => ({ fn }), [])",
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

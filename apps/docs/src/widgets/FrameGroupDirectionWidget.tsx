@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Button } from "@dldc/ui-ariakit/button";
+import { FrameGroup } from "@dldc/ui-components/frame";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { FrameGroup } from "../shared/components/frame/FrameGroup";
 
 export function FrameGroupDirectionWidget() {
   const directions = [
@@ -26,7 +26,7 @@ export function FrameGroupDirectionWidget() {
   const [highlighted, setHighlighted] = useState<(typeof directions)[number] | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted?.code || "// Hover a button group to see the code"}
       </CodeHighlight>
@@ -41,6 +41,6 @@ export function FrameGroupDirectionWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

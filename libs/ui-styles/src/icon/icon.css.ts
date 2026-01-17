@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { designContentSizeVar } from "../common/index.js";
 
 export const iconClass = style({
@@ -9,4 +9,9 @@ export const iconClass = style({
   flexShrink: 0,
   width: designContentSizeVar,
   height: designContentSizeVar,
+});
+
+globalStyle(`${iconClass} > *`, {
+  width: "100%",
+  height: "100%",
 });

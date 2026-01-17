@@ -1,9 +1,5 @@
 import { clamp, powerValue } from "@dldc/utils/math";
-import {
-  roundToSize,
-  sizeToRem,
-  TDesignSize,
-} from "../../../ui-core/dist/size/index.js";
+import { roundToSize, sizeToRem, TDesignSize } from "../../../ui-core/dist/size/index.js";
 import { BASE_HEIGHT_RATIO, MIN_HEIGHT } from "./constants.js";
 
 export function resolveSmallRounded(height: number): boolean {
@@ -22,10 +18,7 @@ export function powerSize(size: number, power: number = 0.68): number {
   return roundToSize(val);
 }
 
-export function autoContentHeight(
-  height: number,
-  heightRatio = BASE_HEIGHT_RATIO
-): number {
+export function autoContentHeight(height: number, heightRatio = BASE_HEIGHT_RATIO): number {
   return clamp(powerSize(height, heightRatio), MIN_HEIGHT, height);
 }
 

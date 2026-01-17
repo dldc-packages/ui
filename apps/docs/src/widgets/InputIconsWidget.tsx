@@ -1,9 +1,8 @@
-import { MagnifyingGlassIcon, PaperPlaneIcon, UserIcon } from "@phosphor-icons/react";
-import { ReactNode, useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+import { Input } from "@dldc/ui-components/input";
+import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
+import { useState, type ReactNode } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Input } from "../shared/components/form/Input";
 import { printElement } from "../utils/printElement";
 
 type IconState = {
@@ -14,14 +13,14 @@ type IconState = {
 
 export function InputIconsWidget() {
   const states: IconState[] = [
-    { label: "Search...", startIcon: <MagnifyingGlassIcon /> },
-    { label: "Send message", endIcon: <PaperPlaneIcon /> },
-    { label: "Username", startIcon: <UserIcon />, endIcon: <PaperPlaneIcon /> },
+    { label: "Search...", startIcon: <SearchIcon /> },
+    { label: "Send message", endIcon: <SendIcon /> },
+    { label: "Username", startIcon: <UserIcon />, endIcon: <SendIcon /> },
   ];
   const [highlighted, setHighlighted] = useState<IconState | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -36,6 +35,6 @@ export function InputIconsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

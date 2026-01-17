@@ -1,9 +1,8 @@
-import { CaretDownIcon, UserIcon } from "@phosphor-icons/react";
+import { Button } from "@dldc/ui-ariakit/button";
+import { ChevronDownIcon, UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
 
 export function ButtonLoadingWidget() {
   const contentVariations = [
@@ -11,14 +10,14 @@ export function ButtonLoadingWidget() {
     { children: "Save Changes", startIcon: <UserIcon />, code: "startIcon={<UserIcon />}" },
     {
       children: "Save Changes",
-      endIcon: <CaretDownIcon />,
-      code: "endIcon={<CaretDownIcon />}",
+      endIcon: <ChevronDownIcon />,
+      code: "endIcon={<ChevronDownIcon />}",
     },
     {
       children: "Save Changes",
       startIcon: <UserIcon />,
-      endIcon: <CaretDownIcon />,
-      code: "startIcon={<UserIcon />} endIcon={<CaretDownIcon />}",
+      endIcon: <ChevronDownIcon />,
+      code: "startIcon={<UserIcon />} endIcon={<ChevronDownIcon />}",
     },
     { children: undefined, startIcon: <UserIcon />, code: "startIcon={<UserIcon />}" },
   ];
@@ -34,7 +33,7 @@ export function ButtonLoadingWidget() {
   } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button ${highlighted.content.code} ${highlighted.loading.code} ${highlighted.content.children !== undefined ? `>${highlighted.content.children}</Button>` : "/>"}`
@@ -50,6 +49,6 @@ export function ButtonLoadingWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { content: cell.row, loading: cell.column } : null)}
       />
-    </Grid>
+    </div>
   );
 }

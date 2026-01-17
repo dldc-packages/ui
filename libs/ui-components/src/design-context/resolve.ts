@@ -1,17 +1,8 @@
 import { clamp } from "@dldc/utils/math";
 import { withoutUndefined } from "@dldc/utils/object";
-import {
-  parseMaybeSize,
-  parseSize,
-  roundToSize,
-} from "../../../ui-core/dist/size/index.js";
+import { parseMaybeSize, parseSize, roundToSize } from "../../../ui-core/dist/size/index.js";
 import { TDesignVariant } from "../../../ui-core/dist/variants/index.js";
-import {
-  BASE_HEIGHT,
-  BASE_ROUNDED,
-  DEFAULT_DESIGN,
-  MIN_HEIGHT,
-} from "./constants.js";
+import { BASE_HEIGHT, BASE_ROUNDED, DEFAULT_DESIGN, MIN_HEIGHT } from "./constants.js";
 import {
   TDefaultDesignContext,
   TDesignContextResolved,
@@ -24,19 +15,12 @@ export function resolveContainerDesignProps(
   parentCtx: TParentDesignContext | null,
   nestedCtx: TNestedDefaultDesignContext | null,
   localProps: Partial<TDefaultDesignContext>,
-  baseVariant: TDesignVariant
+  baseVariant: TDesignVariant,
 ): TDesignContextResolved {
   const depth = !parentCtx ? 0 : parentCtx.depth + 1;
   const props = resolveProps(nestedCtx, localProps, depth, baseVariant);
-  const contentHeightFromNestedHeight = resolveProps(
-    nestedCtx,
-    {},
-    depth + 1,
-    baseVariant
-  ).height;
-  const contentHeightProp = parseMaybeSize(
-    props.contentHeight ?? contentHeightFromNestedHeight
-  );
+  const contentHeightFromNestedHeight = resolveProps(nestedCtx, {}, depth + 1, baseVariant).height;
+  const contentHeightProp = parseMaybeSize(props.contentHeight ?? contentHeightFromNestedHeight);
 
   const hoverVariant = props.hoverVariant ?? props.variant;
   const spacing = parseMaybeSize(props.spacing);
@@ -89,7 +73,7 @@ function resolveProps(
   nestedCtx: TNestedDefaultDesignContext | null,
   localProps: Partial<TDefaultDesignContext>,
   depth: number,
-  baseVariant: TDesignVariant
+  baseVariant: TDesignVariant,
 ): TDefaultDesignContext {
   const resolvedDefault = resolveDefaultProps(nestedCtx, depth, baseVariant);
   return {
@@ -101,7 +85,7 @@ function resolveProps(
 function resolveDefaultProps(
   nestedCtx: TNestedDefaultDesignContext | null,
   depth: number,
-  baseVariant: TDesignVariant
+  baseVariant: TDesignVariant,
 ): TDefaultDesignContext {
   const defaultDesignWithBaseVariant = {
     ...DEFAULT_DESIGN,
@@ -122,10 +106,7 @@ function resolveDefaultProps(
   };
 }
 
-function resolveContentHeight(
-  height: number,
-  contentHeight: number | null
-): number {
+function resolveContentHeight(height: number, contentHeight: number | null): number {
   if (contentHeight !== null) {
     return clamp(contentHeight, MIN_HEIGHT, height);
   }
@@ -133,10 +114,6 @@ function resolveContentHeight(
   return autoContentHeight(height);
 }
 
-function radiusScale(
-  parentRadius: number,
-  distance: number,
-  scale = 1
-): number {
+function radiusScale(parentRadius: number, distance: number, scale = 1): number {
   return parentRadius * Math.exp(-(scale * distance) / parentRadius);
 }

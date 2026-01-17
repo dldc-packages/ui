@@ -7,8 +7,8 @@ import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignSize } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
-import { CaretDownIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { ChevronDownIcon } from "lucide-react";
 import { ComponentPropsWithRef, Ref, useMemo } from "react";
 import { Merge } from "type-fest";
 import { SelectItem } from "./SelectItem";
@@ -97,7 +97,7 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
   // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const selectedItem = useMemo(() => items.find((item) => item.value === storeValue), [items, storeValue]);
   if (!selectedItem) {
-    console.warn(`Select: value "${storeValue}" not found in items`);
+    console.warn(`Select: value "${String(storeValue)}" not found in items`);
   }
 
   const selectedIsEmpty = emptyValue !== undefined && storeValue === emptyValue;
@@ -139,7 +139,7 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
                 renderSelected(selectedItem)
               ) : (
                 <FrameContentFragment
-                  endIcon={caret && <Ariakit.SelectArrow render={<CaretDownIcon children={null} />} />}
+                  endIcon={caret && <Ariakit.SelectArrow render={<ChevronDownIcon />} />}
                   startIcon={selectedItem.icon}
                 >
                   {selectedIsEmpty ? <span className="opacity-50">{selectedItem.content}</span> : selectedItem.content}

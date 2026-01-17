@@ -1,9 +1,8 @@
+import { Frame } from "@dldc/ui-components/frame";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
-import { TDesignVariant } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function FrameVariantsWidget() {
@@ -12,7 +11,7 @@ export function FrameVariantsWidget() {
   const [highlighted, setHighlighted] = useState<TDesignVariant | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(<Frame variant={highlighted}>{highlighted}</Frame>)
@@ -27,6 +26,6 @@ export function FrameVariantsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? cell.row : null)}
       />
-    </Grid>
+    </div>
   );
 }

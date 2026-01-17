@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Button } from "@dldc/ui-ariakit/button";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { TDesignVariant } from "../shared/design/types";
 
 export function ButtonInteractiveStatesWidget() {
   const stateConfigs = [
@@ -20,7 +20,7 @@ export function ButtonInteractiveStatesWidget() {
   } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button variant="${highlighted.variant}"${highlighted.state.code ? ` ${highlighted.state.code}` : ""}>${highlighted.state.label}</Button>`
@@ -36,6 +36,6 @@ export function ButtonInteractiveStatesWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { state: cell.column, variant: cell.row } : null)}
       />
-    </Grid>
+    </div>
   );
 }

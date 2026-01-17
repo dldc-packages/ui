@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "private": false,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
+    "./loading-block": "./dist/loading-block/index.js",
     "./other": "./dist/other/index.js",
     "./select": "./dist/select/index.js",
     "./package.json": "./package.json",
@@ -26,6 +25,7 @@
     "@dldc/utils": "workspace:^",
     "@vanilla-extract/css": "catalog:",
     "clsx": "catalog:",
+    "lucide-react": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "type-fest": "catalog:"

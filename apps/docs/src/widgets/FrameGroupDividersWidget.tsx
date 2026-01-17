@@ -1,9 +1,8 @@
+import { Button } from "@dldc/ui-ariakit/button";
+import { FrameGroup } from "@dldc/ui-components/frame";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { FrameGroup } from "../shared/components/frame/FrameGroup";
 
 export function FrameGroupDividersWidget() {
   const innerDividerOptions = [
@@ -16,7 +15,7 @@ export function FrameGroupDividersWidget() {
   } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<FrameGroup 
@@ -37,6 +36,6 @@ export function FrameGroupDividersWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { inner: cell.row } : null)}
       />
-    </Grid>
+    </div>
   );
 }

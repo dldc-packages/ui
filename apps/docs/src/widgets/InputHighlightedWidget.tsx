@@ -1,9 +1,8 @@
+import { Input } from "@dldc/ui-components/input";
+import type { TPaletteColor } from "@dldc/ui-core/colors";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Input } from "../shared/components/form/Input";
-import { TPaletteColor } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 type HighlightState = {
@@ -22,7 +21,7 @@ export function InputHighlightedWidget() {
   const [highlightedState, setHighlightedState] = useState<HighlightState | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlightedState
           ? printElement(
@@ -46,6 +45,6 @@ export function InputHighlightedWidget() {
         )}
         onHighlightedCell={(cell) => setHighlightedState(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

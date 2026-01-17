@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Frame, type FrameProps } from "@dldc/ui-components/frame";
+import type { TPaletteColor } from "@dldc/ui-core/colors";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame, FrameProps } from "../shared/components/frame/Frame";
-import { TDesignVariant, TPaletteColor } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function FrameColorsWidget() {
@@ -36,7 +37,7 @@ export function FrameColorsWidget() {
   const [highlighted, setHighlighted] = useState<FrameProps | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -56,6 +57,6 @@ export function FrameColorsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { color: cell?.column, variant: cell?.row } : null)}
       />
-    </Grid>
+    </div>
   );
 }

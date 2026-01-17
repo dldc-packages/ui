@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Input } from "@dldc/ui-components/input";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Input } from "../shared/components/form/Input";
 import { printElement } from "../utils/printElement";
 
 type DisabledState = {
@@ -21,7 +21,7 @@ export function InputDisabledWidget() {
   const [highlighted, setHighlighted] = useState<DisabledState | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -36,6 +36,6 @@ export function InputDisabledWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

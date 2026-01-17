@@ -1,9 +1,8 @@
+import { Frame } from "@dldc/ui-components/frame";
+import type { TDesignRounded } from "@dldc/ui-core/size";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
-import { TDesignRounded } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function FrameRoundedWidget() {
@@ -12,7 +11,7 @@ export function FrameRoundedWidget() {
   const [highlighted, setHighlighted] = useState<TDesignRounded | null>(null);
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted !== null
           ? printElement(<Frame rounded={highlighted}>Rounded {highlighted}</Frame>)
@@ -27,6 +26,6 @@ export function FrameRoundedWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? cell.row : null)}
       />
-    </Grid>
+    </div>
   );
 }

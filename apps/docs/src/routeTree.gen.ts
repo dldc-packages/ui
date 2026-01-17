@@ -11,9 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StylesFrameRouteImport } from './routes/styles/frame'
-import { Route as StoriesFrameRouteImport } from './routes/stories/frame'
 import { Route as AriakitCheckboxRouteImport } from './routes/ariakit/checkbox'
 import { Route as AriakitButtonRouteImport } from './routes/ariakit/button'
+import { Route as R01Stories08LoadingBlockRouteImport } from './routes/01-stories/08-loading-block'
+import { Route as R01Stories07ProseRouteImport } from './routes/01-stories/07-prose'
+import { Route as R01Stories06LoadingIconRouteImport } from './routes/01-stories/06-loading-icon'
+import { Route as R01Stories05InputRouteImport } from './routes/01-stories/05-input'
+import { Route as R01Stories04ButtonRouteImport } from './routes/01-stories/04-button'
+import { Route as R01Stories03DefaultDesignProviderRouteImport } from './routes/01-stories/03-default-design-provider'
+import { Route as R01Stories02FrameGroupRouteImport } from './routes/01-stories/02-frame-group'
+import { Route as R01Stories01FrameRouteImport } from './routes/01-stories/01-frame'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,11 +30,6 @@ const IndexRoute = IndexRouteImport.update({
 const StylesFrameRoute = StylesFrameRouteImport.update({
   id: '/styles/frame',
   path: '/styles/frame',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StoriesFrameRoute = StoriesFrameRouteImport.update({
-  id: '/stories/frame',
-  path: '/stories/frame',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AriakitCheckboxRoute = AriakitCheckboxRouteImport.update({
@@ -40,58 +42,149 @@ const AriakitButtonRoute = AriakitButtonRouteImport.update({
   path: '/ariakit/button',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R01Stories08LoadingBlockRoute =
+  R01Stories08LoadingBlockRouteImport.update({
+    id: '/01-stories/08-loading-block',
+    path: '/01-stories/08-loading-block',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R01Stories07ProseRoute = R01Stories07ProseRouteImport.update({
+  id: '/01-stories/07-prose',
+  path: '/01-stories/07-prose',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01Stories06LoadingIconRoute = R01Stories06LoadingIconRouteImport.update({
+  id: '/01-stories/06-loading-icon',
+  path: '/01-stories/06-loading-icon',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01Stories05InputRoute = R01Stories05InputRouteImport.update({
+  id: '/01-stories/05-input',
+  path: '/01-stories/05-input',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01Stories04ButtonRoute = R01Stories04ButtonRouteImport.update({
+  id: '/01-stories/04-button',
+  path: '/01-stories/04-button',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01Stories03DefaultDesignProviderRoute =
+  R01Stories03DefaultDesignProviderRouteImport.update({
+    id: '/01-stories/03-default-design-provider',
+    path: '/01-stories/03-default-design-provider',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R01Stories02FrameGroupRoute = R01Stories02FrameGroupRouteImport.update({
+  id: '/01-stories/02-frame-group',
+  path: '/01-stories/02-frame-group',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01Stories01FrameRoute = R01Stories01FrameRouteImport.update({
+  id: '/01-stories/01-frame',
+  path: '/01-stories/01-frame',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/01-stories/01-frame': typeof R01Stories01FrameRoute
+  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
+  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
+  '/01-stories/04-button': typeof R01Stories04ButtonRoute
+  '/01-stories/05-input': typeof R01Stories05InputRoute
+  '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
+  '/01-stories/07-prose': typeof R01Stories07ProseRoute
+  '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
   '/ariakit/button': typeof AriakitButtonRoute
   '/ariakit/checkbox': typeof AriakitCheckboxRoute
-  '/stories/frame': typeof StoriesFrameRoute
   '/styles/frame': typeof StylesFrameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/01-stories/01-frame': typeof R01Stories01FrameRoute
+  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
+  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
+  '/01-stories/04-button': typeof R01Stories04ButtonRoute
+  '/01-stories/05-input': typeof R01Stories05InputRoute
+  '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
+  '/01-stories/07-prose': typeof R01Stories07ProseRoute
+  '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
   '/ariakit/button': typeof AriakitButtonRoute
   '/ariakit/checkbox': typeof AriakitCheckboxRoute
-  '/stories/frame': typeof StoriesFrameRoute
   '/styles/frame': typeof StylesFrameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/01-stories/01-frame': typeof R01Stories01FrameRoute
+  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
+  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
+  '/01-stories/04-button': typeof R01Stories04ButtonRoute
+  '/01-stories/05-input': typeof R01Stories05InputRoute
+  '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
+  '/01-stories/07-prose': typeof R01Stories07ProseRoute
+  '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
   '/ariakit/button': typeof AriakitButtonRoute
   '/ariakit/checkbox': typeof AriakitCheckboxRoute
-  '/stories/frame': typeof StoriesFrameRoute
   '/styles/frame': typeof StylesFrameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/01-stories/01-frame'
+    | '/01-stories/02-frame-group'
+    | '/01-stories/03-default-design-provider'
+    | '/01-stories/04-button'
+    | '/01-stories/05-input'
+    | '/01-stories/06-loading-icon'
+    | '/01-stories/07-prose'
+    | '/01-stories/08-loading-block'
     | '/ariakit/button'
     | '/ariakit/checkbox'
-    | '/stories/frame'
     | '/styles/frame'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/01-stories/01-frame'
+    | '/01-stories/02-frame-group'
+    | '/01-stories/03-default-design-provider'
+    | '/01-stories/04-button'
+    | '/01-stories/05-input'
+    | '/01-stories/06-loading-icon'
+    | '/01-stories/07-prose'
+    | '/01-stories/08-loading-block'
     | '/ariakit/button'
     | '/ariakit/checkbox'
-    | '/stories/frame'
     | '/styles/frame'
   id:
     | '__root__'
     | '/'
+    | '/01-stories/01-frame'
+    | '/01-stories/02-frame-group'
+    | '/01-stories/03-default-design-provider'
+    | '/01-stories/04-button'
+    | '/01-stories/05-input'
+    | '/01-stories/06-loading-icon'
+    | '/01-stories/07-prose'
+    | '/01-stories/08-loading-block'
     | '/ariakit/button'
     | '/ariakit/checkbox'
-    | '/stories/frame'
     | '/styles/frame'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R01Stories01FrameRoute: typeof R01Stories01FrameRoute
+  R01Stories02FrameGroupRoute: typeof R01Stories02FrameGroupRoute
+  R01Stories03DefaultDesignProviderRoute: typeof R01Stories03DefaultDesignProviderRoute
+  R01Stories04ButtonRoute: typeof R01Stories04ButtonRoute
+  R01Stories05InputRoute: typeof R01Stories05InputRoute
+  R01Stories06LoadingIconRoute: typeof R01Stories06LoadingIconRoute
+  R01Stories07ProseRoute: typeof R01Stories07ProseRoute
+  R01Stories08LoadingBlockRoute: typeof R01Stories08LoadingBlockRoute
   AriakitButtonRoute: typeof AriakitButtonRoute
   AriakitCheckboxRoute: typeof AriakitCheckboxRoute
-  StoriesFrameRoute: typeof StoriesFrameRoute
   StylesFrameRoute: typeof StylesFrameRoute
 }
 
@@ -111,13 +204,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StylesFrameRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/stories/frame': {
-      id: '/stories/frame'
-      path: '/stories/frame'
-      fullPath: '/stories/frame'
-      preLoaderRoute: typeof StoriesFrameRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/ariakit/checkbox': {
       id: '/ariakit/checkbox'
       path: '/ariakit/checkbox'
@@ -132,14 +218,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AriakitButtonRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/01-stories/08-loading-block': {
+      id: '/01-stories/08-loading-block'
+      path: '/01-stories/08-loading-block'
+      fullPath: '/01-stories/08-loading-block'
+      preLoaderRoute: typeof R01Stories08LoadingBlockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-stories/07-prose': {
+      id: '/01-stories/07-prose'
+      path: '/01-stories/07-prose'
+      fullPath: '/01-stories/07-prose'
+      preLoaderRoute: typeof R01Stories07ProseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-stories/06-loading-icon': {
+      id: '/01-stories/06-loading-icon'
+      path: '/01-stories/06-loading-icon'
+      fullPath: '/01-stories/06-loading-icon'
+      preLoaderRoute: typeof R01Stories06LoadingIconRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-stories/05-input': {
+      id: '/01-stories/05-input'
+      path: '/01-stories/05-input'
+      fullPath: '/01-stories/05-input'
+      preLoaderRoute: typeof R01Stories05InputRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-stories/04-button': {
+      id: '/01-stories/04-button'
+      path: '/01-stories/04-button'
+      fullPath: '/01-stories/04-button'
+      preLoaderRoute: typeof R01Stories04ButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-stories/03-default-design-provider': {
+      id: '/01-stories/03-default-design-provider'
+      path: '/01-stories/03-default-design-provider'
+      fullPath: '/01-stories/03-default-design-provider'
+      preLoaderRoute: typeof R01Stories03DefaultDesignProviderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-stories/02-frame-group': {
+      id: '/01-stories/02-frame-group'
+      path: '/01-stories/02-frame-group'
+      fullPath: '/01-stories/02-frame-group'
+      preLoaderRoute: typeof R01Stories02FrameGroupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-stories/01-frame': {
+      id: '/01-stories/01-frame'
+      path: '/01-stories/01-frame'
+      fullPath: '/01-stories/01-frame'
+      preLoaderRoute: typeof R01Stories01FrameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R01Stories01FrameRoute: R01Stories01FrameRoute,
+  R01Stories02FrameGroupRoute: R01Stories02FrameGroupRoute,
+  R01Stories03DefaultDesignProviderRoute:
+    R01Stories03DefaultDesignProviderRoute,
+  R01Stories04ButtonRoute: R01Stories04ButtonRoute,
+  R01Stories05InputRoute: R01Stories05InputRoute,
+  R01Stories06LoadingIconRoute: R01Stories06LoadingIconRoute,
+  R01Stories07ProseRoute: R01Stories07ProseRoute,
+  R01Stories08LoadingBlockRoute: R01Stories08LoadingBlockRoute,
   AriakitButtonRoute: AriakitButtonRoute,
   AriakitCheckboxRoute: AriakitCheckboxRoute,
-  StoriesFrameRoute: StoriesFrameRoute,
   StylesFrameRoute: StylesFrameRoute,
 }
 export const routeTree = rootRouteImport

@@ -4,7 +4,7 @@ import { designContentSizeVar } from "../common/index.js";
 import { iconClass } from "./icon.css.js";
 
 export function iconStyles(
-  size: TDesignHeight | undefined
+  size: TDesignHeight | undefined,
 ): [classNames: string, styles: React.CSSProperties] {
   return [
     iconClass,

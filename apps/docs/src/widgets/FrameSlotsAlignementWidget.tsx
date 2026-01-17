@@ -1,17 +1,13 @@
-import { CheckCircleIcon, XCircleIcon, XIcon } from "@phosphor-icons/react";
+import { Frame } from "@dldc/ui-components/frame";
+import { Prose } from "@dldc/ui-components/prose";
+import { CheckCircleIcon, XCircleIcon, XIcon } from "lucide-react";
 import { useState } from "react";
-import { css } from "../../styled-system/css";
-import { Grid, VStack } from "../../styled-system/jsx";
-import { prose } from "../../styled-system/recipes";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
 import { printElement } from "../utils/printElement";
 
-const okIcon = (
-  <CheckCircleIcon className={css({ display: "inline-flex", color: "green.600", mb: "1" })} weight="fill" />
-);
-const notOkIcon = <XCircleIcon className={css({ display: "inline-flex", color: "red.600", mb: "1" })} weight="fill" />;
+const okIcon = <CheckCircleIcon className="mb-0x mr-1 inline-flex size-[1rem] text-green-500" />;
+const notOkIcon = <XCircleIcon className="mb-0x mr-1 inline-flex size-[1rem] text-red-500" />;
 
 export function FrameSlotsAlignementWidget() {
   const examples = [
@@ -85,20 +81,20 @@ export function FrameSlotsAlignementWidget() {
   const [highlighted, setHighlighted] = useState<(typeof examples)[number] | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(highlighted.element) : "// Hover a Frame to see the code"}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={examples}
         renderCell={({ row: example, key }) => (
-          <VStack key={key} css={{ alignItems: "start", gap: "1" }}>
-            <div className={prose()}>{example.description}</div>
+          <div className="flex flex-col items-start gap-1" key={key}>
+            <Prose invert>{example.description}</Prose>
             {example.element}
-          </VStack>
+          </div>
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

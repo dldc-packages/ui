@@ -1,11 +1,7 @@
 import { measureText } from "@dldc/utils/measure-text";
 import { RefObject, useLayoutEffect, useRef, useState } from "react";
 
-export function useTextWidth(
-  ref: RefObject<HTMLInputElement | null>,
-  text: string,
-  enabled: boolean
-): number | null {
+export function useTextWidth(ref: RefObject<HTMLInputElement | null>, text: string, enabled: boolean): number | null {
   const [width, setWidth] = useState<number | null>(null);
 
   const prevConfigRef = useRef<{
@@ -27,23 +23,14 @@ export function useTextWidth(
 
     const styles = window.getComputedStyle(input);
 
-    if (
-      prevConfig &&
-      prevConfig.content === text &&
-      textStylesEqual(prevConfig.styles, styles)
-    ) {
+    if (prevConfig && prevConfig.content === text && textStylesEqual(prevConfig.styles, styles)) {
       return;
     }
 
     prevConfigRef.current = { content: text, styles };
 
     const result = measureText(text, styles);
-    const paddings = [
-      styles.paddingLeft,
-      styles.paddingRight,
-      styles.borderLeftWidth,
-      styles.borderRightWidth,
-    ]
+    const paddings = [styles.paddingLeft, styles.paddingRight, styles.borderLeftWidth, styles.borderRightWidth]
       .map((n) => parseFloat(n))
       .filter((n) => !isNaN(n))
       .reduce((a, b) => a + b, 0);
@@ -54,10 +41,7 @@ export function useTextWidth(
   return width;
 }
 
-function textStylesEqual(
-  left: CSSStyleDeclaration,
-  right: CSSStyleDeclaration | undefined
-): boolean {
+function textStylesEqual(left: CSSStyleDeclaration, right: CSSStyleDeclaration | undefined): boolean {
   if (!right) {
     return false;
   }

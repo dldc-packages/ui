@@ -17,9 +17,7 @@ export interface FrameGroupStylesParams {
   variant: TDesignVariant;
 }
 
-export function frameGroupStyles(
-  params: FrameGroupStylesParams
-): [className: string, styles: React.CSSProperties] {
+export function frameGroupStyles(params: FrameGroupStylesParams): [className: string, styles: React.CSSProperties] {
   const { direction, color, variant } = params;
 
   return [
@@ -28,7 +26,7 @@ export function frameGroupStyles(
       frameGroupDirectionClass[direction],
       frameBorderSizeClass[variant],
       frameGroupVariantsClass[variant],
-      color && dynamicColor[color]
+      color && dynamicColor[color],
     ),
     {},
   ];
@@ -40,7 +38,7 @@ export interface FrameGroupSeparatorStylesParams {
 }
 
 export function frameGroupSeparatorStyles(
-  params: FrameGroupSeparatorStylesParams
+  params: FrameGroupSeparatorStylesParams,
 ): [className: string, styles: React.CSSProperties] {
   const { direction, variant } = params;
 
@@ -48,7 +46,7 @@ export function frameGroupSeparatorStyles(
     clsx(
       frameGroupSeparatorClass,
       frameGroupSeparatorDirectionClass[direction],
-      frameGroupSeparatorVariantClass[variant]
+      frameGroupSeparatorVariantClass[variant],
     ),
     {},
   ];

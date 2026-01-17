@@ -1,16 +1,15 @@
-import { CaretDownIcon, CirclesFourIcon, DotsThreeVerticalIcon, UserIcon } from "@phosphor-icons/react";
+import { ButtonLike } from "@dldc/ui-components/button";
+import { ChevronDownIcon, EllipsisVertical, GridIcon, UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { ButtonLike } from "../shared/components/button/ButtonLike";
 
 export function ButtonLikeIconsWidget() {
   const iconConfigs = [
     { label: "No Icons", startIcon: undefined, endIcon: undefined },
     { label: "Start Icon", startIcon: <UserIcon />, endIcon: undefined },
-    { label: "End Icon", startIcon: undefined, endIcon: <CaretDownIcon /> },
-    { label: "Both Icons", startIcon: <CirclesFourIcon />, endIcon: <DotsThreeVerticalIcon /> },
+    { label: "End Icon", startIcon: undefined, endIcon: <ChevronDownIcon /> },
+    { label: "Both Icons", startIcon: <GridIcon />, endIcon: <EllipsisVertical /> },
   ];
 
   const examples = [
@@ -24,13 +23,13 @@ export function ButtonLikeIconsWidget() {
   } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? (() => {
               const { iconConfig, example } = highlighted;
               const startIconCode = iconConfig.startIcon ? " startIcon={<UserIcon />}" : "";
-              const endIconCode = iconConfig.endIcon ? " endIcon={<CaretDownIcon />}" : "";
+              const endIconCode = iconConfig.endIcon ? " endIcon={<ChevronDownIcon />}" : "";
               return `<ButtonLike variant="${example.variant}"${startIconCode}${endIconCode}>${example.label}</ButtonLike>`;
             })()
           : "// Hover a ButtonLike to see the code"}
@@ -45,6 +44,6 @@ export function ButtonLikeIconsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { iconConfig: cell.row, example: cell.column } : null)}
       />
-    </Grid>
+    </div>
   );
 }

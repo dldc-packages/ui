@@ -1,8 +1,7 @@
+import { Frame } from "@dldc/ui-components/frame";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
 import { printElement } from "../utils/printElement";
 
 export function FrameInteractiveWidget() {
@@ -14,7 +13,7 @@ export function FrameInteractiveWidget() {
   const [highlighted, setHighlighted] = useState<{ state: (typeof states)[number] } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -31,6 +30,6 @@ export function FrameInteractiveWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { state: cell.row } : null)}
       />
-    </Grid>
+    </div>
   );
 }

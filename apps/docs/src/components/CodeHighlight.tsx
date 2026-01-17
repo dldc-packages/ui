@@ -92,7 +92,7 @@ export function CodeHighlight({ language, theme, children }: CodeHighlightProps)
       }
     };
 
-    highlightCode();
+    highlightCode().catch(() => {});
 
     // Cleanup function to abort the request if the effect is cleaned up
     return () => {

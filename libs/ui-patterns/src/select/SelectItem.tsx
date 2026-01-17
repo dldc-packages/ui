@@ -8,8 +8,8 @@ import { useFrameContent } from "@dldc/ui-components/frame-content";
 import { heightStyles } from "@dldc/ui-styles/common";
 import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
-import { CheckIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { CheckIcon } from "lucide-react";
 import { TSelectItem } from "./types";
 
 interface SelectItemProps extends Ariakit.SelectItemProps {

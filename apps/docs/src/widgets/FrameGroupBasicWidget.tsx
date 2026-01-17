@@ -1,7 +1,7 @@
-import { Grid, Paper } from "../../styled-system/jsx";
+import { Button } from "@dldc/ui-ariakit/button";
+import { FrameGroup } from "@dldc/ui-components/frame";
+import { Paper } from "@dldc/ui-components/paper";
 import { CodeHighlight } from "../components/CodeHighlight";
-import { Button } from "../shared/components/button/Button";
-import { FrameGroup } from "../shared/components/frame/FrameGroup";
 import { printElement } from "../utils/printElement";
 
 export function FrameGroupBasicWidget() {
@@ -14,11 +14,13 @@ export function FrameGroupBasicWidget() {
   );
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(element)}
       </CodeHighlight>
-      <Paper css={{ bg: "neutral.900", p: "3" }}>{element}</Paper>
-    </Grid>
+      <Paper background="900" className="p-3">
+        {element}
+      </Paper>
+    </div>
   );
 }

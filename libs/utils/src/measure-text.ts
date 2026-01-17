@@ -33,9 +33,7 @@ export function measureText(text: string, font?: Font): SerializedTextMetrics {
 function serializeTextMetrics(metrics: TextMetrics) {
   const plainMetrics = {} as SerializedTextMetrics;
 
-  for (const property of Object.getOwnPropertyNames(
-    Object.getPrototypeOf(metrics)
-  ) as (keyof TextMetrics)[]) {
+  for (const property of Object.getOwnPropertyNames(Object.getPrototypeOf(metrics)) as (keyof TextMetrics)[]) {
     const value = metrics[property];
 
     if (isNumber(value)) {
@@ -84,9 +82,7 @@ function getFont(font?: Font) {
   }
 }
 
-function isCSSStyleDeclaration(
-  value: CSSStyleDeclaration | unknown
-): value is CSSStyleDeclaration {
+function isCSSStyleDeclaration(value: CSSStyleDeclaration | unknown): value is CSSStyleDeclaration {
   return value instanceof CSSStyleDeclaration;
 }
 

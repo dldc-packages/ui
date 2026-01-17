@@ -1,11 +1,11 @@
+import { Button } from "@dldc/ui-ariakit/button";
+import { DefaultDesignProvider } from "@dldc/ui-components/design-context";
+import { Frame } from "@dldc/ui-components/frame";
+import { Input } from "@dldc/ui-components/input";
+import { Paper } from "@dldc/ui-components/paper";
 import { Fragment, useState } from "react";
-import { Grid, HStack, Paper, styled, VStack } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { DefaultDesignProvider } from "../shared/components/core/DesignContext";
-import { Input } from "../shared/components/form/Input";
-import { Frame } from "../shared/components/frame/Frame";
 import { printElement } from "../utils/printElement";
 
 export function DefaultDesignProviderBasicWidget() {
@@ -37,7 +37,7 @@ export function DefaultDesignProviderBasicWidget() {
   const [highlighted, setHighlighted] = useState<string | null>(null);
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {(() => {
           if (!highlighted) return "// Hover an example to see the code";
@@ -48,16 +48,16 @@ export function DefaultDesignProviderBasicWidget() {
       <HighlightedGrid
         rowsDims={examples}
         renderCell={({ row }) => (
-          <Paper css={{ bg: "neutral.900", p: "3" }}>
-            <VStack>
-              <styled.div css={{ textStyle: "4", color: "white/40" }}>{row.label}</styled.div>
-              <HStack>{row.element}</HStack>
-            </VStack>
+          <Paper background="900" className="p-3">
+            <div className="flex flex-col items-start gap-2">
+              <div className="text-white/40">{row.label}</div>
+              <div className="flex flex-row gap-2">{row.element}</div>
+            </div>
           </Paper>
         )}
         onHighlightedCell={({ row }) => setHighlighted(row.key)}
-        css={{ gap: "4" }}
+        className="p-4"
       />
-    </Grid>
+    </div>
   );
 }

@@ -1,10 +1,9 @@
-import { PlusIcon, XIcon } from "@phosphor-icons/react";
+import { Button } from "@dldc/ui-ariakit/button";
+import { ButtonLike } from "@dldc/ui-components/button";
+import { PlusIcon, XIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { ButtonLike } from "../shared/components/button/ButtonLike";
 
 export function ButtonSlotsWidget() {
   const slotConfigs = [
@@ -29,7 +28,7 @@ export function ButtonSlotsWidget() {
   const [highlighted, setHighlighted] = useState<(typeof slotConfigs)[number] | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button ${highlighted.code}>${highlighted.label}</Button>`
@@ -44,6 +43,6 @@ export function ButtonSlotsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Frame } from "@dldc/ui-components/frame";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
 
 export function FrameFractionalHeightWidget() {
   const heights: { value: string; label: string }[] = [
@@ -18,7 +18,7 @@ export function FrameFractionalHeightWidget() {
   const [highlighted, setHighlighted] = useState<{ value: string; label: string } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Frame height="${highlighted.value}">Height ${highlighted.value}</Frame>`
@@ -33,6 +33,6 @@ export function FrameFractionalHeightWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? cell.row : null)}
       />
-    </Grid>
+    </div>
   );
 }

@@ -19,6 +19,7 @@
     "@dldc/ui-styles": "workspace:^",
     "@tailwindcss/vite": "catalog:",
     "@tanstack/react-router": "catalog:",
+    "clsx": "catalog:",
     "hast-util-to-jsx-runtime": "catalog:",
     "history": "catalog:",
     "lucide-react": "catalog:",
@@ -28,6 +29,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "shiki": "catalog:",
+    "tailwind-merge": "catalog:",
     "tailwindcss": "catalog:",
     "tslib": "catalog:",
     "type-fest": "catalog:"

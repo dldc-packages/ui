@@ -1,8 +1,8 @@
-import { Grid, Paper } from "../../styled-system/jsx";
+import { Button } from "@dldc/ui-ariakit/button";
+import { DefaultDesignProvider } from "@dldc/ui-components/design-context";
+import { Frame } from "@dldc/ui-components/frame";
+import { Paper } from "@dldc/ui-components/paper";
 import { CodeHighlight } from "../components/CodeHighlight";
-import { Button } from "../shared/components/button/Button";
-import { DefaultDesignProvider } from "../shared/components/core/DesignContext";
-import { Frame } from "../shared/components/frame/Frame";
 import { printElement } from "../utils/printElement";
 
 const example = (
@@ -16,11 +16,13 @@ const example = (
 
 export function DefaultDesignProviderNestedWidget() {
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(example)}
       </CodeHighlight>
-      <Paper css={{ bg: "neutral.900", p: "3", display: "flex", gap: "2", alignItems: "start" }}>{example}</Paper>
-    </Grid>
+      <Paper background="900" className="p-3 flex gap-2 items-start">
+        {example}
+      </Paper>
+    </div>
   );
 }

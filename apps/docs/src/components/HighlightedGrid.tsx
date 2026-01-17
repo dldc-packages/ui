@@ -21,6 +21,7 @@ export interface HighlightedGridProps<TRow, TColumn> {
   columnsDims?: TColumn[];
   renderCell: (params: HeighligedCellParams<TRow, TColumn>) => React.ReactNode;
   onHighlightedCell?: (params: HeighligedCellParams<TRow, TColumn>) => void;
+  className?: string;
 }
 
 export function HighlightedGrid<TRow, TColumn>({
@@ -28,6 +29,7 @@ export function HighlightedGrid<TRow, TColumn>({
   columnsDims,
   renderCell,
   onHighlightedCell,
+  className,
 }: HighlightedGridProps<TRow, TColumn>) {
   const hasRows = rowsDims && rowsDims.length > 0;
   const hasColumns = columnsDims && columnsDims.length > 0;
@@ -49,7 +51,7 @@ export function HighlightedGrid<TRow, TColumn>({
   );
 
   return (
-    <Paper background="900">
+    <Paper background="900" className={className}>
       <Scrollbars className="h-full w-full">
         <div className="p-3 w-max">
           <div

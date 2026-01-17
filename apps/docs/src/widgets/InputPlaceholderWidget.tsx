@@ -1,17 +1,17 @@
-import { Grid, Paper } from "../../styled-system/jsx";
+import { Input } from "@dldc/ui-components/input";
+import { Paper } from "@dldc/ui-components/paper";
 import { CodeHighlight } from "../components/CodeHighlight";
-import { Input } from "../shared/components/form/Input";
 import { printElement } from "../utils/printElement";
 
 export function InputPlaceholderWidget() {
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(<Input placeholder="Enter your name..." />)}
       </CodeHighlight>
-      <Paper css={{ bg: "neutral.900", p: "3", gap: "2" }}>
+      <Paper background="900" className="gap-2 p-3">
         <Input placeholder="Enter your name..." />
       </Paper>
-    </Grid>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
-import { Grid, Paper } from "../../styled-system/jsx";
+import { FrameInputContent } from "@dldc/ui-components/frame";
+import { Input } from "@dldc/ui-components/input";
+import { Paper } from "@dldc/ui-components/paper";
 import { CodeHighlight } from "../components/CodeHighlight";
-import { Input } from "../shared/components/form/Input";
-import { FrameInputContent } from "../shared/components/frame/FrameInputContent";
 import { printElement } from "../utils/printElement";
 
 export function InputCustomInputChildrenWidget() {
@@ -12,11 +12,13 @@ export function InputCustomInputChildrenWidget() {
   );
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(example)}
       </CodeHighlight>
-      <Paper css={{ bg: "neutral.900", p: "3" }}>{example}</Paper>
-    </Grid>
+      <Paper background="900" className="p-3">
+        {example}
+      </Paper>
+    </div>
   );
 }

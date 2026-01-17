@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Button } from "@dldc/ui-ariakit/button";
+import type { TDesignHeight } from "@dldc/ui-core/size";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { TDesignHeight } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function ButtonContentHeightsWidget() {
@@ -11,7 +11,7 @@ export function ButtonContentHeightsWidget() {
   const [highlighted, setHighlighted] = useState<TDesignHeight | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -30,6 +30,6 @@ export function ButtonContentHeightsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

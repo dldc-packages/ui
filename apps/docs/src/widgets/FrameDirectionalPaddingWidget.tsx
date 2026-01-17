@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Frame } from "@dldc/ui-components/frame";
+import type { TFrameContentPaddingResolved } from "@dldc/ui-styles/frame-content";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
-import { TFrameContentPaddingResolved } from "../shared/components/frame/FrameContentFragment";
 import { printElement } from "../utils/printElement";
 
 export function FrameDirectionalPaddingWidget() {
@@ -16,7 +16,7 @@ export function FrameDirectionalPaddingWidget() {
   } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(<Frame {...{ [highlighted.propName]: highlighted.padding }}>Text</Frame>)
@@ -32,6 +32,6 @@ export function FrameDirectionalPaddingWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { padding: cell.row, propName: cell.column } : null)}
       />
-    </Grid>
+    </div>
   );
 }

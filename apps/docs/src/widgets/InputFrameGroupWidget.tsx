@@ -1,12 +1,10 @@
-import { MagnifyingGlassIcon, PaperPlaneIcon, UserIcon } from "@phosphor-icons/react";
+import { Button, ButtonLike } from "@dldc/ui-components/button";
+import { FrameGroup } from "@dldc/ui-components/frame";
+import { Input } from "@dldc/ui-components/input";
+import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { ButtonLike } from "../shared/components/button/ButtonLike";
-import { Input } from "../shared/components/form/Input";
-import { FrameGroup } from "../shared/components/frame/FrameGroup";
 import { printElement } from "../utils/printElement";
 
 type Example = {
@@ -22,7 +20,7 @@ export function InputFrameGroupWidget() {
       label: "Search Bar",
       element: (
         <FrameGroup variant="solid" color="blue">
-          <Input placeholder="Search..." startIcon={<MagnifyingGlassIcon />} />
+          <Input placeholder="Search..." startIcon={<SearchIcon />} />
           <Button>Search</Button>
         </FrameGroup>
       ),
@@ -32,7 +30,7 @@ export function InputFrameGroupWidget() {
       element: (
         <FrameGroup variant="surface" color="green">
           <Input placeholder="Type a message..." startIcon={<UserIcon />} />
-          <Button variant="solid" startIcon={<PaperPlaneIcon />}>
+          <Button variant="solid" startIcon={<SendIcon />}>
             Send
           </Button>
         </FrameGroup>
@@ -50,7 +48,7 @@ export function InputFrameGroupWidget() {
   ];
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(highlighted.element) : "// Hover an example to see the code"}
       </CodeHighlight>
@@ -59,6 +57,6 @@ export function InputFrameGroupWidget() {
         renderCell={({ row: example, key }) => <div key={key}>{example.element}</div>}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

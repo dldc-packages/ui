@@ -4,7 +4,7 @@ import { calc } from "@vanilla-extract/css-utils";
 
 export const designHeightVar = createVar(
   { syntax: "<length>", inherits: false, initialValue: sizeToRemString(7) },
-  "design-height"
+  "design-height",
 );
 
 export const designHeightClass = style({
@@ -13,7 +13,7 @@ export const designHeightClass = style({
 
 export const designRoundedVar = createVar(
   { syntax: "<length>", inherits: false, initialValue: sizeToRemString(1) },
-  "design-rounded"
+  "design-rounded",
 );
 
 export const designRoundedClass = style({
@@ -22,7 +22,7 @@ export const designRoundedClass = style({
 
 export const designContentSizeVar = createVar(
   { syntax: "<length>", inherits: true, initialValue: sizeToRemString(4) },
-  "design-content-size"
+  "design-content-size",
 );
 
 export const designContentSizeClass = style({

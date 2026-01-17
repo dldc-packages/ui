@@ -1,10 +1,8 @@
+import { Button, type ButtonProps } from "@dldc/ui-ariakit/button";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState } from "react";
-import { css } from "../../styled-system/css";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button, ButtonProps } from "../shared/components/button/Button";
-import { TDesignVariant } from "../shared/design/types";
 
 export function ButtonHoverVariantsWidget() {
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
@@ -12,7 +10,7 @@ export function ButtonHoverVariantsWidget() {
   const [highlighted, setHighlighted] = useState<ButtonProps | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button variant="ghost" hoverVariant="${highlighted.hoverVariant}" />`
@@ -22,11 +20,11 @@ export function ButtonHoverVariantsWidget() {
         rowsDims={variants}
         renderCell={({ row: hoverVariant, key }) => (
           <Button key={key} variant="ghost" hoverVariant={hoverVariant}>
-            <em className={css({ fontWeight: "bold" })}>{hoverVariant}</em> on hover
+            <em className="font-bold">{hoverVariant}</em> on hover
           </Button>
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { hoverVariant: cell?.row } : null)}
       />
-    </Grid>
+    </div>
   );
 }

@@ -1,11 +1,10 @@
-import { HouseIcon } from "@phosphor-icons/react";
+import { Button } from "@dldc/ui-ariakit/button";
+import { FrameGroup } from "@dldc/ui-components/frame";
+import type { TPaletteColor } from "@dldc/ui-core/colors";
+import { HouseIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
-import { FrameGroup } from "../shared/components/frame/FrameGroup";
-import { TPaletteColor } from "../shared/design/types";
 
 export function FrameGroupColorsWidget() {
   const colors: TPaletteColor[] = ["blue", "green", "red", "orange", "purple", "gray"];
@@ -20,7 +19,7 @@ export function FrameGroupColorsWidget() {
   } | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<FrameGroup variant="${highlighted.variant.variant}" color="${highlighted.color}">
@@ -40,6 +39,6 @@ export function FrameGroupColorsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell ? { color: cell.row, variant: cell.column } : null)}
       />
-    </Grid>
+    </div>
   );
 }

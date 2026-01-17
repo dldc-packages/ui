@@ -1,10 +1,9 @@
-import { UserIcon } from "@phosphor-icons/react";
+import { Frame } from "@dldc/ui-components/frame";
+import type { TDesignSpacing } from "@dldc/ui-core/size";
+import { UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
-import { TDesignSpacing } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function FrameSpacingEquivalentWidget() {
@@ -18,7 +17,7 @@ export function FrameSpacingEquivalentWidget() {
   const [highlighted, setHighlighted] = useState<(typeof examples)[number] | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -37,6 +36,6 @@ export function FrameSpacingEquivalentWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

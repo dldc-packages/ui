@@ -9,7 +9,7 @@ export type AsyncProcessState<Result> =
 
 export type UseAsyncProcessReturn<Result, Params extends any[]> = [
   start: (...args: Params) => void,
-  state: AsyncProcessState<Result>
+  state: AsyncProcessState<Result>,
 ];
 
 export interface TUseAsyncProcessOptions<Result> {
@@ -20,7 +20,7 @@ export interface TUseAsyncProcessOptions<Result> {
 
 export function useAsyncProcess<Result, Params extends any[]>(
   asyncFn: (...params: Params) => Promise<Result>,
-  options: TUseAsyncProcessOptions<Result> = {}
+  options: TUseAsyncProcessOptions<Result> = {},
 ): UseAsyncProcessReturn<Result, Params> {
   const asyncFnRef = useLatestRef(asyncFn);
   const optionsRef = useLatestRef(options);
@@ -53,15 +53,14 @@ export function useAsyncProcess<Result, Params extends any[]>(
             return;
           }
           setState({ status: "error", error });
-          const onError =
-            optionsRef.current.onError ?? (() => console.error(error));
+          const onError = optionsRef.current.onError ?? (() => console.error(error));
           onError({ error });
         })
         .finally(() => {
           optionsRef.current.onFinally?.();
         });
     },
-    [asyncFnRef, optionsRef, stateRef]
+    [asyncFnRef, optionsRef, stateRef],
   );
 
   useEffect(() => {

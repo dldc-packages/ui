@@ -1,9 +1,25 @@
 import { StoryLayout } from "@/components/StoryLayout";
+import { FrameAutoRoundedWidget } from "@/widgets/FrameAutoRoundedWidget";
+import { FrameAutoSpacingWidget } from "@/widgets/FrameAutoSpacingWidget";
 import { FrameBasicWidget } from "@/widgets/FrameBasicWidget";
+import { FrameColorsWidget } from "@/widgets/FrameColorsWidget";
+import { FrameContentHeightWidget } from "@/widgets/FrameContentHeightWidget";
+import { FrameContentWidget } from "@/widgets/FrameContentWidget";
+import { FrameDirectionalPaddingWidget } from "@/widgets/FrameDirectionalPaddingWidget";
+import { FrameDisabledWidget } from "@/widgets/FrameDisabledWidget";
+import { FrameHeightWidget } from "@/widgets/FrameHeightWidget";
+import { FrameInteractiveWidget } from "@/widgets/FrameInteractiveWidget";
+import { FramePaddingWidget } from "@/widgets/FramePaddingWidget";
+import { FrameRoundedWidget } from "@/widgets/FrameRoundedWidget";
+import { FrameSlotsAlignementWidget } from "@/widgets/FrameSlotsAlignementWidget";
+import { FrameSlotsWidget } from "@/widgets/FrameSlotsWidget";
+import { FrameSpacingAlignWidget } from "@/widgets/FrameSpacingAlignWidget";
+import { FrameSpacingEquivalentWidget } from "@/widgets/FrameSpacingEquivalentWidget";
+import { FrameVariantsWidget } from "@/widgets/FrameVariantsWidget";
 import { Prose } from "@dldc/ui-components/prose";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/stories/frame")({
+export const Route = createFileRoute("/01-stories/01-frame")({
   component: RouteComponent,
 });
 
@@ -49,7 +65,7 @@ function RouteComponent() {
           attributes.
         </p>
       </Prose>
-      {/* <FrameInteractiveWidget /> */}
+      <FrameInteractiveWidget />
       <Prose invert>
         <h2>Disabled</h2>
         <p>
@@ -67,7 +83,7 @@ function RouteComponent() {
           appropriate ARIA attributes.
         </p>
       </Prose>
-      {/* <FrameDisabledWidget /> */}
+      <FrameDisabledWidget />
       <Prose invert>
         <h2>Variants</h2>
         <p>Frame comes with different visual variants to serve different purposes:</p>
@@ -92,7 +108,7 @@ function RouteComponent() {
           <strong>Note:</strong> Here the <code>interactive</code> is enabled to show the hover effect on all variants.
         </p>
       </Prose>
-      {/* <FrameVariantsWidget /> */}
+      <FrameVariantsWidget />
       <Prose invert>
         <h2>Colors</h2>
         <p>
@@ -111,14 +127,14 @@ function RouteComponent() {
           The default color is <code>neutral</code>.
         </p>
       </Prose>
-      {/* <FrameColorsWidget /> */}
+      <FrameColorsWidget />
       <Prose invert>
         <h2>Height</h2>
         <p>
           Frame components can be sized using the <code>height</code> prop. The default height is <code>7</code>.
         </p>
       </Prose>
-      {/* <FrameHeightWidget /> */}
+      <FrameHeightWidget />
       <Prose invert>
         <h2>Content Height</h2>
         <p>
@@ -130,7 +146,7 @@ function RouteComponent() {
           spacing to ensure optimal content display.
         </p>
       </Prose>
-      {/* <FrameContentHeightWidget /> */}
+      <FrameContentHeightWidget />
       <Prose invert>
         <h2>How Sizing Works</h2>
         <p>
@@ -228,7 +244,7 @@ function RouteComponent() {
           The default rounded value is <code>1</code> (4px).
         </p>
       </Prose>
-      {/* <FrameRoundedWidget /> */}
+      <FrameRoundedWidget />
       <Prose invert>
         <h2>Auto Rounded</h2>
         <p>
@@ -251,7 +267,7 @@ function RouteComponent() {
           parent radius is <code>0</code> in which case the child radius will also be <code>0</code>.
         </p>
       </Prose>
-      {/* <FrameAutoRoundedWidget /> */}
+      <FrameAutoRoundedWidget />
       <Prose invert>
         <h2>Content</h2>
         <p>
@@ -264,7 +280,7 @@ function RouteComponent() {
           placement:
         </p>
       </Prose>
-      {/* <FrameContentWidget /> */}
+      <FrameContentWidget />
       <Prose invert>
         <h3>Advanced Layout</h3>
         <p>
@@ -272,7 +288,7 @@ function RouteComponent() {
           nested Frames or any other UI elements:
         </p>
       </Prose>
-      {/* <FrameSlotsWidget /> */}
+      <FrameSlotsWidget />
       <Prose invert>
         <p>
           When <code>children</code> is text, it will automatically get <code>flex: 1</code>, if you pass a custom
@@ -281,7 +297,7 @@ function RouteComponent() {
           <code>endSlot</code> (we already do it for you with <code>endIcon</code>).
         </p>
       </Prose>
-      {/* <FrameSlotsAlignementWidget /> */}
+      <FrameSlotsAlignementWidget />
       <Prose invert>
         <h2>Spacing</h2>
         <p>
@@ -295,7 +311,7 @@ function RouteComponent() {
           "centered" within the frame.
         </p>
       </Prose>
-      {/* <FrameAutoSpacingWidget /> */}
+      <FrameAutoSpacingWidget />
       <Prose invert>
         <h3>Padding Types</h3>
         <p>
@@ -323,7 +339,7 @@ function RouteComponent() {
           content. This means you usually don't need to specify the <code>padding</code> prop manually.
         </p>
       </Prose>
-      {/* <FramePaddingWidget /> */}
+      <FramePaddingWidget />
       <Prose invert>
         <h3>Directional Padding Control</h3>
         <p>
@@ -331,7 +347,7 @@ function RouteComponent() {
           mixed content or custom layouts.
         </p>
       </Prose>
-      {/* <FrameDirectionalPaddingWidget /> */}
+      <FrameDirectionalPaddingWidget />
       <Prose invert>
         <h3>Manual Spacing Override</h3>
         <p>
@@ -340,7 +356,7 @@ function RouteComponent() {
           as a Frame with height 8 and default contentHeight.".
         </p>
       </Prose>
-      {/* <FrameSpacingEquivalentWidget /> */}
+      <FrameSpacingEquivalentWidget />
       <Prose invert>
         <p>
           This is particularly useful when you want to adjust the spacing for Frames with different heights to maintain
@@ -348,7 +364,7 @@ function RouteComponent() {
           <code>contentHeight</code>.
         </p>
       </Prose>
-      {/* <FrameSpacingAlignWidget /> */}
+      <FrameSpacingAlignWidget />
     </StoryLayout>
   );
 }

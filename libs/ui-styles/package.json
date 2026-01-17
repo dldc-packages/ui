@@ -3,10 +3,9 @@
   "version": "0.0.0",
   "private": false,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
+    "./animations": "./dist/animations/index.js",
     "./backdrop": "./dist/backdrop/index.js",
     "./checkbox": "./dist/checkbox/index.js",
     "./common": "./dist/common/index.js",
@@ -42,6 +41,7 @@
   "devDependencies": {
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
+    "@types/react": "catalog:",
     "@vanilla-extract/rollup-plugin": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"

@@ -12,7 +12,7 @@ const plugin: any = createPlugin(
       spacing,
       sizes,
     },
-  }
+  },
 );
 
 export default plugin;

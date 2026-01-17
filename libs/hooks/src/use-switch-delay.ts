@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLatestRef } from "./use-latest-ref";
 
-export function useSwitchDelay(
-  delayMs: number
-): [value: boolean, activate: () => void] {
+export function useSwitchDelay(delayMs: number): [value: boolean, activate: () => void] {
   const [value, setValue] = useState(false);
   const [effectKey, setEffectKey] = useState(0);
   const deleyRef = useLatestRef(delayMs);

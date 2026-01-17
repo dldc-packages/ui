@@ -35,7 +35,7 @@ export function ButtonColorsVariantsWidget() {
   const [highlighted, setHighlighted] = useState<ButtonProps | null>();
 
   return (
-    <div className="grid" style={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button color="${highlighted.color}" variant="${highlighted.variant}" />`

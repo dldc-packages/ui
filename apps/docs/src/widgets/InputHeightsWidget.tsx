@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
+
+import { Input } from "@dldc/ui-components/input";
+import type { TDesignHeight } from "@dldc/ui-core/size";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Input } from "../shared/components/form/Input";
-import { TDesignHeight } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function InputHeightsWidget() {
@@ -11,7 +11,7 @@ export function InputHeightsWidget() {
   const [highlighted, setHighlighted] = useState<TDesignHeight | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(<Input height={highlighted} placeholder={`Height ${highlighted}`} />)
@@ -22,6 +22,6 @@ export function InputHeightsWidget() {
         renderCell={({ row: height, key }) => <Input key={key} height={height} placeholder={`Height ${height}`} />}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

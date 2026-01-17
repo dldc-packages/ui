@@ -1,32 +1,31 @@
-import { CaretDownIcon, CirclesFourIcon, DotsThreeVerticalIcon, UserIcon } from "@phosphor-icons/react";
+import { Button } from "@dldc/ui-ariakit/button";
+import { ChevronDownIcon, EllipsisVerticalIcon, GridIcon, UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Button } from "../shared/components/button/Button";
 
 export function ButtonIconsWidget() {
   const iconConfigs = [
     { children: "Start Icon", startIcon: <UserIcon />, endIcon: undefined, code: "startIcon={<UserIcon />}" },
-    { children: "End Icon", startIcon: undefined, endIcon: <CirclesFourIcon />, code: "endIcon={<CirclesFourIcon />}" },
+    { children: "End Icon", startIcon: undefined, endIcon: <GridIcon />, code: "endIcon={<GridIcon />}" },
     {
       children: "Both Icons",
       startIcon: <UserIcon />,
-      endIcon: <CaretDownIcon />,
-      code: "startIcon={<UserIcon />} endIcon={<CaretDownIcon />}",
+      endIcon: <ChevronDownIcon />,
+      code: "startIcon={<UserIcon />} endIcon={<ChevronDownIcon />}",
     },
     {
-      startIcon: <DotsThreeVerticalIcon />,
+      startIcon: <EllipsisVerticalIcon />,
       endIcon: undefined,
       children: undefined,
-      code: "startIcon={<DotsThreeVerticalIcon />}",
+      code: "startIcon={<EllipsisVerticalIcon />}",
     },
   ];
 
   const [highlighted, setHighlighted] = useState<(typeof iconConfigs)[number] | null>();
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button ${highlighted.code} ${highlighted.children !== undefined ? `>${highlighted.children}</Button>` : " />"}`
@@ -41,6 +40,6 @@ export function ButtonIconsWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
-    </Grid>
+    </div>
   );
 }

@@ -1,10 +1,9 @@
-import { UserIcon } from "@phosphor-icons/react";
+import { Frame } from "@dldc/ui-components/frame";
+import type { TDesignHeight } from "@dldc/ui-core/size";
+import { UserIcon } from "lucide-react";
 import { useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
-import { TDesignHeight } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function FrameAutoSpacingWidget() {
@@ -17,7 +16,7 @@ export function FrameAutoSpacingWidget() {
   } | null>(null);
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
@@ -35,6 +34,6 @@ export function FrameAutoSpacingWidget() {
         )}
         onHighlightedCell={(cell) => setHighlighted({ height: cell.row, contentHeight: cell.column })}
       />
-    </Grid>
+    </div>
   );
 }

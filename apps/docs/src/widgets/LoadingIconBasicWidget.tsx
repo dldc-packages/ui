@@ -1,17 +1,18 @@
-import { Grid, Paper } from "../../styled-system/jsx";
+import { cn } from "@/utils/styles";
+import { LoadingIcon } from "@dldc/ui-components/loading-icon";
+import { Paper } from "@dldc/ui-components/paper";
 import { CodeHighlight } from "../components/CodeHighlight";
-import { LoadingIcon } from "../shared/components/common/LoadingIcon";
 import { printElement } from "../utils/printElement";
 
 export function LoadingIconBasicWidget() {
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(<LoadingIcon />)}
       </CodeHighlight>
-      <Paper css={{ bg: "neutral.900", p: "3" }}>
+      <Paper background="900" className={cn("p-3 text-white")}>
         <LoadingIcon />
       </Paper>
-    </Grid>
+    </div>
   );
 }

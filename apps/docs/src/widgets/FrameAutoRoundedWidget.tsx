@@ -1,9 +1,8 @@
+import { Frame } from "@dldc/ui-components/frame";
+import type { TDesignRounded } from "@dldc/ui-core/size";
 import { cloneElement, useState } from "react";
-import { Grid } from "../../styled-system/jsx";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
-import { Frame } from "../shared/components/frame/Frame";
-import { TDesignRounded } from "../shared/design/types";
 import { printElement } from "../utils/printElement";
 
 export function FrameAutoRoundedWidget() {
@@ -20,7 +19,7 @@ export function FrameAutoRoundedWidget() {
   );
 
   return (
-    <Grid css={{ gridTemplateColumns: "subgrid" }}>
+    <div className="grid grid-cols-subgrid">
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(renderNestedFrames(highlighted)) : "// Hover a frame to see the code"}
       </CodeHighlight>
@@ -29,6 +28,6 @@ export function FrameAutoRoundedWidget() {
         renderCell={({ row: rounded, key }) => cloneElement(renderNestedFrames(rounded), { key })}
         onHighlightedCell={({ row }) => setHighlighted(row)}
       />
-    </Grid>
+    </div>
   );
 }
