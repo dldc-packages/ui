@@ -1,10 +1,11 @@
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { ChevronDownIcon, UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonLoadingWidget() {
+export function ButtonLoadingWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const contentVariations = [
     { children: "Save Changes", code: "" },
     { children: "Save Changes", startIcon: <UserIcon />, code: "startIcon={<UserIcon />}" },
@@ -33,7 +34,7 @@ export function ButtonLoadingWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button ${highlighted.content.code} ${highlighted.loading.code} ${highlighted.content.children !== undefined ? `>${highlighted.content.children}</Button>` : "/>"}`

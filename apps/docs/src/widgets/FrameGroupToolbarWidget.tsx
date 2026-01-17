@@ -1,11 +1,13 @@
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
 import { Paper } from "@dldc/ui-components/paper";
 import { HouseIcon, LogOutIcon, SettingsIcon } from "lucide-react";
+import { type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { printElement } from "../utils/printElement";
 
-export function FrameGroupToolbarWidget() {
+export function FrameGroupToolbarWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const element = (
     <FrameGroup variant="surface">
       <Button startIcon={<HouseIcon />}>Home</Button>
@@ -15,7 +17,7 @@ export function FrameGroupToolbarWidget() {
   );
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(element)}
       </CodeHighlight>

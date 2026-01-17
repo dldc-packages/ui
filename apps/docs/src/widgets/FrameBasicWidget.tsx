@@ -1,11 +1,13 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import { Paper } from "@dldc/ui-components/paper";
+import { type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { printElement } from "../utils/printElement";
 
-export function FrameBasicWidget() {
+export function FrameBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(<Frame>Basic Frame</Frame>)}
       </CodeHighlight>

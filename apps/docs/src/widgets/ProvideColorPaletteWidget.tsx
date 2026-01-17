@@ -4,10 +4,11 @@ import { Button, ButtonLike } from "@dldc/ui-components/button";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
 import { dynamicColor } from "@dldc/ui-core/colors";
+import { type ComponentPropsWithRef } from "react";
 
-export function ProvideColorPaletteWidget() {
+export function ProvideColorPaletteWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {[
           `<div className={dynamicColor.red}>`,

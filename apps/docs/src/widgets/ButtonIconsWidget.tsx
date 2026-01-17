@@ -1,10 +1,11 @@
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { ChevronDownIcon, EllipsisVerticalIcon, GridIcon, UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonIconsWidget() {
+export function ButtonIconsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const iconConfigs = [
     { children: "Start Icon", startIcon: <UserIcon />, endIcon: undefined, code: "startIcon={<UserIcon />}" },
     { children: "End Icon", startIcon: undefined, endIcon: <GridIcon />, code: "endIcon={<GridIcon />}" },
@@ -25,7 +26,7 @@ export function ButtonIconsWidget() {
   const [highlighted, setHighlighted] = useState<(typeof iconConfigs)[number] | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button ${highlighted.code} ${highlighted.children !== undefined ? `>${highlighted.children}</Button>` : " />"}`

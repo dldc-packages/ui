@@ -1,16 +1,17 @@
+import { cn } from "@/utils/styles";
 import { Input } from "@dldc/ui-components/input";
 import type { TDesignHeight } from "@dldc/ui-core/size";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function InputContentHeightsWidget() {
+export function InputContentHeightsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const contentHeights: TDesignHeight[] = ["6", "7", "8", "9"];
   const [highlighted, setHighlighted] = useState<TDesignHeight | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(

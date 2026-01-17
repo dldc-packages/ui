@@ -1,11 +1,12 @@
+import { cn } from "@/utils/styles";
 import { Button, type ButtonProps } from "@dldc/ui-ariakit/button";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonColorsVariantsWidget() {
+export function ButtonColorsVariantsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const colors: TPaletteColor[] = [
     "red",
     "orange",
@@ -35,7 +36,7 @@ export function ButtonColorsVariantsWidget() {
   const [highlighted, setHighlighted] = useState<ButtonProps | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button color="${highlighted.color}" variant="${highlighted.variant}" />`

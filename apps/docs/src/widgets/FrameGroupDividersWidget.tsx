@@ -1,10 +1,11 @@
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function FrameGroupDividersWidget() {
+export function FrameGroupDividersWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const innerDividerOptions = [
     { label: "With Inner Dividers", value: true },
     { label: "No Inner Dividers", value: false },
@@ -15,7 +16,7 @@ export function FrameGroupDividersWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<FrameGroup 

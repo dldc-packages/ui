@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { UserIcon } from "lucide-react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonDisabledWidget() {
+export function ButtonDisabledWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
   const states = [
     { label: "Normal", disabled: false },
@@ -16,7 +17,7 @@ export function ButtonDisabledWidget() {
   const [highlighted, setHighlighted] = useState<{ variant: TDesignVariant; state: (typeof states)[number] } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button variant="${highlighted.variant}" ${highlighted.state.disabled ? "disabled={true}" : ""}>${highlighted.state.label}</Button>`

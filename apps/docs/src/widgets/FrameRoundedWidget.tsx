@@ -1,17 +1,18 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import type { TDesignRounded } from "@dldc/ui-core/size";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function FrameRoundedWidget() {
+export function FrameRoundedWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const roundedValues: TDesignRounded[] = ["0", "0x", "1", "2", "3", "4", "5"];
 
   const [highlighted, setHighlighted] = useState<TDesignRounded | null>(null);
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted !== null
           ? printElement(<Frame rounded={highlighted}>Rounded {highlighted}</Frame>)

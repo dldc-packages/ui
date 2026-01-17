@@ -1,14 +1,15 @@
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { DefaultDesignProvider } from "@dldc/ui-components/design-context";
 import { Frame } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
-import { Fragment, useState } from "react";
+import { Fragment, useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function DefaultDesignProviderBasicWidget() {
+export function DefaultDesignProviderBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const examples = [
     {
       key: "without",
@@ -37,7 +38,7 @@ export function DefaultDesignProviderBasicWidget() {
   const [highlighted, setHighlighted] = useState<string | null>(null);
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {(() => {
           if (!highlighted) return "// Hover an example to see the code";

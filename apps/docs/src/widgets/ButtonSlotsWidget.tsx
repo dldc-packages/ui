@@ -1,11 +1,12 @@
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { ButtonLike } from "@dldc/ui-components/button";
 import { PlusIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonSlotsWidget() {
+export function ButtonSlotsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const slotConfigs = [
     {
       label: "Nested Button Start",
@@ -28,7 +29,7 @@ export function ButtonSlotsWidget() {
   const [highlighted, setHighlighted] = useState<(typeof slotConfigs)[number] | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button ${highlighted.code}>${highlighted.label}</Button>`

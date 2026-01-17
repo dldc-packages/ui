@@ -1,11 +1,12 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import { PlusIcon, XIcon } from "lucide-react";
-import { cloneElement, useState } from "react";
+import { cloneElement, useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function FrameSlotsWidget() {
+export function FrameSlotsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const examples = [
     <Frame startSlot={<Frame variant="solid" startIcon={<PlusIcon />} />}>Start Slot</Frame>,
     <Frame endSlot={<Frame variant="solid" startIcon={<XIcon />} />}>End Slot</Frame>,
@@ -23,7 +24,7 @@ export function FrameSlotsWidget() {
   const [highlighted, setHighlighted] = useState<(typeof examples)[number] | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(highlighted) : "// Hover a Frame to see the code"}
       </CodeHighlight>

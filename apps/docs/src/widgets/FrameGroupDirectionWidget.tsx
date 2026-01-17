@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function FrameGroupDirectionWidget() {
+export function FrameGroupDirectionWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const directions = [
     {
       label: "Horizontal",
@@ -26,7 +27,7 @@ export function FrameGroupDirectionWidget() {
   const [highlighted, setHighlighted] = useState<(typeof directions)[number] | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted?.code || "// Hover a button group to see the code"}
       </CodeHighlight>

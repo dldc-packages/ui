@@ -1,10 +1,11 @@
+import { cn } from "@/utils/styles";
 import { ButtonLike } from "@dldc/ui-components/button";
 import { ChevronDownIcon, EllipsisVertical, GridIcon, UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonLikeIconsWidget() {
+export function ButtonLikeIconsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const iconConfigs = [
     { label: "No Icons", startIcon: undefined, endIcon: undefined },
     { label: "Start Icon", startIcon: <UserIcon />, endIcon: undefined },
@@ -23,7 +24,7 @@ export function ButtonLikeIconsWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? (() => {

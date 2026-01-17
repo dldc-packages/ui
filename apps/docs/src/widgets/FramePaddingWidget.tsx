@@ -1,12 +1,13 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import type { TFrameContentPadding } from "@dldc/ui-components/frame-content";
 import { UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function FramePaddingWidget() {
+export function FramePaddingWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const paddings: TFrameContentPadding[] = ["auto", "text", "icon", "none"];
   const examples = [
     { props: { children: "Hello World" } },
@@ -20,7 +21,7 @@ export function FramePaddingWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(<Frame padding={highlighted.padding} {...highlighted.example.props} />)

@@ -1,11 +1,12 @@
+import { cn } from "@/utils/styles";
 import { ButtonLike } from "@dldc/ui-components/button";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonLikeBasicWidget() {
+export function ButtonLikeBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
   const examples = [
     { label: "Basic", props: {} },
@@ -18,7 +19,7 @@ export function ButtonLikeBasicWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<ButtonLike variant="${highlighted.variant}"${highlighted.example.props.startIcon ? " startIcon={<UserIcon />}" : ""}>${highlighted.example.label}</ButtonLike>`

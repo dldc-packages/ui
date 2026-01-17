@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function FrameFractionalHeightWidget() {
+export function FrameFractionalHeightWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const heights: { value: string; label: string }[] = [
     { value: "4", label: "4 (16px)" },
     { value: "4x", label: "4x (18px)" },
@@ -18,7 +19,7 @@ export function FrameFractionalHeightWidget() {
   const [highlighted, setHighlighted] = useState<{ value: string; label: string } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Frame height="${highlighted.value}">Height ${highlighted.value}</Frame>`

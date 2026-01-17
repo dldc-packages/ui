@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import type { TFrameContentPaddingResolved } from "@dldc/ui-styles/frame-content";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function FrameDirectionalPaddingWidget() {
+export function FrameDirectionalPaddingWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const paddings: TFrameContentPaddingResolved[] = ["text", "icon", "none"];
   const propName = ["startPadding", "endPadding"];
 
@@ -16,7 +17,7 @@ export function FrameDirectionalPaddingWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(<Frame {...{ [highlighted.propName]: highlighted.padding }}>Text</Frame>)

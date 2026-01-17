@@ -1,12 +1,13 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import type { TDesignSpacing } from "@dldc/ui-core/size";
 import { UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function FrameSpacingEquivalentWidget() {
+export function FrameSpacingEquivalentWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const examples = [
     { spacing: "6" as TDesignSpacing, height: "10" },
     { spacing: "8" as TDesignSpacing, height: "10" },
@@ -17,7 +18,7 @@ export function FrameSpacingEquivalentWidget() {
   const [highlighted, setHighlighted] = useState<(typeof examples)[number] | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 
+import { cn } from "@/utils/styles";
 import { Input } from "@dldc/ui-components/input";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
@@ -12,7 +13,7 @@ type DisabledState = {
   placeholder?: string;
 };
 
-export function InputDisabledWidget() {
+export function InputDisabledWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const states: DisabledState[] = [
     { label: "Enabled", disabled: false, placeholder: "Enabled input" },
     { label: "Disabled (placeholder)", disabled: true, placeholder: "Disabled input" },
@@ -21,7 +22,7 @@ export function InputDisabledWidget() {
   const [highlighted, setHighlighted] = useState<DisabledState | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(

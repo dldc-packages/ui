@@ -1,10 +1,12 @@
+import { cn } from "@/utils/styles";
 import { FrameInputContent } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
+import { type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { printElement } from "../utils/printElement";
 
-export function InputCustomInputChildrenWidget() {
+export function InputCustomInputChildrenWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const example = (
     <Input>
       <FrameInputContent placeholder="Enter text..." maxLength={20} autoComplete="off" />
@@ -12,7 +14,7 @@ export function InputCustomInputChildrenWidget() {
   );
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(example)}
       </CodeHighlight>

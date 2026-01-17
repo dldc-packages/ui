@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonInteractiveStatesWidget() {
+export function ButtonInteractiveStatesWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const stateConfigs = [
     { label: "Normal", props: {}, code: "" },
     { label: "Hover State", props: { "data-hover": true }, code: "data-hover={true}" },
@@ -20,7 +21,7 @@ export function ButtonInteractiveStatesWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button variant="${highlighted.variant}"${highlighted.state.code ? ` ${highlighted.state.code}` : ""}>${highlighted.state.label}</Button>`

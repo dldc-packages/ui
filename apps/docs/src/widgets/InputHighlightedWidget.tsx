@@ -1,6 +1,7 @@
+import { cn } from "@/utils/styles";
 import { Input } from "@dldc/ui-components/input";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
@@ -11,7 +12,7 @@ type HighlightState = {
   highlightColor?: TPaletteColor;
 };
 
-export function InputHighlightedWidget() {
+export function InputHighlightedWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const states: HighlightState[] = [
     { label: "Normal state", highlighted: false },
     { label: "Highlighted (blue)", highlighted: true, highlightColor: "blue" },
@@ -21,7 +22,7 @@ export function InputHighlightedWidget() {
   const [highlightedState, setHighlightedState] = useState<HighlightState | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlightedState
           ? printElement(

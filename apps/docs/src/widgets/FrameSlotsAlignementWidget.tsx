@@ -1,7 +1,8 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import { Prose } from "@dldc/ui-components/prose";
 import { CheckCircleIcon, XCircleIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
@@ -9,7 +10,7 @@ import { printElement } from "../utils/printElement";
 const okIcon = <CheckCircleIcon className="mb-0x mr-1 inline-flex size-[1rem] text-green-500" />;
 const notOkIcon = <XCircleIcon className="mb-0x mr-1 inline-flex size-[1rem] text-red-500" />;
 
-export function FrameSlotsAlignementWidget() {
+export function FrameSlotsAlignementWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const examples = [
     {
       element: <Frame style={{ width: "150px" }} endIcon={<XIcon />} />,
@@ -81,7 +82,7 @@ export function FrameSlotsAlignementWidget() {
   const [highlighted, setHighlighted] = useState<(typeof examples)[number] | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(highlighted.element) : "// Hover a Frame to see the code"}
       </CodeHighlight>

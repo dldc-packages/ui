@@ -1,20 +1,21 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function FrameDisabledWidget() {
+export function FrameDisabledWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const colors: TPaletteColor[] = ["neutral", "blue", "green", "red", "amber", "purple"];
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
 
   const [highlighted, setHighlighted] = useState<{ color: TPaletteColor; variant: TDesignVariant } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(

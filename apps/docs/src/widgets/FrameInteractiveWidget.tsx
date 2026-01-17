@@ -1,10 +1,11 @@
+import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function FrameInteractiveWidget() {
+export function FrameInteractiveWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const states = [
     { label: "Non-interactive", interactive: false },
     { label: "Interactive", interactive: true },
@@ -13,7 +14,7 @@ export function FrameInteractiveWidget() {
   const [highlighted, setHighlighted] = useState<{ state: (typeof states)[number] } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(

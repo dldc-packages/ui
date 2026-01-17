@@ -1,19 +1,20 @@
+import { cn } from "@/utils/styles";
 import { ButtonLike } from "@dldc/ui-components/button";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonLikeColorsWidget() {
+export function ButtonLikeColorsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
   const colors: TPaletteColor[] = ["blue", "green", "red", "orange", "purple", "gray"];
 
   const [highlighted, setHighlighted] = useState<{ variant: TDesignVariant; color: TPaletteColor } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<ButtonLike variant="${highlighted.variant}" color="${highlighted.color}" startIcon={<UserIcon />}>${highlighted.color}</ButtonLike>`

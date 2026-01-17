@@ -1,16 +1,17 @@
+import { cn } from "@/utils/styles";
 import { Button, type ButtonProps } from "@dldc/ui-ariakit/button";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function ButtonHoverVariantsWidget() {
+export function ButtonHoverVariantsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
 
   const [highlighted, setHighlighted] = useState<ButtonProps | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Button variant="ghost" hoverVariant="${highlighted.hoverVariant}" />`

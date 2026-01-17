@@ -1,12 +1,13 @@
+import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import { HouseIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
-export function FrameGroupColorsWidget() {
+export function FrameGroupColorsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const colors: TPaletteColor[] = ["blue", "green", "red", "orange", "purple", "gray"];
   const variants = [
     { label: "Solid", variant: "solid" as const },
@@ -19,7 +20,7 @@ export function FrameGroupColorsWidget() {
   } | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<FrameGroup variant="${highlighted.variant.variant}" color="${highlighted.color}">

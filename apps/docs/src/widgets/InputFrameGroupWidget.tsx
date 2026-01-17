@@ -1,8 +1,9 @@
+import { cn } from "@/utils/styles";
 import { Button, ButtonLike } from "@dldc/ui-components/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type ComponentPropsWithRef } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
@@ -12,7 +13,7 @@ type Example = {
   element: React.ReactElement;
 };
 
-export function InputFrameGroupWidget() {
+export function InputFrameGroupWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const [highlighted, setHighlighted] = useState<Example | null>();
 
   const examples: Example[] = [
@@ -48,7 +49,7 @@ export function InputFrameGroupWidget() {
   ];
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(highlighted.element) : "// Hover an example to see the code"}
       </CodeHighlight>

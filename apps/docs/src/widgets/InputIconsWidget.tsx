@@ -1,6 +1,7 @@
+import { cn } from "@/utils/styles";
 import { Input } from "@dldc/ui-components/input";
 import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useState, type ComponentPropsWithRef, type ReactNode } from "react";
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
@@ -11,7 +12,7 @@ type IconState = {
   endIcon?: ReactNode;
 };
 
-export function InputIconsWidget() {
+export function InputIconsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const states: IconState[] = [
     { label: "Search...", startIcon: <SearchIcon /> },
     { label: "Send message", endIcon: <SendIcon /> },
@@ -20,7 +21,7 @@ export function InputIconsWidget() {
   const [highlighted, setHighlighted] = useState<IconState | null>();
 
   return (
-    <div className="grid grid-cols-subgrid">
+    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
