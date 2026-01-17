@@ -10,9 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as StylesFrameRouteImport } from './routes/styles/frame'
 import { Route as AriakitCheckboxRouteImport } from './routes/ariakit/checkbox'
 import { Route as AriakitButtonRouteImport } from './routes/ariakit/button'
+import { Route as R02StylesFrameRouteImport } from './routes/02-styles/frame'
 import { Route as R01Stories08LoadingBlockRouteImport } from './routes/01-stories/08-loading-block'
 import { Route as R01Stories07ProseRouteImport } from './routes/01-stories/07-prose'
 import { Route as R01Stories06LoadingIconRouteImport } from './routes/01-stories/06-loading-icon'
@@ -27,11 +27,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StylesFrameRoute = StylesFrameRouteImport.update({
-  id: '/styles/frame',
-  path: '/styles/frame',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AriakitCheckboxRoute = AriakitCheckboxRouteImport.update({
   id: '/ariakit/checkbox',
   path: '/ariakit/checkbox',
@@ -40,6 +35,11 @@ const AriakitCheckboxRoute = AriakitCheckboxRouteImport.update({
 const AriakitButtonRoute = AriakitButtonRouteImport.update({
   id: '/ariakit/button',
   path: '/ariakit/button',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R02StylesFrameRoute = R02StylesFrameRouteImport.update({
+  id: '/02-styles/frame',
+  path: '/02-styles/frame',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R01Stories08LoadingBlockRoute =
@@ -95,9 +95,9 @@ export interface FileRoutesByFullPath {
   '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
   '/01-stories/07-prose': typeof R01Stories07ProseRoute
   '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
+  '/02-styles/frame': typeof R02StylesFrameRoute
   '/ariakit/button': typeof AriakitButtonRoute
   '/ariakit/checkbox': typeof AriakitCheckboxRoute
-  '/styles/frame': typeof StylesFrameRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -109,9 +109,9 @@ export interface FileRoutesByTo {
   '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
   '/01-stories/07-prose': typeof R01Stories07ProseRoute
   '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
+  '/02-styles/frame': typeof R02StylesFrameRoute
   '/ariakit/button': typeof AriakitButtonRoute
   '/ariakit/checkbox': typeof AriakitCheckboxRoute
-  '/styles/frame': typeof StylesFrameRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -124,9 +124,9 @@ export interface FileRoutesById {
   '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
   '/01-stories/07-prose': typeof R01Stories07ProseRoute
   '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
+  '/02-styles/frame': typeof R02StylesFrameRoute
   '/ariakit/button': typeof AriakitButtonRoute
   '/ariakit/checkbox': typeof AriakitCheckboxRoute
-  '/styles/frame': typeof StylesFrameRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -140,9 +140,9 @@ export interface FileRouteTypes {
     | '/01-stories/06-loading-icon'
     | '/01-stories/07-prose'
     | '/01-stories/08-loading-block'
+    | '/02-styles/frame'
     | '/ariakit/button'
     | '/ariakit/checkbox'
-    | '/styles/frame'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -154,9 +154,9 @@ export interface FileRouteTypes {
     | '/01-stories/06-loading-icon'
     | '/01-stories/07-prose'
     | '/01-stories/08-loading-block'
+    | '/02-styles/frame'
     | '/ariakit/button'
     | '/ariakit/checkbox'
-    | '/styles/frame'
   id:
     | '__root__'
     | '/'
@@ -168,9 +168,9 @@ export interface FileRouteTypes {
     | '/01-stories/06-loading-icon'
     | '/01-stories/07-prose'
     | '/01-stories/08-loading-block'
+    | '/02-styles/frame'
     | '/ariakit/button'
     | '/ariakit/checkbox'
-    | '/styles/frame'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -183,9 +183,9 @@ export interface RootRouteChildren {
   R01Stories06LoadingIconRoute: typeof R01Stories06LoadingIconRoute
   R01Stories07ProseRoute: typeof R01Stories07ProseRoute
   R01Stories08LoadingBlockRoute: typeof R01Stories08LoadingBlockRoute
+  R02StylesFrameRoute: typeof R02StylesFrameRoute
   AriakitButtonRoute: typeof AriakitButtonRoute
   AriakitCheckboxRoute: typeof AriakitCheckboxRoute
-  StylesFrameRoute: typeof StylesFrameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -195,13 +195,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/styles/frame': {
-      id: '/styles/frame'
-      path: '/styles/frame'
-      fullPath: '/styles/frame'
-      preLoaderRoute: typeof StylesFrameRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ariakit/checkbox': {
@@ -216,6 +209,13 @@ declare module '@tanstack/react-router' {
       path: '/ariakit/button'
       fullPath: '/ariakit/button'
       preLoaderRoute: typeof AriakitButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/02-styles/frame': {
+      id: '/02-styles/frame'
+      path: '/02-styles/frame'
+      fullPath: '/02-styles/frame'
+      preLoaderRoute: typeof R02StylesFrameRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/01-stories/08-loading-block': {
@@ -288,9 +288,9 @@ const rootRouteChildren: RootRouteChildren = {
   R01Stories06LoadingIconRoute: R01Stories06LoadingIconRoute,
   R01Stories07ProseRoute: R01Stories07ProseRoute,
   R01Stories08LoadingBlockRoute: R01Stories08LoadingBlockRoute,
+  R02StylesFrameRoute: R02StylesFrameRoute,
   AriakitButtonRoute: AriakitButtonRoute,
   AriakitCheckboxRoute: AriakitCheckboxRoute,
-  StylesFrameRoute: StylesFrameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,4 +1,6 @@
+import { StoryLayout } from "@/components/StoryLayout";
 import { Button } from "@dldc/ui-ariakit/button";
+import { Prose } from "@dldc/ui-components/prose";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/ariakit/button")({
@@ -6,5 +8,15 @@ export const Route = createFileRoute("/ariakit/button")({
 });
 
 function RouteComponent() {
-  return <Button>Button</Button>;
+  return (
+    <StoryLayout>
+      <Prose invert>
+        <h1>Araikit Button</h1>
+        <p>
+          Renders <code>Ariakit.Button</code> with a render of <code>Button</code>
+        </p>
+        <Button>Button</Button>
+      </Prose>
+    </StoryLayout>
+  );
 }
