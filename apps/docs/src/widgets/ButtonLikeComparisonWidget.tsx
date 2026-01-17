@@ -17,7 +17,7 @@ export function ButtonLikeComparisonWidget({ className, ...props }: ComponentPro
   const [highlighted, setHighlighted] = useState<{ variant: TDesignVariant; type: (typeof types)[number] } | null>();
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<${highlighted.type.label} variant="${highlighted.variant}" startIcon={<UserIcon />}>Label</${highlighted.type.label}>`

@@ -1,4 +1,5 @@
 import { StoryLayout } from "@/components/StoryLayout";
+import { cn } from "@/utils/styles";
 import { FrameAutoRoundedWidget } from "@/widgets/FrameAutoRoundedWidget";
 import { FrameAutoSpacingWidget } from "@/widgets/FrameAutoSpacingWidget";
 import { FrameBasicWidget } from "@/widgets/FrameBasicWidget";
@@ -17,6 +18,7 @@ import { FrameSpacingAlignWidget } from "@/widgets/FrameSpacingAlignWidget";
 import { FrameSpacingEquivalentWidget } from "@/widgets/FrameSpacingEquivalentWidget";
 import { FrameVariantsWidget } from "@/widgets/FrameVariantsWidget";
 import { Prose } from "@dldc/ui-components/prose";
+import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/01-stories/01-frame")({
@@ -49,9 +51,7 @@ function RouteComponent() {
           it.
         </p>
         <h2>Basic</h2>
-      </Prose>
-      <FrameBasicWidget />
-      <Prose invert>
+        <FrameBasicWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Interactive</h2>
         <p>
           The <code>interactive</code> prop controls whether the Frame responds to user interactions like hover and
@@ -64,9 +64,7 @@ function RouteComponent() {
           interactivity, use components like <code>Button</code> or add appropriate event handlers and accessibility
           attributes.
         </p>
-      </Prose>
-      <FrameInteractiveWidget />
-      <Prose invert>
+        <FrameInteractiveWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Disabled</h2>
         <p>
           The <code>disabled</code> prop controls the disabled state of Frame components. When{" "}
@@ -82,9 +80,7 @@ function RouteComponent() {
           The disabled state works consistently across all color variants and maintains accessibility by setting
           appropriate ARIA attributes.
         </p>
-      </Prose>
-      <FrameDisabledWidget />
-      <Prose invert>
+        <FrameDisabledWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Variants</h2>
         <p>Frame comes with different visual variants to serve different purposes:</p>
         <ul>
@@ -107,9 +103,7 @@ function RouteComponent() {
         <p>
           <strong>Note:</strong> Here the <code>interactive</code> is enabled to show the hover effect on all variants.
         </p>
-      </Prose>
-      <FrameVariantsWidget />
-      <Prose invert>
+        <FrameVariantsWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Colors</h2>
         <p>
           Frame supports a comprehensive color palette through the <code>color</code> prop. The color system includes:
@@ -126,16 +120,12 @@ function RouteComponent() {
         <p>
           The default color is <code>neutral</code>.
         </p>
-      </Prose>
-      <FrameColorsWidget />
-      <Prose invert>
+        <FrameColorsWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Height</h2>
         <p>
           Frame components can be sized using the <code>height</code> prop. The default height is <code>7</code>.
         </p>
-      </Prose>
-      <FrameHeightWidget />
-      <Prose invert>
+        <FrameHeightWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Content Height</h2>
         <p>
           The <code>contentHeight</code> prop controls the internal content sizing within a Frame. This is particularly
@@ -145,9 +135,7 @@ function RouteComponent() {
           When not specified, the content height is automatically calculated based on the Frame's height and internal
           spacing to ensure optimal content display.
         </p>
-      </Prose>
-      <FrameContentHeightWidget />
-      <Prose invert>
+        <FrameContentHeightWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>How Sizing Works</h2>
         <p>
           The design system uses a systematic sizing approach based on units of 4 pixels with support for fractional
@@ -233,8 +221,6 @@ function RouteComponent() {
           This fractional system applies to all size-related props including <code>height</code>,{" "}
           <code>contentHeight</code>,<code>rounded</code>, and <code>spacing</code>.
         </p>
-      </Prose>
-      <Prose invert>
         <h2>Rounded</h2>
         <p>
           The <code>rounded</code> prop controls the border radius of Frame components. Like other sizing props, it
@@ -243,9 +229,7 @@ function RouteComponent() {
         <p>
           The default rounded value is <code>1</code> (4px).
         </p>
-      </Prose>
-      <FrameRoundedWidget />
-      <Prose invert>
+        <FrameRoundedWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Auto Rounded</h2>
         <p>
           When nesting Frame components, the rounded values are automatically computed to create harmonious visual
@@ -266,9 +250,7 @@ function RouteComponent() {
           <strong>Note:</strong> The auto rounded calculation has a minimum of <code>0x</code> (2px), except if the
           parent radius is <code>0</code> in which case the child radius will also be <code>0</code>.
         </p>
-      </Prose>
-      <FrameAutoRoundedWidget />
-      <Prose invert>
+        <FrameAutoRoundedWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Content</h2>
         <p>
           Frame components can contain various types of content including text, icons, and complex layouts. The content
@@ -279,26 +261,20 @@ function RouteComponent() {
           Use <code>children</code> for text content, <code>startIcon</code> and <code>endIcon</code> for simple icon
           placement:
         </p>
-      </Prose>
-      <FrameContentWidget />
-      <Prose invert>
+        <FrameContentWidget className={cn(notProseClass, proseBleedClass)} />
         <h3>Advanced Layout</h3>
         <p>
           For more complex layouts, use <code>startSlot</code> and <code>endSlot</code> to embed custom components like
           nested Frames or any other UI elements:
         </p>
-      </Prose>
-      <FrameSlotsWidget />
-      <Prose invert>
+        <FrameSlotsWidget className={cn(notProseClass, proseBleedClass)} />
         <p>
           When <code>children</code> is text, it will automatically get <code>flex: 1</code>, if you pass a custom
           element to <code>children</code> you might need to set <code>flex: 1</code> manually to get the proper{" "}
           <code>endSlot</code> alignment. You can also solve this by adding <code>margin-left: "auto"</code> on{" "}
           <code>endSlot</code> (we already do it for you with <code>endIcon</code>).
         </p>
-      </Prose>
-      <FrameSlotsAlignementWidget />
-      <Prose invert>
+        <FrameSlotsAlignementWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Spacing</h2>
         <p>
           Frame provides comprehensive control over internal spacing through multiple props that affect padding and gaps
@@ -310,9 +286,7 @@ function RouteComponent() {
           <code>contentHeight</code> to ensure visual consistency. Notice in the example below how the icon is always
           "centered" within the frame.
         </p>
-      </Prose>
-      <FrameAutoSpacingWidget />
-      <Prose invert>
+        <FrameAutoSpacingWidget className={cn(notProseClass, proseBleedClass)} />
         <h3>Padding Types</h3>
         <p>
           The <code>padding</code>, <code>startPadding</code>, and <code>endPadding</code> props control how much space
@@ -338,33 +312,27 @@ function RouteComponent() {
           By default, <code>Frame</code> will automatically detect and apply the appropriate padding size based on its
           content. This means you usually don't need to specify the <code>padding</code> prop manually.
         </p>
-      </Prose>
-      <FramePaddingWidget />
-      <Prose invert>
+        <FramePaddingWidget className={cn(notProseClass, proseBleedClass)} />
         <h3>Directional Padding Control</h3>
         <p>
           Use <code>startPadding</code> and <code>endPadding</code> to fine-tune padding on specific sides when you have
           mixed content or custom layouts.
         </p>
-      </Prose>
-      <FrameDirectionalPaddingWidget />
-      <Prose invert>
+        <FrameDirectionalPaddingWidget className={cn(notProseClass, proseBleedClass)} />
         <h3>Manual Spacing Override</h3>
         <p>
           The <code>spacing</code> prop allows you to override the automatic spacing calculation. Note that this prop
           doesn't control the actual pixel size directly—instead, <code>spacing="8"</code> means "use the same spacing
           as a Frame with height 8 and default contentHeight.".
         </p>
-      </Prose>
-      <FrameSpacingEquivalentWidget />
-      <Prose invert>
+        <FrameSpacingEquivalentWidget className={cn(notProseClass, proseBleedClass)} />
         <p>
           This is particularly useful when you want to adjust the spacing for Frames with different heights to maintain
           a consistent visual rhythm. For this to work you need all the Frames to have the same{" "}
           <code>contentHeight</code>.
         </p>
+        <FrameSpacingAlignWidget className={cn(notProseClass, proseBleedClass)} />
       </Prose>
-      <FrameSpacingAlignWidget />
     </StoryLayout>
   );
 }

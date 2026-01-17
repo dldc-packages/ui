@@ -49,7 +49,7 @@ export function InputFrameGroupWidget({ className, ...props }: ComponentPropsWit
   ];
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(highlighted.element) : "// Hover an example to see the code"}
       </CodeHighlight>

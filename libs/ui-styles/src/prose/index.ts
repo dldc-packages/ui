@@ -2,13 +2,14 @@ import clsx from "clsx";
 import {
   notProseClass,
   proseBaseClass,
+  proseBleedClass,
   proseColor,
   proseColorInvert,
   proseSizeDynamicClass,
   proseVars,
 } from "./prose.css.js";
 
-export { notProseClass, proseVars };
+export { notProseClass, proseBleedClass, proseVars };
 
 export type TProseColor = keyof typeof proseColor;
 

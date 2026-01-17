@@ -17,7 +17,7 @@ export function FrameAutoSpacingWidget({ className, ...props }: ComponentPropsWi
   } | null>(null);
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(

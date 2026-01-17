@@ -22,7 +22,7 @@ export function InputHighlightedWidget({ className, ...props }: ComponentPropsWi
   const [highlightedState, setHighlightedState] = useState<HighlightState | null>();
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlightedState
           ? printElement(

@@ -19,7 +19,7 @@ export function FrameFractionalHeightWidget({ className, ...props }: ComponentPr
   const [highlighted, setHighlighted] = useState<{ value: string; label: string } | null>();
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<Frame height="${highlighted.value}">Height ${highlighted.value}</Frame>`

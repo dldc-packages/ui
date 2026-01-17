@@ -10,8 +10,10 @@ import { designContentSizeVar } from "../common/index.js";
 import { em, rem, round } from "./utils.js";
 
 export const notProseClass = style({});
+export const proseBaseClass = style({});
+export const proseBleedClass = style({});
 
-const isNotProse = `:not(:where([class~="${notProseClass}"],[class~="${notProseClass}"] *))`;
+const isNotProse = `:not(:where(.${notProseClass}, .${notProseClass} *))`;
 
 function globalStyleWithNotProse(selector: string, rules: GlobalStyleRule) {
   globalStyle(`:where(${selector})${isNotProse}`, rules);
@@ -38,11 +40,22 @@ export const proseVars = createGlobalTheme(":root", {
   tdBorders: colorsVars.neutral["200"],
 });
 
-export const proseBaseClass = style({});
-
 globalStyleWithNotProse(`${proseBaseClass}`, {
   color: proseVars.body,
-  maxWidth: "65ch",
+  display: "grid",
+  gridTemplateColumns: "1fr min(65ch, 100%) 1fr",
+});
+
+globalStyleWithNotProse(`${proseBaseClass} > *`, {
+  gridColumn: "2 / 3",
+});
+
+globalStyleWithNotProse(`${proseBaseClass} > ${proseBleedClass}`, {
+  gridColumn: "1 / -1",
+});
+// Allow notprose + bleed
+globalStyle(`${proseBaseClass} > ${notProseClass}${proseBleedClass}`, {
+  gridColumn: "1 / -1",
 });
 
 globalStyleWithNotProse(`${proseBaseClass} [class~="lead"]`, {

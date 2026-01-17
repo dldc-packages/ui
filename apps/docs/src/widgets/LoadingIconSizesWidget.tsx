@@ -11,7 +11,7 @@ export function LoadingIconSizesWidget({ className, ...props }: ComponentPropsWi
   const [highlighted, setHighlighted] = useState<number | null>(null);
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted ? printElement(<LoadingIcon size={highlighted} />) : "// Hover an icon to see the code"}
       </CodeHighlight>

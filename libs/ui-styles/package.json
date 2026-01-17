@@ -36,12 +36,12 @@
     "@vanilla-extract/dynamic": "catalog:",
     "@vanilla-extract/recipes": "catalog:",
     "clsx": "catalog:",
+    "csstype": "catalog:",
     "type-fest": "catalog:"
   },
   "devDependencies": {
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
-    "@types/react": "catalog:",
     "@vanilla-extract/rollup-plugin": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"

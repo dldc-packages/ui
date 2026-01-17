@@ -27,7 +27,7 @@ export function FrameGroupDirectionWidget({ className, ...props }: ComponentProp
   const [highlighted, setHighlighted] = useState<(typeof directions)[number] | null>();
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted?.code || "// Hover a button group to see the code"}
       </CodeHighlight>

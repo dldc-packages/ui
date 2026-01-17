@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import type { CSSProperties } from "react";
 import { contentSize } from "../common";
+import { CSSProperties } from "../utils/types";
 import { labelClass, labelDisabledClass } from "./label.css";
 
 export interface LabelStylesOptions {

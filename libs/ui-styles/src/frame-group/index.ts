@@ -2,6 +2,7 @@ import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { clsx } from "clsx";
 import { frameBorderSizeClass } from "../frame/frame.css.js";
+import { CSSProperties } from "../utils/types.js";
 import {
   frameGroupClass,
   frameGroupDirectionClass,
@@ -17,7 +18,9 @@ export interface FrameGroupStylesParams {
   variant: TDesignVariant;
 }
 
-export function frameGroupStyles(params: FrameGroupStylesParams): [className: string, styles: React.CSSProperties] {
+export function frameGroupStyles(
+  params: FrameGroupStylesParams,
+): [className: string, styles: CSSProperties] {
   const { direction, color, variant } = params;
 
   return [
@@ -39,7 +42,7 @@ export interface FrameGroupSeparatorStylesParams {
 
 export function frameGroupSeparatorStyles(
   params: FrameGroupSeparatorStylesParams,
-): [className: string, styles: React.CSSProperties] {
+): [className: string, styles: CSSProperties] {
   const { direction, variant } = params;
 
   return [

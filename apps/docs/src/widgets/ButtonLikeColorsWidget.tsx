@@ -14,7 +14,7 @@ export function ButtonLikeColorsWidget({ className, ...props }: ComponentPropsWi
   const [highlighted, setHighlighted] = useState<{ variant: TDesignVariant; color: TPaletteColor } | null>();
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? `<ButtonLike variant="${highlighted.variant}" color="${highlighted.color}" startIcon={<UserIcon />}>${highlighted.color}</ButtonLike>`

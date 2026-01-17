@@ -22,7 +22,7 @@ export function InputDisabledWidget({ className, ...props }: ComponentPropsWithR
   const [highlighted, setHighlighted] = useState<DisabledState | null>();
 
   return (
-    <div className={cn("grid grid-cols-subgrid", className)} {...props}>
+    <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(

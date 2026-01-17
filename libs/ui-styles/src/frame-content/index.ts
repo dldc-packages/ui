@@ -1,9 +1,15 @@
-import { powerSize, sizeToRem, sizeToRemString, TDesignSize } from "@dldc/ui-core/size";
+import {
+  powerSize,
+  sizeToRem,
+  sizeToRemString,
+  TDesignSize,
+} from "@dldc/ui-core/size";
 import { clamp } from "@dldc/utils/math";
 import { calc } from "@vanilla-extract/css-utils";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import clsx from "clsx";
 import { designContentSizeVar, designHeightVar } from "../common/index.js";
+import { CSSProperties } from "../utils/types.js";
 import {
   frameContentEndPaddingClass,
   frameContentLayoutClass,
@@ -19,7 +25,7 @@ export function frameContentStyles(
   startPadding: TFrameContentPaddingResolved,
   endPadding: TFrameContentPaddingResolved,
   noLayout: boolean,
-): [className: string, styles: React.CSSProperties] {
+): [className: string, styles: CSSProperties] {
   return [
     clsx(
       frameContentStartPaddingClass[startPadding],
@@ -30,7 +36,10 @@ export function frameContentStyles(
       [designContentSizeVar]: sizeToRemString(contentHeight),
       [spacingGapVar]: spacing
         ? spacingToGapRem(spacing)
-        : calc(designHeightVar).subtract(designContentSizeVar).divide(2).toString(),
+        : calc(designHeightVar)
+            .subtract(designContentSizeVar)
+            .divide(2)
+            .toString(),
     }),
   ];
 }

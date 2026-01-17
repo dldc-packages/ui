@@ -2,6 +2,7 @@ import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { clsx } from "clsx";
 import { contentSize, heightStyles, roundedStyles } from "../common/index.js";
+import { CSSProperties } from "../utils/types.js";
 import {
   frameBorderSizeClass,
   frameClass,
@@ -25,9 +26,20 @@ interface FrameStylesParams {
   highlighted: boolean;
 }
 
-export function frameStyles(params: FrameStylesParams): [className: string, styles: React.CSSProperties] {
-  const { height, contentHeight, rounded, variant, color, interactive, hoverVariant, highlightColor, highlighted } =
-    params;
+export function frameStyles(
+  params: FrameStylesParams,
+): [className: string, styles: CSSProperties] {
+  const {
+    height,
+    contentHeight,
+    rounded,
+    variant,
+    color,
+    interactive,
+    hoverVariant,
+    highlightColor,
+    highlighted,
+  } = params;
 
   const [heightClass, heightInline] = heightStyles(height);
   const [roundedClass, roundedInline] = roundedStyles(rounded);

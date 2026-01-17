@@ -1,5 +1,6 @@
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+import { CSSProperties } from "../utils/types.js";
 import {
   designContentSizeClass,
   designContentSizeVar,
@@ -9,16 +10,35 @@ import {
   designRoundedVar,
 } from "./common.css.js";
 
-export { designContentSizeVar, designHeightVar, designRoundedVar } from "./common.css.js";
+export {
+  designContentSizeVar,
+  designHeightVar,
+  designRoundedVar,
+} from "./common.css.js";
 
-export function heightStyles(height: number): [classNames: string, styles: React.CSSProperties] {
-  return [designHeightClass, assignInlineVars({ [designHeightVar]: sizeToRemString(height) })];
+export function heightStyles(
+  height: number,
+): [classNames: string, styles: CSSProperties] {
+  return [
+    designHeightClass,
+    assignInlineVars({ [designHeightVar]: sizeToRemString(height) }),
+  ];
 }
 
-export function roundedStyles(rounded: number): [classNames: string, styles: React.CSSProperties] {
-  return [designRoundedClass, assignInlineVars({ [designRoundedVar]: sizeToRemString(rounded) })];
+export function roundedStyles(
+  rounded: number,
+): [classNames: string, styles: CSSProperties] {
+  return [
+    designRoundedClass,
+    assignInlineVars({ [designRoundedVar]: sizeToRemString(rounded) }),
+  ];
 }
 
-export function contentSize(height: number): [classNames: string, styles: React.CSSProperties] {
-  return [designContentSizeClass, assignInlineVars({ [designContentSizeVar]: sizeToRemString(height) })];
+export function contentSize(
+  height: number,
+): [classNames: string, styles: CSSProperties] {
+  return [
+    designContentSizeClass,
+    assignInlineVars({ [designContentSizeVar]: sizeToRemString(height) }),
+  ];
 }
