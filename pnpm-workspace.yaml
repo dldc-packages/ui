@@ -9,8 +9,8 @@ catalog:
   '@changesets/cli': ^2.29.8
   '@react-hookz/deep-equal': ^3.0.4
   '@tailwindcss/vite': ^4.1.18
-  '@tanstack/react-router': ^1.151.1
-  '@tanstack/router-plugin': ^1.151.1
+  '@tanstack/react-router': ^1.151.2
+  '@tanstack/router-plugin': ^1.151.2
   '@types/history': ^5.0.0
   '@types/node': 25.0.9
   '@types/react': ^19.2.8
