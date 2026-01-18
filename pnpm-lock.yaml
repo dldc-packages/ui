@@ -27,9 +27,6 @@ catalogs:
     '@tanstack/router-plugin':
       specifier: ^1.151.2
       version: 1.151.2
-    '@types/history':
-      specifier: ^5.0.0
-      version: 5.0.0
     '@types/node':
       specifier: 25.0.9
       version: 25.0.9
@@ -66,9 +63,6 @@ catalogs:
     hast-util-to-jsx-runtime:
       specifier: ^2.3.6
       version: 2.3.6
-    history:
-      specifier: ^5.3.0
-      version: 5.3.0
     jotai:
       specifier: ^2.16.2
       version: 2.16.2
@@ -190,9 +184,6 @@ importers:
       hast-util-to-jsx-runtime:
         specifier: 'catalog:'
         version: 2.3.6
-      history:
-        specifier: 'catalog:'
-        version: 5.3.0
       lucide-react:
         specifier: 'catalog:'
         version: 0.562.0(react@19.2.3)
@@ -236,9 +227,6 @@ importers:
       '@tanstack/router-plugin':
         specifier: 'catalog:'
         version: 1.151.2(@tanstack/react-router@1.151.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(rolldown-vite@7.2.2(@types/node@25.0.9)(esbuild@0.25.12)(jiti@2.6.1)(tsx@4.21.0))
-      '@types/history':
-        specifier: 'catalog:'
-        version: 5.0.0
       '@types/node':
         specifier: 'catalog:'
         version: 25.0.9
@@ -514,9 +502,6 @@ importers:
       '@dldc/utils':
         specifier: workspace:^
         version: link:../utils
-      '@vanilla-extract/css':
-        specifier: 'catalog:'
-        version: 1.18.0
       clsx:
         specifier: 'catalog:'
         version: 2.1.1
@@ -545,9 +530,6 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.8)
-      '@vanilla-extract/rollup-plugin':
-        specifier: 'catalog:'
-        version: 1.5.1(rollup@4.53.2)
       tsdown:
         specifier: 'catalog:'
         version: 0.20.0-beta.3(typescript@5.9.3)
@@ -1921,10 +1903,6 @@ packages:
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
-  '@types/history@5.0.0':
-    resolution: {integrity: sha512-hy8b7Y1J8OGe6LbAjj3xniQrj3v6lsivCcrmf4TzSgPzLkhIeKgc5IZnT7ReIqmEuodjfO8EYAuoFvIrHi/+jQ==}
-    deprecated: This is a stub types definition. history provides its own type definitions, so you do not need this installed.
-
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
@@ -2292,9 +2270,6 @@ packages:
 
   hast-util-whitespace@3.0.0:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
-
-  history@5.3.0:
-    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
 
   hookable@6.0.1:
     resolution: {integrity: sha512-uKGyY8BuzN/a5gvzvA+3FVWo0+wUjgtfSdnmjtrOVwQCZPHpHDH2WRO3VZSOeluYrHoDCiXFffZXs8Dj1ULWtw==}
@@ -4342,10 +4317,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/history@5.0.0':
-    dependencies:
-      history: 5.3.0
-
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.3
@@ -4776,10 +4747,6 @@ snapshots:
   hast-util-whitespace@3.0.0:
     dependencies:
       '@types/hast': 3.0.4
-
-  history@5.3.0:
-    dependencies:
-      '@babel/runtime': 7.28.4
 
   hookable@6.0.1: {}
 

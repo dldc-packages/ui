@@ -6,13 +6,13 @@ import { Label } from "@dldc/ui-components/label";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignSize } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
+import { listWrappertClass } from "@dldc/ui-styles/select";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ChevronDownIcon } from "lucide-react";
 import { ComponentPropsWithRef, Ref, useMemo } from "react";
 import { Merge } from "type-fest";
 import { SelectItem } from "./SelectItem";
-import { listWrappertClass } from "./styles.css";
 import { TSelectItem } from "./types";
 
 // import { colorPaletteClass } from "../../design/colors";
@@ -153,12 +153,12 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
           gutter={4}
           portal
           render={
-            <div className="bg-neutral-800 rounded-[0.5rem] border-0.5 border-white/10 shadow-md outline-none w-[min-content]" />
+            <div className="border-0.5 w-[min-content] rounded-[0.5rem] border-white/10 bg-neutral-800 shadow-md outline-none" />
           }
           sameWidth={sameWidth}
           unmountOnHide
         >
-          <div className="p-2 min-w-[var(--popover-anchor-width)] max-w-[var(--popover-available-width)] max-h-[var(--popover-available-height)] overflow-y-auto">
+          <div className="max-h-[var(--popover-available-height)] max-w-[var(--popover-available-width)] min-w-[var(--popover-anchor-width)] overflow-y-auto p-2">
             {items.map((item) => (
               <SelectItem
                 item={item}

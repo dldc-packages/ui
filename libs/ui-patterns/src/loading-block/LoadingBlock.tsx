@@ -1,5 +1,5 @@
 import { LoadingIcon } from "@dldc/ui-components/loading-icon";
-import { loadingBlockClass, loadingTextClass } from "./styles.css";
+import { loadingBlockClass, loadingTextClass } from "@dldc/ui-styles/loading-block";
 
 export function LoadingBlock() {
   return (
