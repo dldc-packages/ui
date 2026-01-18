@@ -2,6 +2,9 @@
   "name": "@dldc/utils",
   "version": "1.0.1",
   "private": false,
+  "repository": {
+    "url": "https://github.com/dldc-packages/ui"
+  },
   "type": "module",
   "types": "./dist/demo.d.ts",
   "exports": {
