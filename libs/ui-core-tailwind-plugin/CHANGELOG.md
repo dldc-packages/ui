@@ -1,5 +1,13 @@
 # @dldc/ui-core-tailwind-plugin
 
+## 1.0.1
+
+### Patch Changes
+
+- 5f52c32: Testing release flow
+- Updated dependencies [5f52c32]
+  - @dldc/ui-core@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

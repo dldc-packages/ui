@@ -1,5 +1,18 @@
 # @dldc/ui-docs
 
+## 1.0.1
+
+### Patch Changes
+
+- 5f52c32: Testing release flow
+- Updated dependencies [5f52c32]
+  - @dldc/hooks@1.0.1
+  - @dldc/ui-ariakit@1.0.1
+  - @dldc/ui-components@1.0.1
+  - @dldc/ui-core@1.0.1
+  - @dldc/ui-patterns@1.0.1
+  - @dldc/ui-styles@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
