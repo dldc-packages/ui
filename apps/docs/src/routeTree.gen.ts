@@ -8,272 +8,270 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AriakitCheckboxRouteImport } from './routes/ariakit/checkbox'
-import { Route as AriakitButtonRouteImport } from './routes/ariakit/button'
-import { Route as R02StylesFrameRouteImport } from './routes/02-styles/frame'
-import { Route as R01Stories08LoadingBlockRouteImport } from './routes/01-stories/08-loading-block'
-import { Route as R01Stories07ProseRouteImport } from './routes/01-stories/07-prose'
-import { Route as R01Stories06LoadingIconRouteImport } from './routes/01-stories/06-loading-icon'
-import { Route as R01Stories05InputRouteImport } from './routes/01-stories/05-input'
-import { Route as R01Stories04ButtonRouteImport } from './routes/01-stories/04-button'
-import { Route as R01Stories03DefaultDesignProviderRouteImport } from './routes/01-stories/03-default-design-provider'
-import { Route as R01Stories02FrameGroupRouteImport } from './routes/01-stories/02-frame-group'
-import { Route as R01Stories01FrameRouteImport } from './routes/01-stories/01-frame'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as IndexRouteImport } from "./routes/index";
+import { Route as AriakitCheckboxRouteImport } from "./routes/ariakit/checkbox";
+import { Route as AriakitButtonRouteImport } from "./routes/ariakit/button";
+import { Route as R02StylesFrameRouteImport } from "./routes/02-styles/frame";
+import { Route as R01Stories08LoadingBlockRouteImport } from "./routes/01-stories/08-loading-block";
+import { Route as R01Stories07ProseRouteImport } from "./routes/01-stories/07-prose";
+import { Route as R01Stories06LoadingIconRouteImport } from "./routes/01-stories/06-loading-icon";
+import { Route as R01Stories05InputRouteImport } from "./routes/01-stories/05-input";
+import { Route as R01Stories04ButtonRouteImport } from "./routes/01-stories/04-button";
+import { Route as R01Stories03DefaultDesignProviderRouteImport } from "./routes/01-stories/03-default-design-provider";
+import { Route as R01Stories02FrameGroupRouteImport } from "./routes/01-stories/02-frame-group";
+import { Route as R01Stories01FrameRouteImport } from "./routes/01-stories/01-frame";
 
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AriakitCheckboxRoute = AriakitCheckboxRouteImport.update({
-  id: '/ariakit/checkbox',
-  path: '/ariakit/checkbox',
+  id: "/ariakit/checkbox",
+  path: "/ariakit/checkbox",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AriakitButtonRoute = AriakitButtonRouteImport.update({
-  id: '/ariakit/button',
-  path: '/ariakit/button',
+  id: "/ariakit/button",
+  path: "/ariakit/button",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const R02StylesFrameRoute = R02StylesFrameRouteImport.update({
-  id: '/02-styles/frame',
-  path: '/02-styles/frame',
+  id: "/02-styles/frame",
+  path: "/02-styles/frame",
   getParentRoute: () => rootRouteImport,
-} as any)
-const R01Stories08LoadingBlockRoute =
-  R01Stories08LoadingBlockRouteImport.update({
-    id: '/01-stories/08-loading-block',
-    path: '/01-stories/08-loading-block',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+} as any);
+const R01Stories08LoadingBlockRoute = R01Stories08LoadingBlockRouteImport.update({
+  id: "/01-stories/08-loading-block",
+  path: "/01-stories/08-loading-block",
+  getParentRoute: () => rootRouteImport,
+} as any);
 const R01Stories07ProseRoute = R01Stories07ProseRouteImport.update({
-  id: '/01-stories/07-prose',
-  path: '/01-stories/07-prose',
+  id: "/01-stories/07-prose",
+  path: "/01-stories/07-prose",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const R01Stories06LoadingIconRoute = R01Stories06LoadingIconRouteImport.update({
-  id: '/01-stories/06-loading-icon',
-  path: '/01-stories/06-loading-icon',
+  id: "/01-stories/06-loading-icon",
+  path: "/01-stories/06-loading-icon",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const R01Stories05InputRoute = R01Stories05InputRouteImport.update({
-  id: '/01-stories/05-input',
-  path: '/01-stories/05-input',
+  id: "/01-stories/05-input",
+  path: "/01-stories/05-input",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const R01Stories04ButtonRoute = R01Stories04ButtonRouteImport.update({
-  id: '/01-stories/04-button',
-  path: '/01-stories/04-button',
+  id: "/01-stories/04-button",
+  path: "/01-stories/04-button",
   getParentRoute: () => rootRouteImport,
-} as any)
-const R01Stories03DefaultDesignProviderRoute =
-  R01Stories03DefaultDesignProviderRouteImport.update({
-    id: '/01-stories/03-default-design-provider',
-    path: '/01-stories/03-default-design-provider',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+} as any);
+const R01Stories03DefaultDesignProviderRoute = R01Stories03DefaultDesignProviderRouteImport.update({
+  id: "/01-stories/03-default-design-provider",
+  path: "/01-stories/03-default-design-provider",
+  getParentRoute: () => rootRouteImport,
+} as any);
 const R01Stories02FrameGroupRoute = R01Stories02FrameGroupRouteImport.update({
-  id: '/01-stories/02-frame-group',
-  path: '/01-stories/02-frame-group',
+  id: "/01-stories/02-frame-group",
+  path: "/01-stories/02-frame-group",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const R01Stories01FrameRoute = R01Stories01FrameRouteImport.update({
-  id: '/01-stories/01-frame',
-  path: '/01-stories/01-frame',
+  id: "/01-stories/01-frame",
+  path: "/01-stories/01-frame",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/01-stories/01-frame': typeof R01Stories01FrameRoute
-  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
-  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
-  '/01-stories/04-button': typeof R01Stories04ButtonRoute
-  '/01-stories/05-input': typeof R01Stories05InputRoute
-  '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
-  '/01-stories/07-prose': typeof R01Stories07ProseRoute
-  '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
-  '/02-styles/frame': typeof R02StylesFrameRoute
-  '/ariakit/button': typeof AriakitButtonRoute
-  '/ariakit/checkbox': typeof AriakitCheckboxRoute
+  "/": typeof IndexRoute;
+  "/01-stories/01-frame": typeof R01Stories01FrameRoute;
+  "/01-stories/02-frame-group": typeof R01Stories02FrameGroupRoute;
+  "/01-stories/03-default-design-provider": typeof R01Stories03DefaultDesignProviderRoute;
+  "/01-stories/04-button": typeof R01Stories04ButtonRoute;
+  "/01-stories/05-input": typeof R01Stories05InputRoute;
+  "/01-stories/06-loading-icon": typeof R01Stories06LoadingIconRoute;
+  "/01-stories/07-prose": typeof R01Stories07ProseRoute;
+  "/01-stories/08-loading-block": typeof R01Stories08LoadingBlockRoute;
+  "/02-styles/frame": typeof R02StylesFrameRoute;
+  "/ariakit/button": typeof AriakitButtonRoute;
+  "/ariakit/checkbox": typeof AriakitCheckboxRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/01-stories/01-frame': typeof R01Stories01FrameRoute
-  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
-  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
-  '/01-stories/04-button': typeof R01Stories04ButtonRoute
-  '/01-stories/05-input': typeof R01Stories05InputRoute
-  '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
-  '/01-stories/07-prose': typeof R01Stories07ProseRoute
-  '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
-  '/02-styles/frame': typeof R02StylesFrameRoute
-  '/ariakit/button': typeof AriakitButtonRoute
-  '/ariakit/checkbox': typeof AriakitCheckboxRoute
+  "/": typeof IndexRoute;
+  "/01-stories/01-frame": typeof R01Stories01FrameRoute;
+  "/01-stories/02-frame-group": typeof R01Stories02FrameGroupRoute;
+  "/01-stories/03-default-design-provider": typeof R01Stories03DefaultDesignProviderRoute;
+  "/01-stories/04-button": typeof R01Stories04ButtonRoute;
+  "/01-stories/05-input": typeof R01Stories05InputRoute;
+  "/01-stories/06-loading-icon": typeof R01Stories06LoadingIconRoute;
+  "/01-stories/07-prose": typeof R01Stories07ProseRoute;
+  "/01-stories/08-loading-block": typeof R01Stories08LoadingBlockRoute;
+  "/02-styles/frame": typeof R02StylesFrameRoute;
+  "/ariakit/button": typeof AriakitButtonRoute;
+  "/ariakit/checkbox": typeof AriakitCheckboxRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/01-stories/01-frame': typeof R01Stories01FrameRoute
-  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
-  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
-  '/01-stories/04-button': typeof R01Stories04ButtonRoute
-  '/01-stories/05-input': typeof R01Stories05InputRoute
-  '/01-stories/06-loading-icon': typeof R01Stories06LoadingIconRoute
-  '/01-stories/07-prose': typeof R01Stories07ProseRoute
-  '/01-stories/08-loading-block': typeof R01Stories08LoadingBlockRoute
-  '/02-styles/frame': typeof R02StylesFrameRoute
-  '/ariakit/button': typeof AriakitButtonRoute
-  '/ariakit/checkbox': typeof AriakitCheckboxRoute
+  __root__: typeof rootRouteImport;
+  "/": typeof IndexRoute;
+  "/01-stories/01-frame": typeof R01Stories01FrameRoute;
+  "/01-stories/02-frame-group": typeof R01Stories02FrameGroupRoute;
+  "/01-stories/03-default-design-provider": typeof R01Stories03DefaultDesignProviderRoute;
+  "/01-stories/04-button": typeof R01Stories04ButtonRoute;
+  "/01-stories/05-input": typeof R01Stories05InputRoute;
+  "/01-stories/06-loading-icon": typeof R01Stories06LoadingIconRoute;
+  "/01-stories/07-prose": typeof R01Stories07ProseRoute;
+  "/01-stories/08-loading-block": typeof R01Stories08LoadingBlockRoute;
+  "/02-styles/frame": typeof R02StylesFrameRoute;
+  "/ariakit/button": typeof AriakitButtonRoute;
+  "/ariakit/checkbox": typeof AriakitCheckboxRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/01-stories/01-frame'
-    | '/01-stories/02-frame-group'
-    | '/01-stories/03-default-design-provider'
-    | '/01-stories/04-button'
-    | '/01-stories/05-input'
-    | '/01-stories/06-loading-icon'
-    | '/01-stories/07-prose'
-    | '/01-stories/08-loading-block'
-    | '/02-styles/frame'
-    | '/ariakit/button'
-    | '/ariakit/checkbox'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/01-stories/01-frame"
+    | "/01-stories/02-frame-group"
+    | "/01-stories/03-default-design-provider"
+    | "/01-stories/04-button"
+    | "/01-stories/05-input"
+    | "/01-stories/06-loading-icon"
+    | "/01-stories/07-prose"
+    | "/01-stories/08-loading-block"
+    | "/02-styles/frame"
+    | "/ariakit/button"
+    | "/ariakit/checkbox";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/01-stories/01-frame'
-    | '/01-stories/02-frame-group'
-    | '/01-stories/03-default-design-provider'
-    | '/01-stories/04-button'
-    | '/01-stories/05-input'
-    | '/01-stories/06-loading-icon'
-    | '/01-stories/07-prose'
-    | '/01-stories/08-loading-block'
-    | '/02-styles/frame'
-    | '/ariakit/button'
-    | '/ariakit/checkbox'
+    | "/"
+    | "/01-stories/01-frame"
+    | "/01-stories/02-frame-group"
+    | "/01-stories/03-default-design-provider"
+    | "/01-stories/04-button"
+    | "/01-stories/05-input"
+    | "/01-stories/06-loading-icon"
+    | "/01-stories/07-prose"
+    | "/01-stories/08-loading-block"
+    | "/02-styles/frame"
+    | "/ariakit/button"
+    | "/ariakit/checkbox";
   id:
-    | '__root__'
-    | '/'
-    | '/01-stories/01-frame'
-    | '/01-stories/02-frame-group'
-    | '/01-stories/03-default-design-provider'
-    | '/01-stories/04-button'
-    | '/01-stories/05-input'
-    | '/01-stories/06-loading-icon'
-    | '/01-stories/07-prose'
-    | '/01-stories/08-loading-block'
-    | '/02-styles/frame'
-    | '/ariakit/button'
-    | '/ariakit/checkbox'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/01-stories/01-frame"
+    | "/01-stories/02-frame-group"
+    | "/01-stories/03-default-design-provider"
+    | "/01-stories/04-button"
+    | "/01-stories/05-input"
+    | "/01-stories/06-loading-icon"
+    | "/01-stories/07-prose"
+    | "/01-stories/08-loading-block"
+    | "/02-styles/frame"
+    | "/ariakit/button"
+    | "/ariakit/checkbox";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  R01Stories01FrameRoute: typeof R01Stories01FrameRoute
-  R01Stories02FrameGroupRoute: typeof R01Stories02FrameGroupRoute
-  R01Stories03DefaultDesignProviderRoute: typeof R01Stories03DefaultDesignProviderRoute
-  R01Stories04ButtonRoute: typeof R01Stories04ButtonRoute
-  R01Stories05InputRoute: typeof R01Stories05InputRoute
-  R01Stories06LoadingIconRoute: typeof R01Stories06LoadingIconRoute
-  R01Stories07ProseRoute: typeof R01Stories07ProseRoute
-  R01Stories08LoadingBlockRoute: typeof R01Stories08LoadingBlockRoute
-  R02StylesFrameRoute: typeof R02StylesFrameRoute
-  AriakitButtonRoute: typeof AriakitButtonRoute
-  AriakitCheckboxRoute: typeof AriakitCheckboxRoute
+  IndexRoute: typeof IndexRoute;
+  R01Stories01FrameRoute: typeof R01Stories01FrameRoute;
+  R01Stories02FrameGroupRoute: typeof R01Stories02FrameGroupRoute;
+  R01Stories03DefaultDesignProviderRoute: typeof R01Stories03DefaultDesignProviderRoute;
+  R01Stories04ButtonRoute: typeof R01Stories04ButtonRoute;
+  R01Stories05InputRoute: typeof R01Stories05InputRoute;
+  R01Stories06LoadingIconRoute: typeof R01Stories06LoadingIconRoute;
+  R01Stories07ProseRoute: typeof R01Stories07ProseRoute;
+  R01Stories08LoadingBlockRoute: typeof R01Stories08LoadingBlockRoute;
+  R02StylesFrameRoute: typeof R02StylesFrameRoute;
+  AriakitButtonRoute: typeof AriakitButtonRoute;
+  AriakitCheckboxRoute: typeof AriakitCheckboxRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ariakit/checkbox': {
-      id: '/ariakit/checkbox'
-      path: '/ariakit/checkbox'
-      fullPath: '/ariakit/checkbox'
-      preLoaderRoute: typeof AriakitCheckboxRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ariakit/button': {
-      id: '/ariakit/button'
-      path: '/ariakit/button'
-      fullPath: '/ariakit/button'
-      preLoaderRoute: typeof AriakitButtonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/02-styles/frame': {
-      id: '/02-styles/frame'
-      path: '/02-styles/frame'
-      fullPath: '/02-styles/frame'
-      preLoaderRoute: typeof R02StylesFrameRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/08-loading-block': {
-      id: '/01-stories/08-loading-block'
-      path: '/01-stories/08-loading-block'
-      fullPath: '/01-stories/08-loading-block'
-      preLoaderRoute: typeof R01Stories08LoadingBlockRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/07-prose': {
-      id: '/01-stories/07-prose'
-      path: '/01-stories/07-prose'
-      fullPath: '/01-stories/07-prose'
-      preLoaderRoute: typeof R01Stories07ProseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/06-loading-icon': {
-      id: '/01-stories/06-loading-icon'
-      path: '/01-stories/06-loading-icon'
-      fullPath: '/01-stories/06-loading-icon'
-      preLoaderRoute: typeof R01Stories06LoadingIconRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/05-input': {
-      id: '/01-stories/05-input'
-      path: '/01-stories/05-input'
-      fullPath: '/01-stories/05-input'
-      preLoaderRoute: typeof R01Stories05InputRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/04-button': {
-      id: '/01-stories/04-button'
-      path: '/01-stories/04-button'
-      fullPath: '/01-stories/04-button'
-      preLoaderRoute: typeof R01Stories04ButtonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/03-default-design-provider': {
-      id: '/01-stories/03-default-design-provider'
-      path: '/01-stories/03-default-design-provider'
-      fullPath: '/01-stories/03-default-design-provider'
-      preLoaderRoute: typeof R01Stories03DefaultDesignProviderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/02-frame-group': {
-      id: '/01-stories/02-frame-group'
-      path: '/01-stories/02-frame-group'
-      fullPath: '/01-stories/02-frame-group'
-      preLoaderRoute: typeof R01Stories02FrameGroupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-stories/01-frame': {
-      id: '/01-stories/01-frame'
-      path: '/01-stories/01-frame'
-      fullPath: '/01-stories/01-frame'
-      preLoaderRoute: typeof R01Stories01FrameRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/ariakit/checkbox": {
+      id: "/ariakit/checkbox";
+      path: "/ariakit/checkbox";
+      fullPath: "/ariakit/checkbox";
+      preLoaderRoute: typeof AriakitCheckboxRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/ariakit/button": {
+      id: "/ariakit/button";
+      path: "/ariakit/button";
+      fullPath: "/ariakit/button";
+      preLoaderRoute: typeof AriakitButtonRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/02-styles/frame": {
+      id: "/02-styles/frame";
+      path: "/02-styles/frame";
+      fullPath: "/02-styles/frame";
+      preLoaderRoute: typeof R02StylesFrameRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/08-loading-block": {
+      id: "/01-stories/08-loading-block";
+      path: "/01-stories/08-loading-block";
+      fullPath: "/01-stories/08-loading-block";
+      preLoaderRoute: typeof R01Stories08LoadingBlockRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/07-prose": {
+      id: "/01-stories/07-prose";
+      path: "/01-stories/07-prose";
+      fullPath: "/01-stories/07-prose";
+      preLoaderRoute: typeof R01Stories07ProseRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/06-loading-icon": {
+      id: "/01-stories/06-loading-icon";
+      path: "/01-stories/06-loading-icon";
+      fullPath: "/01-stories/06-loading-icon";
+      preLoaderRoute: typeof R01Stories06LoadingIconRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/05-input": {
+      id: "/01-stories/05-input";
+      path: "/01-stories/05-input";
+      fullPath: "/01-stories/05-input";
+      preLoaderRoute: typeof R01Stories05InputRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/04-button": {
+      id: "/01-stories/04-button";
+      path: "/01-stories/04-button";
+      fullPath: "/01-stories/04-button";
+      preLoaderRoute: typeof R01Stories04ButtonRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/03-default-design-provider": {
+      id: "/01-stories/03-default-design-provider";
+      path: "/01-stories/03-default-design-provider";
+      fullPath: "/01-stories/03-default-design-provider";
+      preLoaderRoute: typeof R01Stories03DefaultDesignProviderRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/02-frame-group": {
+      id: "/01-stories/02-frame-group";
+      path: "/01-stories/02-frame-group";
+      fullPath: "/01-stories/02-frame-group";
+      preLoaderRoute: typeof R01Stories02FrameGroupRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/01-stories/01-frame": {
+      id: "/01-stories/01-frame";
+      path: "/01-stories/01-frame";
+      fullPath: "/01-stories/01-frame";
+      preLoaderRoute: typeof R01Stories01FrameRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
@@ -281,8 +279,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R01Stories01FrameRoute: R01Stories01FrameRoute,
   R01Stories02FrameGroupRoute: R01Stories02FrameGroupRoute,
-  R01Stories03DefaultDesignProviderRoute:
-    R01Stories03DefaultDesignProviderRoute,
+  R01Stories03DefaultDesignProviderRoute: R01Stories03DefaultDesignProviderRoute,
   R01Stories04ButtonRoute: R01Stories04ButtonRoute,
   R01Stories05InputRoute: R01Stories05InputRoute,
   R01Stories06LoadingIconRoute: R01Stories06LoadingIconRoute,
@@ -291,7 +288,5 @@ const rootRouteChildren: RootRouteChildren = {
   R02StylesFrameRoute: R02StylesFrameRoute,
   AriakitButtonRoute: AriakitButtonRoute,
   AriakitCheckboxRoute: AriakitCheckboxRoute,
-}
-export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+};
+export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();

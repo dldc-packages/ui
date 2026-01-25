@@ -6,6 +6,7 @@
     "url": "https://github.com/dldc-packages/ui"
   },
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./use-async-process": "./dist/use-async-process.js",
     "./use-atom-from-value": "./dist/use-atom-from-value.js",
@@ -22,7 +23,6 @@
     "./use-text-width": "./dist/use-text-width.js",
     "./package.json": "./package.json"
   },
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",

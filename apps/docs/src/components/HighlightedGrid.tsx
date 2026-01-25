@@ -53,9 +53,9 @@ export function HighlightedGrid<TRow, TColumn>({
   return (
     <Paper background="900" className={className}>
       <Scrollbars className="h-full w-full">
-        <div className="p-3 w-max">
+        <div className="w-max p-3">
           <div
-            className="gap-3 relative grid"
+            className="relative grid gap-3"
             style={{
               gridTemplateRows: `${hasColumns ? "4px " : ""} repeat(${safeRows.length}, max-content)`,
               gridTemplateColumns: `${hasRows ? "4px " : ""} repeat(${safeColumns.length}, max-content)`,
@@ -63,13 +63,13 @@ export function HighlightedGrid<TRow, TColumn>({
           >
             {highlighted && hasRows && (
               <div
-                className="bg-white/15 align-self-stretch justify-self-stretch rounded-0x my--1 sticky left-0"
+                className="align-self-stretch rounded-0x my--1 sticky left-0 justify-self-stretch bg-white/15"
                 style={{ gridColumn: 1, gridRow: rowOffset + highlighted.rowIndex }}
               />
             )}
             {highlighted && hasColumns && (
               <div
-                className="bg-white/15 align-self-stretch justify-self-stretch rounded-0x mx--1 sticky top-0"
+                className="align-self-stretch rounded-0x mx--1 sticky top-0 justify-self-stretch bg-white/15"
                 style={{ gridColumn: columnOffset + highlighted.columnIndex, gridRow: 1 }}
               />
             )}

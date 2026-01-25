@@ -124,7 +124,7 @@ export function Variants<Dims extends TDimensions>({
   }, [presets]);
 
   return (
-    <div className="flex flex-col gap-2 items-stretch">
+    <div className="flex flex-col items-stretch gap-2">
       <div className="flex flex-row gap-4">
         {title && (
           <h2
@@ -135,7 +135,7 @@ export function Variants<Dims extends TDimensions>({
         )}
         <div className="flex flex-row gap-4">
           <FrameGroup color="blue" variant="solid">
-            <ButtonLike className="uppercase font-bold">Preset</ButtonLike>
+            <ButtonLike className="font-bold uppercase">Preset</ButtonLike>
             <Select<string>
               label="preset"
               labelHidden
@@ -175,8 +175,8 @@ export function Variants<Dims extends TDimensions>({
           </Button>
         </div>
       </div>
-      <div className="flex flex-row gap-8 items-start">
-        <div className="flex flex-col gap-3 pt-4 items-stretch">
+      <div className="flex flex-row items-start gap-8">
+        <div className="flex flex-col items-stretch gap-3 pt-4">
           {Object.entries(dimensions)
             .filter(([key]) => !colAxis.includes(key) && !rowAxis.includes(key))
             .map(([dimKey, dim]) => {
@@ -192,7 +192,7 @@ export function Variants<Dims extends TDimensions>({
                   onChange={(value) => setSelected({ ...selected, [dimKey]: value })}
                   renderSelect={<Button className="flex-1" />}
                   renderWrapper={<FrameGroup color="teal" />}
-                  renderLabel={<ButtonLike className="flex-1 uppercase font-bold min-w-[150px]">{dimKey}</ButtonLike>}
+                  renderLabel={<ButtonLike className="min-w-[150px] flex-1 font-bold uppercase">{dimKey}</ButtonLike>}
                 />
               );
             })}
@@ -200,7 +200,7 @@ export function Variants<Dims extends TDimensions>({
             Reset
           </Button>
         </div>
-        <div className="max-h-[90vh] overflow-auto flex-1">
+        <div className="max-h-[90vh] flex-1 overflow-auto">
           <div className="grid gap-4 py-4">
             {cols.length > 1 &&
               cols.map((col, colIndex) => {
@@ -209,7 +209,7 @@ export function Variants<Dims extends TDimensions>({
                   <div
                     key={`col-${colIndex}`}
                     style={{ gridColumn: 1 + colOffset + colIndex, gridRow: 1 }}
-                    className="text-center bg-white/5 rounded-1_x uppercase font-bold p-1"
+                    className="rounded-1_x bg-white/5 p-1 text-center font-bold uppercase"
                   >
                     {colName}
                   </div>
@@ -222,7 +222,7 @@ export function Variants<Dims extends TDimensions>({
                   <div
                     key={`row-${rowIndex}`}
                     style={{ gridColumn: 1, gridRow: 1 + rowOffset + rowIndex }}
-                    className="flex bg-white/5 rounded-1_x uppercase font-bold p-1 items-center justify-center"
+                    className="rounded-1_x flex items-center justify-center bg-white/5 p-1 font-bold uppercase"
                   >
                     {rowName}
                   </div>
@@ -289,7 +289,7 @@ function MultiSelect<T extends string>({ label, onChange, options, selected }: M
 
   return (
     <FrameGroup variant="solid" color="blue">
-      <ButtonLike className="uppercase font-bold">{label}</ButtonLike>
+      <ButtonLike className="font-bold uppercase">{label}</ButtonLike>
       {selected.map((selectedItem, index) => {
         return (
           <Select<T | "REMOVE">

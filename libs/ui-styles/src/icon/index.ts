@@ -4,9 +4,7 @@ import { designContentSizeVar } from "../common/index.js";
 import { CSSProperties } from "../utils/types.js";
 import { iconClass } from "./icon.css.js";
 
-export function iconStyles(
-  size: TDesignHeight | undefined,
-): [classNames: string, styles: CSSProperties] {
+export function iconStyles(size: TDesignHeight | undefined): [classNames: string, styles: CSSProperties] {
   return [
     iconClass,
     assignInlineVars({

@@ -26,20 +26,9 @@ interface FrameStylesParams {
   highlighted: boolean;
 }
 
-export function frameStyles(
-  params: FrameStylesParams,
-): [className: string, styles: CSSProperties] {
-  const {
-    height,
-    contentHeight,
-    rounded,
-    variant,
-    color,
-    interactive,
-    hoverVariant,
-    highlightColor,
-    highlighted,
-  } = params;
+export function frameStyles(params: FrameStylesParams): [className: string, styles: CSSProperties] {
+  const { height, contentHeight, rounded, variant, color, interactive, hoverVariant, highlightColor, highlighted } =
+    params;
 
   const [heightClass, heightInline] = heightStyles(height);
   const [roundedClass, roundedInline] = roundedStyles(rounded);

@@ -101,9 +101,9 @@ export function CodeHighlight({ language, theme, children }: CodeHighlightProps)
   }, [language, theme, children]);
 
   return (
-    <div className="h-full w-full rounded-lg bg-neutral-800 overflow-hidden">
+    <div className="h-full w-full overflow-hidden rounded-lg bg-neutral-800">
       {/* <Scrollbars className={css({ h: "full", w: "full" })}> */}
-      <div className="h-full w-full *:h-full *:text-sm *:p-4">{highlightedCode}</div>
+      <div className="h-full w-full *:h-full *:p-4 *:text-sm">{highlightedCode}</div>
       {/* </Scrollbars> */}
     </div>
   );

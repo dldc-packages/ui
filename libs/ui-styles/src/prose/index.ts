@@ -18,13 +18,6 @@ export interface ProseStylesOptions {
   invert?: boolean;
 }
 
-export function proseStyles({
-  color = "neutral",
-  invert = false,
-}: ProseStylesOptions = {}): string {
-  return clsx(
-    proseBaseClass,
-    proseSizeDynamicClass,
-    (invert ? proseColorInvert : proseColor)[color],
-  );
+export function proseStyles({ color = "neutral", invert = false }: ProseStylesOptions = {}): string {
+  return clsx(proseBaseClass, proseSizeDynamicClass, (invert ? proseColorInvert : proseColor)[color]);
 }

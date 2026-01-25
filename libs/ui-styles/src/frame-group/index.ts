@@ -18,9 +18,7 @@ export interface FrameGroupStylesParams {
   variant: TDesignVariant;
 }
 
-export function frameGroupStyles(
-  params: FrameGroupStylesParams,
-): [className: string, styles: CSSProperties] {
+export function frameGroupStyles(params: FrameGroupStylesParams): [className: string, styles: CSSProperties] {
   const { direction, color, variant } = params;
 
   return [
