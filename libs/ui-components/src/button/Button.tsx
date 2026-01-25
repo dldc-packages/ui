@@ -19,7 +19,7 @@ export type ButtonSpecificProps = TFrameContentProps &
     "data-focus-visible"?: boolean;
   };
 
-export type ButtonProps = ComponentPropsBaseWith<"button", ButtonSpecificProps>;
+export type ButtonProps = ComponentPropsBaseWith<"button", ButtonSpecificProps & { render?: ReactElement }>;
 
 export function Button({ type = "button", disabled = false, render, ref, ...frameProps }: ButtonProps) {
   return (
