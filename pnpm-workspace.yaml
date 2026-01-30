@@ -7,7 +7,6 @@ catalog:
   '@ariakit/react': 0.4.21
   '@base-ui/react': ^1.1.0
   '@changesets/cli': ^2.29.8
-  '@react-hookz/deep-equal': ^3.0.4
   '@tailwindcss/vite': ^4.1.18
   '@tanstack/react-router': ^1.157.17
   '@tanstack/router-plugin': ^1.157.17
@@ -19,6 +18,7 @@ catalog:
   '@vanilla-extract/dynamic': 2.1.5
   '@vanilla-extract/recipes': ^0.5.7
   '@vanilla-extract/rollup-plugin': 1.5.1
+  '@ver0/deep-equal': ^1.0.1
   '@vitejs/plugin-react-swc': ^4.2.2
   clsx: ^2.1.1
   csstype: ^3.2.3
@@ -35,7 +35,7 @@ catalog:
   react: ^19.2.4
   react-dom: ^19.2.4
   rolldown-plugin-dts: ^0.21.8
-  shiki: ^3.21.0
+  shiki: ^3.22.0
   tailwind-merge: ^3.4.0
   tailwindcss: 4.1.18
   tsdown: 0.20.1

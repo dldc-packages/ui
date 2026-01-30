@@ -1,4 +1,4 @@
-import { isEqual as defaultIsEqual } from "@react-hookz/deep-equal";
+import { isEqual as defaultIsEqual } from "@ver0/deep-equal";
 import { useLayoutEffect, useMemo, useRef } from "react";
 
 export type TIsEqual<Value> = (a: Value, b: Value) => boolean;

@@ -1,0 +1,25 @@
+{
+  "name": "@config/tsdown",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": "./dist/library.mjs",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "build:watch": "tsdown --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vanilla-extract/rollup-plugin": "catalog:",
+    "rolldown-plugin-dts": "catalog:",
+    "tsdown": "catalog:"
+  },
+  "devDependencies": {
+    "@config/typescript": "workspace:^",
+    "@types/node": "catalog:",
+    "typescript": "catalog:"
+  }
+}

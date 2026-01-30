@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@dldc/utils": "workspace:^",
-    "@react-hookz/deep-equal": "catalog:",
+    "@ver0/deep-equal": "catalog:",
     "jotai": "catalog:",
     "nanoid": "catalog:",
     "react": "catalog:",

@@ -28,10 +28,9 @@
     "type-fest": "catalog:"
   },
   "devDependencies": {
+    "@config/tsdown": "workspace:^",
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
-    "@vanilla-extract/rollup-plugin": "catalog:",
-    "rolldown-plugin-dts": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"
   }
