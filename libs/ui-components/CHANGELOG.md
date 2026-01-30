@@ -1,5 +1,18 @@
 # @dldc/ui-components
 
+## 1.0.2
+
+### Patch Changes
+
+- b9871c8: Remove css export from ui-components and ui-patterns
+- 31a9801: Improve artchi and upgrade deps
+- Updated dependencies [b9871c8]
+- Updated dependencies [31a9801]
+  - @dldc/ui-styles@1.0.2
+  - @dldc/hooks@1.0.2
+  - @dldc/ui-core@1.0.2
+  - @dldc/utils@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
