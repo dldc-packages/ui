@@ -44,7 +44,7 @@ function serializeTextMetrics(metrics: TextMetrics) {
   return plainMetrics;
 }
 
-function isNumber(value: number | unknown): value is number {
+function isNumber(value: unknown): value is number {
   return typeof value === "number";
 }
 
@@ -82,11 +82,11 @@ function getFont(font?: Font) {
   }
 }
 
-function isCSSStyleDeclaration(value: CSSStyleDeclaration | unknown): value is CSSStyleDeclaration {
+function isCSSStyleDeclaration(value: unknown): value is CSSStyleDeclaration {
   return value instanceof CSSStyleDeclaration;
 }
 
-function isString(value: string | unknown): value is string {
+function isString(value: unknown): value is string {
   return typeof value === "string";
 }
 

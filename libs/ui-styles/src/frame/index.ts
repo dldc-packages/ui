@@ -4,14 +4,14 @@ import { clsx } from "clsx";
 import { contentSize, heightStyles, roundedStyles } from "../common/index.js";
 import { CSSProperties } from "../utils/types.js";
 import {
-    frameBorderSizeClass,
-    frameClass,
-    frameHighlightClass,
-    frameHighlightColorsClass,
-    frameInteractiveClass,
-    frameInteractiveHoverVariantsClass,
-    frameInteractiveVariantsClass,
-    frameVariantsClass,
+  frameBorderSizeClass,
+  frameClass,
+  frameHighlightClass,
+  frameHighlightColorsClass,
+  frameInteractiveClass,
+  frameInteractiveHoverVariantsClass,
+  frameInteractiveVariantsClass,
+  frameVariantsClass,
 } from "./frame.css";
 
 interface FrameStylesParams {

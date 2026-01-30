@@ -4,12 +4,12 @@ import { clsx } from "clsx";
 import { frameBorderSizeClass } from "../frame/frame.css";
 import { CSSProperties } from "../utils/types.js";
 import {
-    frameGroupClass,
-    frameGroupDirectionClass,
-    frameGroupSeparatorClass,
-    frameGroupSeparatorDirectionClass,
-    frameGroupSeparatorVariantClass,
-    frameGroupVariantsClass,
+  frameGroupClass,
+  frameGroupDirectionClass,
+  frameGroupSeparatorClass,
+  frameGroupSeparatorDirectionClass,
+  frameGroupSeparatorVariantClass,
+  frameGroupVariantsClass,
 } from "./frameGroup.css";
 
 export interface FrameGroupStylesParams {

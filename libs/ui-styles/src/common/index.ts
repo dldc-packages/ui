@@ -2,12 +2,12 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { CSSProperties } from "../utils/types.js";
 import {
-    designContentSizeClass,
-    designContentSizeVar,
-    designHeightClass,
-    designHeightVar,
-    designRoundedClass,
-    designRoundedVar,
+  designContentSizeClass,
+  designContentSizeVar,
+  designHeightClass,
+  designHeightVar,
+  designRoundedClass,
+  designRoundedVar,
 } from "./common.css";
 
 export { designContentSizeVar, designHeightVar, designRoundedVar } from "./common.css";

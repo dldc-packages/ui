@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import {
-    notProseClass,
-    proseBaseClass,
-    proseBleedClass,
-    proseColor,
-    proseColorInvert,
-    proseSizeDynamicClass,
-    proseVars,
+  notProseClass,
+  proseBaseClass,
+  proseBleedClass,
+  proseColor,
+  proseColorInvert,
+  proseSizeDynamicClass,
+  proseVars,
 } from "./prose.css";
 
 export { notProseClass, proseBleedClass, proseVars };
