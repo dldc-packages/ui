@@ -1,1 +1,1 @@
-export * from "./paper.css.js";
+export * from "./paper.css";

@@ -6,11 +6,11 @@ import clsx from "clsx";
 import { designContentSizeVar, designHeightVar } from "../common/index.js";
 import { CSSProperties } from "../utils/types.js";
 import {
-  frameContentEndPaddingClass,
-  frameContentLayoutClass,
-  frameContentStartPaddingClass,
-  spacingGapVar,
-} from "./frameContent.css.js";
+    frameContentEndPaddingClass,
+    frameContentLayoutClass,
+    frameContentStartPaddingClass,
+    spacingGapVar,
+} from "./frameContent.css";
 
 export type TFrameContentPaddingResolved = "icon" | "text" | "none";
 

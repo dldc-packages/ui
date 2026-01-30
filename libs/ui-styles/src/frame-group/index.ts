@@ -1,16 +1,16 @@
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { clsx } from "clsx";
-import { frameBorderSizeClass } from "../frame/frame.css.js";
+import { frameBorderSizeClass } from "../frame/frame.css";
 import { CSSProperties } from "../utils/types.js";
 import {
-  frameGroupClass,
-  frameGroupDirectionClass,
-  frameGroupSeparatorClass,
-  frameGroupSeparatorDirectionClass,
-  frameGroupSeparatorVariantClass,
-  frameGroupVariantsClass,
-} from "./frameGroup.css.js";
+    frameGroupClass,
+    frameGroupDirectionClass,
+    frameGroupSeparatorClass,
+    frameGroupSeparatorDirectionClass,
+    frameGroupSeparatorVariantClass,
+    frameGroupVariantsClass,
+} from "./frameGroup.css";
 
 export interface FrameGroupStylesParams {
   direction: "horizontal" | "vertical";

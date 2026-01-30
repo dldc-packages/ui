@@ -1,4 +1,4 @@
-import { stackClass } from "./stack.css.js";
+import { stackClass } from "./stack.css";
 
 export { stackClass };
 

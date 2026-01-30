@@ -1,15 +1,17 @@
 import { vanillaExtractPlugin } from "@vanilla-extract/rollup-plugin";
+import { dts } from "rolldown-plugin-dts";
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
   entry: ["./src/*/index.ts"],
   platform: "neutral",
-  dts: true,
+  dts: false,
   plugins: [
     vanillaExtractPlugin({
       identifiers: "short",
       extract: { name: "styles.css", sourcemap: true },
     }),
+    dts({})
   ],
   exports: {
     customExports(pkg) {

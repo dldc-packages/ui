@@ -1,1 +1,1 @@
-export * from "./loading-block.css.js";
+export * from "./loading-block.css";

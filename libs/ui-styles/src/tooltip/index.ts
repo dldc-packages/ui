@@ -1,1 +1,1 @@
-export * from "./tooltip.css.js";
+export * from "./tooltip.css";

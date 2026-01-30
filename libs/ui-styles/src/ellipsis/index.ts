@@ -1,1 +1,1 @@
-export * from "./ellipsis.css.js";
+export * from "./ellipsis.css";

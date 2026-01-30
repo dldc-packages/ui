@@ -4,7 +4,7 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
-import { frameInteractiveClass } from "../frame/frame.css.js";
+import { frameInteractiveClass } from "../frame/frame.css";
 
 export const separatorWidthVar = createVar(
   { syntax: "length", initialValue: sizeToRemString("0_x"), inherits: true },

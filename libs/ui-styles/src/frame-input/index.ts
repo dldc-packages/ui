@@ -1,1 +1,1 @@
-export * from "./frameInputContent.css.js";
+export * from "./frameInputContent.css";
