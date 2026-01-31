@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "typecheck": "tsc",
-    "typecheck:watch": "tsc --watch",
+    "typecheck": "tsgo",
+    "typecheck:watch": "tsgo --watch",
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview"
@@ -40,9 +40,9 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@typescript/native-preview": "catalog:",
     "@vitejs/plugin-react-swc": "catalog:",
     "oxlint": "catalog:",
-    "typescript": "catalog:",
     "vite": "catalog:"
   }
 }

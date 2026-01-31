@@ -10,5 +10,6 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "oxc.oxc-vscode"
-  }
+  },
+  "typescript.native-preview.tsdk": "./node_modules/.bin/tsgo"
 }

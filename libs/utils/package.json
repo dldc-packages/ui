@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
     "type-fest": "catalog:"
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
-    "tsdown": "catalog:",
-    "typescript": "catalog:"
+    "@typescript/native-preview": "catalog:",
+    "tsdown": "catalog:"
   }
 }
