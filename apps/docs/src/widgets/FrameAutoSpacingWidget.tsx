@@ -29,7 +29,7 @@ export function FrameAutoSpacingWidget({ className, ...props }: ComponentPropsWi
         rowsDims={heights}
         columnsDims={contentHeights}
         renderCell={({ row: height, column: contentHeight, key }) => (
-          <Frame key={key} height={height} contentHeight={contentHeight} startIcon={<UserIcon />} css={{ w: "full" }}>
+          <Frame key={key} height={height} contentHeight={contentHeight} startIcon={<UserIcon />} className="w-full">
             Hey
           </Frame>
         )}

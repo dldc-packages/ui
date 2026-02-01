@@ -2,7 +2,7 @@ import { StoryLayout } from "@/components/StoryLayout";
 import { Prose } from "@dldc/ui-components/prose";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/01-stories/07-prose")({
+export const Route = createFileRoute("/01-stories/08-prose")({
   component: RouteComponent,
 });
 

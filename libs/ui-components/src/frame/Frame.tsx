@@ -4,14 +4,14 @@ import { frameStyles } from "@dldc/ui-styles/frame";
 import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
-import { ElementType, ReactElement, Ref } from "react";
+import { ReactElement } from "react";
 import { designPropsSplitter, SizeContextProvider, TDesignProps, useContainerDesignProps } from "../design-context";
 import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index.js";
 import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
 
 export type FrameProps = ComponentPropsBaseWith<
-  ElementType,
+  "div",
   TFrameContentProps &
     TDesignProps & {
       /**
@@ -94,7 +94,7 @@ export function Frame(inProps: FrameProps) {
       className={clsx(baseClass, contentClass, className)}
       style={{ ...baseInline, ...contentInline, ...style }}
       aria-disabled={isDisabledAndInteractive}
-      ref={ref as Ref<HTMLDivElement>}
+      ref={ref}
       {...htmlProps}
     >
       <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>

@@ -25,7 +25,7 @@ export type ButtonLinkProps = ComponentPropsBaseWith<
 export function ButtonLink(inProps: ButtonLinkProps) {
   const { href, render, ...frameProps } = inProps;
 
-  return <Frame {...frameProps} render={mergeRender(render, <a href={href} />)} interactive />;
+  return <Frame {...(frameProps as any)} render={mergeRender(render, <a href={href} />)} interactive />;
 }
 
 ButtonLink.displayName = "ButtonLink";

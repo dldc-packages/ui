@@ -24,12 +24,10 @@ export type ButtonProps = ComponentPropsBaseWith<"button", ButtonSpecificProps &
 export function Button({ type = "button", disabled = false, render, ref, ...frameProps }: ButtonProps) {
   return (
     <Frame
-      type={type}
       disabled={disabled}
-      ref={ref}
-      render={mergeRender(render, <button disabled={disabled} />)}
+      render={mergeRender(render, <button type={type} ref={ref} disabled={disabled} />)}
       interactive
-      {...frameProps}
+      {...(frameProps as any)}
     />
   );
 }

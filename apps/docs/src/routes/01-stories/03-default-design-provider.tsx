@@ -25,6 +25,12 @@ function RouteComponent() {
           This provider is particularly useful for creating design variations, managing nested component hierarchies,
           and maintaining design consistency across complex UI structures.
         </p>
+        <p>
+          <i>
+            Note that <code>DefaultDesignProvider</code> does not render any DOM elements itself, this means that it
+            can't set CSS vars for colors and text size.
+          </i>
+        </p>
         <h2>Basic Usage</h2>
         <p>
           Use <code>DefaultDesignProvider</code> to set default design properties that will be inherited by all child
@@ -71,7 +77,7 @@ function RouteComponent() {
         </p>
         <h2>Setting color</h2>
         <p>
-          To provide color to a group of elements, use the <code>colorPaletteClass</code> styles
+          To provide color to a group of elements, use the <code>colorPaletteClass</code> style.
         </p>
         <ProvideColorPaletteWidget className={cn(notProseClass, proseBleedClass)} />
       </Prose>

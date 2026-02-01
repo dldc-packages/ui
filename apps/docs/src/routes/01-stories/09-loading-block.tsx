@@ -5,7 +5,7 @@ import { Prose } from "@dldc/ui-components/prose";
 import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/01-stories/08-loading-block")({
+export const Route = createFileRoute("/01-stories/09-loading-block")({
   component: RouteComponent,
 });
 

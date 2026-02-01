@@ -7,6 +7,7 @@ import { resolveContainerDesignProps } from "./resolve.js";
 import {
   TDefaultDesignContext,
   TDesignContextResolved,
+  TDesignProps,
   TNestedDefaultDesignContext,
   TNestedDesignValues,
   TParentDesignContext,
@@ -41,9 +42,9 @@ export function useContainerDesignProps(
   localProps: Partial<TDefaultDesignContext>,
   baseVariant: TDesignVariant,
 ): TDesignContextResolved {
-  const sizeCtx = useContext(ParentDesignContext);
-  const deepCtx = useContext(NestedDefaultDesignContext);
-  return resolveContainerDesignProps(sizeCtx, deepCtx, localProps, baseVariant);
+  const parentCtx = useContext(ParentDesignContext);
+  const nestedCtx = useContext(NestedDefaultDesignContext);
+  return resolveContainerDesignProps(parentCtx, nestedCtx, localProps, baseVariant);
 }
 
 export const NestedDefaultDesignContext = createContext<TNestedDefaultDesignContext | null>(null);
@@ -77,7 +78,7 @@ export function NestedDefaultDesignProvider({ children, values }: PropsWithChild
 }
 NestedDefaultDesignProvider.displayName = "NestedDefaultDesignProvider";
 
-export function DefaultDesignProvider({ children, ...props }: PropsWithChildren<Partial<TDefaultDesignContext>>) {
+export function DefaultDesignProvider({ children, ...props }: PropsWithChildren<TDesignProps>) {
   const values = useMemo(() => [withoutUndefined(props)], [props]);
   return <NestedDefaultDesignProvider values={values}>{children}</NestedDefaultDesignProvider>;
 }

@@ -25,7 +25,7 @@ export function FrameSpacingAlignWidget({ className, ...props }: ComponentPropsW
       <HighlightedGrid
         rowsDims={heights}
         renderCell={({ row: height, key }) => (
-          <Frame key={key} height={height} spacing="6" css={{ w: "full" }} contentHeight="3x" startIcon={<HouseIcon />}>
+          <Frame key={key} height={height} spacing="6" className="w-full" contentHeight="3x" startIcon={<HouseIcon />}>
             Height {height}
           </Frame>
         )}
