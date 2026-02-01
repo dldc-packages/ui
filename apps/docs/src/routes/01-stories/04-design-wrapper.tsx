@@ -28,6 +28,10 @@ function RouteComponent() {
           Here is an example of using DesignWrapper to style a <code>Pagination</code> component:
         </p>
         <DesignWrapperPaginationWidget className={cn(notProseClass, proseBleedClass)} />
+        <p>
+          You can see that the <code>DesignWrapper</code> component set the proper colors and text size to the
+          pagination wrapper.
+        </p>
       </Prose>
     </StoryLayout>
   );

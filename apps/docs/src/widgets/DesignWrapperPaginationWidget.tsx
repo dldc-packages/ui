@@ -43,8 +43,9 @@ export function DesignWrapperPaginationWidget({ className, ...props }: React.HTM
       <CodeHighlight language="jsx" theme="dark-plus">
         {functionCode +
           "\n\n" +
-          "const rendered = " +
-          (highlighted ? printElement(<Pagination height={highlighted} />) : "// Hover a Frame to see the code")}
+          (highlighted
+            ? "const rendered = " + printElement(<Pagination height={highlighted} />)
+            : "// Hover a Frame to see the code")}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={heights}

@@ -7,3 +7,4 @@ export type ButtonProps = Merge<AKButton.ButtonProps, CButton.ButtonSpecificProp
 export function Button({ render, ...props }: ButtonProps) {
   return <AKButton.Button render={<CButton.Button render={render} />} {...props} />;
 }
+Button.displayName = "Button";

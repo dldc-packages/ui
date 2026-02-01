@@ -10,3 +10,4 @@ export type TooltipProps = Merge<AKTooltip.TooltipProps, CTooltip.TooltipSpecifi
 export function Tooltip({ render, ...props }: TooltipProps) {
   return <AKTooltip.Tooltip render={<CTooltip.Tooltip render={render} />} {...props} />;
 }
+Tooltip.displayName = "Tooltip";
