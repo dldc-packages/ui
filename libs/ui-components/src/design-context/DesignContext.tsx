@@ -75,8 +75,10 @@ export function NestedDefaultDesignProvider({ children, values }: PropsWithChild
 
   return <NestedDefaultDesignContext.Provider value={value}>{children}</NestedDefaultDesignContext.Provider>;
 }
+NestedDefaultDesignProvider.displayName = "NestedDefaultDesignProvider";
 
 export function DefaultDesignProvider({ children, ...props }: PropsWithChildren<Partial<TDefaultDesignContext>>) {
   const values = useMemo(() => [withoutUndefined(props)], [props]);
   return <NestedDefaultDesignProvider values={values}>{children}</NestedDefaultDesignProvider>;
 }
+DefaultDesignProvider.displayName = "DefaultDesignProvider";
