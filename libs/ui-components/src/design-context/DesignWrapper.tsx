@@ -3,7 +3,7 @@ import { TDesignVariant } from "@dldc/ui-core/variants";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import { ReactElement } from "react";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
-import { DefaultDesignProvider, designPropsSplitter, useContainerDesignProps } from "./DesignContext";
+import { DefaultDesignProvider, designPropsSplitter, useFrameDesignProps } from "./DesignContext";
 import { TDesignProps } from "./types";
 import { contentSize } from "@dldc/ui-styles/common";
 import { clsx } from "clsx";
@@ -36,7 +36,7 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
   });
 
   const { color, baseVariant = "surface", style, className, ref, render, children, ...htmlProps } = props;
-  const { contentHeight } = useContainerDesignProps(localDesign, baseVariant);
+  const { contentHeight } = useFrameDesignProps(localDesign, baseVariant);
 
   const [contentClass, contentInline] = contentSize(contentHeight);
   const colorClass = color && dynamicColor[color];

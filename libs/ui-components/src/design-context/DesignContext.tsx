@@ -1,9 +1,9 @@
 import { withoutUndefined } from "@dldc/utils/object";
 import { BaseRecord } from "@dldc/utils/props-splitters";
 import { createContext, PropsWithChildren, useContext, useMemo } from "react";
-import { TDesignVariant } from "../../../ui-core/dist/variants/index.js";
-import { DESIGN_KEYS } from "./constants.js";
-import { resolveContainerDesignProps } from "./resolve.js";
+import { TDesignVariant } from "../../../ui-core/dist/variants/index";
+import { DESIGN_KEYS } from "./constants";
+import { resolveContainerDesignProps, resolveFrameDesignProps } from "./resolve";
 import {
   TDefaultDesignContext,
   TDesignContextResolved,
@@ -11,7 +11,7 @@ import {
   TNestedDefaultDesignContext,
   TNestedDesignValues,
   TParentDesignContext,
-} from "./types.js";
+} from "./types";
 
 export const ParentDesignContext = createContext<TParentDesignContext | null>(null);
 
@@ -38,13 +38,25 @@ export function designPropsSplitter(props: BaseRecord): Partial<TDefaultDesignCo
   return result;
 }
 
-export function useContainerDesignProps(
+/**
+ * Resolve props of a frame-like component
+ */
+export function useFrameDesignProps(
   localProps: Partial<TDefaultDesignContext>,
   baseVariant: TDesignVariant,
 ): TDesignContextResolved {
   const parentCtx = useContext(ParentDesignContext);
   const nestedCtx = useContext(NestedDefaultDesignContext);
-  return resolveContainerDesignProps(parentCtx, nestedCtx, localProps, baseVariant);
+  return resolveFrameDesignProps(parentCtx, nestedCtx, localProps, baseVariant);
+}
+
+/**
+ * Resolve props of a container component
+ */
+export function useContainerDesignProps(localProps: Partial<TDefaultDesignContext>): TParentDesignContext {
+  const parentCtx = useContext(ParentDesignContext);
+  const nestedCtx = useContext(NestedDefaultDesignContext);
+  return resolveContainerDesignProps(parentCtx, nestedCtx, localProps);
 }
 
 export const NestedDefaultDesignContext = createContext<TNestedDefaultDesignContext | null>(null);

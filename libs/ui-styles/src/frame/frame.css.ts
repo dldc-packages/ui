@@ -3,6 +3,7 @@ import {
   _after,
   _before,
   _disabled,
+  _disabledHover,
   _focusWithin,
   _focusWithinVisible,
   _hover,
@@ -30,6 +31,7 @@ export const frameClass = style({
     // Used for visual border for input and surface variants
     [_before]: {
       borderRadius: "inherit",
+      ["cornerShape" as any]: "inherit",
       pointerEvents: "none",
       content: "''",
       position: "absolute",
@@ -39,6 +41,7 @@ export const frameClass = style({
     // Used for focus and highlight border
     [_after]: {
       borderRadius: "inherit",
+      ["cornerShape" as any]: "inherit",
       pointerEvents: "none",
       content: "''",
       position: "absolute",
@@ -121,24 +124,12 @@ export const frameInteractiveClass = style({
   },
 });
 
-globalStyle(`${frameClass} [data-item-main-icon]`, {
-  opacity: 0.6,
-});
-
-globalStyle(`${frameInteractiveClass}${isHover} [data-item-main-icon]`, {
-  opacity: 1,
-});
-
-globalStyle(`${frameInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, {
-  opacity: 0.6,
-});
-
-globalStyle(`${frameInteractiveClass}${isFocusWithin} [data-item-main-icon]`, {
-  opacity: 1,
-});
-
-// Apply style to both disabled and disabled+hover states
-const _disabledHover = _disabled + ", " + _disabled + isHover;
+// Make icon slightly transparent by default, fully opaque on hover/focus
+globalStyle(`${frameClass} [data-item-main-icon]`, { opacity: 0.6 });
+globalStyle(`${frameInteractiveClass}${isHover} [data-item-main-icon]`, { opacity: 1 });
+globalStyle(`${frameInteractiveClass}${isFocusWithin} [data-item-main-icon]`, { opacity: 1 });
+// Don't change icon opacity when disabled
+globalStyle(`${frameInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, { opacity: 0.6 });
 
 // Disabled styles based on variant
 export const frameInteractiveVariantsClass = styleVariants({
@@ -186,6 +177,28 @@ export const frameInteractiveVariantsClass = styleVariants({
     },
   },
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
+
+// Icons don't like opacity on fill color, so instead we set colro + opacity
+globalStyle(`${frameInteractiveVariantsClass.solid}${isDisabled} svg`, {
+  color: colorsVars.neutral[200],
+  opacity: 0.4,
+});
+globalStyle(`${frameInteractiveVariantsClass.surface}${isDisabled} svg`, {
+  color: colorsVars.neutral[200],
+  opacity: 0.4,
+});
+globalStyle(`${frameInteractiveVariantsClass.subtle}${isDisabled} svg`, {
+  color: colorsVars.neutral[200],
+  opacity: 0.4,
+});
+globalStyle(`${frameInteractiveVariantsClass.ghost}${isDisabled} svg`, {
+  color: colorsVars.neutral[200],
+  opacity: 0.4,
+});
+globalStyle(`${frameInteractiveVariantsClass.input}${isDisabled} svg`, {
+  color: colorsVars.neutral[200],
+  opacity: 0.4,
+});
 
 export const frameInteractiveHoverVariantsClass = styleVariants({
   solid: {

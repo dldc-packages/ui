@@ -42,6 +42,7 @@
   "dependencies": {
     "@ariakit/react": "catalog:",
     "@dldc/ui-components": "workspace:^",
+    "lucide-react": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "type-fest": "catalog:"

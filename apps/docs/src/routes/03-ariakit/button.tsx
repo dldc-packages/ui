@@ -3,7 +3,7 @@ import { Button } from "@dldc/ui-ariakit/button";
 import { Prose } from "@dldc/ui-components/prose";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/ariakit/button")({
+export const Route = createFileRoute("/03-ariakit/button")({
   component: RouteComponent,
 });
 

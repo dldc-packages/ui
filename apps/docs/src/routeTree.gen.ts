@@ -10,8 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AriakitCheckboxRouteImport } from './routes/ariakit/checkbox'
-import { Route as AriakitButtonRouteImport } from './routes/ariakit/button'
+import { Route as R03AriakitSelectRouteImport } from './routes/03-ariakit/select'
+import { Route as R03AriakitCheckboxRouteImport } from './routes/03-ariakit/checkbox'
+import { Route as R03AriakitButtonRouteImport } from './routes/03-ariakit/button'
 import { Route as R02StylesFrameRouteImport } from './routes/02-styles/frame'
 import { Route as R01Stories09LoadingBlockRouteImport } from './routes/01-stories/09-loading-block'
 import { Route as R01Stories08ProseRouteImport } from './routes/01-stories/08-prose'
@@ -28,14 +29,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AriakitCheckboxRoute = AriakitCheckboxRouteImport.update({
-  id: '/ariakit/checkbox',
-  path: '/ariakit/checkbox',
+const R03AriakitSelectRoute = R03AriakitSelectRouteImport.update({
+  id: '/03-ariakit/select',
+  path: '/03-ariakit/select',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AriakitButtonRoute = AriakitButtonRouteImport.update({
-  id: '/ariakit/button',
-  path: '/ariakit/button',
+const R03AriakitCheckboxRoute = R03AriakitCheckboxRouteImport.update({
+  id: '/03-ariakit/checkbox',
+  path: '/03-ariakit/checkbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R03AriakitButtonRoute = R03AriakitButtonRouteImport.update({
+  id: '/03-ariakit/button',
+  path: '/03-ariakit/button',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R02StylesFrameRoute = R02StylesFrameRouteImport.update({
@@ -104,8 +110,9 @@ export interface FileRoutesByFullPath {
   '/01-stories/08-prose': typeof R01Stories08ProseRoute
   '/01-stories/09-loading-block': typeof R01Stories09LoadingBlockRoute
   '/02-styles/frame': typeof R02StylesFrameRoute
-  '/ariakit/button': typeof AriakitButtonRoute
-  '/ariakit/checkbox': typeof AriakitCheckboxRoute
+  '/03-ariakit/button': typeof R03AriakitButtonRoute
+  '/03-ariakit/checkbox': typeof R03AriakitCheckboxRoute
+  '/03-ariakit/select': typeof R03AriakitSelectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -119,8 +126,9 @@ export interface FileRoutesByTo {
   '/01-stories/08-prose': typeof R01Stories08ProseRoute
   '/01-stories/09-loading-block': typeof R01Stories09LoadingBlockRoute
   '/02-styles/frame': typeof R02StylesFrameRoute
-  '/ariakit/button': typeof AriakitButtonRoute
-  '/ariakit/checkbox': typeof AriakitCheckboxRoute
+  '/03-ariakit/button': typeof R03AriakitButtonRoute
+  '/03-ariakit/checkbox': typeof R03AriakitCheckboxRoute
+  '/03-ariakit/select': typeof R03AriakitSelectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -135,8 +143,9 @@ export interface FileRoutesById {
   '/01-stories/08-prose': typeof R01Stories08ProseRoute
   '/01-stories/09-loading-block': typeof R01Stories09LoadingBlockRoute
   '/02-styles/frame': typeof R02StylesFrameRoute
-  '/ariakit/button': typeof AriakitButtonRoute
-  '/ariakit/checkbox': typeof AriakitCheckboxRoute
+  '/03-ariakit/button': typeof R03AriakitButtonRoute
+  '/03-ariakit/checkbox': typeof R03AriakitCheckboxRoute
+  '/03-ariakit/select': typeof R03AriakitSelectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -152,8 +161,9 @@ export interface FileRouteTypes {
     | '/01-stories/08-prose'
     | '/01-stories/09-loading-block'
     | '/02-styles/frame'
-    | '/ariakit/button'
-    | '/ariakit/checkbox'
+    | '/03-ariakit/button'
+    | '/03-ariakit/checkbox'
+    | '/03-ariakit/select'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -167,8 +177,9 @@ export interface FileRouteTypes {
     | '/01-stories/08-prose'
     | '/01-stories/09-loading-block'
     | '/02-styles/frame'
-    | '/ariakit/button'
-    | '/ariakit/checkbox'
+    | '/03-ariakit/button'
+    | '/03-ariakit/checkbox'
+    | '/03-ariakit/select'
   id:
     | '__root__'
     | '/'
@@ -182,8 +193,9 @@ export interface FileRouteTypes {
     | '/01-stories/08-prose'
     | '/01-stories/09-loading-block'
     | '/02-styles/frame'
-    | '/ariakit/button'
-    | '/ariakit/checkbox'
+    | '/03-ariakit/button'
+    | '/03-ariakit/checkbox'
+    | '/03-ariakit/select'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -198,8 +210,9 @@ export interface RootRouteChildren {
   R01Stories08ProseRoute: typeof R01Stories08ProseRoute
   R01Stories09LoadingBlockRoute: typeof R01Stories09LoadingBlockRoute
   R02StylesFrameRoute: typeof R02StylesFrameRoute
-  AriakitButtonRoute: typeof AriakitButtonRoute
-  AriakitCheckboxRoute: typeof AriakitCheckboxRoute
+  R03AriakitButtonRoute: typeof R03AriakitButtonRoute
+  R03AriakitCheckboxRoute: typeof R03AriakitCheckboxRoute
+  R03AriakitSelectRoute: typeof R03AriakitSelectRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -211,18 +224,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ariakit/checkbox': {
-      id: '/ariakit/checkbox'
-      path: '/ariakit/checkbox'
-      fullPath: '/ariakit/checkbox'
-      preLoaderRoute: typeof AriakitCheckboxRouteImport
+    '/03-ariakit/select': {
+      id: '/03-ariakit/select'
+      path: '/03-ariakit/select'
+      fullPath: '/03-ariakit/select'
+      preLoaderRoute: typeof R03AriakitSelectRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ariakit/button': {
-      id: '/ariakit/button'
-      path: '/ariakit/button'
-      fullPath: '/ariakit/button'
-      preLoaderRoute: typeof AriakitButtonRouteImport
+    '/03-ariakit/checkbox': {
+      id: '/03-ariakit/checkbox'
+      path: '/03-ariakit/checkbox'
+      fullPath: '/03-ariakit/checkbox'
+      preLoaderRoute: typeof R03AriakitCheckboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/03-ariakit/button': {
+      id: '/03-ariakit/button'
+      path: '/03-ariakit/button'
+      fullPath: '/03-ariakit/button'
+      preLoaderRoute: typeof R03AriakitButtonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/02-styles/frame': {
@@ -311,8 +331,9 @@ const rootRouteChildren: RootRouteChildren = {
   R01Stories08ProseRoute: R01Stories08ProseRoute,
   R01Stories09LoadingBlockRoute: R01Stories09LoadingBlockRoute,
   R02StylesFrameRoute: R02StylesFrameRoute,
-  AriakitButtonRoute: AriakitButtonRoute,
-  AriakitCheckboxRoute: AriakitCheckboxRoute,
+  R03AriakitButtonRoute: R03AriakitButtonRoute,
+  R03AriakitCheckboxRoute: R03AriakitCheckboxRoute,
+  R03AriakitSelectRoute: R03AriakitSelectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

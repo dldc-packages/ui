@@ -4,7 +4,6 @@ import { style } from "@vanilla-extract/css";
 
 export const paperBaseClass = style({
   overflow: "hidden",
-  borderRadius: sizeToRemString("2"),
   borderWidth: sizeToRemString("0__x"),
   borderColor: opacity(colorsVars.white, 10),
 });

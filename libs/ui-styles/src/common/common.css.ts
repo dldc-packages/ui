@@ -18,6 +18,7 @@ export const designRoundedVar = createVar(
 
 export const designRoundedClass = style({
   borderRadius: designRoundedVar,
+  ["cornerShape" as any]: "superellipse(1.5)",
 });
 
 export const designContentSizeVar = createVar(

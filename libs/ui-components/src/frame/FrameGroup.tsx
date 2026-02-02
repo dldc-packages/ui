@@ -3,7 +3,7 @@ import { frameGroupSeparatorStyles, frameGroupStyles } from "@dldc/ui-styles/fra
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
-import { DefaultDesignProvider, designPropsSplitter, TDesignProps, useContainerDesignProps } from "../design-context";
+import { DefaultDesignProvider, designPropsSplitter, TDesignProps, useFrameDesignProps } from "../design-context";
 import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
 
 export type FrameGroupProps = ComponentPropsBaseWith<
@@ -24,7 +24,7 @@ export function FrameGroup(inProps: FrameGroupProps) {
     localDesign: designPropsSplitter,
   });
 
-  const { variant } = useContainerDesignProps(localDesign, "surface");
+  const { variant } = useFrameDesignProps(localDesign, "surface");
   const {
     color,
     className,

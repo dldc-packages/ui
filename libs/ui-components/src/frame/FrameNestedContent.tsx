@@ -7,7 +7,7 @@ import {
   designPropsSplitter,
   SizeContextProvider,
   TDesignProps,
-  useContainerDesignProps,
+  useFrameDesignProps,
 } from "../design-context";
 import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index.js";
 import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
@@ -32,7 +32,7 @@ export function FrameNestedContent(inProps: FrameNestedContentProps) {
     ...htmlProps
   } = props;
 
-  const { spacing, contentHeight, height, rounded, depth } = useContainerDesignProps(localDesign, "subtle");
+  const { spacing, contentHeight, height, rounded, depth } = useFrameDesignProps(localDesign, "subtle");
 
   const { startPadding, endPadding, fragment } = useFrameContent(localFrameContent, children);
 

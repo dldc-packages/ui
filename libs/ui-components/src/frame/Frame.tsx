@@ -5,40 +5,39 @@ import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
-import { designPropsSplitter, SizeContextProvider, TDesignProps, useContainerDesignProps } from "../design-context";
+import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
 import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index.js";
 import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
 
-export type FrameProps = ComponentPropsBaseWith<
-  "div",
-  TFrameContentProps &
-    TDesignProps & {
-      /**
-       * This props only impact styling but is never forwarded to the underlying element.
-       * Use `render={<button disabled={true} />}` to pass native props to the underlying element.
-       */
-      disabled?: boolean;
+export type FrameSpecificProps = TFrameContentProps &
+  TDesignProps & {
+    /**
+     * This props only impact styling but is never forwarded to the underlying element.
+     * Use `render={<button disabled={true} />}` to pass native props to the underlying element.
+     */
+    disabled?: boolean;
 
-      color?: TPaletteColor;
-      highlightColor?: TPaletteColor;
-      highlighted?: boolean;
+    color?: TPaletteColor;
+    highlightColor?: TPaletteColor;
+    highlighted?: boolean;
 
-      /**
-       * Defines the variant used as the base for this Frame.
-       * For example, Input components use the "input" variant by default.
-       */
-      baseVariant?: TDesignVariant;
+    /**
+     * Defines the variant used as the base for this Frame.
+     * For example, Input components use the "input" variant by default.
+     */
+    baseVariant?: TDesignVariant;
 
-      interactive?: boolean;
+    interactive?: boolean;
 
-      render?: ReactElement;
+    render?: ReactElement;
 
-      // Data attributes
-      "data-hover"?: boolean;
-      "data-focus-visible"?: boolean;
-    }
->;
+    // Data attributes
+    "data-hover"?: boolean;
+    "data-focus-visible"?: boolean;
+  };
+
+export type FrameProps = ComponentPropsBaseWith<"div", FrameSpecificProps>;
 
 export function Frame(inProps: FrameProps) {
   const [{ localDesign, localFrameContent }, props] = pipePropsSplitters(inProps, {
@@ -66,7 +65,7 @@ export function Frame(inProps: FrameProps) {
 
   const isDisabledAndInteractive = disabled && interactive;
 
-  const { hoverVariant, variant, height, contentHeight, spacing, rounded, depth } = useContainerDesignProps(
+  const { hoverVariant, variant, height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(
     localDesign,
     baseVariant,
   );

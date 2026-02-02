@@ -11,7 +11,7 @@ import {
 } from "./types.js";
 import { autoContentHeight } from "./utils.js";
 
-export function resolveContainerDesignProps(
+export function resolveFrameDesignProps(
   parentCtx: TParentDesignContext | null,
   nestedCtx: TNestedDefaultDesignContext | null,
   localProps: Partial<TDefaultDesignContext>,
@@ -57,6 +57,47 @@ export function resolveContainerDesignProps(
     variant: props.variant,
     hoverVariant,
     spacing,
+    rounded,
+    depth,
+  };
+}
+
+export function resolveContainerDesignProps(
+  parentCtx: TParentDesignContext | null,
+  nestedCtx: TNestedDefaultDesignContext | null,
+  localProps: Partial<TDefaultDesignContext>,
+): TParentDesignContext {
+  const depth = !parentCtx ? 0 : parentCtx.depth + 1;
+  // Not used but required
+  const baseVariant: TDesignVariant = "subtle";
+  const props = resolveProps(nestedCtx, localProps, depth, baseVariant);
+  // const contentHeightFromNestedHeight = resolveProps(nestedCtx, {}, depth + 1, baseVariant).height;
+  // const contentHeightProp = parseMaybeSize(props.contentHeight ?? contentHeightFromNestedHeight);
+
+  if (!parentCtx) {
+    // We are in a root context
+    const height = parseSize(props.height ?? BASE_HEIGHT);
+    const rounded = parseSize(props.rounded ?? BASE_ROUNDED);
+
+    return {
+      height,
+      contentHeight: height,
+      rounded,
+      depth,
+    };
+  }
+  // We are in a nested context
+  const autoHeight = parentCtx.contentHeight;
+  const height = parseSize(props.height ?? autoHeight);
+
+  const padding = (parentCtx.height - height) / 2;
+
+  const autoRounded = resolvedAutoRounded(parentCtx.rounded, padding);
+  const rounded = parseSize(props.rounded ?? autoRounded);
+
+  return {
+    height,
+    contentHeight: height,
     rounded,
     depth,
   };
