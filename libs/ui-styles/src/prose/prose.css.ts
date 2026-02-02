@@ -1,7 +1,7 @@
 import { colorsVars, opacity } from "@dldc/ui-core/colors";
 import { createGlobalTheme, createTheme, globalStyle, GlobalStyleRule, style } from "@vanilla-extract/css";
-import { designContentSizeVar } from "../common/index.js";
-import { em, rem, round } from "./utils.js";
+import { designContentSizeVar } from "../common/index";
+import { em, rem, round } from "./utils";
 
 export const notProseClass = style({});
 export const proseBaseClass = style({});

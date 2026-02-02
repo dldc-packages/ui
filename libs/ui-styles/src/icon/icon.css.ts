@@ -1,5 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
-import { designContentSizeVar } from "../common/index.js";
+import { designContentSizeVar } from "../common/index";
 
 export const iconClass = style({
   display: "flex",

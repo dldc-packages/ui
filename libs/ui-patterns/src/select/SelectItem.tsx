@@ -1,9 +1,5 @@
 import * as Ariakit from "@ariakit/react";
-import {
-  DefaultDesignProvider,
-  designPropsSplitter,
-  useContainerDesignProps,
-} from "@dldc/ui-components/design-context";
+import { DefaultDesignProvider, designPropsSplitter, useFrameDesignProps } from "@dldc/ui-components/design-context";
 import { useFrameContent } from "@dldc/ui-components/frame-content";
 import { heightStyles } from "@dldc/ui-styles/common";
 import { frameContentStyles } from "@dldc/ui-styles/frame-content";
@@ -37,7 +33,7 @@ export function SelectItem(inProps: SelectItemProps) {
     item.content,
   );
 
-  const { height, contentHeight, spacing } = useContainerDesignProps(localDesign, "subtle");
+  const { height, contentHeight, spacing } = useFrameDesignProps(localDesign, "subtle");
   const [heightClass, heightInline] = heightStyles(height);
   const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 

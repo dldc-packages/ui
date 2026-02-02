@@ -3,8 +3,8 @@ import { clamp } from "@dldc/utils/math";
 import { calc } from "@vanilla-extract/css-utils";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import clsx from "clsx";
-import { designContentSizeVar, designHeightVar } from "../common/index.js";
-import { CSSProperties } from "../utils/types.js";
+import { designContentSizeVar, designHeightVar } from "../common/index";
+import { CSSProperties } from "../utils/types";
 import {
   frameContentEndPaddingClass,
   frameContentLayoutClass,

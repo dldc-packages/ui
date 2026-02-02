@@ -1,6 +1,6 @@
 import { createVar, style, styleVariants } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
-import { designContentSizeVar } from "../common/index.js";
+import { designContentSizeVar } from "../common/index";
 
 export const spacingGapVar = createVar("spacing-gap");
 

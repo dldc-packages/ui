@@ -1,6 +1,6 @@
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import { CSSProperties } from "../utils/types.js";
+import { CSSProperties } from "../utils/types";
 import {
   designContentSizeClass,
   designContentSizeVar,

@@ -1,8 +1,8 @@
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { clsx } from "clsx";
-import { contentSize, heightStyles, roundedStyles } from "../common/index.js";
-import { CSSProperties } from "../utils/types.js";
+import { contentSize, heightStyles, roundedStyles } from "../common/index";
+import { CSSProperties } from "../utils/types";
 import {
   frameBorderSizeClass,
   frameClass,
