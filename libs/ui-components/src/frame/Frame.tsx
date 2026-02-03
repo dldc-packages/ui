@@ -6,9 +6,9 @@ import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
 import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
-import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index.js";
+import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index";
 import { mergeRender } from "../utils/mergeRender";
-import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
+import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type FrameSpecificProps = TFrameContentProps &
   TDesignProps & {

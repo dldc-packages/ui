@@ -12,7 +12,10 @@ import {
   frameInteractiveHoverVariantsClass,
   frameInteractiveVariantsClass,
   frameVariantsClass,
+  layer,
 } from "./frame.css";
+
+export { layer };
 
 interface FrameStylesParams {
   height: number;

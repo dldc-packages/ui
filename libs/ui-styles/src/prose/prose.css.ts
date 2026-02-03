@@ -3,14 +3,22 @@ import { createGlobalTheme, createTheme, globalStyle, GlobalStyleRule, style } f
 import { designContentSizeVar } from "../common/index";
 import { em, rem, round } from "./utils";
 
+export const layer = "dldc.ui-styles.prose";
+
+function withLayer<const Value>(rule: Value) {
+  return { "@layer": { [layer]: rule } };
+}
+
 export const notProseClass = style({});
 export const proseBaseClass = style({});
 export const proseBleedClass = style({});
 
 const isNotProse = `:not(:where(.${notProseClass}, .${notProseClass} *))`;
 
-function globalStyleWithNotProse(selector: string, rules: GlobalStyleRule) {
-  globalStyle(`:where(${selector})${isNotProse}`, rules);
+type CSSPropertiesWithVars = NonNullable<GlobalStyleRule["@layer"]>[string];
+
+function globalStyleWithNotProse(selector: string, rules: CSSPropertiesWithVars) {
+  globalStyle(`:where(${selector})${isNotProse}`, withLayer(rules));
 }
 
 export const proseVars = createGlobalTheme(":root", {
@@ -48,9 +56,12 @@ globalStyleWithNotProse(`${proseBaseClass} > ${proseBleedClass}`, {
   gridColumn: "1 / -1",
 });
 // Allow notprose + bleed
-globalStyle(`${proseBaseClass} > ${notProseClass}${proseBleedClass}`, {
-  gridColumn: "1 / -1",
-});
+globalStyle(
+  `${proseBaseClass} > ${notProseClass}${proseBleedClass}`,
+  withLayer({
+    gridColumn: "1 / -1",
+  }),
+);
 
 globalStyleWithNotProse(`${proseBaseClass} [class~="lead"]`, {
   color: proseVars.lead,
@@ -269,10 +280,12 @@ globalStyleWithNotProse(`${proseBaseClass} figcaption`, {
   color: proseVars.captions,
 });
 
-export const proseSizeDynamicClass = style({
-  fontSize: `calc(${designContentSizeVar} * (1 / 1.75))`,
-  lineHeight: round(24 / 14),
-});
+export const proseSizeDynamicClass = style(
+  withLayer({
+    fontSize: `calc(${designContentSizeVar} * (1 / 1.75))`,
+    lineHeight: round(24 / 14),
+  }),
+);
 globalStyleWithNotProse(`${proseSizeDynamicClass} p`, {
   marginTop: em(16, 14),
   marginBottom: em(16, 14),
@@ -471,6 +484,7 @@ globalStyleWithNotProse(`${proseSizeDynamicClass} > :last-child`, {
 
 export const proseColor = {
   slate: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.slate["700"],
     headings: colorsVars.slate["900"],
     lead: colorsVars.slate["600"],
@@ -491,6 +505,7 @@ export const proseColor = {
     tdBorders: colorsVars.slate["200"],
   }),
   gray: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.gray["700"],
     headings: colorsVars.gray["900"],
     lead: colorsVars.gray["600"],
@@ -511,6 +526,7 @@ export const proseColor = {
     tdBorders: colorsVars.gray["200"],
   }),
   zinc: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.zinc["700"],
     headings: colorsVars.zinc["900"],
     lead: colorsVars.zinc["600"],
@@ -531,6 +547,7 @@ export const proseColor = {
     tdBorders: colorsVars.zinc["200"],
   }),
   neutral: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.neutral["700"],
     headings: colorsVars.neutral["900"],
     lead: colorsVars.neutral["600"],
@@ -551,6 +568,7 @@ export const proseColor = {
     tdBorders: colorsVars.neutral["200"],
   }),
   stone: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.stone["700"],
     headings: colorsVars.stone["900"],
     lead: colorsVars.stone["600"],
@@ -574,6 +592,7 @@ export const proseColor = {
 
 export const proseColorInvert = {
   slate: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.slate["300"],
     headings: colorsVars.white,
     lead: colorsVars.slate["400"],
@@ -594,6 +613,7 @@ export const proseColorInvert = {
     tdBorders: colorsVars.slate["700"],
   }),
   gray: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.gray["300"],
     headings: colorsVars.white,
     lead: colorsVars.gray["400"],
@@ -614,6 +634,7 @@ export const proseColorInvert = {
     tdBorders: colorsVars.gray["700"],
   }),
   zinc: createTheme(proseVars, {
+    "@layer": layer,
     //       "--prose-invert-body": "{colors.zinc.300}",
     // "--prose-invert-headings": "{colors.white}",
     // "--prose-invert-lead": "{colors.zinc.400}",
@@ -652,6 +673,7 @@ export const proseColorInvert = {
     tdBorders: colorsVars.zinc["700"],
   }),
   neutral: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.neutral["300"],
     headings: colorsVars.white,
     lead: colorsVars.neutral["400"],
@@ -672,6 +694,7 @@ export const proseColorInvert = {
     tdBorders: colorsVars.neutral["700"],
   }),
   stone: createTheme(proseVars, {
+    "@layer": layer,
     body: colorsVars.stone["300"],
     headings: colorsVars.white,
     lead: colorsVars.stone["400"],

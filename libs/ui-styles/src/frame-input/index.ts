@@ -1,1 +1,1 @@
-export * from "./frameInputContent.css";
+export { frameInputContentClass, layer } from "./frameInput.css";

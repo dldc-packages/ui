@@ -1,5 +1,5 @@
-import { TDesignHeight, TDesignRounded, TDesignSpacing } from "../../../ui-core/dist/size";
-import { TDesignVariant } from "../../../ui-core/dist/variants";
+import { TDesignHeight, TDesignRounded, TDesignSpacing } from "@dldc/ui-core/size";
+import { TDesignVariant } from "@dldc/ui-core/variants";
 
 export interface TDesignProps {
   height?: TDesignHeight | null;

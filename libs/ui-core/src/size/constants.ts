@@ -1,4 +1,4 @@
-import { parseSize } from "./parse.js";
+import { parseSize } from "./parse";
 
 export const BASE_HEIGHT = 7;
 export const MIN_HEIGHT = 2.5;

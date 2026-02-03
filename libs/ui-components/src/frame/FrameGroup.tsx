@@ -4,7 +4,7 @@ import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
 import { DefaultDesignProvider, designPropsSplitter, TDesignProps, useFrameDesignProps } from "../design-context";
-import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
+import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type FrameGroupProps = ComponentPropsBaseWith<
   "div",

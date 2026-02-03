@@ -9,8 +9,8 @@ import {
   TDesignProps,
   useFrameDesignProps,
 } from "../design-context";
-import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index.js";
-import { ComponentPropsBaseWith } from "../utils/propsTypes.js";
+import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index";
+import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 type FrameNestedContentProps = ComponentPropsBaseWith<"div", TFrameContentProps & TDesignProps>;
 

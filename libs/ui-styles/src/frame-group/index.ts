@@ -10,7 +10,10 @@ import {
   frameGroupSeparatorDirectionClass,
   frameGroupSeparatorVariantClass,
   frameGroupVariantsClass,
+  layer,
 } from "./frameGroup.css";
+
+export { layer };
 
 export interface FrameGroupStylesParams {
   direction: "horizontal" | "vertical";

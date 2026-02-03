@@ -1,4 +1,4 @@
-import { TDesignSize } from "./types.js";
+import { TDesignSize } from "./types";
 
 export function parseSize(size: TDesignSize | (string & {})): number {
   if (typeof size === "number") {

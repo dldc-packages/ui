@@ -8,9 +8,10 @@ import {
   designHeightVar,
   designRoundedClass,
   designRoundedVar,
+  layer,
 } from "./common.css";
 
-export { designContentSizeVar, designHeightVar, designRoundedVar } from "./common.css";
+export { designContentSizeVar, designHeightVar, designRoundedVar, layer };
 
 export function heightStyles(height: number): [classNames: string, styles: CSSProperties] {
   return [designHeightClass, assignInlineVars({ [designHeightVar]: sizeToRemString(height) })];

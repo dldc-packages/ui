@@ -7,9 +7,10 @@ import {
   proseColorInvert,
   proseSizeDynamicClass,
   proseVars,
+  layer,
 } from "./prose.css";
 
-export { notProseClass, proseBleedClass, proseVars };
+export { notProseClass, proseBleedClass, proseVars, layer };
 
 export type TProseColor = keyof typeof proseColor;
 

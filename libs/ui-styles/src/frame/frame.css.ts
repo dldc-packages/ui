@@ -17,78 +17,82 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
-export const borderWidthVar = createVar("border-width");
-export const focusBorderWidthVar = createVar("focus-border-width");
+export const layer = "dldc.ui-styles.frame";
 
-export const frameClass = style({
-  display: "inline-flex",
-  flexDirection: "row",
-  alignItems: "center",
-  outline: "none",
-  position: "relative",
+function withLayer<const Value>(rule: Value) {
+  return { "@layer": { [layer]: rule } };
+}
 
-  selectors: {
-    // Used for visual border for input and surface variants
-    [_before]: {
-      borderRadius: "inherit",
-      ["cornerShape" as any]: "inherit",
-      pointerEvents: "none",
-      content: "''",
-      position: "absolute",
-      inset: 0,
-      borderWidth: borderWidthVar,
+const borderWidthVar = createVar("border-width");
+const focusBorderWidthVar = createVar("focus-border-width");
+
+export const frameClass = style(
+  withLayer({
+    display: "inline-flex",
+    flexDirection: "row",
+    alignItems: "center",
+    outline: "none",
+    position: "relative",
+
+    selectors: {
+      // Used for visual border for input and surface variants
+      [_before]: {
+        borderRadius: "inherit",
+        ["cornerShape" as any]: "inherit",
+        pointerEvents: "none",
+        content: "''",
+        position: "absolute",
+        inset: 0,
+        borderWidth: borderWidthVar,
+      },
+      // Used for focus and highlight border
+      [_after]: {
+        borderRadius: "inherit",
+        ["cornerShape" as any]: "inherit",
+        pointerEvents: "none",
+        content: "''",
+        position: "absolute",
+        inset: 0,
+      },
     },
-    // Used for focus and highlight border
-    [_after]: {
-      borderRadius: "inherit",
-      ["cornerShape" as any]: "inherit",
-      pointerEvents: "none",
-      content: "''",
-      position: "absolute",
-      inset: 0,
-    },
-  },
-});
+  }),
+);
+
+function varsWithLayer(vars: Record<string, string>): ComplexStyleRule {
+  return withLayer({
+    vars,
+  });
+}
 
 export const frameBorderSizeClass = styleVariants({
-  solid: {
-    vars: {
-      [borderWidthVar]: sizeToRemString("0"),
-      [focusBorderWidthVar]: sizeToRemString("0x"),
-    },
-  },
-  surface: {
-    vars: {
-      [borderWidthVar]: sizeToRemString("0__x"),
-      [focusBorderWidthVar]: sizeToRemString("0_x"),
-    },
-  },
-  subtle: {
-    vars: {
-      [borderWidthVar]: sizeToRemString("0"),
-      [focusBorderWidthVar]: sizeToRemString("0_x"),
-    },
-  },
-  ghost: {
-    vars: {
-      [borderWidthVar]: sizeToRemString("0"),
-      [focusBorderWidthVar]: sizeToRemString("0_x"),
-    },
-  },
-  input: {
-    vars: {
-      [borderWidthVar]: sizeToRemString("0_x"),
-      [focusBorderWidthVar]: sizeToRemString("0_x"),
-    },
-  },
+  solid: varsWithLayer({
+    [borderWidthVar]: sizeToRemString("0"),
+    [focusBorderWidthVar]: sizeToRemString("0x"),
+  }),
+  surface: varsWithLayer({
+    [borderWidthVar]: sizeToRemString("0__x"),
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
+  }),
+  subtle: varsWithLayer({
+    [borderWidthVar]: sizeToRemString("0"),
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
+  }),
+  ghost: varsWithLayer({
+    [borderWidthVar]: sizeToRemString("0"),
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
+  }),
+  input: varsWithLayer({
+    [borderWidthVar]: sizeToRemString("0_x"),
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
+  }),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
 export const frameVariantsClass = styleVariants({
-  solid: {
+  solid: withLayer({
     backgroundColor: dynamicColorVars[600],
     color: dynamicColorVars[200],
-  },
-  surface: {
+  }),
+  surface: withLayer({
     backgroundColor: opacity(colorsVars.white, 5),
     color: dynamicColorVars[200],
     selectors: {
@@ -96,15 +100,15 @@ export const frameVariantsClass = styleVariants({
         borderColor: opacity(colorsVars.white, 10),
       },
     },
-  },
-  subtle: {
+  }),
+  subtle: withLayer({
     backgroundColor: opacity(colorsVars.white, 5),
     color: dynamicColorVars[200],
-  },
-  ghost: {
+  }),
+  ghost: withLayer({
     color: dynamicColorVars[200],
-  },
-  input: {
+  }),
+  input: withLayer({
     backgroundColor: opacity(colorsVars.black, 15),
     color: dynamicColorVars[200],
     selectors: {
@@ -112,60 +116,62 @@ export const frameVariantsClass = styleVariants({
         borderColor: opacity(colorsVars.black, 30),
       },
     },
-  },
+  }),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
-export const frameInteractiveClass = style({
-  selectors: {
-    [_focusWithinVisible + isAfter]: {
-      borderColor: colorsVars.neutral[300],
-      borderWidth: focusBorderWidthVar,
+export const frameInteractiveClass = style(
+  withLayer({
+    selectors: {
+      [_focusWithinVisible + isAfter]: {
+        borderColor: colorsVars.neutral[300],
+        borderWidth: focusBorderWidthVar,
+      },
     },
-  },
-});
+  }),
+);
 
 // Make icon slightly transparent by default, fully opaque on hover/focus
-globalStyle(`${frameClass} [data-item-main-icon]`, { opacity: 0.6 });
-globalStyle(`${frameInteractiveClass}${isHover} [data-item-main-icon]`, { opacity: 1 });
-globalStyle(`${frameInteractiveClass}${isFocusWithin} [data-item-main-icon]`, { opacity: 1 });
+globalStyle(`${frameClass} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
+globalStyle(`${frameInteractiveClass}${isHover} [data-item-main-icon]`, withLayer({ opacity: 1 }));
+globalStyle(`${frameInteractiveClass}${isFocusWithin} [data-item-main-icon]`, withLayer({ opacity: 1 }));
 // Don't change icon opacity when disabled
-globalStyle(`${frameInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, { opacity: 0.6 });
+globalStyle(`${frameInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
 
 // Disabled styles based on variant
 export const frameInteractiveVariantsClass = styleVariants({
-  solid: {
+  solid: withLayer({
     selectors: {
       [_disabledHover]: {
         backgroundColor: dynamicColorVars[800],
         color: opacity(colorsVars.neutral[200], 60),
       },
     },
-  },
-  surface: {
+  }),
+  surface: withLayer({
     selectors: {
       [_disabledHover]: {
         color: opacity(dynamicColorVars[200], 40),
         backgroundColor: opacity(colorsVars.white, 3),
       },
     },
-  },
-  subtle: {
+  }),
+  subtle: withLayer({
     selectors: {
       [_disabledHover]: {
         color: opacity(dynamicColorVars[200], 40),
         backgroundColor: opacity(colorsVars.white, 3),
       },
     },
-  },
-  ghost: {
+  }),
+  ghost: withLayer({
     selectors: {
       [_disabledHover]: {
         color: opacity(dynamicColorVars[200], 40),
         backgroundColor: "transparent",
       },
     },
-  },
-  input: {
+  }),
+  input: withLayer({
     selectors: {
       [_disabledHover]: {
         color: opacity(dynamicColorVars[200], 40),
@@ -175,33 +181,48 @@ export const frameInteractiveVariantsClass = styleVariants({
         borderColor: opacity(dynamicColorVars[300], 40),
       },
     },
-  },
+  }),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
 // Icons don't like opacity on fill color, so instead we set colro + opacity
-globalStyle(`${frameInteractiveVariantsClass.solid}${isDisabled} svg`, {
-  color: colorsVars.neutral[200],
-  opacity: 0.4,
-});
-globalStyle(`${frameInteractiveVariantsClass.surface}${isDisabled} svg`, {
-  color: colorsVars.neutral[200],
-  opacity: 0.4,
-});
-globalStyle(`${frameInteractiveVariantsClass.subtle}${isDisabled} svg`, {
-  color: colorsVars.neutral[200],
-  opacity: 0.4,
-});
-globalStyle(`${frameInteractiveVariantsClass.ghost}${isDisabled} svg`, {
-  color: colorsVars.neutral[200],
-  opacity: 0.4,
-});
-globalStyle(`${frameInteractiveVariantsClass.input}${isDisabled} svg`, {
-  color: colorsVars.neutral[200],
-  opacity: 0.4,
-});
+globalStyle(
+  `${frameInteractiveVariantsClass.solid}${isDisabled} svg`,
+  withLayer({
+    color: colorsVars.neutral[200],
+    opacity: 0.4,
+  }),
+);
+globalStyle(
+  `${frameInteractiveVariantsClass.surface}${isDisabled} svg`,
+  withLayer({
+    color: colorsVars.neutral[200],
+    opacity: 0.4,
+  }),
+);
+globalStyle(
+  `${frameInteractiveVariantsClass.subtle}${isDisabled} svg`,
+  withLayer({
+    color: colorsVars.neutral[200],
+    opacity: 0.4,
+  }),
+);
+globalStyle(
+  `${frameInteractiveVariantsClass.ghost}${isDisabled} svg`,
+  withLayer({
+    color: colorsVars.neutral[200],
+    opacity: 0.4,
+  }),
+);
+globalStyle(
+  `${frameInteractiveVariantsClass.input}${isDisabled} svg`,
+  withLayer({
+    color: colorsVars.neutral[200],
+    opacity: 0.4,
+  }),
+);
 
 export const frameInteractiveHoverVariantsClass = styleVariants({
-  solid: {
+  solid: withLayer({
     selectors: {
       [_hover]: {
         backgroundColor: dynamicColorVars[500],
@@ -227,8 +248,8 @@ export const frameInteractiveHoverVariantsClass = styleVariants({
         borderWidth: sizeToRemString("0x"),
       },
     },
-  },
-  surface: {
+  }),
+  surface: withLayer({
     [_hover]: {
       backgroundColor: opacity(colorsVars.white, 10),
       color: dynamicColorVars[100],
@@ -243,8 +264,8 @@ export const frameInteractiveHoverVariantsClass = styleVariants({
     [_focusWithin + isBefore]: {
       borderColor: opacity(colorsVars.white, 10),
     },
-  },
-  subtle: {
+  }),
+  subtle: withLayer({
     [_hover]: {
       backgroundColor: opacity(colorsVars.white, 10),
       color: dynamicColorVars[100],
@@ -259,8 +280,8 @@ export const frameInteractiveHoverVariantsClass = styleVariants({
     [_focusWithin + isBefore]: {
       borderWidth: 0,
     },
-  },
-  ghost: {
+  }),
+  ghost: withLayer({
     [_hover]: {
       backgroundColor: opacity(colorsVars.white, 5),
       color: dynamicColorVars[100],
@@ -275,8 +296,8 @@ export const frameInteractiveHoverVariantsClass = styleVariants({
     [_focusWithin + isBefore]: {
       borderWidth: 0,
     },
-  },
-  input: {
+  }),
+  input: withLayer({
     [_hover]: {
       backgroundColor: opacity(colorsVars.black, 5),
       color: dynamicColorVars[100],
@@ -291,75 +312,48 @@ export const frameInteractiveHoverVariantsClass = styleVariants({
     [_focusWithin + isBefore]: {
       borderColor: opacity(colorsVars.black, 30),
     },
-  },
+  }),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
-export const frameHighlightClass = style({
-  selectors: {
-    [_after]: {
-      borderWidth: sizeToRemString("0x"),
+export const frameHighlightClass = style(
+  withLayer({
+    selectors: {
+      [_after]: {
+        borderWidth: sizeToRemString("0x"),
+      },
     },
-  },
-});
+  }),
+);
+
+function afterWithLayer<const Value>(rule: Value) {
+  return withLayer({
+    selectors: {
+      [_after]: rule,
+    },
+  });
+}
 
 export const frameHighlightColorsClass = styleVariants({
-  red: { selectors: { [_after]: { borderColor: colorsVars.red[600] } } },
-  orange: {
-    selectors: { [_after]: { borderColor: colorsVars.orange[600] } },
-  },
-  amber: {
-    selectors: { [_after]: { borderColor: colorsVars.amber[600] } },
-  },
-  yellow: {
-    selectors: { [_after]: { borderColor: colorsVars.yellow[600] } },
-  },
-  lime: {
-    selectors: { [_after]: { borderColor: colorsVars.lime[600] } },
-  },
-  green: {
-    selectors: { [_after]: { borderColor: colorsVars.green[600] } },
-  },
-  emerald: {
-    selectors: { [_after]: { borderColor: colorsVars.emerald[600] } },
-  },
-  teal: {
-    selectors: { [_after]: { borderColor: colorsVars.teal[600] } },
-  },
-  cyan: {
-    selectors: { [_after]: { borderColor: colorsVars.cyan[600] } },
-  },
-  sky: { selectors: { [_after]: { borderColor: colorsVars.sky[600] } } },
-  blue: {
-    selectors: { [_after]: { borderColor: colorsVars.blue[600] } },
-  },
-  indigo: {
-    selectors: { [_after]: { borderColor: colorsVars.indigo[600] } },
-  },
-  violet: {
-    selectors: { [_after]: { borderColor: colorsVars.violet[600] } },
-  },
-  purple: {
-    selectors: { [_after]: { borderColor: colorsVars.purple[600] } },
-  },
-  fuchsia: {
-    selectors: { [_after]: { borderColor: colorsVars.fuchsia[600] } },
-  },
-  pink: {
-    selectors: { [_after]: { borderColor: colorsVars.pink[600] } },
-  },
-  rose: {
-    selectors: { [_after]: { borderColor: colorsVars.rose[600] } },
-  },
-
-  gray: {
-    selectors: { [_after]: { borderColor: colorsVars.gray[600] } },
-  },
-  slate: {
-    selectors: { [_after]: { borderColor: colorsVars.slate[600] } },
-  },
-  neutral: {
-    selectors: { [_after]: { borderColor: colorsVars.neutral[600] } },
-  },
-  stone: { selectors: { [_after]: { borderColor: colorsVars.stone[600] } } },
-  zinc: { selectors: { [_after]: { borderColor: colorsVars.zinc[600] } } },
+  red: afterWithLayer({ borderColor: colorsVars.red[600] }),
+  orange: afterWithLayer({ borderColor: colorsVars.orange[600] }),
+  amber: afterWithLayer({ borderColor: colorsVars.amber[600] }),
+  yellow: afterWithLayer({ borderColor: colorsVars.yellow[600] }),
+  lime: afterWithLayer({ borderColor: colorsVars.lime[600] }),
+  green: afterWithLayer({ borderColor: colorsVars.green[600] }),
+  emerald: afterWithLayer({ borderColor: colorsVars.emerald[600] }),
+  teal: afterWithLayer({ borderColor: colorsVars.teal[600] }),
+  cyan: afterWithLayer({ borderColor: colorsVars.cyan[600] }),
+  sky: afterWithLayer({ borderColor: colorsVars.sky[600] }),
+  blue: afterWithLayer({ borderColor: colorsVars.blue[600] }),
+  indigo: afterWithLayer({ borderColor: colorsVars.indigo[600] }),
+  violet: afterWithLayer({ borderColor: colorsVars.violet[600] }),
+  purple: afterWithLayer({ borderColor: colorsVars.purple[600] }),
+  fuchsia: afterWithLayer({ borderColor: colorsVars.fuchsia[600] }),
+  pink: afterWithLayer({ borderColor: colorsVars.pink[600] }),
+  rose: afterWithLayer({ borderColor: colorsVars.rose[600] }),
+  gray: afterWithLayer({ borderColor: colorsVars.gray[600] }),
+  slate: afterWithLayer({ borderColor: colorsVars.slate[600] }),
+  neutral: afterWithLayer({ borderColor: colorsVars.neutral[600] }),
+  stone: afterWithLayer({ borderColor: colorsVars.stone[600] }),
+  zinc: afterWithLayer({ borderColor: colorsVars.zinc[600] }),
 } satisfies Record<TPaletteColor, ComplexStyleRule>);

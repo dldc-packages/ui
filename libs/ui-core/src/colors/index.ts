@@ -1,5 +1,4 @@
-export { colorsVars } from "./colors.css.js";
-export * from "./colors.js";
-export { dynamicColor, dynamicColorVars } from "./dynamicColor.css.js";
-export * from "./types.js";
-export * from "./utils.js";
+export { colorsVars, dynamicColor, dynamicColorVars, layer } from "./colors.css";
+export * from "./colors";
+export * from "./types";
+export * from "./utils";

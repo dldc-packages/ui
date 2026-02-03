@@ -1,2 +1,2 @@
-export * from "./FrameContentFragment.js";
-export * from "./FrameSideSlot.js";
+export * from "./FrameContentFragment";
+export * from "./FrameSideSlot";

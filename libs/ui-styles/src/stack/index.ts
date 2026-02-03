@@ -1,6 +1,6 @@
-import { stackClass } from "./stack.css";
+import { stackClass, layer } from "./stack.css";
 
-export { stackClass };
+export { stackClass, layer };
 
 export type TStackParams = Parameters<typeof stackClass>[0];
 

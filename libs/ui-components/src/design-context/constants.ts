@@ -1,5 +1,5 @@
-import { parseSize } from "../../../ui-core/dist/size/index.js";
-import { TDefaultDesignContext } from "./types.js";
+import { parseSize } from "@dldc/ui-core/size";
+import { TDefaultDesignContext } from "./types";
 
 export const BASE_HEIGHT = 7;
 export const MIN_HEIGHT = 2.5;

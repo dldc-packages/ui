@@ -1,26 +1,30 @@
 import { recipe } from "@vanilla-extract/recipes";
 
+export const layer = "dldc.ui-styles.stack";
+
+function withLayer<const Value>(rule: Value) {
+  return { "@layer": { [layer]: rule } };
+}
+
 export const stackClass = recipe({
-  base: {
-    display: "flex",
-  },
+  base: withLayer({ display: "flex" }),
   variants: {
     direction: {
-      column: { flexDirection: "column" },
-      row: { flexDirection: "row" },
+      column: withLayer({ flexDirection: "column" }),
+      row: withLayer({ flexDirection: "row" }),
     },
     align: {
-      start: { alignItems: "flex-start" },
-      center: { alignItems: "center" },
-      end: { alignItems: "flex-end" },
-      stretch: { alignItems: "stretch" },
+      start: withLayer({ alignItems: "flex-start" }),
+      center: withLayer({ alignItems: "center" }),
+      end: withLayer({ alignItems: "flex-end" }),
+      stretch: withLayer({ alignItems: "stretch" }),
     },
     justify: {
-      start: { justifyContent: "flex-start" },
-      center: { justifyContent: "center" },
-      end: { justifyContent: "flex-end" },
-      between: { justifyContent: "space-between" },
-      around: { justifyContent: "space-around" },
+      start: withLayer({ justifyContent: "flex-start" }),
+      center: withLayer({ justifyContent: "center" }),
+      end: withLayer({ justifyContent: "flex-end" }),
+      between: withLayer({ justifyContent: "space-between" }),
+      around: withLayer({ justifyContent: "space-around" }),
     },
   },
   defaultVariants: {

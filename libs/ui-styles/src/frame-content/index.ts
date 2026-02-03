@@ -10,7 +10,10 @@ import {
   frameContentLayoutClass,
   frameContentStartPaddingClass,
   spacingGapVar,
+  layer,
 } from "./frameContent.css";
+
+export { layer };
 
 export type TFrameContentPaddingResolved = "icon" | "text" | "none";
 

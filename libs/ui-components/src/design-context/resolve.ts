@@ -1,15 +1,15 @@
 import { clamp } from "@dldc/utils/math";
 import { withoutUndefined } from "@dldc/utils/object";
-import { parseMaybeSize, parseSize, roundToSize } from "../../../ui-core/dist/size/index.js";
-import { TDesignVariant } from "../../../ui-core/dist/variants/index.js";
-import { BASE_HEIGHT, BASE_ROUNDED, DEFAULT_DESIGN, MIN_HEIGHT } from "./constants.js";
+import { parseMaybeSize, parseSize, roundToSize } from "@dldc/ui-core/size";
+import { TDesignVariant } from "@dldc/ui-core/variants";
+import { BASE_HEIGHT, BASE_ROUNDED, DEFAULT_DESIGN, MIN_HEIGHT } from "./constants";
 import {
   TDefaultDesignContext,
   TDesignContextResolved,
   TNestedDefaultDesignContext,
   TParentDesignContext,
-} from "./types.js";
-import { autoContentHeight } from "./utils.js";
+} from "./types";
+import { autoContentHeight } from "./utils";
 
 export function resolveFrameDesignProps(
   parentCtx: TParentDesignContext | null,

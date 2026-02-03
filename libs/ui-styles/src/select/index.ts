@@ -1,11 +1,11 @@
-import { listWrappertClass, selectPopoverClass, listItemClass } from "./select.css";
+import { listWrappertClass, selectPopoverClass, listItemClass, layer } from "./select.css";
 import { CSSProperties } from "../utils/types";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { contentSize, heightStyles, roundedStyles } from "../common";
 import { clsx } from "clsx";
 
-export { listWrappertClass };
+export { listWrappertClass, layer };
 
 interface SelectItemStylesParams {
   height: number;

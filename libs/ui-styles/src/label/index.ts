@@ -1,7 +1,9 @@
 import clsx from "clsx";
 import { contentSize } from "../common";
 import { CSSProperties } from "../utils/types";
-import { labelClass, labelDisabledClass } from "./label.css";
+import { labelClass, labelDisabledClass, layer } from "./label.css";
+
+export { layer };
 
 export interface LabelStylesOptions {
   disabled: boolean;

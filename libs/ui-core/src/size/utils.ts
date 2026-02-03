@@ -1,7 +1,7 @@
 import { clamp, powerValue } from "@dldc/utils/math";
-import { BASE_HEIGHT_RATIO, MIN_HEIGHT } from "./constants.js";
-import { parseSize } from "./parse.js";
-import { TDesignSize } from "./types.js";
+import { BASE_HEIGHT_RATIO, MIN_HEIGHT } from "./constants";
+import { parseSize } from "./parse";
+import { TDesignSize } from "./types";
 
 export function sizeToRem(size: TDesignSize | (string & {})): number {
   const parsedSize = typeof size === "number" ? size : parseSize(size);

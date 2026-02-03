@@ -1,1 +1,1 @@
-export * from "./tooltip.css";
+export { layer, tooltipClass } from "./tooltip.css";

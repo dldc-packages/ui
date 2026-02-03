@@ -1,1 +1,1 @@
-export { srOnlyClass } from "./helpers.css.js";
+export { srOnlyClass } from "./helpers.css";

@@ -6,48 +6,57 @@ import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "
 import { calc } from "@vanilla-extract/css-utils";
 import { frameInteractiveClass } from "../frame/frame.css";
 
-export const separatorWidthVar = createVar(
+export const layer = "dldc.ui-styles.frame-group";
+
+function withLayer<const Value>(rule: Value) {
+  return { "@layer": { [layer]: rule } };
+}
+
+const separatorWidthVar = createVar(
   { syntax: "length", initialValue: sizeToRemString("0_x"), inherits: true },
   "separator-width",
 );
 
-export const frameGroupClass = style({
-  display: "inline-flex",
-  position: "relative",
-  isolation: "isolate",
-});
+export const frameGroupClass = style(
+  withLayer({
+    display: "inline-flex",
+    position: "relative",
+    isolation: "isolate",
+  }),
+);
+
+function separatorWidthWithLayer(value: string) {
+  return {
+    "@layer": {
+      [layer]: {
+        vars: { [separatorWidthVar]: value },
+      },
+    },
+  };
+}
 
 /**
  * Set separator width based on variant
  */
 export const frameGroupVariantsClass = styleVariants({
-  solid: { vars: { [separatorWidthVar]: sizeToRemString("0_x") } },
-  surface: { vars: { [separatorWidthVar]: sizeToRemString("0__x") } },
-  subtle: { vars: { [separatorWidthVar]: sizeToRemString("0_x") } },
-  ghost: { vars: { [separatorWidthVar]: sizeToRemString("0_x") } },
-  input: { vars: { [separatorWidthVar]: sizeToRemString("0_x") } },
+  solid: separatorWidthWithLayer(sizeToRemString("0_x")),
+  surface: separatorWidthWithLayer(sizeToRemString("0__x")),
+  subtle: separatorWidthWithLayer(sizeToRemString("0_x")),
+  ghost: separatorWidthWithLayer(sizeToRemString("0_x")),
+  input: separatorWidthWithLayer(sizeToRemString("0_x")),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
 /**
  * Ensure children have higher z-index than separators
  * This is important when the after/border is on top of the separator
  */
-globalStyle(`${frameGroupClass} ${_firstChild}`, {
-  zIndex: 2,
-  position: "relative",
-});
-globalStyle(`${frameGroupClass} ${_betweenChild}`, {
-  zIndex: 2,
-  position: "relative",
-});
-globalStyle(`${frameGroupClass} ${_lastChild}`, {
-  zIndex: 2,
-  position: "relative",
-});
+globalStyle(`${frameGroupClass} ${_firstChild}`, withLayer({ zIndex: 2, position: "relative" }));
+globalStyle(`${frameGroupClass} ${_betweenChild}`, withLayer({ zIndex: 2, position: "relative" }));
+globalStyle(`${frameGroupClass} ${_lastChild}`, withLayer({ zIndex: 2, position: "relative" }));
 
 export const frameGroupDirectionClass = styleVariants({
-  horizontal: { flexDirection: "row" },
-  vertical: { flexDirection: "column" },
+  horizontal: withLayer({ flexDirection: "row" }),
+  vertical: withLayer({ flexDirection: "column" }),
 });
 
 const CHILD_CASES = [
@@ -77,92 +86,88 @@ const CHILD_CASES = [
 
 CHILD_CASES.forEach(({ baseClass, TopRight, BottomRight, BottomLeft, TopLeft, Right, Left, right, left }) => {
   // Remove radius inside
-  globalStyle(`${baseClass} ${_firstChild}`, {
-    [`border${TopRight}Radius`]: 0,
-    [`border${BottomRight}Radius`]: 0,
-  });
-  globalStyle(`${baseClass} ${_betweenChild}`, { borderRadius: 0 });
-  globalStyle(`${baseClass} ${_lastChild}`, {
-    [`border${TopLeft}Radius`]: 0,
-    [`border${BottomLeft}Radius`]: 0,
-  });
+  globalStyle(
+    `${baseClass} ${_firstChild}`,
+    withLayer({ [`border${TopRight}Radius`]: 0, [`border${BottomRight}Radius`]: 0 }),
+  );
+  globalStyle(`${baseClass} ${_betweenChild}`, withLayer({ borderRadius: 0 }));
+  globalStyle(
+    `${baseClass} ${_lastChild}`,
+    withLayer({ [`border${TopLeft}Radius`]: 0, [`border${BottomLeft}Radius`]: 0 }),
+  );
 
   // Remove border inside
-  globalStyle(`${baseClass} ${_firstChild + isBefore}`, {
-    [`border${Right}Width`]: 0,
-  });
-  globalStyle(`${baseClass} ${_betweenChild + isBefore}`, {
-    [`border${Left}Width`]: 0,
-    [`border${Right}Width`]: 0,
-  });
-  globalStyle(`${baseClass} ${_lastChild + isBefore}`, {
-    [`border${Left}Width`]: 0,
-  });
+  globalStyle(`${baseClass} ${_firstChild + isBefore}`, withLayer({ [`border${Right}Width`]: 0 }));
+  globalStyle(
+    `${baseClass} ${_betweenChild + isBefore}`,
+    withLayer({ [`border${Left}Width`]: 0, [`border${Right}Width`]: 0 }),
+  );
+  globalStyle(`${baseClass} ${_lastChild + isBefore}`, withLayer({ [`border${Left}Width`]: 0 }));
 
   // Align focus border with separator outside
-  globalStyle(`${baseClass} ${_firstChild + isAfter}`, {
-    [right]: calc.negate(separatorWidthVar),
-  });
-  globalStyle(`${baseClass} ${_betweenChild + isAfter}`, {
-    [left]: calc.negate(separatorWidthVar),
-    [right]: calc.negate(separatorWidthVar),
-  });
-  globalStyle(`${baseClass} ${_lastChild + isAfter}`, {
-    [left]: calc.negate(separatorWidthVar),
-  });
+  globalStyle(`${baseClass} ${_firstChild + isAfter}`, withLayer({ [right]: calc.negate(separatorWidthVar) }));
+  globalStyle(
+    `${baseClass} ${_betweenChild + isAfter}`,
+    withLayer({ [left]: calc.negate(separatorWidthVar), [right]: calc.negate(separatorWidthVar) }),
+  );
+  globalStyle(`${baseClass} ${_lastChild + isAfter}`, withLayer({ [left]: calc.negate(separatorWidthVar) }));
 });
 
-export const frameGroupSeparatorClass = style({
-  alignSelf: "stretch",
-  position: "relative",
-  zIndex: 1,
-  selectors: {
-    [_after]: {
-      pointerEvents: "none",
-      content: "''",
-      position: "absolute",
-      inset: 0,
+export const frameGroupSeparatorClass = style(
+  withLayer({
+    alignSelf: "stretch",
+    position: "relative",
+    zIndex: 1,
+    selectors: {
+      [_after]: {
+        pointerEvents: "none",
+        content: "''",
+        position: "absolute",
+        inset: 0,
+      },
     },
-  },
-});
+  }),
+);
 
 export const frameGroupSeparatorDirectionClass = styleVariants({
-  horizontal: { width: separatorWidthVar },
-  vertical: { height: separatorWidthVar },
+  horizontal: withLayer({ width: separatorWidthVar }),
+  vertical: withLayer({ height: separatorWidthVar }),
 });
 
 export const frameGroupSeparatorVariantClass = styleVariants({
-  solid: {
+  solid: withLayer({
     backgroundColor: dynamicColorVars[700],
-  },
-  surface: {
+  }),
+  surface: withLayer({
     backgroundColor: opacity(colorsVars.white, 5),
     selectors: {
       [_after]: {
         backgroundColor: opacity(colorsVars.white, 10),
       },
     },
-  },
+  }),
   subtle: {},
   ghost: {},
-  input: {
+  input: withLayer({
     backgroundColor: opacity(colorsVars.black, 15),
     selectors: {
       [_after]: {
         backgroundColor: opacity(colorsVars.black, 30),
       },
     },
-  },
+  }),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
 /**
  * Special case for Surface variant: when a frame is hovered rigth before of after the separator,
  * the separator :before should have same color as the hovered frame border
  */
-globalStyle(`${frameGroupSeparatorVariantClass.surface}:has(+ ${frameInteractiveClass + isHover})`, {
-  backgroundColor: opacity(colorsVars.white, 10),
-});
+globalStyle(
+  `${frameGroupSeparatorVariantClass.surface}:has(+ ${frameInteractiveClass + isHover})`,
+  withLayer({ backgroundColor: opacity(colorsVars.white, 10) }),
+);
 
-globalStyle(`${frameInteractiveClass + isHover} + ${frameGroupSeparatorVariantClass.surface}`, {
-  backgroundColor: opacity(colorsVars.white, 10),
-});
+globalStyle(
+  `${frameInteractiveClass + isHover} + ${frameGroupSeparatorVariantClass.surface}`,
+  withLayer({ backgroundColor: opacity(colorsVars.white, 10) }),
+);

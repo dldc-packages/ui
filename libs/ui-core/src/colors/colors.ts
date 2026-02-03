@@ -1,4 +1,4 @@
-import { TPaletteColor } from "./types.js";
+import { TPaletteColor } from "./types";
 
 export const colorsShades = {
   red: {
