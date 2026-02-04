@@ -1,12 +1,13 @@
-import { ReactElement } from "react";
-import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content";
-import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { selectItemStyles } from "@dldc/ui-styles/select";
-import { mergeRender } from "../utils/mergeRender";
+import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import { clsx } from "clsx";
+import { ReactElement } from "react";
+
+import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
+import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content";
+import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type SelectItemSpecificProps = TFrameContentProps &
@@ -42,22 +43,11 @@ export function SelectItem(inProps: SelectItemProps) {
     ...htmlProps
   } = props;
 
-  const { hoverVariant, variant, height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(
-    localDesign,
-    "ghost",
-  );
+  const { height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(localDesign);
 
   const { startPadding, endPadding, fragment, noLayout } = useFrameContent(localFrameContent, children);
 
-  const [baseClass, baseInline] = selectItemStyles({
-    height,
-    contentHeight,
-    rounded,
-    variant,
-    color,
-    hoverVariant,
-    disabled,
-  });
+  const [baseClass, baseInline] = selectItemStyles({ height, contentHeight, rounded, color, disabled });
 
   const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 

@@ -1,13 +1,16 @@
 import { useMergeRefs } from "@dldc/hooks/use-merge-refs";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { ReactElement, useCallback, useRef } from "react";
+
 import { TDesignProps } from "../design-context";
 import { Frame, FrameInputContent } from "../frame";
 import { TFrameContentProps } from "../frame-content";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
+import { TDesignVariantProps } from "../variant";
 
 export type InputSpecificProps = TFrameContentProps &
-  TDesignProps & {
+  TDesignProps &
+  TDesignVariantProps & {
     disabled?: boolean;
 
     color?: TPaletteColor;

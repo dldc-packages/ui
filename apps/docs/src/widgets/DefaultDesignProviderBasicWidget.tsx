@@ -1,10 +1,13 @@
-import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { DefaultDesignProvider } from "@dldc/ui-components/design-context";
 import { Frame } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
+import { DefaultDesignVariantProvider } from "@dldc/ui-components/variant";
 import { Fragment, useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
@@ -26,10 +29,12 @@ export function DefaultDesignProviderBasicWidget({ className, ...props }: Compon
       key: "with",
       label: "With Provider",
       element: (
-        <DefaultDesignProvider variant="solid" height="9">
-          <Frame>Frame</Frame>
-          <Button>Button</Button>
-          <Input placeholder="Input" />
+        <DefaultDesignProvider height="9">
+          <DefaultDesignVariantProvider variant="solid">
+            <Frame>Frame</Frame>
+            <Button>Button</Button>
+            <Input placeholder="Input" />
+          </DefaultDesignVariantProvider>
         </DefaultDesignProvider>
       ),
     },

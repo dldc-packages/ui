@@ -1,5 +1,6 @@
-import { colors } from "./colors";
 import { createGlobalTheme, createTheme } from "@vanilla-extract/css";
+
+import { colors } from "./colors";
 import { TPaletteColor } from "./types";
 
 export const colorsVars = createGlobalTheme(":root", colors);

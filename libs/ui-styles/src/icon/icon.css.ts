@@ -1,4 +1,5 @@
 import { globalStyle, style } from "@vanilla-extract/css";
+
 import { designContentSizeVar } from "../common/index";
 
 export const layer = "dldc.ui-styles.icon";

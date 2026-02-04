@@ -1,9 +1,11 @@
-import { cn } from "@/utils/styles";
 import { Button, ButtonLike } from "@dldc/ui-components/button";
 import { FrameGroup } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

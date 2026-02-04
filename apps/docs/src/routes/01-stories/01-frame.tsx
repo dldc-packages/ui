@@ -1,3 +1,7 @@
+import { Prose } from "@dldc/ui-components/prose";
+import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
+import { createFileRoute } from "@tanstack/react-router";
+
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { FrameAutoRoundedWidget } from "@/widgets/FrameAutoRoundedWidget";
@@ -17,9 +21,6 @@ import { FrameSlotsWidget } from "@/widgets/FrameSlotsWidget";
 import { FrameSpacingAlignWidget } from "@/widgets/FrameSpacingAlignWidget";
 import { FrameSpacingEquivalentWidget } from "@/widgets/FrameSpacingEquivalentWidget";
 import { FrameVariantsWidget } from "@/widgets/FrameVariantsWidget";
-import { Prose } from "@dldc/ui-components/prose";
-import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/01-stories/01-frame")({
   component: RouteComponent,

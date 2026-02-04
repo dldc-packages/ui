@@ -1,9 +1,10 @@
-import { StoryLayout } from "@/components/StoryLayout";
-import { cn } from "@/utils/styles";
-import { LoadingBlockBasicWidget } from "@/widgets/LoadingBlockBasicWidget";
 import { Prose } from "@dldc/ui-components/prose";
 import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
 import { createFileRoute } from "@tanstack/react-router";
+
+import { StoryLayout } from "@/components/StoryLayout";
+import { cn } from "@/utils/styles";
+import { LoadingBlockBasicWidget } from "@/widgets/LoadingBlockBasicWidget";
 
 export const Route = createFileRoute("/01-stories/09-loading-block")({
   component: RouteComponent,

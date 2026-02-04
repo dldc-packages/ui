@@ -1,7 +1,9 @@
-import { cn } from "@/utils/styles";
 import { Paper } from "@dldc/ui-components/paper";
 import { LoadingBlock } from "@dldc/ui-patterns/loading-block";
 import { type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { printElement } from "../utils/printElement";
 

@@ -1,19 +1,17 @@
-import { listWrappertClass, selectPopoverClass, listItemClass, layer } from "./select.css";
-import { CSSProperties } from "../utils/types";
-import { TDesignVariant } from "@dldc/ui-core/variants";
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
-import { contentSize, heightStyles, roundedStyles } from "../common";
 import { clsx } from "clsx";
 
-export { listWrappertClass, layer };
+import { contentSize, heightStyles, roundedStyles } from "../common";
+import { CSSProperties } from "../utils/types";
+import { layer, listItemClass, listWrappertClass, selectPopoverClass } from "./select.css";
+
+export { layer, listWrappertClass };
 
 interface SelectItemStylesParams {
   height: number;
   contentHeight: number;
   rounded: number;
-  variant: TDesignVariant;
   color: TPaletteColor | undefined;
-  hoverVariant: TDesignVariant;
   disabled: boolean;
 }
 

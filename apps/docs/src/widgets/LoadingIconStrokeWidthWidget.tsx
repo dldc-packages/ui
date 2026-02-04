@@ -1,6 +1,8 @@
-import { cn } from "@/utils/styles";
 import { LoadingIcon } from "@dldc/ui-components/loading-icon";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

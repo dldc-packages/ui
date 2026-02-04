@@ -5,13 +5,16 @@ import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
+
 import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
 import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content/index";
 import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
+import { designVariantPropsSplitter, TDesignVariantProps, useDesignVariant } from "../variant";
 
 export type FrameSpecificProps = TFrameContentProps &
-  TDesignProps & {
+  TDesignProps &
+  TDesignVariantProps & {
     /**
      * This props only impact styling but is never forwarded to the underlying element.
      * Use `render={<button disabled={true} />}` to pass native props to the underlying element.
@@ -40,7 +43,8 @@ export type FrameSpecificProps = TFrameContentProps &
 export type FrameProps = ComponentPropsBaseWith<"div", FrameSpecificProps>;
 
 export function Frame(inProps: FrameProps) {
-  const [{ localDesign, localFrameContent }, props] = pipePropsSplitters(inProps, {
+  const [{ localDesign, localFrameContent, localDesignVariant }, props] = pipePropsSplitters(inProps, {
+    localDesignVariant: designVariantPropsSplitter,
     localDesign: designPropsSplitter,
     localFrameContent: frameContentPropsSplitter,
   });
@@ -65,11 +69,8 @@ export function Frame(inProps: FrameProps) {
 
   const isDisabledAndInteractive = disabled && interactive;
 
-  const { hoverVariant, variant, height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(
-    localDesign,
-    baseVariant,
-  );
-
+  const { hoverVariant, variant } = useDesignVariant(localDesignVariant, baseVariant);
+  const { height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(localDesign);
   const { startPadding, endPadding, fragment, noLayout } = useFrameContent(localFrameContent, children);
 
   const [baseClass, baseInline] = frameStyles({

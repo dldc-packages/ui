@@ -1,12 +1,15 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { ReactElement } from "react";
+
 import { TDesignProps } from "../design-context";
 import { Frame } from "../frame";
 import { TFrameContentProps } from "../frame-content";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
+import { TDesignVariantProps } from "../variant";
 
 export type ButtonSpecificProps = TFrameContentProps &
-  TDesignProps & {
+  TDesignProps &
+  TDesignVariantProps & {
     disabled?: boolean;
 
     color?: TPaletteColor;

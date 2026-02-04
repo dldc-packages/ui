@@ -1,7 +1,7 @@
+import { parseMaybeSize, parseSize, roundToSize } from "@dldc/ui-core/size";
 import { clamp } from "@dldc/utils/math";
 import { withoutUndefined } from "@dldc/utils/object";
-import { parseMaybeSize, parseSize, roundToSize } from "@dldc/ui-core/size";
-import { TDesignVariant } from "@dldc/ui-core/variants";
+
 import { BASE_HEIGHT, BASE_ROUNDED, DEFAULT_DESIGN, MIN_HEIGHT } from "./constants";
 import {
   TDefaultDesignContext,
@@ -15,14 +15,12 @@ export function resolveFrameDesignProps(
   parentCtx: TParentDesignContext | null,
   nestedCtx: TNestedDefaultDesignContext | null,
   localProps: Partial<TDefaultDesignContext>,
-  baseVariant: TDesignVariant,
 ): TDesignContextResolved {
   const depth = !parentCtx ? 0 : parentCtx.depth + 1;
-  const props = resolveProps(nestedCtx, localProps, depth, baseVariant);
-  const contentHeightFromNestedHeight = resolveProps(nestedCtx, {}, depth + 1, baseVariant).height;
+  const props = resolveProps(nestedCtx, localProps, depth);
+  const contentHeightFromNestedHeight = resolveProps(nestedCtx, {}, depth + 1).height;
   const contentHeightProp = parseMaybeSize(props.contentHeight ?? contentHeightFromNestedHeight);
 
-  const hoverVariant = props.hoverVariant ?? props.variant;
   const spacing = parseMaybeSize(props.spacing);
 
   if (!parentCtx) {
@@ -34,8 +32,6 @@ export function resolveFrameDesignProps(
     return {
       height,
       contentHeight,
-      variant: props.variant,
-      hoverVariant,
       spacing,
       rounded,
       depth,
@@ -54,8 +50,6 @@ export function resolveFrameDesignProps(
   return {
     height,
     contentHeight,
-    variant: props.variant,
-    hoverVariant,
     spacing,
     rounded,
     depth,
@@ -68,9 +62,7 @@ export function resolveContainerDesignProps(
   localProps: Partial<TDefaultDesignContext>,
 ): TParentDesignContext {
   const depth = !parentCtx ? 0 : parentCtx.depth + 1;
-  // Not used but required
-  const baseVariant: TDesignVariant = "subtle";
-  const props = resolveProps(nestedCtx, localProps, depth, baseVariant);
+  const props = resolveProps(nestedCtx, localProps, depth);
   // const contentHeightFromNestedHeight = resolveProps(nestedCtx, {}, depth + 1, baseVariant).height;
   // const contentHeightProp = parseMaybeSize(props.contentHeight ?? contentHeightFromNestedHeight);
 
@@ -114,23 +106,17 @@ function resolveProps(
   nestedCtx: TNestedDefaultDesignContext | null,
   localProps: Partial<TDefaultDesignContext>,
   depth: number,
-  baseVariant: TDesignVariant,
 ): TDefaultDesignContext {
-  const resolvedDefault = resolveDefaultProps(nestedCtx, depth, baseVariant);
+  const resolvedDefault = resolveDefaultProps(nestedCtx, depth);
   return {
     ...resolvedDefault,
     ...withoutUndefined(localProps),
   };
 }
 
-function resolveDefaultProps(
-  nestedCtx: TNestedDefaultDesignContext | null,
-  depth: number,
-  baseVariant: TDesignVariant,
-): TDefaultDesignContext {
+function resolveDefaultProps(nestedCtx: TNestedDefaultDesignContext | null, depth: number): TDefaultDesignContext {
   const defaultDesignWithBaseVariant = {
     ...DEFAULT_DESIGN,
-    variant: baseVariant,
   };
   if (!nestedCtx) {
     return defaultDesignWithBaseVariant;

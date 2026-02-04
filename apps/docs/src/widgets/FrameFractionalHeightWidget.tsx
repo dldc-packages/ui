@@ -1,7 +1,8 @@
+import { Frame } from "@dldc/ui-components/frame";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
-import { Frame } from "@dldc/ui-components/frame";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 

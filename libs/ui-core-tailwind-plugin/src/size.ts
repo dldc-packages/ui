@@ -1,4 +1,5 @@
 import { serializeSize } from "@dldc/ui-core/size";
+
 import { buildSizeTokenMap, range } from "./utils";
 
 const SIZES_VALUES = [0, 0.5, ...range(1, 16 - 1, 1), ...range(16, 40 - 1, 2), ...range(40, 80, 4)];

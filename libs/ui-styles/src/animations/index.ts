@@ -1,4 +1,5 @@
 import { assignInlineVars } from "@vanilla-extract/dynamic";
+
 import { CSSProperties } from "../utils/types";
 import { spinClass, traceClass, traceLengthVar, layer } from "./animations.css";
 

@@ -1,7 +1,7 @@
 import { withoutUndefined } from "@dldc/utils/object";
 import { BaseRecord } from "@dldc/utils/props-splitters";
 import { createContext, PropsWithChildren, useContext, useMemo } from "react";
-import { TDesignVariant } from "../../../ui-core/dist/variants/index";
+
 import { DESIGN_KEYS } from "./constants";
 import { resolveContainerDesignProps, resolveFrameDesignProps } from "./resolve";
 import {
@@ -23,7 +23,7 @@ export function SizeContextProvider({
   depth,
 }: PropsWithChildren<TParentDesignContext>) {
   const value = useMemo(() => ({ height, contentHeight, rounded, depth }), [height, contentHeight, rounded, depth]);
-  return <ParentDesignContext.Provider value={value}>{children}</ParentDesignContext.Provider>;
+  return <ParentDesignContext value={value}>{children}</ParentDesignContext>;
 }
 
 SizeContextProvider.displayName = "SizeContextProvider";
@@ -41,13 +41,10 @@ export function designPropsSplitter(props: BaseRecord): Partial<TDefaultDesignCo
 /**
  * Resolve props of a frame-like component
  */
-export function useFrameDesignProps(
-  localProps: Partial<TDefaultDesignContext>,
-  baseVariant: TDesignVariant,
-): TDesignContextResolved {
+export function useFrameDesignProps(localProps: Partial<TDefaultDesignContext>): TDesignContextResolved {
   const parentCtx = useContext(ParentDesignContext);
   const nestedCtx = useContext(NestedDefaultDesignContext);
-  return resolveFrameDesignProps(parentCtx, nestedCtx, localProps, baseVariant);
+  return resolveFrameDesignProps(parentCtx, nestedCtx, localProps);
 }
 
 /**
@@ -86,7 +83,7 @@ export function NestedDefaultDesignProvider({ children, values }: PropsWithChild
     return { depth, values: result };
   }, [depth, parentValues, values]);
 
-  return <NestedDefaultDesignContext.Provider value={value}>{children}</NestedDefaultDesignContext.Provider>;
+  return <NestedDefaultDesignContext value={value}>{children}</NestedDefaultDesignContext>;
 }
 NestedDefaultDesignProvider.displayName = "NestedDefaultDesignProvider";
 

@@ -4,6 +4,7 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
+
 import { frameInteractiveClass } from "../frame/frame.css";
 
 export const layer = "dldc.ui-styles.frame-group";

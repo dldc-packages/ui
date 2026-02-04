@@ -1,5 +1,6 @@
 import { colorsVars, opacity } from "@dldc/ui-core/colors";
 import { createGlobalTheme, createTheme, globalStyle, GlobalStyleRule, style } from "@vanilla-extract/css";
+
 import { designContentSizeVar } from "../common/index";
 import { em, rem, round } from "./utils";
 

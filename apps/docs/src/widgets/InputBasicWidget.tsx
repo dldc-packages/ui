@@ -1,7 +1,9 @@
-import { cn } from "@/utils/styles";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 
 export function InputBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {

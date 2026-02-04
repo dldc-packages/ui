@@ -1,10 +1,12 @@
-import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
-import { DesignWrapper } from "@dldc/ui-components/design-context";
+import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
 import { Frame } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

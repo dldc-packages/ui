@@ -1,8 +1,10 @@
+import type { TFrameContentPaddingResolved } from "@dldc/ui-styles/frame-content";
+
+import { Frame } from "@dldc/ui-components/frame";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
-import { Frame } from "@dldc/ui-components/frame";
-import type { TFrameContentPaddingResolved } from "@dldc/ui-styles/frame-content";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

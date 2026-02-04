@@ -1,6 +1,7 @@
 import { frameInputContentClass } from "@dldc/ui-styles/frame-input";
 import clsx from "clsx";
 import { useMemo } from "react";
+
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type FrameInputContentProps = ComponentPropsBaseWith<

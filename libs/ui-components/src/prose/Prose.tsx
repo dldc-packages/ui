@@ -1,6 +1,7 @@
 import { contentSize } from "@dldc/ui-styles/common";
 import { proseStyles, TProseColor } from "@dldc/ui-styles/prose";
 import clsx from "clsx";
+
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type ProseProps = ComponentPropsBaseWith<

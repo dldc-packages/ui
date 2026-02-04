@@ -1,7 +1,8 @@
-import { StoryLayout } from "@/components/StoryLayout";
 import { Button } from "@dldc/ui-ariakit/button";
 import { Prose } from "@dldc/ui-components/prose";
 import { createFileRoute } from "@tanstack/react-router";
+
+import { StoryLayout } from "@/components/StoryLayout";
 
 export const Route = createFileRoute("/03-ariakit/button")({
   component: RouteComponent,

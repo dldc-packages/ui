@@ -2,6 +2,7 @@ import { heightStyles } from "@dldc/ui-styles/common";
 import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
+
 import {
   DefaultDesignProvider,
   designPropsSplitter,
@@ -32,8 +33,7 @@ export function FrameNestedContent(inProps: FrameNestedContentProps) {
     ...htmlProps
   } = props;
 
-  const { spacing, contentHeight, height, rounded, depth } = useFrameDesignProps(localDesign, "subtle");
-
+  const { spacing, contentHeight, height, rounded, depth } = useFrameDesignProps(localDesign);
   const { startPadding, endPadding, fragment } = useFrameContent(localFrameContent, children);
 
   const [heightClass, heightInline] = heightStyles(height);

@@ -1,5 +1,6 @@
 import { createVar, style, styleVariants } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
+
 import { designContentSizeVar } from "../common/index";
 
 export const layer = "dldc.ui-styles.frame-content";

@@ -1,7 +1,8 @@
 import { labelStyles } from "@dldc/ui-styles/label";
 import clsx from "clsx";
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
+
 import { mergeRender } from "../utils";
+import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type LabelSpecificProps = { disabled?: boolean; render?: React.ReactElement };
 

@@ -1,7 +1,10 @@
-import { cn } from "@/utils/styles";
-import { Frame } from "@dldc/ui-components/frame";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
+
+import { Frame } from "@dldc/ui-components/frame";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

@@ -1,9 +1,11 @@
+import type { TPaletteColor } from "@dldc/ui-core/colors";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
+
+import { Frame, type FrameProps } from "@dldc/ui-components/frame";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
-import { Frame, type FrameProps } from "@dldc/ui-components/frame";
-import type { TPaletteColor } from "@dldc/ui-core/colors";
-import type { TDesignVariant } from "@dldc/ui-core/variants";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

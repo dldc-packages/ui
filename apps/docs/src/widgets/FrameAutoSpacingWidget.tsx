@@ -1,8 +1,11 @@
-import { cn } from "@/utils/styles";
-import { Frame } from "@dldc/ui-components/frame";
 import type { TDesignHeight } from "@dldc/ui-core/size";
+
+import { Frame } from "@dldc/ui-components/frame";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

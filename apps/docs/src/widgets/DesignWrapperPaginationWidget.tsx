@@ -1,12 +1,14 @@
-import { Button } from "@dldc/ui-ariakit/button";
-import { DesignWrapper } from "@dldc/ui-components/design-context";
-import { cn } from "@/utils/styles";
-import { CodeHighlight } from "@/components/CodeHighlight";
-import { printElement } from "@/utils/printElement";
-import { useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import type { TDesignHeight } from "@dldc/ui-core/size";
+
+import { Button } from "@dldc/ui-ariakit/button";
+import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useState } from "react";
+
+import { CodeHighlight } from "@/components/CodeHighlight";
 import { HighlightedGrid } from "@/components/HighlightedGrid";
+import { printElement } from "@/utils/printElement";
+import { cn } from "@/utils/styles";
 
 type PaginationProps = {
   height: TDesignHeight;

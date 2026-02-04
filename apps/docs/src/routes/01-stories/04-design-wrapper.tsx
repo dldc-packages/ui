@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { StoryLayout } from "@/components/StoryLayout";
 import { Prose } from "@dldc/ui-components/prose";
-import { DesignWrapperBasicWidget } from "@/widgets/DesignWrapperBasicWidget";
-import { cn } from "@/utils/styles";
 import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
+import { createFileRoute } from "@tanstack/react-router";
+
+import { StoryLayout } from "@/components/StoryLayout";
+import { cn } from "@/utils/styles";
+import { DesignWrapperBasicWidget } from "@/widgets/DesignWrapperBasicWidget";
 import { DesignWrapperPaginationWidget } from "@/widgets/DesignWrapperPaginationWidget";
 
 export const Route = createFileRoute("/01-stories/04-design-wrapper")({

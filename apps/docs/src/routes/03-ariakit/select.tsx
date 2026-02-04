@@ -1,11 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
 import * as Select from "@dldc/ui-ariakit/select";
-import { StoryLayout } from "@/components/StoryLayout";
+import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
 import { Prose } from "@dldc/ui-components/prose";
 import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
-import { cn } from "@/utils/styles";
+import { createFileRoute } from "@tanstack/react-router";
 import { AppleIcon, BananaIcon, CircleIcon, GrapeIcon } from "lucide-react";
-import { DesignWrapper } from "@dldc/ui-components/design-context";
+
+import { StoryLayout } from "@/components/StoryLayout";
+import { cn } from "@/utils/styles";
 
 export const Route = createFileRoute("/03-ariakit/select")({
   component: RouteComponent,

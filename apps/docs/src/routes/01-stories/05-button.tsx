@@ -1,3 +1,7 @@
+import { Prose } from "@dldc/ui-components/prose";
+import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
+import { createFileRoute } from "@tanstack/react-router";
+
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { ButtonColorsVariantsWidget } from "@/widgets/ButtonColorsVariantsWidget";
@@ -16,9 +20,6 @@ import { ButtonLoadingWidget } from "@/widgets/ButtonLoadingWidget";
 import { ButtonSlotsWidget } from "@/widgets/ButtonSlotsWidget";
 import { ButtonSpacingHeightsWidget } from "@/widgets/ButtonSpacingHeightsWidget";
 import { ButtonSpacingWidget } from "@/widgets/ButtonSpacingWidget";
-import { Prose } from "@dldc/ui-components/prose";
-import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/01-stories/05-button")({
   component: RouteComponent,

@@ -3,28 +3,32 @@ import { frameGroupSeparatorStyles, frameGroupStyles } from "@dldc/ui-styles/fra
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
-import { DefaultDesignProvider, designPropsSplitter, TDesignProps, useFrameDesignProps } from "../design-context";
+
+import { DefaultDesignProvider, designPropsSplitter, TDesignProps } from "../design-context";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
+import { designVariantPropsSplitter, TDesignVariantProps, useDesignVariant } from "../variant";
 
 export type FrameGroupProps = ComponentPropsBaseWith<
   "div",
-  TDesignProps & {
-    disabled?: boolean;
+  TDesignProps &
+    TDesignVariantProps & {
+      disabled?: boolean;
 
-    color?: TPaletteColor;
+      color?: TPaletteColor;
 
-    direction?: "horizontal" | "vertical";
-    roundedEnds?: "start" | "end" | "both" | "none";
-    innerDividers?: boolean;
-  }
+      direction?: "horizontal" | "vertical";
+      roundedEnds?: "start" | "end" | "both" | "none";
+      innerDividers?: boolean;
+    }
 >;
 
 export function FrameGroup(inProps: FrameGroupProps) {
-  const [{ localDesign }, props] = pipePropsSplitters(inProps, {
+  const [{ localDesignVariant, localDesign }, props] = pipePropsSplitters(inProps, {
+    localDesignVariant: designVariantPropsSplitter,
     localDesign: designPropsSplitter,
   });
 
-  const { variant } = useFrameDesignProps(localDesign, "surface");
+  const { variant } = useDesignVariant(localDesignVariant, "surface");
   const {
     color,
     className,

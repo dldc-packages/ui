@@ -1,6 +1,7 @@
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { clsx } from "clsx";
+
 import { frameBorderSizeClass } from "../frame/frame.css";
 import { CSSProperties } from "../utils/types";
 import {

@@ -1,9 +1,10 @@
-import { ComponentPropsBaseWith } from "../utils";
-import { Paper, PaperSpecificProps } from "../paper";
+import { TDesignRounded } from "@dldc/ui-core/size";
 import { selectPopoverStyles } from "@dldc/ui-styles/select";
 import { clsx } from "clsx";
-import { TDesignRounded } from "@dldc/ui-core/size";
+
 import { SizeContextProvider, useContainerDesignProps } from "../design-context";
+import { Paper, PaperSpecificProps } from "../paper";
+import { ComponentPropsBaseWith } from "../utils";
 
 export type SelectPropoverSpecificProps = PaperSpecificProps & {
   rounded?: TDesignRounded | null;

@@ -6,6 +6,7 @@ import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { CheckIcon } from "lucide-react";
+
 import { TSelectItem } from "./types";
 
 interface SelectItemProps extends Ariakit.SelectItemProps {
@@ -33,7 +34,7 @@ export function SelectItem(inProps: SelectItemProps) {
     item.content,
   );
 
-  const { height, contentHeight, spacing } = useFrameDesignProps(localDesign, "subtle");
+  const { height, contentHeight, spacing } = useFrameDesignProps(localDesign);
   const [heightClass, heightInline] = heightStyles(height);
   const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 

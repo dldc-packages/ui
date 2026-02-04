@@ -1,3 +1,7 @@
+import { Prose } from "@dldc/ui-components/prose";
+import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
+import { createFileRoute } from "@tanstack/react-router";
+
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { FrameGroupBasicWidget } from "@/widgets/FrameGroupBasicWidget";
@@ -10,9 +14,6 @@ import { FrameGroupNavigationWidget } from "@/widgets/FrameGroupNavigationWidget
 import { FrameGroupNestedWidget } from "@/widgets/FrameGroupNestedWidget";
 import { FrameGroupToolbarWidget } from "@/widgets/FrameGroupToolbarWidget";
 import { FrameGroupVariantsWidget } from "@/widgets/FrameGroupVariantsWidget";
-import { Prose } from "@dldc/ui-components/prose";
-import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/01-stories/02-frame-group")({
   component: RouteComponent,

@@ -1,5 +1,6 @@
-import { clamp, powerValue } from "@dldc/utils/math";
 import { roundToSize, sizeToRem, TDesignSize } from "@dldc/ui-core/size";
+import { clamp, powerValue } from "@dldc/utils/math";
+
 import { BASE_HEIGHT_RATIO, MIN_HEIGHT } from "./constants";
 
 export function resolveSmallRounded(height: number): boolean {

@@ -1,6 +1,7 @@
 // oxlint-disable typescript/no-redundant-type-constituents
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
 import { useLatestRef } from "./use-latest-ref";
 
 export type TRestoreLocalStorageState<T> = (stored: unknown | null) => T;

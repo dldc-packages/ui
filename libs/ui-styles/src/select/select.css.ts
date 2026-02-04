@@ -1,4 +1,4 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { colorsVars, dynamicColorVars, opacity } from "@dldc/ui-core/colors";
 import {
   _after,
   _disabledHover,
@@ -12,8 +12,8 @@ import {
   _disabledActiveItem,
   _activeItem,
 } from "@dldc/ui-core/conditions";
-import { colorsVars, dynamicColorVars, opacity } from "@dldc/ui-core/colors";
 import { sizeToRemString } from "@dldc/ui-core/size";
+import { globalStyle, style } from "@vanilla-extract/css";
 
 export const layer = "dldc.ui-styles.select";
 
@@ -42,7 +42,7 @@ export const selectPopoverClass = style(
       inset: 0,
     },
     [_focusWithinVisible + isAfter]: {
-      borderColor: colorsVars.neutral[300],
+      borderColor: colorsVars.neutral[500],
       borderWidth: sizeToRemString("0_x"),
     },
   }),
@@ -77,5 +77,5 @@ globalStyle(`${listItemClass}${isFocusWithin} [data-item-main-icon]`, withLayer(
 // Don't change icon opacity when disabled
 globalStyle(`${listItemClass}${isHover}${isDisabled} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
 
-// Icons don't like opacity on fill color, so instead we set colro + opacity
-globalStyle(`${listItemClass}${isDisabled} svg`, withLayer({ color: colorsVars.neutral[200], opacity: 0.4 }));
+// Icons don't like opacity on fill color, so instead we set color + opacity
+globalStyle(`${listItemClass}${isDisabled} svg`, withLayer({ color: dynamicColorVars[200], opacity: 0.4 }));

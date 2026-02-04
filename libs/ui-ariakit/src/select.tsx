@@ -1,8 +1,8 @@
 import * as AKSelect from "@ariakit/react/select";
-import * as CSelect from "@dldc/ui-components/select";
-import { Merge } from "type-fest";
 import { FrameContentFragment } from "@dldc/ui-components/frame-content";
+import * as CSelect from "@dldc/ui-components/select";
 import { ChevronDownIcon } from "lucide-react";
+import { Merge } from "type-fest";
 
 export {
   SelectDismiss,

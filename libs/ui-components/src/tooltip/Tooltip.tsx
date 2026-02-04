@@ -1,6 +1,7 @@
 import { tooltipClass } from "@dldc/ui-styles/tooltip";
 import clsx from "clsx";
 import { ReactElement } from "react";
+
 import { mergeRender } from "../utils";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 

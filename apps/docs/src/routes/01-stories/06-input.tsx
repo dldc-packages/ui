@@ -1,3 +1,7 @@
+import { Prose } from "@dldc/ui-components/prose";
+import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
+import { createFileRoute } from "@tanstack/react-router";
+
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { InputAutoFocusWidget } from "@/widgets/InputAutoFocusWidget";
@@ -12,9 +16,6 @@ import { InputHighlightedWidget } from "@/widgets/InputHighlightedWidget";
 import { InputIconsWidget } from "@/widgets/InputIconsWidget";
 import { InputPlaceholderWidget } from "@/widgets/InputPlaceholderWidget";
 import { InputVariantsWidget } from "@/widgets/InputVariantsWidget";
-import { Prose } from "@dldc/ui-components/prose";
-import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
-import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/01-stories/06-input")({
   component: RouteComponent,

@@ -1,8 +1,10 @@
-import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import { Prose } from "@dldc/ui-components/prose";
 import { CheckCircleIcon, XCircleIcon, XIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

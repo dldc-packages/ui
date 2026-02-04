@@ -1,13 +1,10 @@
 import { TDesignHeight, TDesignRounded, TDesignSpacing } from "@dldc/ui-core/size";
-import { TDesignVariant } from "@dldc/ui-core/variants";
 
 export interface TDesignProps {
   height?: TDesignHeight | null;
   contentHeight?: TDesignHeight | null;
   rounded?: TDesignRounded | null;
   spacing?: TDesignSpacing | null;
-  variant?: TDesignVariant;
-  hoverVariant?: TDesignVariant | null;
 }
 
 export interface TDefaultDesignContext {
@@ -15,8 +12,6 @@ export interface TDefaultDesignContext {
   contentHeight: TDesignHeight | null;
   rounded: TDesignRounded | null;
   spacing: TDesignSpacing | null;
-  variant: TDesignVariant;
-  hoverVariant: TDesignVariant | null;
 }
 
 export interface TParentDesignContext {
@@ -30,8 +25,6 @@ export interface TDesignContextResolved {
   depth: number;
   height: number;
   contentHeight: number;
-  variant: TDesignVariant;
-  hoverVariant: TDesignVariant;
   spacing: number | null;
   rounded: number;
 }

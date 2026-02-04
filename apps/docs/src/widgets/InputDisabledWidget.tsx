@@ -1,7 +1,8 @@
+import { Input } from "@dldc/ui-components/input";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
-import { Input } from "@dldc/ui-components/input";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

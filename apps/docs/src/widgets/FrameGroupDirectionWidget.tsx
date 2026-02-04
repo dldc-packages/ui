@@ -1,8 +1,9 @@
+import { Button } from "@dldc/ui-ariakit/button";
+import { FrameGroup } from "@dldc/ui-components/frame";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
-import { Button } from "@dldc/ui-ariakit/button";
-import { FrameGroup } from "@dldc/ui-components/frame";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 

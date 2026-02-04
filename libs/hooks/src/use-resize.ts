@@ -1,7 +1,9 @@
-import { nanoid } from "nanoid";
 import type { RefObject } from "react";
+
+import { nanoid } from "nanoid";
 import { useCallback, useMemo, useState } from "react";
 import { flushSync } from "react-dom";
+
 import { useLatestRef } from "./use-latest-ref";
 
 export type TUseResizeWidth = number | "auto";

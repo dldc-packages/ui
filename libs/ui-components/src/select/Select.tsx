@@ -1,6 +1,6 @@
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
 import { ButtonSpecificProps } from "../button";
 import { Button } from "../button";
+import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type SelectSpecificProps = ButtonSpecificProps;
 

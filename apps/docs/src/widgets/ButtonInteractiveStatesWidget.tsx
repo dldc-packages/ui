@@ -1,8 +1,10 @@
+import type { TDesignVariant } from "@dldc/ui-core/variants";
+
+import { Button } from "@dldc/ui-ariakit/button";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
-import { Button } from "@dldc/ui-ariakit/button";
-import type { TDesignVariant } from "@dldc/ui-core/variants";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 

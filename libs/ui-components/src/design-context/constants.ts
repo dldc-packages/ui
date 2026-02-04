@@ -1,4 +1,5 @@
 import { parseSize } from "@dldc/ui-core/size";
+
 import { TDefaultDesignContext } from "./types";
 
 export const BASE_HEIGHT = 7;
@@ -11,8 +12,6 @@ export const DEFAULT_DESIGN: TDefaultDesignContext = {
   contentHeight: null,
   rounded: null,
   spacing: null,
-  variant: "surface",
-  hoverVariant: null,
 };
 
 export const DESIGN_KEYS = Object.keys(DEFAULT_DESIGN) as Array<keyof TDefaultDesignContext>;

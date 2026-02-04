@@ -2,6 +2,7 @@ import { ellipsisClass } from "@dldc/ui-styles/ellipsis";
 import { TFrameContentPaddingResolved } from "@dldc/ui-styles/frame-content";
 import { TPropsSplitter } from "@dldc/utils/props-splitters";
 import { Fragment } from "react/jsx-runtime";
+
 import { FrameSideSlot } from "./FrameSideSlot";
 
 export type TFrameContentPadding = "auto" | TFrameContentPaddingResolved;

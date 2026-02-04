@@ -1,7 +1,10 @@
-import { cn } from "@/utils/styles";
 import { Frame } from "@dldc/ui-components/frame";
 import { PlusIcon, XIcon } from "lucide-react";
 import { cloneElement, useState, type ComponentPropsWithRef } from "react";
+
+// oxlint-disable react/jsx-key
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";

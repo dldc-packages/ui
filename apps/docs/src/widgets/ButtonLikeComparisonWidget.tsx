@@ -1,9 +1,12 @@
-import { cn } from "@/utils/styles";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
+
 import { Button } from "@dldc/ui-ariakit/button";
 import { ButtonLike } from "@dldc/ui-components/button";
-import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 

@@ -1,4 +1,5 @@
 import clsx from "clsx";
+
 import { contentSize } from "../common";
 import { CSSProperties } from "../utils/types";
 import { labelClass, labelDisabledClass, layer } from "./label.css";

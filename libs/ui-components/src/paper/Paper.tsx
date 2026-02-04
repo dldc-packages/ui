@@ -1,9 +1,10 @@
 import { TNeutralColorShade } from "@dldc/ui-core/colors";
 import { paperBaseClass, paperClass } from "@dldc/ui-styles/paper";
 import clsx from "clsx";
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
 import { ReactElement } from "react";
+
 import { mergeRender } from "../utils/mergeRender";
+import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type PaperSpecificProps = {
   render?: ReactElement;

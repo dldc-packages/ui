@@ -1,3 +1,7 @@
 {
-  "$schema": "./node_modules/oxlint/configuration_schema.json"
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "react-perf"],
+  "rules": {
+    "react/no-children-prop": "off"
+  }
 }

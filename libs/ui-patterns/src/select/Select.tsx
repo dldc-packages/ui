@@ -12,6 +12,7 @@ import clsx from "clsx";
 import { ChevronDownIcon } from "lucide-react";
 import { ComponentPropsWithRef, Ref, useMemo } from "react";
 import { Merge } from "type-fest";
+
 import { SelectItem } from "./SelectItem";
 import { TSelectItem } from "./types";
 

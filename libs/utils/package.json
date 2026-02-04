@@ -8,6 +8,7 @@
   "type": "module",
   "types": "./dist/demo.d.ts",
   "exports": {
+    "./keys-of-type": "./dist/keys-of-type.js",
     "./math": "./dist/math.js",
     "./measure-text": "./dist/measure-text.js",
     "./object": "./dist/object.js",

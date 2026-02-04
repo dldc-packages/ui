@@ -1,7 +1,8 @@
-import { buildMenuTree, type TMenuItem } from "@/utils/buildMenuTree";
-import { cn } from "@/utils/styles";
 import { Button } from "@dldc/ui-ariakit/button";
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
+
+import { buildMenuTree, type TMenuItem } from "@/utils/buildMenuTree";
+import { cn } from "@/utils/styles";
 
 export function Menu() {
   const location = useLocation();

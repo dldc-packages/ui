@@ -1,5 +1,6 @@
 import { createTraceAnimation, spinClass } from "@dldc/ui-styles/animations";
 import clsx from "clsx";
+
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type LoadingIcon = ComponentPropsBaseWith<

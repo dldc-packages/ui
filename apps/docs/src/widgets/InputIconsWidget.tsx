@@ -1,7 +1,9 @@
-import { cn } from "@/utils/styles";
 import { Input } from "@dldc/ui-components/input";
 import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef, type ReactNode } from "react";
+
+import { cn } from "@/utils/styles";
+
 import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
