@@ -21,8 +21,8 @@ import { Route as R01Stories06InputRouteImport } from './routes/01-stories/06-in
 import { Route as R01Stories05ButtonRouteImport } from './routes/01-stories/05-button'
 import { Route as R01Stories04DesignWrapperRouteImport } from './routes/01-stories/04-design-wrapper'
 import { Route as R01Stories03DefaultDesignProviderRouteImport } from './routes/01-stories/03-default-design-provider'
-import { Route as R01Stories02FrameGroupRouteImport } from './routes/01-stories/02-frame-group'
-import { Route as R01Stories01FrameRouteImport } from './routes/01-stories/01-frame'
+import { Route as R01Stories02ActionGroupRouteImport } from './routes/01-stories/02-action-group'
+import { Route as R01Stories01ActionRouteImport } from './routes/01-stories/01-action'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -87,21 +87,21 @@ const R01Stories03DefaultDesignProviderRoute =
     path: '/01-stories/03-default-design-provider',
     getParentRoute: () => rootRouteImport,
   } as any)
-const R01Stories02FrameGroupRoute = R01Stories02FrameGroupRouteImport.update({
-  id: '/01-stories/02-frame-group',
-  path: '/01-stories/02-frame-group',
+const R01Stories02ActionGroupRoute = R01Stories02ActionGroupRouteImport.update({
+  id: '/01-stories/02-action-group',
+  path: '/01-stories/02-action-group',
   getParentRoute: () => rootRouteImport,
 } as any)
-const R01Stories01FrameRoute = R01Stories01FrameRouteImport.update({
-  id: '/01-stories/01-frame',
-  path: '/01-stories/01-frame',
+const R01Stories01ActionRoute = R01Stories01ActionRouteImport.update({
+  id: '/01-stories/01-action',
+  path: '/01-stories/01-action',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/01-stories/01-frame': typeof R01Stories01FrameRoute
-  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
+  '/01-stories/01-action': typeof R01Stories01ActionRoute
+  '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
   '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
   '/01-stories/04-design-wrapper': typeof R01Stories04DesignWrapperRoute
   '/01-stories/05-button': typeof R01Stories05ButtonRoute
@@ -116,8 +116,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/01-stories/01-frame': typeof R01Stories01FrameRoute
-  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
+  '/01-stories/01-action': typeof R01Stories01ActionRoute
+  '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
   '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
   '/01-stories/04-design-wrapper': typeof R01Stories04DesignWrapperRoute
   '/01-stories/05-button': typeof R01Stories05ButtonRoute
@@ -133,8 +133,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/01-stories/01-frame': typeof R01Stories01FrameRoute
-  '/01-stories/02-frame-group': typeof R01Stories02FrameGroupRoute
+  '/01-stories/01-action': typeof R01Stories01ActionRoute
+  '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
   '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
   '/01-stories/04-design-wrapper': typeof R01Stories04DesignWrapperRoute
   '/01-stories/05-button': typeof R01Stories05ButtonRoute
@@ -151,8 +151,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/01-stories/01-frame'
-    | '/01-stories/02-frame-group'
+    | '/01-stories/01-action'
+    | '/01-stories/02-action-group'
     | '/01-stories/03-default-design-provider'
     | '/01-stories/04-design-wrapper'
     | '/01-stories/05-button'
@@ -167,8 +167,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/01-stories/01-frame'
-    | '/01-stories/02-frame-group'
+    | '/01-stories/01-action'
+    | '/01-stories/02-action-group'
     | '/01-stories/03-default-design-provider'
     | '/01-stories/04-design-wrapper'
     | '/01-stories/05-button'
@@ -183,8 +183,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/01-stories/01-frame'
-    | '/01-stories/02-frame-group'
+    | '/01-stories/01-action'
+    | '/01-stories/02-action-group'
     | '/01-stories/03-default-design-provider'
     | '/01-stories/04-design-wrapper'
     | '/01-stories/05-button'
@@ -200,8 +200,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  R01Stories01FrameRoute: typeof R01Stories01FrameRoute
-  R01Stories02FrameGroupRoute: typeof R01Stories02FrameGroupRoute
+  R01Stories01ActionRoute: typeof R01Stories01ActionRoute
+  R01Stories02ActionGroupRoute: typeof R01Stories02ActionGroupRoute
   R01Stories03DefaultDesignProviderRoute: typeof R01Stories03DefaultDesignProviderRoute
   R01Stories04DesignWrapperRoute: typeof R01Stories04DesignWrapperRoute
   R01Stories05ButtonRoute: typeof R01Stories05ButtonRoute
@@ -301,18 +301,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R01Stories03DefaultDesignProviderRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/01-stories/02-frame-group': {
-      id: '/01-stories/02-frame-group'
-      path: '/01-stories/02-frame-group'
-      fullPath: '/01-stories/02-frame-group'
-      preLoaderRoute: typeof R01Stories02FrameGroupRouteImport
+    '/01-stories/02-action-group': {
+      id: '/01-stories/02-action-group'
+      path: '/01-stories/02-action-group'
+      fullPath: '/01-stories/02-action-group'
+      preLoaderRoute: typeof R01Stories02ActionGroupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/01-stories/01-frame': {
-      id: '/01-stories/01-frame'
-      path: '/01-stories/01-frame'
-      fullPath: '/01-stories/01-frame'
-      preLoaderRoute: typeof R01Stories01FrameRouteImport
+    '/01-stories/01-action': {
+      id: '/01-stories/01-action'
+      path: '/01-stories/01-action'
+      fullPath: '/01-stories/01-action'
+      preLoaderRoute: typeof R01Stories01ActionRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -320,8 +320,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  R01Stories01FrameRoute: R01Stories01FrameRoute,
-  R01Stories02FrameGroupRoute: R01Stories02FrameGroupRoute,
+  R01Stories01ActionRoute: R01Stories01ActionRoute,
+  R01Stories02ActionGroupRoute: R01Stories02ActionGroupRoute,
   R01Stories03DefaultDesignProviderRoute:
     R01Stories03DefaultDesignProviderRoute,
   R01Stories04DesignWrapperRoute: R01Stories04DesignWrapperRoute,

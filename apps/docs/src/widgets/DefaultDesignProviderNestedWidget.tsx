@@ -1,6 +1,6 @@
 import { Button } from "@dldc/ui-ariakit/button";
+import { Action } from "@dldc/ui-components/action";
 import { DefaultDesignProvider } from "@dldc/ui-components/design-context";
-import { Frame } from "@dldc/ui-components/frame";
 import { Paper } from "@dldc/ui-components/paper";
 import { DefaultDesignVariantProvider } from "@dldc/ui-components/variant";
 import { type ComponentPropsWithRef } from "react";
@@ -12,7 +12,7 @@ import { printElement } from "../utils/printElement";
 
 const example = (
   <DefaultDesignProvider height="9">
-    <Frame>Outer</Frame>
+    <Action>Outer</Action>
     <DefaultDesignVariantProvider variant="solid">
       <Button>Inner</Button>
     </DefaultDesignVariantProvider>

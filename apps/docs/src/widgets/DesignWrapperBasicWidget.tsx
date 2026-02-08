@@ -1,6 +1,6 @@
 import { Button } from "@dldc/ui-ariakit/button";
+import { Action } from "@dldc/ui-components/action";
 import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
-import { Frame } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
 import { useState, type ComponentPropsWithRef } from "react";
@@ -18,7 +18,7 @@ export function DesignWrapperBasicWidget({ className, ...props }: ComponentProps
       label: "Without Provider",
       element: (
         <div className="flex flex-row items-center gap-2">
-          <Frame>Frame</Frame>
+          <Action>Action</Action>
           <Button>Button</Button>
           <Input placeholder="Input" />
           <p>Regular text</p>
@@ -30,7 +30,7 @@ export function DesignWrapperBasicWidget({ className, ...props }: ComponentProps
       label: "With Provider",
       element: (
         <DesignWrapper variant="solid" color="blue" height="12" className="flex flex-row items-center gap-2">
-          <Frame>Frame</Frame>
+          <Action>Action</Action>
           <Button>Button</Button>
           <Input placeholder="Input" />
           <p>Regular text</p>

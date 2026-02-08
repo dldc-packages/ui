@@ -10,6 +10,7 @@
   "exports": {
     "./colors": "./dist/colors/index.js",
     "./conditions": "./dist/conditions.js",
+    "./geometry": "./dist/geometry/index.js",
     "./helpers": "./dist/helpers/index.js",
     "./size": "./dist/size/index.js",
     "./variants": "./dist/variants/index.js",

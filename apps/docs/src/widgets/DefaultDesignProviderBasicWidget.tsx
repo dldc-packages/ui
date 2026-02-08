@@ -1,6 +1,6 @@
 import { Button } from "@dldc/ui-ariakit/button";
+import { Action } from "@dldc/ui-components/action";
 import { DefaultDesignProvider } from "@dldc/ui-components/design-context";
-import { Frame } from "@dldc/ui-components/frame";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
 import { DefaultDesignVariantProvider } from "@dldc/ui-components/variant";
@@ -19,7 +19,7 @@ export function DefaultDesignProviderBasicWidget({ className, ...props }: Compon
       label: "Without Provider",
       element: (
         <Fragment>
-          <Frame>Frame</Frame>
+          <Action>Action</Action>
           <Button>Button</Button>
           <Input placeholder="Input" />
         </Fragment>
@@ -31,7 +31,7 @@ export function DefaultDesignProviderBasicWidget({ className, ...props }: Compon
       element: (
         <DefaultDesignProvider height="9">
           <DefaultDesignVariantProvider variant="solid">
-            <Frame>Frame</Frame>
+            <Action>Action</Action>
             <Button>Button</Button>
             <Input placeholder="Input" />
           </DefaultDesignVariantProvider>

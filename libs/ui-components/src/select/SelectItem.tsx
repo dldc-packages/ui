@@ -1,16 +1,16 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { frameContentStyles } from "@dldc/ui-styles/frame-content";
+import { actionContentStyles } from "@dldc/ui-styles/action-content";
 import { selectItemStyles } from "@dldc/ui-styles/select";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import { clsx } from "clsx";
 import { ReactElement } from "react";
 
+import { actionContentPropsSplitter, TActionContentProps, useActionContent } from "../action-content";
 import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
-import { frameContentPropsSplitter, TFrameContentProps, useFrameContent } from "../frame-content";
 import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
-export type SelectItemSpecificProps = TFrameContentProps &
+export type SelectItemSpecificProps = TActionContentProps &
   TDesignProps & {
     disabled?: boolean;
     color?: TPaletteColor;
@@ -25,9 +25,9 @@ export type SelectItemSpecificProps = TFrameContentProps &
 export type SelectItemProps = ComponentPropsBaseWith<"div", SelectItemSpecificProps>;
 
 export function SelectItem(inProps: SelectItemProps) {
-  const [{ localDesign, localFrameContent }, props] = pipePropsSplitters(inProps, {
+  const [{ localDesign, localActionContent }, props] = pipePropsSplitters(inProps, {
     localDesign: designPropsSplitter,
-    localFrameContent: frameContentPropsSplitter,
+    localActionContent: actionContentPropsSplitter,
   });
 
   const {
@@ -45,11 +45,11 @@ export function SelectItem(inProps: SelectItemProps) {
 
   const { height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(localDesign);
 
-  const { startPadding, endPadding, fragment, noLayout } = useFrameContent(localFrameContent, children);
+  const { startPadding, endPadding, fragment, noLayout } = useActionContent(localActionContent, children);
 
   const [baseClass, baseInline] = selectItemStyles({ height, contentHeight, rounded, color, disabled });
 
-  const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
+  const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 
   return mergeRender(
     render,

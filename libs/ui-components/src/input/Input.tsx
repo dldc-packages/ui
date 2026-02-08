@@ -2,13 +2,13 @@ import { useMergeRefs } from "@dldc/hooks/use-merge-refs";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { ReactElement, useCallback, useRef } from "react";
 
+import { Action, ActionInputContent } from "../action";
+import { TActionContentProps } from "../action-content";
 import { TDesignProps } from "../design-context";
-import { Frame, FrameInputContent } from "../frame";
-import { TFrameContentProps } from "../frame-content";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
 import { TDesignVariantProps } from "../variant";
 
-export type InputSpecificProps = TFrameContentProps &
+export type InputSpecificProps = TActionContentProps &
   TDesignProps &
   TDesignVariantProps & {
     disabled?: boolean;
@@ -68,7 +68,7 @@ export function Input({
   );
 
   const childrenResolved = children ?? (
-    <FrameInputContent
+    <ActionInputContent
       value={value}
       onChange={onChange}
       placeholder={placeholder}
@@ -81,7 +81,7 @@ export function Input({
   );
 
   return (
-    <Frame
+    <Action
       baseVariant="input"
       interactive
       onPointerDown={onPointerDown}
@@ -91,7 +91,7 @@ export function Input({
       {...frameProps}
     >
       {childrenResolved}
-    </Frame>
+    </Action>
   );
 }
 

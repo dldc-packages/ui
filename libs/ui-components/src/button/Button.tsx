@@ -1,13 +1,13 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { ReactElement } from "react";
 
+import { Action } from "../action";
+import { TActionContentProps } from "../action-content";
 import { TDesignProps } from "../design-context";
-import { Frame } from "../frame";
-import { TFrameContentProps } from "../frame-content";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
 import { TDesignVariantProps } from "../variant";
 
-export type ButtonSpecificProps = TFrameContentProps &
+export type ButtonSpecificProps = TActionContentProps &
   TDesignProps &
   TDesignVariantProps & {
     disabled?: boolean;
@@ -24,13 +24,13 @@ export type ButtonSpecificProps = TFrameContentProps &
 
 export type ButtonProps = ComponentPropsBaseWith<"button", ButtonSpecificProps>;
 
-export function Button({ type = "button", disabled = false, render, ref, ...frameProps }: ButtonProps) {
+export function Button({ type = "button", disabled = false, render, ref, ...actionProps }: ButtonProps) {
   return (
-    <Frame
+    <Action
       disabled={disabled}
       render={mergeRender(render, <button type={type} ref={ref} disabled={disabled} />)}
       interactive
-      {...(frameProps as any)}
+      {...(actionProps as any)}
     />
   );
 }

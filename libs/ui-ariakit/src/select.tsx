@@ -1,5 +1,5 @@
 import * as AKSelect from "@ariakit/react/select";
-import { FrameContentFragment } from "@dldc/ui-components/frame-content";
+import { ActionContentFragment } from "@dldc/ui-components/action-content";
 import * as CSelect from "@dldc/ui-components/select";
 import { ChevronDownIcon } from "lucide-react";
 import { Merge } from "type-fest";
@@ -44,9 +44,9 @@ SelectLabel.displayName = "SelectLabel";
 export type SelectProps = Merge<AKSelect.SelectProps, CSelect.SelectSpecificProps>;
 export function Select({ render, endPadding, startPadding, padding, children, ...props }: SelectProps) {
   const defaultChildren = (
-    <FrameContentFragment endIcon={<SelectArrow />}>
+    <ActionContentFragment endIcon={<SelectArrow />}>
       <AKSelect.SelectValue />
-    </FrameContentFragment>
+    </ActionContentFragment>
   );
 
   const endPaddingResolved = endPadding ?? padding ?? "icon";

@@ -1,8 +1,8 @@
 import * as Ariakit from "@ariakit/react";
+import { useActionContent } from "@dldc/ui-components/action-content";
 import { DefaultDesignProvider, designPropsSplitter, useFrameDesignProps } from "@dldc/ui-components/design-context";
-import { useFrameContent } from "@dldc/ui-components/frame-content";
+import { actionContentStyles } from "@dldc/ui-styles/action-content";
 import { heightStyles } from "@dldc/ui-styles/common";
-import { frameContentStyles } from "@dldc/ui-styles/frame-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { CheckIcon } from "lucide-react";
@@ -26,7 +26,7 @@ export function SelectItem(inProps: SelectItemProps) {
   }
   const checked = Ariakit.useStoreState(store, (state) => state.value === item.value);
 
-  const { startPadding, endPadding, fragment, noLayout } = useFrameContent(
+  const { startPadding, endPadding, fragment, noLayout } = useActionContent(
     {
       endIcon: checked ? <Ariakit.SelectItemCheck render={<CheckIcon children={null} />} /> : item.endIcon,
       startIcon: item.icon,
@@ -36,7 +36,7 @@ export function SelectItem(inProps: SelectItemProps) {
 
   const { height, contentHeight, spacing } = useFrameDesignProps(localDesign);
   const [heightClass, heightInline] = heightStyles(height);
-  const [contentClass, contentInline] = frameContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
+  const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 
   return (
     <Ariakit.SelectItem

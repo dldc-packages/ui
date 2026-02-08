@@ -1,7 +1,7 @@
 import * as Ariakit from "@ariakit/react";
 import { Button } from "@dldc/ui-ariakit/button";
+import { ActionContentFragment } from "@dldc/ui-components/action-content";
 import { DefaultDesignProvider, designPropsSplitter } from "@dldc/ui-components/design-context";
-import { FrameContentFragment } from "@dldc/ui-components/frame-content";
 import { Label } from "@dldc/ui-components/label";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignSize } from "@dldc/ui-core/size";
@@ -22,7 +22,7 @@ import { TSelectItem } from "./types";
 // import { Button } from "../button/Button";
 // import { DefaultDesignProvider, designPropsSplitter } from "../core/DesignContext";
 // import { Label } from "../form/Label";
-// import { FrameContentFragment } from "../frame/FrameContentFragment";
+// import { ActionContentFragment } from "../frame/ActionContentFragment";
 
 export type SelectProps<Value extends string> = Merge<
   ComponentPropsWithRef<"button">,
@@ -139,12 +139,12 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
               renderSelected ? (
                 renderSelected(selectedItem)
               ) : (
-                <FrameContentFragment
+                <ActionContentFragment
                   endIcon={caret && <Ariakit.SelectArrow render={<ChevronDownIcon />} />}
                   startIcon={selectedItem.icon}
                 >
                   {selectedIsEmpty ? <span className="opacity-50">{selectedItem.content}</span> : selectedItem.content}
-                </FrameContentFragment>
+                </ActionContentFragment>
               )
             ) : null}
           </Ariakit.Select>

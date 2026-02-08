@@ -1,19 +1,11 @@
 import { useLatestRef } from "@dldc/hooks/use-latest-ref";
 import { useLocalStorageState } from "@dldc/hooks/use-local-storage-state";
 import { Button } from "@dldc/ui-ariakit/button";
+import { ActionGroup } from "@dldc/ui-components/action";
 import { ButtonLike } from "@dldc/ui-components/button";
-import { FrameGroup } from "@dldc/ui-components/frame";
 import { Select } from "@dldc/ui-patterns/select";
 import { ArrowLeftRightIcon, PlusIcon } from "lucide-react";
 import { Fragment, useCallback, useMemo, type JSX, type SetStateAction } from "react";
-
-// import { Button } from "../shared/components/button/Button";
-// import { ButtonLike } from "../shared/components/button/ButtonLike";
-// import { FrameGroup } from "../shared/components/frame/FrameGroup";
-// import { Select } from "../shared/components/select/Select";
-// import { TSelectItem } from "../shared/components/select/types";
-// import { useLatestRef } from "../shared/hooks/useLatestRef";
-// import { useLocalStorageState } from "../shared/hooks/useLocalStorageState";
 
 export type TVariantsValues<K, Value> = Record<(K & string) | "default", Value>;
 
@@ -134,7 +126,7 @@ export function Variants<Dims extends TDimensions>({
           </h2>
         )}
         <div className="flex flex-row gap-4">
-          <FrameGroup color="blue" variant="solid">
+          <ActionGroup color="blue" variant="solid">
             <ButtonLike className="font-bold uppercase">Preset</ButtonLike>
             <Select<string>
               label="preset"
@@ -150,7 +142,7 @@ export function Variants<Dims extends TDimensions>({
               }}
               renderSelect={<Button className="min-w-[100px]" />}
             />
-          </FrameGroup>
+          </ActionGroup>
           <MultiSelect<keyof Dims & string>
             label="column"
             selected={colAxis as string[]}
@@ -191,7 +183,7 @@ export function Variants<Dims extends TDimensions>({
                   }))}
                   onChange={(value) => setSelected({ ...selected, [dimKey]: value })}
                   renderSelect={<Button className="flex-1" />}
-                  renderWrapper={<FrameGroup color="teal" />}
+                  renderWrapper={<ActionGroup color="teal" />}
                   renderLabel={<ButtonLike className="min-w-[150px] flex-1 font-bold uppercase">{dimKey}</ButtonLike>}
                 />
               );
@@ -288,7 +280,7 @@ function MultiSelect<T extends string>({ label, onChange, options, selected }: M
   const available = options.filter((option) => !selected.includes(option));
 
   return (
-    <FrameGroup variant="solid" color="blue">
+    <ActionGroup variant="solid" color="blue">
       <ButtonLike className="font-bold uppercase">{label}</ButtonLike>
       {selected.map((selectedItem, index) => {
         return (
@@ -320,7 +312,7 @@ function MultiSelect<T extends string>({ label, onChange, options, selected }: M
           }}
         />
       )}
-    </FrameGroup>
+    </ActionGroup>
   );
 }
 
