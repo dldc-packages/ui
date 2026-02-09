@@ -15,6 +15,7 @@
     "./depth": "./dist/depth/index.js",
     "./design-context": "./dist/design-context/index.js",
     "./design-wrapper": "./dist/design-wrapper/index.js",
+    "./geometry": "./dist/geometry/index.js",
     "./icon-box": "./dist/icon-box/index.js",
     "./input": "./dist/input/index.js",
     "./label": "./dist/label/index.js",

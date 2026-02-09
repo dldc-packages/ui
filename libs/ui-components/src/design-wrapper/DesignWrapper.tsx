@@ -7,7 +7,7 @@ import { ReactElement } from "react";
 import { DefaultDesignProvider, designPropsSplitter, useFrameDesignProps } from "../design-context/DesignContext";
 import { TDesignProps } from "../design-context/types";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
-import { DefaultDesignVariantProvider, designVariantPropsSplitter, TDesignVariantProps } from "../variant";
+import { DefaultVariantProvider, TDesignVariantProps, variantPropsSplitter } from "../variant";
 
 export type DesignWrapperProps = ComponentPropsBaseWith<
   "div",
@@ -28,7 +28,7 @@ export type DesignWrapperProps = ComponentPropsBaseWith<
 export function DesignWrapper(inProps: DesignWrapperProps) {
   const [{ localDesign }, props] = pipePropsSplitters(inProps, {
     localDesign: designPropsSplitter,
-    localDesignVariant: designVariantPropsSplitter,
+    localDesignVariant: variantPropsSplitter,
   });
 
   const { color, style, className, ref, render, children, ...htmlProps } = props;
@@ -44,7 +44,7 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
       rounded={inProps.rounded}
       spacing={inProps.spacing}
     >
-      <DefaultDesignVariantProvider variant={inProps.variant} hoverVariant={inProps.hoverVariant}>
+      <DefaultVariantProvider variant={inProps.variant} hoverVariant={inProps.hoverVariant}>
         {mergeRender(
           render,
           <div
@@ -56,7 +56,7 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
             {children}
           </div>,
         )}
-      </DefaultDesignVariantProvider>
+      </DefaultVariantProvider>
     </DefaultDesignProvider>
   );
 }

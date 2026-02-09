@@ -1,3 +1,4 @@
+import { geometryPaddingVar } from "@dldc/ui-core/geometry";
 import { serializeSize } from "@dldc/ui-core/size";
 
 import { buildSizeTokenMap, range } from "./utils";
@@ -10,6 +11,7 @@ const PX_SIZES_VALUES = [...range(80 + 1, 1024 + 1, 32)];
 
 export const spacing = {
   ...buildSizeTokenMap(SIZES_VALUES, serializeSize),
+  geometry: geometryPaddingVar,
 };
 
 export const sizes = {

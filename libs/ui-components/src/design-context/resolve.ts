@@ -1,4 +1,4 @@
-import { parseMaybeSize, parseSize, roundToSize } from "@dldc/ui-core/size";
+import { parseMaybeSize, parseSize, roundToHalf } from "@dldc/ui-core/size";
 import { clamp } from "@dldc/utils/math";
 import { withoutUndefined } from "@dldc/utils/object";
 
@@ -99,7 +99,7 @@ function resolvedAutoRounded(parentRadius: number, padding: number): number {
   if (parentRadius === 0) {
     return 0;
   }
-  return clamp(roundToSize(radiusScale(parentRadius, padding)), 0.5, Infinity);
+  return clamp(roundToHalf(radiusScale(parentRadius, padding)), 0.5, Infinity);
 }
 
 function resolveProps(

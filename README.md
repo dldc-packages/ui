@@ -18,14 +18,14 @@ Design
 
 - `Variants`: styles for interactive elements like buttons, inputs, selects, etc.
 - `Paper`: Neutral background + border
-- `Geometry`: Radius & padding system
+- `Geometry`: Radius & padding system.
 - `Size`: Fixed height/width for interactive elements
 
 Components
 
-- `Frame`: `Geometry` component
+- `Geometry`: `Geometry` component
 - `Action`: `Geometry` + `Size` + `Variants`, used for buttons, inputs, selects, etc.
-- `PaperFrame`: `Paper` + `Frame`, used for cards, dialogs, etc.
+- `Frame`: `Paper` + `Frame`, used for cards, dialogs, etc.
 
 ### How Geometry works
 

@@ -23,6 +23,7 @@ import { Route as R01Stories04DesignWrapperRouteImport } from './routes/01-stori
 import { Route as R01Stories03DefaultDesignProviderRouteImport } from './routes/01-stories/03-default-design-provider'
 import { Route as R01Stories02ActionGroupRouteImport } from './routes/01-stories/02-action-group'
 import { Route as R01Stories01ActionRouteImport } from './routes/01-stories/01-action'
+import { Route as R01Stories00PlaygroundRouteImport } from './routes/01-stories/00-playground'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -97,9 +98,15 @@ const R01Stories01ActionRoute = R01Stories01ActionRouteImport.update({
   path: '/01-stories/01-action',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R01Stories00PlaygroundRoute = R01Stories00PlaygroundRouteImport.update({
+  id: '/01-stories/00-playground',
+  path: '/01-stories/00-playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/01-stories/00-playground': typeof R01Stories00PlaygroundRoute
   '/01-stories/01-action': typeof R01Stories01ActionRoute
   '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
   '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/01-stories/00-playground': typeof R01Stories00PlaygroundRoute
   '/01-stories/01-action': typeof R01Stories01ActionRoute
   '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
   '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
@@ -133,6 +141,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/01-stories/00-playground': typeof R01Stories00PlaygroundRoute
   '/01-stories/01-action': typeof R01Stories01ActionRoute
   '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
   '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/01-stories/00-playground'
     | '/01-stories/01-action'
     | '/01-stories/02-action-group'
     | '/01-stories/03-default-design-provider'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/01-stories/00-playground'
     | '/01-stories/01-action'
     | '/01-stories/02-action-group'
     | '/01-stories/03-default-design-provider'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/01-stories/00-playground'
     | '/01-stories/01-action'
     | '/01-stories/02-action-group'
     | '/01-stories/03-default-design-provider'
@@ -200,6 +212,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R01Stories00PlaygroundRoute: typeof R01Stories00PlaygroundRoute
   R01Stories01ActionRoute: typeof R01Stories01ActionRoute
   R01Stories02ActionGroupRoute: typeof R01Stories02ActionGroupRoute
   R01Stories03DefaultDesignProviderRoute: typeof R01Stories03DefaultDesignProviderRoute
@@ -315,11 +328,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R01Stories01ActionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/01-stories/00-playground': {
+      id: '/01-stories/00-playground'
+      path: '/01-stories/00-playground'
+      fullPath: '/01-stories/00-playground'
+      preLoaderRoute: typeof R01Stories00PlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R01Stories00PlaygroundRoute: R01Stories00PlaygroundRoute,
   R01Stories01ActionRoute: R01Stories01ActionRoute,
   R01Stories02ActionGroupRoute: R01Stories02ActionGroupRoute,
   R01Stories03DefaultDesignProviderRoute:

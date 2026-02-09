@@ -1,7 +1,7 @@
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { clsx } from "clsx";
 
-import { contentSize, heightStyles, roundedStyles } from "../common";
+import { contentSize, heightStyles } from "../common";
 import { CSSProperties } from "../utils/types";
 import { layer, listItemClass, listWrappertClass, selectPopoverClass } from "./select.css";
 
@@ -19,12 +19,12 @@ export function selectItemStyles(params: SelectItemStylesParams): [className: st
   const { height, rounded, contentHeight, color } = params;
 
   const [heightClass, heightInline] = heightStyles(height);
-  const [roundedClass, roundedInline] = roundedStyles(rounded);
+  // const [roundedClass, roundedInline] = roundedStyles(rounded);
   const [contentClass, contentInline] = contentSize(contentHeight);
 
   return [
-    clsx(heightClass, listItemClass, contentClass, roundedClass, color && dynamicColor[color]),
-    { ...heightInline, ...contentInline, ...roundedInline },
+    clsx(heightClass, listItemClass, contentClass, /*roundedClass,*/ color && dynamicColor[color]),
+    { ...heightInline, ...contentInline /*, ...roundedInline*/ },
   ];
 }
 
@@ -35,6 +35,11 @@ interface SelectPopoverStylesParams {
 export function selectPopoverStyles({
   rounded,
 }: SelectPopoverStylesParams): [className: string, styles: CSSProperties] {
-  const [roundedClass, roundedInline] = roundedStyles(rounded);
-  return [clsx(selectPopoverClass, listWrappertClass, roundedClass), { ...roundedInline }];
+  // const [roundedClass, roundedInline] = roundedStyles(rounded);
+  return [
+    clsx(selectPopoverClass, listWrappertClass /*, roundedClass*/),
+    {
+      /* ...roundedInline */
+    },
+  ];
 }

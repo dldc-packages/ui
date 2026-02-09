@@ -2,7 +2,7 @@ import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { clsx } from "clsx";
 
-import { contentSize, heightStyles, roundedStyles } from "../common/index";
+import { contentSize, heightStyles } from "../common/index";
 import { CSSProperties } from "../utils/types";
 import {
   actionBorderSizeClass,
@@ -35,7 +35,7 @@ export function actionStyles(params: ActionStylesParams): [className: string, st
     params;
 
   const [heightClass, heightInline] = heightStyles(height);
-  const [roundedClass, roundedInline] = roundedStyles(rounded);
+  // const [roundedClass, roundedInline] = roundedStyles(rounded);
   const [contentClass, contentInline] = contentSize(contentHeight);
 
   return [
@@ -48,7 +48,7 @@ export function actionStyles(params: ActionStylesParams): [className: string, st
       interactive && actionInteractiveVariantsClass[variant],
       interactive && actionInteractiveHoverVariantsClass[hoverVariant],
       contentClass,
-      roundedClass,
+      // roundedClass,
       color && dynamicColor[color],
       highlighted && actionHighlightClass,
       highlighted && actionHighlightColorsClass[highlightColor],
@@ -56,7 +56,7 @@ export function actionStyles(params: ActionStylesParams): [className: string, st
     {
       ...heightInline,
       ...contentInline,
-      ...roundedInline,
+      // ...roundedInline,
     },
   ];
 }

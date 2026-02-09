@@ -17,6 +17,7 @@
     "./checkbox": "./dist/checkbox/index.js",
     "./common": "./dist/common/index.js",
     "./ellipsis": "./dist/ellipsis/index.js",
+    "./geometry": "./dist/geometry/index.js",
     "./icon": "./dist/icon/index.js",
     "./label": "./dist/label/index.js",
     "./loading-block": "./dist/loading-block/index.js",

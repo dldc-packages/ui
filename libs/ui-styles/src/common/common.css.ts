@@ -13,11 +13,6 @@ export const designHeightVar = createVar(
   "design-height",
 );
 
-export const designRoundedVar = createVar(
-  { syntax: "<length>", inherits: false, initialValue: sizeToRemString(1) },
-  "design-rounded",
-);
-
 export const designContentSizeVar = createVar(
   { syntax: "<length>", inherits: true, initialValue: sizeToRemString(4) },
   "design-content-size",
@@ -26,13 +21,6 @@ export const designContentSizeVar = createVar(
 export const designHeightClass = style(
   withLayer({
     minHeight: designHeightVar,
-  }),
-);
-
-export const designRoundedClass = style(
-  withLayer({
-    borderRadius: designRoundedVar,
-    ["cornerShape" as any]: "superellipse(1.5)",
   }),
 );
 

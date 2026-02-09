@@ -13,7 +13,6 @@ import {
   type StringLiteralUnion,
   type ThemeRegistrationAny,
 } from "shiki/bundle/web";
-// import { Scrollbars } from "../shared/components/common/Scrollbars";
 
 export type TShikiLanguage = LanguageRegistration | StringLiteralUnion<BundledLanguage | SpecialLanguage> | undefined;
 
@@ -101,7 +100,7 @@ export function CodeHighlight({ language, theme, children }: CodeHighlightProps)
   }, [language, theme, children]);
 
   return (
-    <div className="h-full w-full overflow-hidden rounded-lg bg-neutral-800">
+    <div className="rounded-1x h-full w-full overflow-hidden bg-neutral-800">
       {/* <Scrollbars className={css({ h: "full", w: "full" })}> */}
       <div className="h-full w-full *:h-full *:p-4 *:text-sm">{highlightedCode}</div>
       {/* </Scrollbars> */}

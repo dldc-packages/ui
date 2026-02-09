@@ -1,4 +1,4 @@
-import { roundToSize, sizeToRem, TDesignSize } from "@dldc/ui-core/size";
+import { roundToHalf, sizeToRem, TDesignSize } from "@dldc/ui-core/size";
 import { clamp, powerValue } from "@dldc/utils/math";
 
 import { BASE_HEIGHT_RATIO, MIN_HEIGHT } from "./constants";
@@ -16,7 +16,7 @@ export function powerSize(size: number, power: number = 0.68): number {
     return size;
   }
   const val = powerValue(size, power);
-  return roundToSize(val);
+  return roundToHalf(val);
 }
 
 export function autoContentHeight(height: number, heightRatio = BASE_HEIGHT_RATIO): number {

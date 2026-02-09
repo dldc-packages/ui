@@ -20,8 +20,13 @@ export function sizeToFontSize(size: TDesignSize | (string & {})) {
   return `${fontSizeRemRounded}rem`;
 }
 
-export function roundToSize(value: number): number {
+export function roundToHalf(value: number): number {
   const valRounded = Math.round(value * 2) / 2;
+  return clamp(valRounded, 0, Infinity);
+}
+
+export function roundToQuarter(value: number): number {
+  const valRounded = Math.round(value * 4) / 4;
   return clamp(valRounded, 0, Infinity);
 }
 
@@ -38,7 +43,7 @@ export function powerSize(size: number, power: number = 0.68): number {
     return size;
   }
   const val = powerValue(size, power);
-  return roundToSize(val);
+  return roundToHalf(val);
 }
 
 export function autoContentHeight(height: number, heightRatio = BASE_HEIGHT_RATIO): number {

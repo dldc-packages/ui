@@ -6,7 +6,7 @@ import { Children, cloneElement, Fragment } from "react";
 
 import { DefaultDesignProvider, designPropsSplitter, TDesignProps } from "../design-context";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
-import { designVariantPropsSplitter, TDesignVariantProps, useDesignVariant } from "../variant";
+import { TDesignVariantProps, useVariant, variantPropsSplitter } from "../variant";
 
 export type ActionGroupProps = ComponentPropsBaseWith<
   "div",
@@ -24,11 +24,11 @@ export type ActionGroupProps = ComponentPropsBaseWith<
 
 export function ActionGroup(inProps: ActionGroupProps) {
   const [{ localDesignVariant, localDesign }, props] = pipePropsSplitters(inProps, {
-    localDesignVariant: designVariantPropsSplitter,
+    localDesignVariant: variantPropsSplitter,
     localDesign: designPropsSplitter,
   });
 
-  const { variant } = useDesignVariant(localDesignVariant, "surface");
+  const { variant } = useVariant(localDesignVariant, "surface");
   const {
     color,
     className,

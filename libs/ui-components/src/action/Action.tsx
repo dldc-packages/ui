@@ -10,7 +10,7 @@ import { actionContentPropsSplitter, TActionContentProps, useActionContent } fro
 import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
 import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
-import { designVariantPropsSplitter, TDesignVariantProps, useDesignVariant } from "../variant";
+import { TDesignVariantProps, useVariant, variantPropsSplitter } from "../variant";
 
 export type ActionSpecificProps = TActionContentProps &
   TDesignProps &
@@ -44,7 +44,7 @@ export type ActionProps = ComponentPropsBaseWith<"div", ActionSpecificProps>;
 
 export function Action(inProps: ActionProps) {
   const [{ localDesign, localActionContent, localDesignVariant }, props] = pipePropsSplitters(inProps, {
-    localDesignVariant: designVariantPropsSplitter,
+    localDesignVariant: variantPropsSplitter,
     localDesign: designPropsSplitter,
     localActionContent: actionContentPropsSplitter,
   });
@@ -69,7 +69,7 @@ export function Action(inProps: ActionProps) {
 
   const isDisabledAndInteractive = disabled && interactive;
 
-  const { hoverVariant, variant } = useDesignVariant(localDesignVariant, baseVariant);
+  const { hoverVariant, variant } = useVariant(localDesignVariant, baseVariant);
   const { height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(localDesign);
   const { startPadding, endPadding, fragment, noLayout } = useActionContent(localActionContent, children);
 
