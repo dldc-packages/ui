@@ -2,6 +2,8 @@ import { serializeSize } from "@dldc/ui-core/size";
 
 import { buildSizeTokenMap, range } from "./utils";
 
+const RADIUS_VALUES = [0, 0.5, ...range(1, 16 - 1, 1)];
+
 const SIZES_VALUES = [0, 0.5, ...range(1, 16 - 1, 1), ...range(16, 40 - 1, 2), ...range(40, 80, 4)];
 
 const PX_SIZES_VALUES = [...range(80 + 1, 1024 + 1, 32)];
@@ -19,4 +21,9 @@ export const sizes = {
   min: { value: "min-content" },
   max: { value: "max-content" },
   fit: { value: "fit-content" },
+};
+
+export const radius = {
+  ...buildSizeTokenMap(RADIUS_VALUES, serializeSize),
+  full: { value: "9999px" },
 };
