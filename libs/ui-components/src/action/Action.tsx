@@ -74,7 +74,10 @@ export function Action(inProps: ActionProps) {
 
   const isDisabledAndInteractive = disabled && interactive;
 
-  const { rounded, padding } = useGeometry(localGeometry, parseSize("0x"));
+  const { rounded, padding } = useGeometry(localGeometry, {
+    minRounded: parseSize("0x"),
+    defaultRounded: parseSize("1"),
+  });
   const { hoverVariant, variant } = useVariant(localDesignVariant, baseVariant);
   const { height, contentHeight, spacing, depth } = useFrameDesignProps(localDesign);
   const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(localActionContent, children);

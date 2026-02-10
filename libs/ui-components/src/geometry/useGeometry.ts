@@ -10,12 +10,17 @@ import { TGeometryProps } from "./types";
 const CONSTANT_RATIO = 0.2;
 const DECAY = 0.4;
 
-export function useGeometry(props: TGeometryProps, minRounded = 0) {
+export interface TUseGeometryOptions {
+  minRounded?: number;
+  defaultRounded?: number;
+}
+
+export function useGeometry(props: TGeometryProps, { minRounded = 0, defaultRounded = 0 }: TUseGeometryOptions = {}) {
   const parentGeometry = useParentGeometryContext();
   const defaultGeometry = useDefaultGeometry();
 
   const rounded = useMemo((): number | null => {
-    const definedRounded = props.rounded ?? defaultGeometry?.rounded;
+    const definedRounded = props.rounded ?? defaultGeometry?.rounded ?? defaultRounded;
     if (definedRounded !== undefined) {
       return clamp(parseSize(definedRounded), minRounded, Infinity);
     }
@@ -27,7 +32,7 @@ export function useGeometry(props: TGeometryProps, minRounded = 0) {
       minRounded,
       Infinity,
     );
-  }, [props.rounded, defaultGeometry?.rounded, parentGeometry, minRounded]);
+  }, [props.rounded, defaultGeometry?.rounded, parentGeometry, minRounded, defaultRounded]);
 
   const padding = useMemo(() => {
     return parseMaybeSize(props.padding ?? defaultGeometry?.padding) ?? 0;
