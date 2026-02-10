@@ -17,7 +17,12 @@ function RouteComponent() {
     <StoryLayout>
       <Prose invert>
         <h1>Select</h1>
-        <DesignWrapper height="10" color="blue" rounded="4" variant="solid">
+        <DesignWrapper
+          height="10"
+          color="blue"
+          // TODO rounded="4"
+          variant="solid"
+        >
           <div className={cn(notProseClass, proseBleedClass, "flex flex-col items-center gap-2")}>
             <div className="gap-0x flex flex-col">
               <Select.SelectProvider defaultValue="Apple">

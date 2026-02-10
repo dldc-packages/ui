@@ -1,11 +1,11 @@
-import { TActionContentPaddingResolved } from "@dldc/ui-styles/action-content";
+import { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
 import { ellipsisClass } from "@dldc/ui-styles/ellipsis";
 import { TPropsSplitter } from "@dldc/utils/props-splitters";
 import { Fragment } from "react/jsx-runtime";
 
 import { ActionSideSlot } from "./ActionSideSlot";
 
-export type TActionContentPadding = "auto" | TActionContentPaddingResolved;
+export type TActionContentPaddingMode = "auto" | TActionContentPaddingModeResolved;
 
 export interface TActionContentProps {
   startIcon?: React.ReactNode;
@@ -17,7 +17,7 @@ export interface TActionContentProps {
   /**
    * Apply padding to both sides of the content.
    */
-  padding?: TActionContentPadding;
+  paddingMode?: TActionContentPaddingMode;
 
   /**
    * Reduce left padding so the icon is squarely aligned.
@@ -26,7 +26,7 @@ export interface TActionContentProps {
    * - You pass a custom content that has a start icon
    * - You pass a startSlot that is not an icon
    */
-  startPadding?: TActionContentPadding;
+  startPaddingMode?: TActionContentPaddingMode;
 
   /**
    * Reduce right padding so the icon is squarely aligned.
@@ -35,7 +35,7 @@ export interface TActionContentProps {
    * - You pass a custom content that has an end icon
    * - You pass an endSlot that is not an icon
    */
-  endPadding?: TActionContentPadding;
+  endPaddingMode?: TActionContentPaddingMode;
 
   /**
    * If true, the padding and gap are not applied.
@@ -45,8 +45,8 @@ export interface TActionContentProps {
 
 export interface TActionContentResult {
   fragment: React.ReactNode;
-  startPadding: TActionContentPaddingResolved;
-  endPadding: TActionContentPaddingResolved;
+  startPaddingMode: TActionContentPaddingModeResolved;
+  endPaddingMode: TActionContentPaddingModeResolved;
   noLayout: boolean;
 }
 
@@ -57,9 +57,9 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
     startSlot,
     endIcon,
     endSlot,
-    padding = "auto",
-    endPadding = padding,
-    startPadding = padding,
+    paddingMode = "auto",
+    endPaddingMode = paddingMode,
+    startPaddingMode = paddingMode,
     noLayout = false,
   } = props;
 
@@ -71,11 +71,12 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
   const isEmpty = !hasStartSlot && !hasChildren && !hasEndSlot;
 
   const defaultStartPadding = noLayout ? "none" : isEmpty ? "icon" : iconOnly ? "icon" : hasStartSlot ? "icon" : "text";
-  const startPaddingResolved: TActionContentPaddingResolved =
-    startPadding === "auto" ? defaultStartPadding : startPadding;
+  const startPaddingResolved: TActionContentPaddingModeResolved =
+    startPaddingMode === "auto" ? defaultStartPadding : startPaddingMode;
 
   const defaultEndPadding = noLayout ? "none" : isEmpty ? "icon" : iconOnly ? "icon" : hasEndSlot ? "icon" : "text";
-  const endPaddingResolved: TActionContentPaddingResolved = endPadding === "auto" ? defaultEndPadding : endPadding;
+  const endPaddingResolved: TActionContentPaddingModeResolved =
+    endPaddingMode === "auto" ? defaultEndPadding : endPaddingMode;
 
   const fragment = (
     <Fragment>
@@ -104,8 +105,8 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
 
   return {
     fragment,
-    startPadding: startPaddingResolved,
-    endPadding: endPaddingResolved,
+    startPaddingMode: startPaddingResolved,
+    endPaddingMode: endPaddingResolved,
     noLayout,
   };
 }
@@ -115,9 +116,9 @@ const ACTION_CONTENT_PROPS_KEYS = Object.keys({
   startSlot: "startSlot",
   endIcon: "endIcon",
   endSlot: "endSlot",
-  padding: "padding",
-  startPadding: "startPadding",
-  endPadding: "endPadding",
+  paddingMode: "paddingMode",
+  startPaddingMode: "startPaddingMode",
+  endPaddingMode: "endPaddingMode",
   loading: "loading",
   noLayout: "noLayout",
 } satisfies { [K in keyof Required<TActionContentProps>]: K });

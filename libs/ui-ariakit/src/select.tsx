@@ -42,19 +42,25 @@ export function SelectLabel({ render, ...props }: SelectLabelProps) {
 SelectLabel.displayName = "SelectLabel";
 
 export type SelectProps = Merge<AKSelect.SelectProps, CSelect.SelectSpecificProps>;
-export function Select({ render, endPadding, startPadding, padding, children, ...props }: SelectProps) {
+export function Select({ render, endPaddingMode, startPaddingMode, paddingMode, children, ...props }: SelectProps) {
   const defaultChildren = (
     <ActionContentFragment endIcon={<SelectArrow />}>
       <AKSelect.SelectValue />
     </ActionContentFragment>
   );
 
-  const endPaddingResolved = endPadding ?? padding ?? "icon";
-  const startPaddingResolved = startPadding ?? padding ?? "text";
+  const endPaddingModeResolved = endPaddingMode ?? paddingMode ?? "icon";
+  const startPaddingModeResolved = startPaddingMode ?? paddingMode ?? "text";
 
   return (
     <AKSelect.Select
-      render={<CSelect.Select endPadding={endPaddingResolved} startPadding={startPaddingResolved} render={render} />}
+      render={
+        <CSelect.Select
+          endPaddingMode={endPaddingModeResolved}
+          startPaddingMode={startPaddingModeResolved}
+          render={render}
+        />
+      }
       {...props}
     >
       {children ?? defaultChildren}

@@ -38,12 +38,7 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
   const colorClass = color && dynamicColor[color];
 
   return (
-    <DefaultDesignProvider
-      contentHeight={inProps.contentHeight}
-      height={inProps.height}
-      rounded={inProps.rounded}
-      spacing={inProps.spacing}
-    >
+    <DefaultDesignProvider contentHeight={inProps.contentHeight} height={inProps.height} spacing={inProps.spacing}>
       <DefaultVariantProvider variant={inProps.variant} hoverVariant={inProps.hoverVariant}>
         {mergeRender(
           render,

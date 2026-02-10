@@ -1,8 +1,8 @@
-import { parseMaybeSize, parseSize, roundToHalf } from "@dldc/ui-core/size";
+import { parseMaybeSize, parseSize } from "@dldc/ui-core/size";
 import { clamp } from "@dldc/utils/math";
 import { withoutUndefined } from "@dldc/utils/object";
 
-import { BASE_HEIGHT, BASE_ROUNDED, DEFAULT_DESIGN, MIN_HEIGHT } from "./constants";
+import { BASE_HEIGHT, DEFAULT_DESIGN, MIN_HEIGHT } from "./constants";
 import {
   TDefaultDesignContext,
   TDesignContextResolved,
@@ -26,14 +26,12 @@ export function resolveFrameDesignProps(
   if (!parentCtx) {
     // We are in a root context
     const height = parseSize(props.height ?? BASE_HEIGHT);
-    const rounded = parseSize(props.rounded ?? BASE_ROUNDED);
     const contentHeight = resolveContentHeight(height, contentHeightProp);
 
     return {
       height,
       contentHeight,
       spacing,
-      rounded,
       depth,
     };
   }
@@ -42,16 +40,10 @@ export function resolveFrameDesignProps(
   const height = parseSize(props.height ?? autoHeight);
   const contentHeight = resolveContentHeight(height, contentHeightProp);
 
-  const padding = (parentCtx.height - height) / 2;
-
-  const autoRounded = resolvedAutoRounded(parentCtx.rounded, padding);
-  const rounded = parseSize(props.rounded ?? autoRounded);
-
   return {
     height,
     contentHeight,
     spacing,
-    rounded,
     depth,
   };
 }
@@ -69,12 +61,10 @@ export function resolveContainerDesignProps(
   if (!parentCtx) {
     // We are in a root context
     const height = parseSize(props.height ?? BASE_HEIGHT);
-    const rounded = parseSize(props.rounded ?? BASE_ROUNDED);
 
     return {
       height,
       contentHeight: height,
-      rounded,
       depth,
     };
   }
@@ -82,24 +72,11 @@ export function resolveContainerDesignProps(
   const autoHeight = parentCtx.contentHeight;
   const height = parseSize(props.height ?? autoHeight);
 
-  const padding = (parentCtx.height - height) / 2;
-
-  const autoRounded = resolvedAutoRounded(parentCtx.rounded, padding);
-  const rounded = parseSize(props.rounded ?? autoRounded);
-
   return {
     height,
     contentHeight: height,
-    rounded,
     depth,
   };
-}
-
-function resolvedAutoRounded(parentRadius: number, padding: number): number {
-  if (parentRadius === 0) {
-    return 0;
-  }
-  return clamp(roundToHalf(radiusScale(parentRadius, padding)), 0.5, Infinity);
 }
 
 function resolveProps(
@@ -139,8 +116,4 @@ function resolveContentHeight(height: number, contentHeight: number | null): num
   }
   // Auto content height based on the height
   return autoContentHeight(height);
-}
-
-function radiusScale(parentRadius: number, distance: number, scale = 1): number {
-  return parentRadius * Math.exp(-(scale * distance) / parentRadius);
 }

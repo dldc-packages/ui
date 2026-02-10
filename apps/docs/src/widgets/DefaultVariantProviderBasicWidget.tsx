@@ -3,7 +3,7 @@ import { Action } from "@dldc/ui-components/action";
 import { DefaultDesignProvider } from "@dldc/ui-components/design-context";
 import { Input } from "@dldc/ui-components/input";
 import { Paper } from "@dldc/ui-components/paper";
-import { DefaultDesignVariantProvider } from "@dldc/ui-components/variant";
+import { DefaultVariantProvider } from "@dldc/ui-components/variant";
 import { Fragment, useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -12,7 +12,7 @@ import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 import { printElement } from "../utils/printElement";
 
-export function DefaultDesignProviderBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
+export function DefaultVariantProviderBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const examples = [
     {
       key: "without",
@@ -30,11 +30,11 @@ export function DefaultDesignProviderBasicWidget({ className, ...props }: Compon
       label: "With Provider",
       element: (
         <DefaultDesignProvider height="9">
-          <DefaultDesignVariantProvider variant="solid">
+          <DefaultVariantProvider variant="solid">
             <Action>Action</Action>
             <Button>Button</Button>
             <Input placeholder="Input" />
-          </DefaultDesignVariantProvider>
+          </DefaultVariantProvider>
         </DefaultDesignProvider>
       ),
     },

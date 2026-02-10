@@ -18,11 +18,10 @@ export const ParentDesignContext = createContext<TParentDesignContext | null>(nu
 export function SizeContextProvider({
   height,
   contentHeight,
-  rounded,
   children,
   depth,
 }: PropsWithChildren<TParentDesignContext>) {
-  const value = useMemo(() => ({ height, contentHeight, rounded, depth }), [height, contentHeight, rounded, depth]);
+  const value = useMemo(() => ({ height, contentHeight, depth }), [height, contentHeight, depth]);
   return <ParentDesignContext value={value}>{children}</ParentDesignContext>;
 }
 

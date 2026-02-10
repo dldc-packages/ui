@@ -1,18 +1,22 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
+import { parseSize } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { actionStyles } from "@dldc/ui-styles/action";
 import { actionContentStyles } from "@dldc/ui-styles/action-content";
+import { geometryStyles } from "@dldc/ui-styles/geometry";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
 import { actionContentPropsSplitter, TActionContentProps, useActionContent } from "../action-content/index";
 import { designPropsSplitter, SizeContextProvider, TDesignProps, useFrameDesignProps } from "../design-context";
+import { geometryPropsSplitter, ParentGeometryContextProvider, TGeometryProps, useGeometry } from "../geometry";
 import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 import { TDesignVariantProps, useVariant, variantPropsSplitter } from "../variant";
 
 export type ActionSpecificProps = TActionContentProps &
+  TGeometryProps &
   TDesignProps &
   TDesignVariantProps & {
     /**
@@ -43,8 +47,9 @@ export type ActionSpecificProps = TActionContentProps &
 export type ActionProps = ComponentPropsBaseWith<"div", ActionSpecificProps>;
 
 export function Action(inProps: ActionProps) {
-  const [{ localDesign, localActionContent, localDesignVariant }, props] = pipePropsSplitters(inProps, {
+  const [{ localDesign, localGeometry, localActionContent, localDesignVariant }, props] = pipePropsSplitters(inProps, {
     localDesignVariant: variantPropsSplitter,
+    localGeometry: geometryPropsSplitter,
     localDesign: designPropsSplitter,
     localActionContent: actionContentPropsSplitter,
   });
@@ -69,14 +74,14 @@ export function Action(inProps: ActionProps) {
 
   const isDisabledAndInteractive = disabled && interactive;
 
+  const { rounded, padding } = useGeometry(localGeometry, parseSize("0x"));
   const { hoverVariant, variant } = useVariant(localDesignVariant, baseVariant);
-  const { height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(localDesign);
-  const { startPadding, endPadding, fragment, noLayout } = useActionContent(localActionContent, children);
+  const { height, contentHeight, spacing, depth } = useFrameDesignProps(localDesign);
+  const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(localActionContent, children);
 
   const [baseClass, baseInline] = actionStyles({
     height,
     contentHeight,
-    rounded,
     variant,
     color,
     hoverVariant,
@@ -84,22 +89,30 @@ export function Action(inProps: ActionProps) {
     highlightColor,
     highlighted,
   });
-
-  const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
+  const [geometryClass, geometryInline] = geometryStyles(rounded, padding);
+  const [contentClass, contentInline] = actionContentStyles(
+    contentHeight,
+    spacing,
+    startPaddingMode,
+    endPaddingMode,
+    noLayout,
+  );
 
   // Merge base props into the custom render element
   return mergeRender(
     render,
     <div
-      className={clsx(baseClass, contentClass, className)}
-      style={{ ...baseInline, ...contentInline, ...style }}
+      className={clsx(baseClass, geometryClass, contentClass, className)}
+      style={{ ...baseInline, ...geometryInline, ...contentInline, ...style }}
       aria-disabled={isDisabledAndInteractive}
       ref={ref}
       {...htmlProps}
     >
-      <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>
-        {fragment}
-      </SizeContextProvider>
+      <ParentGeometryContextProvider rounded={rounded} padding={padding}>
+        <SizeContextProvider height={height} contentHeight={contentHeight} depth={depth}>
+          {fragment}
+        </SizeContextProvider>
+      </ParentGeometryContextProvider>
     </div>,
   );
 }

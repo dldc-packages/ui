@@ -7,7 +7,7 @@ import { useDefaultGeometry } from "./DefaultGeometryContext";
 import { useParentGeometryContext } from "./ParentGeometryContext";
 import { TGeometryProps } from "./types";
 
-const CONSTANT_THRESHOLD = 2;
+const CONSTANT_RATIO = 0.2;
 const DECAY = 0.4;
 
 export function useGeometry(props: TGeometryProps, minRounded = 0) {
@@ -23,7 +23,7 @@ export function useGeometry(props: TGeometryProps, minRounded = 0) {
       return null;
     }
     return clamp(
-      roundToQuarter(nestedRadius(parentGeometry.rounded, parentGeometry.padding, CONSTANT_THRESHOLD, DECAY)),
+      roundToQuarter(nestedRadius(parentGeometry.rounded, parentGeometry.padding, CONSTANT_RATIO, DECAY)),
       minRounded,
       Infinity,
     );

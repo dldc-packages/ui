@@ -43,11 +43,16 @@ export function SelectItem(inProps: SelectItemProps) {
     ...htmlProps
   } = props;
 
-  const { height, contentHeight, spacing, rounded, depth } = useFrameDesignProps(localDesign);
+  const { height, contentHeight, spacing, depth } = useFrameDesignProps(localDesign);
 
-  const { startPadding, endPadding, fragment, noLayout } = useActionContent(localActionContent, children);
+  const {
+    startPaddingMode: startPadding,
+    endPaddingMode: endPadding,
+    fragment,
+    noLayout,
+  } = useActionContent(localActionContent, children);
 
-  const [baseClass, baseInline] = selectItemStyles({ height, contentHeight, rounded, color, disabled });
+  const [baseClass, baseInline] = selectItemStyles({ height, contentHeight, color, disabled });
 
   const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
 
@@ -59,7 +64,7 @@ export function SelectItem(inProps: SelectItemProps) {
       ref={ref}
       {...htmlProps}
     >
-      <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>
+      <SizeContextProvider height={height} contentHeight={contentHeight} depth={depth}>
         {fragment}
       </SizeContextProvider>
     </div>,

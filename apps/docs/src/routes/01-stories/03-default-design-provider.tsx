@@ -4,8 +4,8 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
-import { DefaultDesignProviderBasicWidget } from "@/widgets/DefaultDesignProviderBasicWidget";
-import { DefaultDesignProviderNestedWidget } from "@/widgets/DefaultDesignProviderNestedWidget";
+import { DefaultVariantProviderBasicWidget } from "@/widgets/DefaultVariantProviderBasicWidget";
+import { DefaultVariantProviderNestedWidget } from "@/widgets/DefaultVariantProviderNestedWidget";
 import { ProvideColorPaletteWidget } from "@/widgets/ProvideColorPaletteWidget";
 
 export const Route = createFileRoute("/01-stories/03-default-design-provider")({
@@ -37,7 +37,7 @@ function RouteComponent() {
           Use <code>DefaultDesignProvider</code> to set default design properties that will be inherited by all child
           components. Any component that uses the design system will automatically pick up these defaults.
         </p>
-        <DefaultDesignProviderBasicWidget className={cn(notProseClass, proseBleedClass)} />
+        <DefaultVariantProviderBasicWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Nested Providers</h2>
         <p>
           <code>DefaultDesignProvider</code> can be nested to create hierarchical design contexts. Inner providers
@@ -47,7 +47,7 @@ function RouteComponent() {
           The nested design system automatically calculates appropriate sizes, spacing, and rounded values for deeply
           nested components, ensuring visual harmony across the hierarchy.
         </p>
-        <DefaultDesignProviderNestedWidget className={cn(notProseClass, proseBleedClass)} />
+        <DefaultVariantProviderNestedWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Available Properties</h2>
         <p>
           <code>DefaultDesignProvider</code> accepts all design properties that can be passed to individual components:

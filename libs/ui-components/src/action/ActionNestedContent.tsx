@@ -33,8 +33,12 @@ export function ActionNestedContent(inProps: ActionNestedContentProps) {
     ...htmlProps
   } = props;
 
-  const { spacing, contentHeight, height, rounded, depth } = useFrameDesignProps(localDesign);
-  const { startPadding, endPadding, fragment } = useActionContent(localActionContent, children);
+  const { spacing, contentHeight, height, depth } = useFrameDesignProps(localDesign);
+  const {
+    startPaddingMode: startPadding,
+    endPaddingMode: endPadding,
+    fragment,
+  } = useActionContent(localActionContent, children);
 
   const [heightClass, heightInline] = heightStyles(height);
   const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, false);
@@ -46,7 +50,7 @@ export function ActionNestedContent(inProps: ActionNestedContentProps) {
       {...htmlProps}
     >
       <DefaultDesignProvider {...localDesign} height={null}>
-        <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>
+        <SizeContextProvider height={height} contentHeight={contentHeight} depth={depth}>
           {fragment}
         </SizeContextProvider>
       </DefaultDesignProvider>

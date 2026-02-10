@@ -21,7 +21,6 @@ export { layer };
 interface ActionStylesParams {
   height: number;
   contentHeight: number;
-  rounded: number;
   variant: TDesignVariant;
   color: TPaletteColor | undefined;
   hoverVariant: TDesignVariant;
@@ -31,11 +30,9 @@ interface ActionStylesParams {
 }
 
 export function actionStyles(params: ActionStylesParams): [className: string, styles: CSSProperties] {
-  const { height, contentHeight, rounded, variant, color, interactive, hoverVariant, highlightColor, highlighted } =
-    params;
+  const { height, contentHeight, variant, color, interactive, hoverVariant, highlightColor, highlighted } = params;
 
   const [heightClass, heightInline] = heightStyles(height);
-  // const [roundedClass, roundedInline] = roundedStyles(rounded);
   const [contentClass, contentInline] = contentSize(contentHeight);
 
   return [
@@ -48,7 +45,6 @@ export function actionStyles(params: ActionStylesParams): [className: string, st
       interactive && actionInteractiveVariantsClass[variant],
       interactive && actionInteractiveHoverVariantsClass[hoverVariant],
       contentClass,
-      // roundedClass,
       color && dynamicColor[color],
       highlighted && actionHighlightClass,
       highlighted && actionHighlightColorsClass[highlightColor],
@@ -56,7 +52,6 @@ export function actionStyles(params: ActionStylesParams): [className: string, st
     {
       ...heightInline,
       ...contentInline,
-      // ...roundedInline,
     },
   ];
 }

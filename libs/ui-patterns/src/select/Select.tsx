@@ -131,7 +131,7 @@ export function Select<Value extends string>(inProps: SelectProps<Value>) {
             {...htmlProps}
             render={
               renderSelect ?? (
-                <Button endPadding="icon" startPadding={selectedItem && selectedItem.icon ? "icon" : "text"} />
+                <Button endPaddingMode="icon" startPaddingMode={selectedItem && selectedItem.icon ? "icon" : "text"} />
               )
             }
           >

@@ -26,7 +26,7 @@ export function SelectItem(inProps: SelectItemProps) {
   }
   const checked = Ariakit.useStoreState(store, (state) => state.value === item.value);
 
-  const { startPadding, endPadding, fragment, noLayout } = useActionContent(
+  const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(
     {
       endIcon: checked ? <Ariakit.SelectItemCheck render={<CheckIcon children={null} />} /> : item.endIcon,
       startIcon: item.icon,
@@ -36,7 +36,13 @@ export function SelectItem(inProps: SelectItemProps) {
 
   const { height, contentHeight, spacing } = useFrameDesignProps(localDesign);
   const [heightClass, heightInline] = heightStyles(height);
-  const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
+  const [contentClass, contentInline] = actionContentStyles(
+    contentHeight,
+    spacing,
+    startPaddingMode,
+    endPaddingMode,
+    noLayout,
+  );
 
   return (
     <Ariakit.SelectItem

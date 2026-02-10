@@ -13,10 +13,10 @@ export type GeometrySpecificProps = TGeometryProps;
 export type GeometryProps = ComponentPropsBaseWith<"div", GeometrySpecificProps>;
 
 export function Geometry(inProps: GeometryProps) {
-  const [{ geometryProps }, props] = pipePropsSplitters(inProps, {
-    geometryProps: geometryPropsSplitter,
+  const [{ localGeometry }, props] = pipePropsSplitters(inProps, {
+    localGeometry: geometryPropsSplitter,
   });
-  const { rounded, padding } = useGeometry(geometryProps);
+  const { rounded, padding } = useGeometry(localGeometry);
   const { className, style, children, ...divProps } = props;
   const [geometryClass, geometryInline] = geometryStyles(rounded, padding);
 

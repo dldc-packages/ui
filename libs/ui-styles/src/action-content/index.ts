@@ -16,19 +16,19 @@ import {
 
 export { layer };
 
-export type TActionContentPaddingResolved = "icon" | "text" | "none";
+export type TActionContentPaddingModeResolved = "icon" | "text" | "none";
 
 export function actionContentStyles(
   contentHeight: number,
   spacing: number | null,
-  startPadding: TActionContentPaddingResolved,
-  endPadding: TActionContentPaddingResolved,
+  startPaddingMode: TActionContentPaddingModeResolved,
+  endPaddingMode: TActionContentPaddingModeResolved,
   noLayout: boolean,
 ): [className: string, styles: CSSProperties] {
   return [
     clsx(
-      actionContentStartPaddingClass[startPadding],
-      actionContentEndPaddingClass[endPadding],
+      actionContentStartPaddingClass[startPaddingMode],
+      actionContentEndPaddingClass[endPaddingMode],
       !noLayout && actionContentLayoutClass,
     ),
     assignInlineVars({

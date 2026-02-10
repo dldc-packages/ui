@@ -10,36 +10,22 @@ export { layer, listWrappertClass };
 interface SelectItemStylesParams {
   height: number;
   contentHeight: number;
-  rounded: number;
   color: TPaletteColor | undefined;
   disabled: boolean;
 }
 
 export function selectItemStyles(params: SelectItemStylesParams): [className: string, styles: CSSProperties] {
-  const { height, rounded, contentHeight, color } = params;
+  const { height, contentHeight, color } = params;
 
   const [heightClass, heightInline] = heightStyles(height);
-  // const [roundedClass, roundedInline] = roundedStyles(rounded);
   const [contentClass, contentInline] = contentSize(contentHeight);
 
   return [
-    clsx(heightClass, listItemClass, contentClass, /*roundedClass,*/ color && dynamicColor[color]),
-    { ...heightInline, ...contentInline /*, ...roundedInline*/ },
+    clsx(heightClass, listItemClass, contentClass, color && dynamicColor[color]),
+    { ...heightInline, ...contentInline },
   ];
 }
 
-interface SelectPopoverStylesParams {
-  rounded: number;
-}
-
-export function selectPopoverStyles({
-  rounded,
-}: SelectPopoverStylesParams): [className: string, styles: CSSProperties] {
-  // const [roundedClass, roundedInline] = roundedStyles(rounded);
-  return [
-    clsx(selectPopoverClass, listWrappertClass /*, roundedClass*/),
-    {
-      /* ...roundedInline */
-    },
-  ];
+export function selectPopoverStyles(): [className: string, styles: CSSProperties] {
+  return [clsx(selectPopoverClass, listWrappertClass), {}];
 }

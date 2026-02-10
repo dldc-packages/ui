@@ -16,9 +16,9 @@ export function SelectPopover(inProps: SelectPopoverProps) {
   const { className, style, background = "875", children, ...props } = inProps;
 
   // TODO: Migrate to Context spacing
-  const { rounded, contentHeight, height, depth } = useContainerDesignProps({ rounded: inProps.rounded });
+  const { contentHeight, height, depth } = useContainerDesignProps({});
 
-  const [popoverClass, popoverStyles] = selectPopoverStyles({ rounded });
+  const [popoverClass, popoverStyles] = selectPopoverStyles();
 
   return (
     <Paper
@@ -27,7 +27,7 @@ export function SelectPopover(inProps: SelectPopoverProps) {
       style={{ ...popoverStyles, ...style }}
       {...props}
     >
-      <SizeContextProvider height={height} contentHeight={contentHeight} rounded={rounded} depth={depth}>
+      <SizeContextProvider height={height} contentHeight={contentHeight} depth={depth}>
         {children}
       </SizeContextProvider>
     </Paper>
