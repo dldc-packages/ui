@@ -8,7 +8,7 @@
     "build": "turbo run build",
     "libs:build": "turbo run build --filter='./libs/*'",
     "all:typecheck": "turbo run typecheck",
-    "libs:watch": "turbo watch --filter='./libs/*' build",
+    "libs:watch": "turbo watch --filter='./libs/*' build -- --no-clean",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "pnpm run libs:build && changeset publish"

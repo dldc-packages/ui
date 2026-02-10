@@ -17,7 +17,7 @@ export { geometryPaddingVar, geometryRoundedVar } from "./geometry.css";
  * @param decay Decay factor for the exponential part of the formula. Higher values make the radius decrease faster after the threshold. Default is 1.
  * @returns
  */
-export function nestedRadius(parentRadius: number, distance: number, constantRatio = 0.1, decay = 1): number {
+export function nestedRadius(parentRadius: number, distance: number, constantRatio = 0.2, decay = 1): number {
   const constantThreshold = parentRadius * constantRatio;
   if (distance <= constantThreshold) {
     return Math.max(0, parentRadius - distance);
