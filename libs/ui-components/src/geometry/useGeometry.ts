@@ -8,25 +8,26 @@ import { useParentGeometryContext } from "./ParentGeometryContext";
 import { TGeometryProps } from "./types";
 
 const CONSTANT_RATIO = 0.2;
-const DECAY = 0.4;
+const DECAY = 1;
 
 export interface TUseGeometryOptions {
   minRounded?: number;
   defaultRounded?: number;
 }
 
-export function useGeometry(props: TGeometryProps, { minRounded = 0, defaultRounded = 0 }: TUseGeometryOptions = {}) {
+export function useGeometry(props: TGeometryProps, { minRounded = 0, defaultRounded }: TUseGeometryOptions = {}) {
   const parentGeometry = useParentGeometryContext();
   const defaultGeometry = useDefaultGeometry();
 
   const rounded = useMemo((): number | null => {
-    const definedRounded = props.rounded ?? defaultGeometry?.rounded ?? defaultRounded;
+    const definedRounded = props.rounded ?? defaultGeometry?.rounded;
     if (definedRounded !== undefined) {
       return clamp(parseSize(definedRounded), minRounded, Infinity);
     }
     if (!parentGeometry || parentGeometry.rounded === null) {
-      return null;
+      return defaultRounded ?? null;
     }
+
     return clamp(
       roundToQuarter(nestedRadius(parentGeometry.rounded, parentGeometry.padding, CONSTANT_RATIO, DECAY)),
       minRounded,
