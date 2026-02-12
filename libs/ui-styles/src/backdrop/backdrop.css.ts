@@ -2,15 +2,13 @@ import { colorsVars, opacity } from "@dldc/ui-core/colors";
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { style } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.backdrop";
+import { withLayer } from "../utils/layer";
 
-export const backdropClass = style({
-  "@layer": {
-    [layer]: {
-      position: "fixed",
-      inset: 0,
-      backgroundColor: opacity(colorsVars.black, 30),
-      backdropFilter: `blur(${sizeToRemString(1)})`,
-    },
-  },
-});
+export const backdropClass = style(
+  withLayer({
+    position: "fixed",
+    inset: 0,
+    backgroundColor: opacity(colorsVars.black, 30),
+    backdropFilter: `blur(${sizeToRemString(1)})`,
+  }),
+);

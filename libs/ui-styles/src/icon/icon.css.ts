@@ -1,28 +1,24 @@
 import { globalStyle, style } from "@vanilla-extract/css";
 
 import { designContentSizeVar } from "../common/index";
+import { withLayer } from "../utils/layer";
 
-export const layer = "dldc.ui-styles.icon";
+export const iconClass = style(
+  withLayer({
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    width: designContentSizeVar,
+    height: designContentSizeVar,
+  }),
+);
 
-export const iconClass = style({
-  "@layer": {
-    [layer]: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center",
-      flexShrink: 0,
-      width: designContentSizeVar,
-      height: designContentSizeVar,
-    },
-  },
-});
-
-globalStyle(`${iconClass} > *`, {
-  "@layer": {
-    [layer]: {
-      width: "100%",
-      height: "100%",
-    },
-  },
-});
+globalStyle(
+  `${iconClass} > *`,
+  withLayer({
+    width: "100%",
+    height: "100%",
+  }),
+);

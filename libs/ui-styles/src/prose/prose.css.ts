@@ -2,13 +2,8 @@ import { colorsVars, opacity } from "@dldc/ui-core/colors";
 import { createGlobalTheme, createTheme, globalStyle, GlobalStyleRule, style } from "@vanilla-extract/css";
 
 import { designContentSizeVar } from "../common/index";
+import { layer, withLayer } from "../utils/layer";
 import { em, rem, round } from "./utils";
-
-export const layer = "dldc.ui-styles.prose";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
 
 export const notProseClass = style({});
 export const proseBaseClass = style({});

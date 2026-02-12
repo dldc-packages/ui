@@ -3,9 +3,7 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import { designContentSizeVar } from "../common/index";
 import { CSSProperties } from "../utils/types";
-import { iconClass, layer } from "./icon.css";
-
-export { layer };
+import { iconClass } from "./icon.css";
 
 export function iconStyles(size: TDesignHeight | undefined): [classNames: string, styles: CSSProperties] {
   return [

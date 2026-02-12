@@ -3,9 +3,9 @@ import { clsx } from "clsx";
 
 import { contentSize, heightStyles } from "../common";
 import { CSSProperties } from "../utils/types";
-import { layer, listItemClass, listWrappertClass, selectPopoverClass } from "./select.css";
+import { listItemClass, listWrappertClass, selectPopoverClass } from "./select.css";
 
-export { layer, listWrappertClass };
+export { listWrappertClass };
 
 interface SelectItemStylesParams {
   height: number;

@@ -1,6 +1,6 @@
 import { createVar, keyframes, style } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.animations";
+import { withLayer } from "../utils/layer";
 
 const rotateKeyframes = keyframes({
   "0%": { transform: "rotate(0deg)" },
@@ -13,18 +13,16 @@ const traceKeyframes = keyframes({
   "100%": { strokeDashoffset: "0" },
 });
 
-export const spinClass = style({
-  "@layer": {
-    [layer]: { animation: `${rotateKeyframes} 3s linear infinite` },
-  },
-});
+export const spinClass = style(
+  withLayer({
+    animation: `${rotateKeyframes} 3s linear infinite`,
+  }),
+);
 
-export const traceClass = style({
-  "@layer": {
-    [layer]: {
-      animation: `${traceKeyframes} 2s ease-in-out infinite`,
-      animationDirection: "alternate",
-      strokeDasharray: traceLengthVar,
-    },
-  },
-});
+export const traceClass = style(
+  withLayer({
+    animation: `${traceKeyframes} 2s ease-in-out infinite`,
+    animationDirection: "alternate",
+    strokeDasharray: traceLengthVar,
+  }),
+);

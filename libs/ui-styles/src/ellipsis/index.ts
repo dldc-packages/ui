@@ -1,1 +1,1 @@
-export { ellipsisClass, layer } from "./ellipsis.css";
+export { ellipsisClass } from "./ellipsis.css";

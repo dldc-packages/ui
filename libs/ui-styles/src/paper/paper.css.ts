@@ -2,11 +2,7 @@ import { colorsVars, NEUTRAL_COLOR_SHADES, opacity, TNeutralColorShade } from "@
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { style } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.paper";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export const paperBaseClass = style(
   withLayer({

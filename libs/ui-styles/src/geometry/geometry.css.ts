@@ -1,11 +1,7 @@
 import { geometryPaddingVar, geometryRoundedVar } from "@dldc/ui-core/geometry";
 import { style, styleVariants } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.geometry";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export const geometryRoundedClass = style(
   withLayer({

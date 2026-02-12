@@ -13,10 +13,7 @@ import {
   actionInteractiveHoverVariantsClass,
   actionInteractiveVariantsClass,
   actionVariantsClass,
-  layer,
 } from "./action.css";
-
-export { layer };
 
 interface ActionStylesParams {
   height: number;

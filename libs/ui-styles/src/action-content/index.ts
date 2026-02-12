@@ -10,11 +10,8 @@ import {
   actionContentEndPaddingClass,
   actionContentLayoutClass,
   actionContentStartPaddingClass,
-  layer,
   spacingGapVar,
 } from "./actionContent.css";
-
-export { layer };
 
 export type TActionContentPaddingModeResolved = "icon" | "text" | "none";
 

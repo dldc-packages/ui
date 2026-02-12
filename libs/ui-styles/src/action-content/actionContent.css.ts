@@ -2,12 +2,7 @@ import { createVar, style, styleVariants } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
 
 import { designContentSizeVar } from "../common/index";
-
-export const layer = "dldc.ui-styles.action-content";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export const spacingGapVar = createVar("spacing-gap");
 

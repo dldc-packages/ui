@@ -2,11 +2,7 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { createVar, style } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
 
-export const layer = "dldc.ui-styles.common";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export const designHeightVar = createVar(
   { syntax: "<length>", inherits: false, initialValue: sizeToRemString(7) },

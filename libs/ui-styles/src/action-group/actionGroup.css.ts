@@ -6,12 +6,7 @@ import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "
 import { calc } from "@vanilla-extract/css-utils";
 
 import { actionInteractiveClass } from "../action/action.css";
-
-export const layer = "dldc.ui-styles.action-group";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 const separatorWidthVar = createVar(
   { syntax: "length", initialValue: sizeToRemString("0_x"), inherits: true },
@@ -27,13 +22,9 @@ export const actionGroupClass = style(
 );
 
 function separatorWidthWithLayer(value: string) {
-  return {
-    "@layer": {
-      [layer]: {
-        vars: { [separatorWidthVar]: value },
-      },
-    },
-  };
+  return withLayer({
+    vars: { [separatorWidthVar]: value },
+  });
 }
 
 /**

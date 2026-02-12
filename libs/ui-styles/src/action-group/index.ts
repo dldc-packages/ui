@@ -11,10 +11,7 @@ import {
   actionGroupSeparatorDirectionClass,
   actionGroupSeparatorVariantClass,
   actionGroupVariantsClass,
-  layer,
 } from "./actionGroup.css";
-
-export { layer };
 
 export interface ActionGroupStylesParams {
   direction: "horizontal" | "vertical";

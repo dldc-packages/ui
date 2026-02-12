@@ -1,1 +1,1 @@
-export { actionInputContentClass, layer } from "./actionInput.css";
+export { actionInputContentClass } from "./actionInput.css";

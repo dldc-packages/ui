@@ -1,1 +1,1 @@
-export { loadingBlockClass, loadingTextClass, layer } from "./loadingBlock.css";
+export { loadingBlockClass, loadingTextClass } from "./loadingBlock.css";

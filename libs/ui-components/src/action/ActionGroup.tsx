@@ -5,12 +5,14 @@ import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
 
 import { DefaultDesignProvider, designPropsSplitter, TDesignProps } from "../design-context";
+import { DefaultGeometryProvider, geometryPropsSplitter, TGeometryProps } from "../geometry";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
-import { TDesignVariantProps, useVariant, variantPropsSplitter } from "../variant";
+import { DefaultVariantProvider, TDesignVariantProps, useVariant, variantPropsSplitter } from "../variant";
 
 export type ActionGroupProps = ComponentPropsBaseWith<
   "div",
-  TDesignProps &
+  TGeometryProps &
+    TDesignProps &
     TDesignVariantProps & {
       disabled?: boolean;
 
@@ -23,8 +25,9 @@ export type ActionGroupProps = ComponentPropsBaseWith<
 >;
 
 export function ActionGroup(inProps: ActionGroupProps) {
-  const [{ localDesignVariant, localDesign }, props] = pipePropsSplitters(inProps, {
+  const [{ localDesignVariant, localDesign, localGeometry }, props] = pipePropsSplitters(inProps, {
     localDesignVariant: variantPropsSplitter,
+    localGeometry: geometryPropsSplitter,
     localDesign: designPropsSplitter,
   });
 
@@ -60,28 +63,32 @@ export function ActionGroup(inProps: ActionGroupProps) {
 
   return (
     <DefaultDesignProvider {...localDesign}>
-      <div className={clsx(baseClass, className)} style={{ ...baseInline, ...style }} {...divProps}>
-        {Children.map(childrenFiltered, (child, i) => {
-          if (!child) return null;
+      <DefaultVariantProvider {...localDesignVariant}>
+        <DefaultGeometryProvider {...localGeometry}>
+          <div className={clsx(baseClass, className)} style={{ ...baseInline, ...style }} {...divProps}>
+            {Children.map(childrenFiltered, (child, i) => {
+              if (!child) return null;
 
-          const isFirst = i === 0;
-          const isLast = i === childrenLength - 1;
-          const roundStart = roundedStart && isFirst;
-          const roundEnd = roundedEnd && isLast;
-          const roundedBase = roundStart && roundEnd ? "all" : roundStart ? "start" : roundEnd ? "end" : "none";
+              const isFirst = i === 0;
+              const isLast = i === childrenLength - 1;
+              const roundStart = roundedStart && isFirst;
+              const roundEnd = roundedEnd && isLast;
+              const roundedBase = roundStart && roundEnd ? "all" : roundStart ? "start" : roundEnd ? "end" : "none";
 
-          return (
-            <Fragment>
-              {innerDividers && !isFirst && <span className={separatorClass} style={separatorInline} />}
-              {cloneElement(child as any, {
-                ["data-first"]: roundedBase === "start" ? "true" : undefined,
-                ["data-last"]: roundedBase === "end" ? "true" : undefined,
-                ["data-between"]: roundedBase === "none" ? "true" : undefined,
-              })}
-            </Fragment>
-          );
-        })}
-      </div>
+              return (
+                <Fragment>
+                  {innerDividers && !isFirst && <span className={separatorClass} style={separatorInline} />}
+                  {cloneElement(child as any, {
+                    ["data-first"]: roundedBase === "start" ? "true" : undefined,
+                    ["data-last"]: roundedBase === "end" ? "true" : undefined,
+                    ["data-between"]: roundedBase === "none" ? "true" : undefined,
+                  })}
+                </Fragment>
+              );
+            })}
+          </div>
+        </DefaultGeometryProvider>
+      </DefaultVariantProvider>
     </DefaultDesignProvider>
   );
 }

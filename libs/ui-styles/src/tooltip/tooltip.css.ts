@@ -2,11 +2,7 @@ import { colorsVars } from "@dldc/ui-core/colors";
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { style } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.tooltip";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export const tooltipClass = style(
   withLayer({

@@ -1,25 +1,18 @@
 import { colorsVars, dynamicColorVars, opacity } from "@dldc/ui-core/colors";
 import {
+  _activeItem,
   _after,
-  _disabledHover,
-  _focusWithin,
+  _disabledActiveItem,
   _focusWithinVisible,
-  _hover,
   isAfter,
   isDisabled,
   isFocusWithin,
   isHover,
-  _disabledActiveItem,
-  _activeItem,
 } from "@dldc/ui-core/conditions";
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { globalStyle, style } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.select";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export const listWrappertClass = style(
   withLayer({

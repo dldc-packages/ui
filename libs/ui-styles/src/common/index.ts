@@ -2,9 +2,9 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import { CSSProperties } from "../utils/types";
-import { designContentSizeClass, designContentSizeVar, designHeightClass, designHeightVar, layer } from "./common.css";
+import { designContentSizeClass, designContentSizeVar, designHeightClass, designHeightVar } from "./common.css";
 
-export { designContentSizeVar, designHeightVar, layer };
+export { designContentSizeVar, designHeightVar };
 
 export function heightStyles(height: number): [classNames: string, styles: CSSProperties] {
   return [designHeightClass, assignInlineVars({ [designHeightVar]: sizeToRemString(height) })];

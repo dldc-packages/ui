@@ -16,11 +16,7 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.action";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 const borderWidthVar = createVar("border-width");
 const focusBorderWidthVar = createVar("focus-border-width");

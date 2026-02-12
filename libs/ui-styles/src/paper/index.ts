@@ -1,1 +1,1 @@
-export { layer, paperBaseClass, paperClass } from "./paper.css";
+export { paperBaseClass, paperClass } from "./paper.css";

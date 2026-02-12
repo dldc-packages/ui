@@ -1,1 +1,1 @@
-export { backdropClass, layer } from "./backdrop.css";
+export { backdropClass } from "./backdrop.css";

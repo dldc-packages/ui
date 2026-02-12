@@ -1,10 +1,6 @@
 import { ComplexStyleRule, styleVariants } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.modal";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export type TModalWidth = "xs" | "sm" | "md" | "lg" | "full";
 

@@ -1,10 +1,6 @@
 import { recipe } from "@vanilla-extract/recipes";
 
-export const layer = "dldc.ui-styles.stack";
-
-function withLayer<const Value>(rule: Value) {
-  return { "@layer": { [layer]: rule } };
-}
+import { withLayer } from "../utils/layer";
 
 export const stackClass = recipe({
   base: withLayer({ display: "flex" }),

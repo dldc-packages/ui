@@ -1,28 +1,24 @@
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { style } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.loading-block";
+import { withLayer } from "../utils/layer";
 
-export const loadingBlockClass = style({
-  "@layer": {
-    [layer]: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      gap: sizeToRemString("3"),
-      paddingBlock: sizeToRemString("6"),
-    },
-  },
-});
+export const loadingBlockClass = style(
+  withLayer({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: sizeToRemString("3"),
+    paddingBlock: sizeToRemString("6"),
+  }),
+);
 
-export const loadingTextClass = style({
-  "@layer": {
-    [layer]: {
-      textTransform: "uppercase",
-      letterSpacing: "wider",
-      // textStyle: "4",
-      fontWeight: "semibold",
-      paddingLeft: sizeToRemString("3"),
-    },
-  },
-});
+export const loadingTextClass = style(
+  withLayer({
+    textTransform: "uppercase",
+    letterSpacing: "wider",
+    // textStyle: "4",
+    fontWeight: "semibold",
+    paddingLeft: sizeToRemString("3"),
+  }),
+);

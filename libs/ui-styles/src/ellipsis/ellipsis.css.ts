@@ -1,13 +1,11 @@
 import { style } from "@vanilla-extract/css";
 
-export const layer = "dldc.ui-styles.ellipsis";
+import { withLayer } from "../utils/layer";
 
-export const ellipsisClass = style({
-  "@layer": {
-    [layer]: {
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-    },
-  },
-});
+export const ellipsisClass = style(
+  withLayer({
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+  }),
+);
