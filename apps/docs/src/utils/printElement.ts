@@ -46,18 +46,25 @@ function getComponentName(type: any): string {
     // React Fragment
     return "Fragment";
   } else if (typeof type === "function") {
-    // React component
-    return type.displayName || type.name || "Component";
+    return getDisplayName(type);
   } else if (type && typeof type === "object" && type.$$typeof === Symbol.for("react.forward_ref")) {
     // ForwardRef component - extract name from render function
     const renderFunction = type.render;
     if (renderFunction) {
-      return renderFunction.displayName || renderFunction.name || "ForwardRef";
+      return getDisplayName(renderFunction);
     }
     return "ForwardRef";
   } else {
     return "Unknown";
   }
+}
+
+function getDisplayName(type: any): string {
+  if (!type.displayName) {
+    return `${type.name}[MISSING_DISPLAY_NAME]`;
+  }
+  // React component
+  return type.displayName;
 }
 
 function formatProps(props: Record<string, any>): string {
