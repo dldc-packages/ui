@@ -2,18 +2,18 @@ import { clamp, powerValue } from "@dldc/utils/math";
 
 import { BASE_HEIGHT_RATIO, MIN_HEIGHT } from "./constants";
 import { parseSize } from "./parse";
-import { TDesignSize } from "./types";
+import { TDesignLength } from "./types";
 
-export function sizeToRem(size: TDesignSize | (string & {})): number {
+export function sizeToRem(size: TDesignLength | (string & {})): number {
   const parsedSize = typeof size === "number" ? size : parseSize(size);
   return (parsedSize * 4) / 16;
 }
 
-export function sizeToRemString(size: TDesignSize | (string & {})): string {
+export function sizeToRemString(size: TDesignLength | (string & {})): string {
   return `${sizeToRem(size)}rem`;
 }
 
-export function sizeToFontSize(size: TDesignSize | (string & {})) {
+export function sizeToFontSize(size: TDesignLength | (string & {})) {
   const lineHeightRem = sizeToRem(size);
   const fontSizeRem = lineHeightRem - 0.56 * Math.exp(-Math.pow(1.76 - lineHeightRem, 2) / Math.pow(0.8, 2));
   const fontSizeRemRounded = Math.round(fontSizeRem * 16) / 16; // Round to 2px
@@ -50,7 +50,7 @@ export function autoContentHeight(height: number, heightRatio = BASE_HEIGHT_RATI
   return clamp(powerSize(height, heightRatio), MIN_HEIGHT, height);
 }
 
-export function spacingToGapRem(spacing: TDesignSize): string {
+export function spacingToGapRem(spacing: TDesignLength): string {
   const size = sizeToRem(spacing);
   const nested = sizeToRem(powerSize(size));
   const gap = (size - nested) / 2;

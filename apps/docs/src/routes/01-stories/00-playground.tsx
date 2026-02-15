@@ -14,13 +14,6 @@ function RouteComponent() {
   const [radius, setRadius] = useState(4);
   const [padding, setPadding] = useState(1);
 
-  console.log({
-    radius,
-    padding,
-    roundRadius: roundToQuarter(radius),
-    roundedPadding: roundToQuarter(radius),
-  });
-
   return (
     <StoryLayout>
       <Prose invert>

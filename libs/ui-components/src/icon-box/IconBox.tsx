@@ -1,4 +1,4 @@
-import { TDesignHeight } from "@dldc/ui-core/size";
+import { TDesignSize } from "@dldc/ui-core/size";
 import { iconStyles } from "@dldc/ui-styles/icon";
 import clsx from "clsx";
 
@@ -10,7 +10,7 @@ export type IconBoxProps = ComponentPropsBaseWith<
     icon: React.ReactNode;
     alt?: string;
     color?: string;
-    size?: TDesignHeight;
+    size?: TDesignSize;
   }
 >;
 

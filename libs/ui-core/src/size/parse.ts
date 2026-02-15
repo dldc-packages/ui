@@ -1,6 +1,6 @@
-import { TDesignSize } from "./types";
+import { TDesignLength } from "./types";
 
-export function parseSize(size: TDesignSize | (string & {})): number {
+export function parseSize(size: TDesignLength | (string & {})): number {
   if (typeof size === "number") {
     return size;
   }
@@ -15,7 +15,7 @@ export function parseSize(size: TDesignSize | (string & {})): number {
   return base + (base < 0 ? -rest : rest);
 }
 
-export function parseMaybeSize(size: TDesignSize | (string & {}) | null | undefined): number | null {
+export function parseMaybeSize(size: TDesignLength | (string & {}) | null | undefined): number | null {
   if (size === null || size === undefined) {
     return null;
   }

@@ -1,4 +1,4 @@
-import { nestedRadius } from "@dldc/ui-core/geometry";
+import { nestedRadius, TNestedRadiusOptions } from "@dldc/ui-core/geometry";
 import { parseMaybeSize, parseSize, roundToQuarter } from "@dldc/ui-core/size";
 import { clamp } from "@dldc/utils/math";
 import { useMemo } from "react";
@@ -7,20 +7,35 @@ import { useDefaultGeometry } from "./DefaultGeometryContext";
 import { useParentGeometryContext } from "./ParentGeometryContext";
 import { TGeometryProps } from "./types";
 
-const CONSTANT_RATIO = 0.2;
-const DECAY = 1;
+export function useGeometryProps(props: TGeometryProps): TGeometryProps {
+  const defaultGeometry = useDefaultGeometry();
+  return {
+    rounded: props.rounded ?? defaultGeometry?.rounded,
+    padding: props.padding ?? defaultGeometry?.padding,
+  };
+}
+
+const NESTED_RADIUS_OPTIONS: TNestedRadiusOptions = {
+  constantRatio: 0.2,
+  decay: 1,
+  minConstantThreshold: 8,
+};
 
 export interface TUseGeometryOptions {
   minRounded?: number;
   defaultRounded?: number;
 }
 
-export function useGeometry(props: TGeometryProps, { minRounded = 0, defaultRounded }: TUseGeometryOptions = {}) {
+export function useGeometry(inProps: TGeometryProps, { minRounded = 0, defaultRounded }: TUseGeometryOptions = {}) {
   const parentGeometry = useParentGeometryContext();
-  const defaultGeometry = useDefaultGeometry();
+  const props = useGeometryProps(inProps);
+
+  const padding = useMemo(() => {
+    return parseMaybeSize(props.padding) ?? 0;
+  }, [props.padding]);
 
   const rounded = useMemo((): number | null => {
-    const definedRounded = props.rounded ?? defaultGeometry?.rounded;
+    const definedRounded = props.rounded;
     if (definedRounded !== undefined) {
       return clamp(parseSize(definedRounded), minRounded, Infinity);
     }
@@ -29,15 +44,11 @@ export function useGeometry(props: TGeometryProps, { minRounded = 0, defaultRoun
     }
 
     return clamp(
-      roundToQuarter(nestedRadius(parentGeometry.rounded, parentGeometry.padding, CONSTANT_RATIO, DECAY)),
+      roundToQuarter(nestedRadius(parentGeometry.rounded, parentGeometry.padding, NESTED_RADIUS_OPTIONS)),
       minRounded,
       Infinity,
     );
-  }, [props.rounded, defaultGeometry?.rounded, parentGeometry, minRounded, defaultRounded]);
-
-  const padding = useMemo(() => {
-    return parseMaybeSize(props.padding ?? defaultGeometry?.padding) ?? 0;
-  }, [props.padding, defaultGeometry?.padding]);
+  }, [props.rounded, parentGeometry, minRounded, defaultRounded]);
 
   return { rounded, padding };
 }

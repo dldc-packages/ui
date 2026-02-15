@@ -1,14 +1,13 @@
-import { TDesignHeight, TDesignSpacing } from "@dldc/ui-core/size";
+import { TDesignSize, TDesignSpacing } from "@dldc/ui-core/size";
 
 export interface TDesignProps {
-  height?: TDesignHeight | null;
-  contentHeight?: TDesignHeight | null;
-  spacing?: TDesignSpacing | null;
+  height?: TDesignSize | null;
+  contentHeight?: TDesignSize | null;
 }
 
 export interface TDefaultDesignContext {
-  height: TDesignHeight | null;
-  contentHeight: TDesignHeight | null;
+  height: TDesignSize | null;
+  contentHeight: TDesignSize | null;
   spacing: TDesignSpacing | null;
 }
 
