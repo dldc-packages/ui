@@ -1,6 +1,5 @@
-import type { RefObject } from "react";
-
 import { nanoid } from "nanoid";
+import type { RefObject } from "react";
 import { useCallback, useMemo, useState } from "react";
 import { flushSync } from "react-dom";
 

@@ -11,6 +11,7 @@
     "./better-context": "./dist/better-context.js",
     "./use-async-process": "./dist/use-async-process.js",
     "./use-atom-from-value": "./dist/use-atom-from-value.js",
+    "./use-css-variable": "./dist/use-css-variable.js",
     "./use-is-mobile": "./dist/use-is-mobile.js",
     "./use-latest-ref": "./dist/use-latest-ref.js",
     "./use-local-storage-state": "./dist/use-local-storage-state.js",
