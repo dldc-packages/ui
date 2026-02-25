@@ -1,5 +1,11 @@
 # @config/typescript
 
+## 1.0.3
+
+### Patch Changes
+
+- 8c0ca52: Add readme to all packages
+
 ## 1.0.2
 
 ### Patch Changes

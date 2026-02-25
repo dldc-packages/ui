@@ -1,5 +1,11 @@
 # @dldc/utils
 
+## 1.0.0
+
+### Major Changes
+
+- bb86b05: Initial release
+
 ## 1.0.2
 
 ### Patch Changes
