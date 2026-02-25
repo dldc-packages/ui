@@ -36,7 +36,7 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
-    "@dldc/css-builder": "workspace:^",
+    "@dldc/css-builder": "catalog:",
     "@dldc/ui-core": "workspace:^",
     "@dldc/utils": "workspace:^",
     "@vanilla-extract/css": "catalog:",
