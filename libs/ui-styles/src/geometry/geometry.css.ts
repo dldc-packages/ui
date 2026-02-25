@@ -1,4 +1,4 @@
-import { geometryPaddingVar, geometryRoundedPropVar, geometryRoundedVar } from "@dldc/ui-core/geometry";
+import { geometryPaddingVar, geometryRoundedVar } from "@dldc/ui-core/geometry";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 import { withLayer } from "../utils/layer";
@@ -7,9 +7,6 @@ export const geometryRoundedClass = style(
   withLayer({
     borderRadius: geometryRoundedVar,
     ["cornerShape" as any]: "superellipse(1.5)",
-    vars: {
-      [geometryRoundedVar]: geometryRoundedPropVar,
-    },
   }),
 );
 

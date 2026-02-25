@@ -54,7 +54,13 @@ export function SelectItem(inProps: SelectItemProps) {
 
   const [baseClass, baseInline] = selectItemStyles({ height, contentHeight, color, disabled });
 
-  const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, noLayout);
+  const [contentClass, contentInline] = actionContentStyles({
+    contentHeight,
+    spacing,
+    startPaddingMode: startPadding,
+    endPaddingMode: endPadding,
+    noLayout,
+  });
 
   return mergeRender(
     render,

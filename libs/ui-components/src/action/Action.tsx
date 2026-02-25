@@ -125,16 +125,15 @@ export function Action(inProps: ActionProps) {
     parentGeometryRoundedVarName,
     rounded,
     padding,
+    defaultRounded: 1.5,
   });
-  const [contentClass, contentInline] = actionContentStyles(
-    // contentHeight: 4.5,
-    4.5,
-    // spacing: 7,
-    7,
+  const [contentClass, contentInline] = actionContentStyles({
+    contentHeight: 4.5,
+    spacing: 7,
     startPaddingMode,
     endPaddingMode,
     noLayout,
-  );
+  });
 
   // Merge base props into the custom render element
   return mergeRender(

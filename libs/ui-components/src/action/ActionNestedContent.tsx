@@ -41,7 +41,13 @@ export function ActionNestedContent(inProps: ActionNestedContentProps) {
   } = useActionContent(localActionContent, children);
 
   const [heightClass, heightInline] = heightStyles(height);
-  const [contentClass, contentInline] = actionContentStyles(contentHeight, spacing, startPadding, endPadding, false);
+  const [contentClass, contentInline] = actionContentStyles({
+    contentHeight,
+    spacing,
+    startPaddingMode: startPadding,
+    endPaddingMode: endPadding,
+    noLayout: false,
+  });
 
   return (
     <div

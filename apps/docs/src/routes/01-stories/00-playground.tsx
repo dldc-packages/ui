@@ -56,6 +56,9 @@ function RouteComponent() {
             value={padding}
             onChange={(e) => setPadding(Number(e.target.value))}
           />
+          <p>
+            Padding {roundToQuarter(padding)} - Radius {roundToQuarter(radius)}
+          </p>
           <Geometry
             className="p-geometry bg-blue-900"
             rounded={roundToQuarter(radius)}
@@ -67,6 +70,15 @@ function RouteComponent() {
                   <div className="flex h-[200px] items-center justify-center text-neutral-900">Hey</div>
                 </Geometry>
               </Geometry>
+            </Geometry>
+          </Geometry>
+          <Geometry
+            className="p-geometry bg-green-800"
+            rounded={roundToQuarter(radius)}
+            padding={roundToQuarter(padding)}
+          >
+            <Geometry className="p-geometry bg-green-600" padding={roundToQuarter(padding)}>
+              <div className="flex h-[200px] items-center justify-center text-neutral-900">Hey</div>
             </Geometry>
           </Geometry>
         </div>

@@ -37,7 +37,7 @@ The basic idea is that when you have nested elements you want their radius and p
 nestedRadius = parentRadius - padding
 ```
 
-This works well when the padding is small but with this rule you quickly get to 0 inner radius. We can fix this by using an exponential decay function after a certain threshold, making the radius decrease slower as the padding increases.
+This works well when the padding is small but with this rule you quickly get to 0 inner radius. We can fix this by using an exponential decay, making the radius decrease slower as the padding increases.
 
 #### Size (fixed height/width layouts)
 

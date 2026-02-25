@@ -36,13 +36,13 @@ export function SelectItem(inProps: SelectItemProps) {
 
   const { height, contentHeight, spacing } = useFrameDesignProps(localDesign);
   const [heightClass, heightInline] = heightStyles(height);
-  const [contentClass, contentInline] = actionContentStyles(
+  const [contentClass, contentInline] = actionContentStyles({
     contentHeight,
     spacing,
     startPaddingMode,
     endPaddingMode,
     noLayout,
-  );
+  });
 
   return (
     <Ariakit.SelectItem

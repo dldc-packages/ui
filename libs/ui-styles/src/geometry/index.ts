@@ -1,21 +1,15 @@
 import * as css from "@dldc/css-builder";
-import {
-  geometryPaddingParentVar,
-  geometryPaddingVar,
-  geometryRoundedParentVar,
-  geometryRoundedVar,
-} from "@dldc/ui-core/geometry";
-import { sizeToRemString } from "@dldc/ui-core/size";
+import { geometryPaddingVar, geometryRoundedVar } from "@dldc/ui-core/geometry";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import { CSSProperties } from "../utils/types";
+
 import { geometryRoundedClass, geometrySpacing } from "./geometry.css";
 
-export { geometryPaddingParentVar, geometryPaddingVar, geometryRoundedParentVar, geometryRoundedVar, geometrySpacing };
+export { geometryPaddingVar, geometryRoundedVar, geometrySpacing };
 
-export function roundedStyles(): [classNames: string, styles: CSSProperties] {
-  return [geometryRoundedClass, {}];
-}
+const EXP_DECAY = 0.7;
+const QUARTER_UNIT = 0.25;
 
 export interface TGeometryStylesOptions {
   geometryRoundedVarName: string;
@@ -24,6 +18,8 @@ export interface TGeometryStylesOptions {
   parentGeometryRoundedVarName: string | null;
   padding: number | null;
   rounded: number | null;
+  defaultRounded?: number;
+  defaultPadding?: number;
 }
 
 export function geometryStyles(options: TGeometryStylesOptions): [classNames: string, styles: CSSProperties] {
@@ -34,17 +30,22 @@ export function geometryStyles(options: TGeometryStylesOptions): [classNames: st
     parentGeometryPaddingVarName,
     padding,
     rounded,
+    defaultPadding = 0,
+    defaultRounded = 0,
   } = options;
-  const [roundedClass, roundedInline] = roundedStyles();
   return [
-    roundedClass,
+    geometryRoundedClass,
     {
-      ...roundedInline,
       ...assignInlineVars({
-        [geometryRoundedVarName]: roundedVar(rounded, parentGeometryPaddingVarName, parentGeometryRoundedVarName),
-        [geometryPaddingVarName]: sizeToRemString(padding ?? 0),
-        [geometryPaddingVar]: `var(${geometryPaddingVarName})`,
-        [geometryRoundedVar]: `var(${geometryRoundedVarName})`,
+        [geometryRoundedVarName]: roundedVar(
+          rounded,
+          defaultRounded,
+          parentGeometryPaddingVarName,
+          parentGeometryRoundedVarName,
+        ),
+        [geometryPaddingVarName]: String(padding ?? defaultPadding),
+        [geometryPaddingVar]: css.serialize(css.multiply(`var(${geometryPaddingVarName})`, "0.25rem")),
+        [geometryRoundedVar]: css.serialize(css.multiply(`var(${geometryRoundedVarName})`, "0.25rem")),
       }),
     },
   ];
@@ -52,57 +53,32 @@ export function geometryStyles(options: TGeometryStylesOptions): [classNames: st
 
 function roundedVar(
   rounded: number | null,
+  defaultRounded: number,
   parentGeometryPaddingVarName: string | null,
   parentGeometryRoundedVarName: string | null,
 ): string {
   if (rounded !== null) {
-    return sizeToRemString(rounded);
+    return String(rounded);
   }
   if (!parentGeometryRoundedVarName || !parentGeometryPaddingVarName) {
-    return "0";
+    return String(defaultRounded);
   }
-  //
-  // return calc.subtract(`var(${parentGeometryRoundedVarName})`, `var(${parentGeometryPaddingVarName})`);
 
   return css.serialize(
     css.max(
-      "0rem",
-      css.multiply(
-        `var(${parentGeometryRoundedVarName})`,
-        css.exp(
-          css.multiply(-1, css.divide(`var(${parentGeometryPaddingVarName})`, `var(${parentGeometryRoundedVarName})`)),
+      "0",
+      css.roundDown(
+        css.multiply(
+          `var(${parentGeometryRoundedVarName})`,
+          css.exp(
+            css.multiply(
+              -EXP_DECAY,
+              css.divide(`var(${parentGeometryPaddingVarName})`, `var(${parentGeometryRoundedVarName})`),
+            ),
+          ),
         ),
+        QUARTER_UNIT,
       ),
     ),
   );
-
-  // return `
-  //   max(
-  //     0rem,
-  //     var(${parentGeometryRoundedVarName}) *
-  //     exp(-1 * (var(${parentGeometryPaddingVarName}) / var(${parentGeometryRoundedVarName})))
-  //   )
-  // `;
-
-  // return `max(0rem, var(${parentGeometryRoundedVarName}) - var(${parentGeometryPaddingVarName}))`;
-  // return `
-  //   calc(
-  //     max(0rem, var(${parentGeometryRoundedVarName}) - var(${parentGeometryPaddingVarName})) *
-  //     clamp(0, calc((max(0rem, var(${parentGeometryRoundedVarName}) * 0.2) - var(${parentGeometryPaddingVarName})) * 999999), 1)
-  //     +
-  //     max(
-  //       0rem,
-  //       calc(
-  //         (var(${parentGeometryRoundedVarName}) - max(0rem, var(${parentGeometryRoundedVarName}) * 0.2)) *
-  //         exp(
-  //           calc(
-  //             -1 * (var(${parentGeometryPaddingVarName}) - max(0rem, var(${parentGeometryRoundedVarName}) * 0.2)) /
-  //             (var(${parentGeometryRoundedVarName}) - max(0rem, var(${parentGeometryRoundedVarName}) * 0.2))
-  //           )
-  //         )
-  //       )
-  //     ) *
-  //     (1 - clamp(0, calc((max(0rem, var(${parentGeometryRoundedVarName}) * 0.2) - var(${parentGeometryPaddingVarName})) * 999999), 1))
-  //   )
-  // `;
 }

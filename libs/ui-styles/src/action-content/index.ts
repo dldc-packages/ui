@@ -16,13 +16,16 @@ import {
 
 export type TActionContentPaddingModeResolved = "icon" | "text" | "none";
 
-export function actionContentStyles(
-  contentHeight: number,
-  spacing: number | null,
-  startPaddingMode: TActionContentPaddingModeResolved,
-  endPaddingMode: TActionContentPaddingModeResolved,
-  noLayout: boolean,
-): [className: string, styles: CSSProperties] {
+export interface TActionContentStylesOptions {
+  contentHeight: number;
+  spacing: number | null;
+  startPaddingMode: TActionContentPaddingModeResolved;
+  endPaddingMode: TActionContentPaddingModeResolved;
+  noLayout: boolean;
+}
+
+export function actionContentStyles(options: TActionContentStylesOptions): [className: string, styles: CSSProperties] {
+  const { contentHeight, spacing, startPaddingMode, endPaddingMode, noLayout } = options;
   return [
     clsx(
       actionContentStartPaddingClass[startPaddingMode],
