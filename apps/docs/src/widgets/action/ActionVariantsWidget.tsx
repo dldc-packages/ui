@@ -1,6 +1,5 @@
-import type { TDesignVariant } from "@dldc/ui-core/variants";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";

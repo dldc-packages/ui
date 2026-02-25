@@ -1,6 +1,5 @@
-import type { TDesignSpacing } from "@dldc/ui-core/size";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TDesignSpacing } from "@dldc/ui-core/size";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 
@@ -12,7 +11,7 @@ import { printElement } from "../../utils/printElement";
 
 export function ActionSpacingEquivalentWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const examples = [
-    { spacing: "6" as TDesignSpacing, height: "10" },
+    { spacing: "6" as TDesignSpacing, size: "10" },
     { spacing: "8" as TDesignSpacing, height: "10" },
     { spacing: "10" as TDesignSpacing, height: "10" },
     { spacing: "12" as TDesignSpacing, height: "10" },
@@ -25,7 +24,7 @@ export function ActionSpacingEquivalentWidget({ className, ...props }: Component
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
-              <Action height={highlighted.height as any} spacing={highlighted.spacing} startIcon={<UserIcon />}>
+              <Action size={highlighted.size as any} spacing={highlighted.spacing} startIcon={<UserIcon />}>
                 Content
               </Action>,
             )
@@ -34,7 +33,7 @@ export function ActionSpacingEquivalentWidget({ className, ...props }: Component
       <HighlightedGrid
         rowsDims={examples}
         renderCell={({ row: example, key }) => (
-          <Action key={key} height={example.height as any} spacing={example.spacing} startIcon={<UserIcon />}>
+          <Action key={key} size={example.size as any} spacing={example.spacing} startIcon={<UserIcon />}>
             Content
           </Action>
         )}

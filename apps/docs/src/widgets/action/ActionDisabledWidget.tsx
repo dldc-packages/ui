@@ -1,7 +1,6 @@
+import { Action } from "@dldc/ui-components/action";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
-
-import { Action } from "@dldc/ui-components/action";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 

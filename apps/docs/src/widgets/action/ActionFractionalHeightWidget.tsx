@@ -29,7 +29,7 @@ export function ActionFractionalHeightWidget({ className, ...props }: ComponentP
       <HighlightedGrid
         rowsDims={heights}
         renderCell={({ row: height, key }) => (
-          <Action key={key} height={height.value as any}>
+          <Action key={key} size={height.value as any}>
             {height.label}
           </Action>
         )}

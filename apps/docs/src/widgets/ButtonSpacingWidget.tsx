@@ -1,6 +1,5 @@
-import type { TDesignSpacing } from "@dldc/ui-core/size";
-
 import { Button } from "@dldc/ui-ariakit/button";
+import type { TDesignSpacing } from "@dldc/ui-core/size";
 import { ChevronDownIcon, UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 

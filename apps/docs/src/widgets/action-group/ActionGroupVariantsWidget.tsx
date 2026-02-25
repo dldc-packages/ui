@@ -1,7 +1,6 @@
-import type { TDesignVariant } from "@dldc/ui-core/variants";
-
 import { Button } from "@dldc/ui-ariakit/button";
 import { ActionGroup } from "@dldc/ui-components/action";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";

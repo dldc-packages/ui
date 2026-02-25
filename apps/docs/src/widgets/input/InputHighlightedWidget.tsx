@@ -1,6 +1,5 @@
-import type { TPaletteColor } from "@dldc/ui-core/colors";
-
 import { Input } from "@dldc/ui-components/input";
+import type { TPaletteColor } from "@dldc/ui-core/colors";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";

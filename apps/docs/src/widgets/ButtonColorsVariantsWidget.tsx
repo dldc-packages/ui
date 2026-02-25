@@ -1,7 +1,6 @@
+import { Button, type ButtonProps } from "@dldc/ui-ariakit/button";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
-
-import { Button, type ButtonProps } from "@dldc/ui-ariakit/button";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";

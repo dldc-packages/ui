@@ -1,17 +1,19 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
+import { TDesignSpacing } from "@dldc/ui-core/size";
 import { ReactElement } from "react";
 
 import { Action } from "../action";
 import { TActionContentProps } from "../action-content";
-import { TDesignProps } from "../design-context";
+import { TSizeProps } from "../size";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
 import { TDesignVariantProps } from "../variant";
 
 export type ButtonSpecificProps = TActionContentProps &
-  TDesignProps &
+  TSizeProps &
   TDesignVariantProps & {
     disabled?: boolean;
 
+    spacing?: TDesignSpacing | null;
     color?: TPaletteColor;
     type?: "button" | "submit" | "reset" | undefined;
 

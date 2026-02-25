@@ -1,7 +1,6 @@
-import type { TPaletteColor } from "@dldc/ui-core/colors";
-
 import { Button } from "@dldc/ui-ariakit/button";
 import { ActionGroup } from "@dldc/ui-components/action";
+import type { TPaletteColor } from "@dldc/ui-core/colors";
 import { HouseIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 

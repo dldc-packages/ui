@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 
 import { Action } from "../action";
 import { TActionContentProps } from "../action-content";
-import { TDesignProps } from "../design-context";
+import { TSizeProps } from "../size";
 import { mergeRender } from "../utils/mergeRender";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 import { TDesignVariantProps } from "../variant";
@@ -11,7 +11,7 @@ import { TDesignVariantProps } from "../variant";
 export type ButtonLinkProps = ComponentPropsBaseWith<
   "a",
   TActionContentProps &
-    TDesignProps &
+    TSizeProps &
     TDesignVariantProps & {
       disabled?: boolean;
 

@@ -1,7 +1,6 @@
+import { Action, type ActionProps } from "@dldc/ui-components/action";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
-
-import { Action, type ActionProps } from "@dldc/ui-components/action";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -54,7 +53,7 @@ export function ActionColorsWidget({ className, ...props }: ComponentPropsWithRe
         rowsDims={variants}
         columnsDims={colors}
         renderCell={({ row: variant, column: color, key }) => (
-          <Action key={key} variant={variant} color={color} height="7">
+          <Action key={key} variant={variant} color={color} size="7">
             {color}
           </Action>
         )}

@@ -1,6 +1,5 @@
-import type { TDesignRounded } from "@dldc/ui-core/size";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TDesignRounded } from "@dldc/ui-core/size";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -24,7 +23,7 @@ export function ActionRoundedWidget({ className, ...props }: ComponentPropsWithR
       <HighlightedGrid
         rowsDims={roundedValues}
         renderCell={({ row: rounded, key }) => (
-          <Action key={key} rounded={rounded} height="10">
+          <Action key={key} rounded={rounded} size="10">
             Rounded {rounded}
           </Action>
         )}

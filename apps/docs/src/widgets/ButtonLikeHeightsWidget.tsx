@@ -1,6 +1,5 @@
-import type { TDesignHeight } from "@dldc/ui-core/size";
-
 import { ButtonLike } from "@dldc/ui-components/button";
+import type { TDesignSize } from "@dldc/ui-core/size";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 
@@ -10,13 +9,13 @@ import { CodeHighlight } from "../components/CodeHighlight";
 import { HighlightedGrid } from "../components/HighlightedGrid";
 
 export function ButtonLikeHeightsWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const sizes: TDesignHeight[] = ["3", "4", "5", "6", "7", "8", "10", "12"];
+  const sizes: TDesignSize[] = ["3", "4", "5", "6", "7", "8", "10", "12"];
   const contents = [
     { label: "Text", props: {} },
     { label: "With Icon", props: { startIcon: <UserIcon /> } },
   ];
 
-  const [highlighted, setHighlighted] = useState<{ size: TDesignHeight; content: (typeof contents)[number] } | null>();
+  const [highlighted, setHighlighted] = useState<{ size: TDesignSize; content: (typeof contents)[number] } | null>();
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
@@ -29,7 +28,7 @@ export function ButtonLikeHeightsWidget({ className, ...props }: ComponentPropsW
         rowsDims={sizes}
         columnsDims={contents}
         renderCell={({ row: size, column: content, key }) => (
-          <ButtonLike key={key} variant="solid" height={size} {...content.props}>
+          <ButtonLike key={key} variant="solid" size={size} {...content.props}>
             {content.label}
           </ButtonLike>
         )}

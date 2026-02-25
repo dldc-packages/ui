@@ -5,8 +5,9 @@ import { TDesignVariant } from "@dldc/ui-core/variants";
 import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
 
-import { actionInteractiveClass } from "../action/action.css";
 import { withLayer } from "../utils/layer";
+
+import { actionInteractiveClass } from "../action/action.css";
 
 const separatorWidthVar = createVar(
   { syntax: "length", initialValue: sizeToRemString("0_x"), inherits: true },

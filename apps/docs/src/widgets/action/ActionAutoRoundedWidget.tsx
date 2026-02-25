@@ -1,6 +1,5 @@
-import type { TDesignRounded } from "@dldc/ui-core/size";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TDesignRounded } from "@dldc/ui-core/size";
 import { cloneElement, useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -15,8 +14,18 @@ export function ActionAutoRoundedWidget({ className, ...props }: ComponentPropsW
   const [highlighted, setHighlighted] = useState<TDesignRounded | null>();
 
   const renderNestedActions = (rounded: TDesignRounded) => (
-    <Action rounded={rounded} height="12" paddingMode="icon" contentHeight="10">
-      <Action contentHeight="8" paddingMode="icon">
+    <Action
+      rounded={rounded}
+      size="12"
+      paddingMode="icon"
+      // TODO
+      // contentHeight="10"
+    >
+      <Action
+        // TODO
+        // contentHeight="8"
+        paddingMode="icon"
+      >
         <Action>Nested</Action>
       </Action>
     </Action>

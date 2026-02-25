@@ -1,6 +1,5 @@
-import type { TActionContentPaddingMode } from "@dldc/ui-components/action-content";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TActionContentPaddingMode } from "@dldc/ui-components/action-content";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 

@@ -1,5 +1,5 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { parseSize, TDesignSpacing } from "@dldc/ui-core/size";
+import { TDesignSpacing } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { actionStyles } from "@dldc/ui-styles/action";
 import { actionContentStyles } from "@dldc/ui-styles/action-content";
@@ -13,7 +13,6 @@ import {
   geometryPropsSplitter,
   ParentGeometryContextProvider,
   TGeometryProps,
-  TUseGeometryOptions,
   useGeometry,
   useGeometryProps,
 } from "../geometry";
@@ -55,10 +54,10 @@ export type ActionSpecificProps = TActionContentProps &
 
 export type ActionProps = ComponentPropsBaseWith<"div", ActionSpecificProps>;
 
-const GEOMETRY_OPTIONS: TUseGeometryOptions = {
-  minRounded: parseSize("0x"),
-  defaultRounded: parseSize("1"),
-};
+// const GEOMETRY_OPTIONS: TUseGeometryOptions = {
+//   minRounded: parseSize("0x"),
+//   defaultRounded: parseSize("1"),
+// };
 
 export function Action(inProps: ActionProps) {
   const [{ localGeometry, localActionContent, localVariant, localSize }, props] = pipePropsSplitters(inProps, {
@@ -94,7 +93,14 @@ export function Action(inProps: ActionProps) {
   // TODO
   useActionGeometrySize(geometryProps, sizeProps);
 
-  const { rounded, padding } = useGeometry(localGeometry, GEOMETRY_OPTIONS);
+  const {
+    geometryPaddingVarName,
+    geometryRoundedVarName,
+    parentGeometryPaddingVarName,
+    parentGeometryRoundedVarName,
+    rounded,
+    padding,
+  } = useGeometry(localGeometry);
   const { direction, height, parentHeight, parentWidth, width } = useSize(localSize, {
     defaultDirection: "horizontal",
   });
@@ -112,7 +118,14 @@ export function Action(inProps: ActionProps) {
     highlightColor,
     highlighted,
   });
-  const [geometryClass, geometryInline] = geometryStyles(rounded, padding);
+  const [geometryClass, geometryInline] = geometryStyles({
+    geometryPaddingVarName,
+    geometryRoundedVarName,
+    parentGeometryPaddingVarName,
+    parentGeometryRoundedVarName,
+    rounded,
+    padding,
+  });
   const [contentClass, contentInline] = actionContentStyles(
     // contentHeight: 4.5,
     4.5,
@@ -133,7 +146,10 @@ export function Action(inProps: ActionProps) {
       ref={ref}
       {...htmlProps}
     >
-      <ParentGeometryContextProvider rounded={rounded} padding={padding}>
+      <ParentGeometryContextProvider
+        geometryPaddingVarName={geometryPaddingVarName}
+        geometryRoundedVarName={geometryRoundedVarName}
+      >
         {fragment}
       </ParentGeometryContextProvider>
     </div>,

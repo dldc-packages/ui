@@ -1,6 +1,5 @@
-import type { TDesignHeight } from "@dldc/ui-core/size";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TDesignSize } from "@dldc/ui-core/size";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 
@@ -11,12 +10,12 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 export function ActionAutoSpacingWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const heights: TDesignHeight[] = ["7", "8", "9", "10", "12"];
-  const contentHeights: TDesignHeight[] = ["4", "5", "6"];
+  const heights: TDesignSize[] = ["7", "8", "9", "10", "12"];
+  const contentHeights: TDesignSize[] = ["4", "5", "6"];
 
   const [highlighted, setHighlighted] = useState<{
-    height: TDesignHeight;
-    contentHeight: TDesignHeight;
+    height: TDesignSize;
+    contentHeight: TDesignSize;
   } | null>(null);
 
   return (
@@ -24,15 +23,27 @@ export function ActionAutoSpacingWidget({ className, ...props }: ComponentPropsW
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
-              <Action height={highlighted.height} contentHeight={highlighted.contentHeight} startIcon={<UserIcon />} />,
+              <Action
+                size={highlighted.height}
+                // TODO
+                // contentHeight={highlighted.contentHeight}
+                startIcon={<UserIcon />}
+              />,
             )
           : "// Hover an element to see the code"}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={heights}
         columnsDims={contentHeights}
-        renderCell={({ row: height, column: contentHeight, key }) => (
-          <Action key={key} height={height} contentHeight={contentHeight} startIcon={<UserIcon />} className="w-full">
+        renderCell={({ row: size, column: _contentHeight, key }) => (
+          <Action
+            key={key}
+            size={size}
+            // TODO
+            // contentHeight={contentHeight}
+            startIcon={<UserIcon />}
+            className="w-full"
+          >
             Hey
           </Action>
         )}

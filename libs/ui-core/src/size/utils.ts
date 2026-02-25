@@ -13,6 +13,13 @@ export function sizeToRemString(size: TDesignLength | (string & {})): string {
   return `${sizeToRem(size)}rem`;
 }
 
+export function maybeSizeToRemString(size: TDesignLength | (string & {}) | null | undefined): string | null {
+  if (size === null || size === undefined) {
+    return null;
+  }
+  return `${sizeToRem(size)}rem`;
+}
+
 export function sizeToFontSize(size: TDesignLength | (string & {})) {
   const lineHeightRem = sizeToRem(size);
   const fontSizeRem = lineHeightRem - 0.56 * Math.exp(-Math.pow(1.76 - lineHeightRem, 2) / Math.pow(0.8, 2));

@@ -2,6 +2,7 @@ import { sizeToRemString } from "@dldc/ui-core/size";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import { CSSProperties } from "../utils/types";
+
 import { designContentSizeClass, designContentSizeVar, designHeightClass, designHeightVar } from "./common.css";
 
 export { designContentSizeVar, designHeightVar };

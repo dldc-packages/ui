@@ -1,7 +1,6 @@
-import type { TDesignHeight } from "@dldc/ui-core/size";
-
 import { Button } from "@dldc/ui-ariakit/button";
 import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
+import type { TDesignSize } from "@dldc/ui-core/size";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -11,10 +10,10 @@ import { printElement } from "@/utils/printElement";
 import { cn } from "@/utils/styles";
 
 type PaginationProps = {
-  height: TDesignHeight;
+  size: TDesignSize;
 };
 
-function Pagination({ height }: PaginationProps) {
+function Pagination({ size: height }: PaginationProps) {
   return (
     <DesignWrapper color="blue" height={height} className="flex flex-row items-center gap-3">
       <Button startIcon={<ChevronLeftIcon />} />
@@ -37,8 +36,8 @@ const functionCode = [
 ].join("\n");
 
 export function DesignWrapperPaginationWidget({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  const heights: TDesignHeight[] = ["7", "8", "9", "10", "12"];
-  const [highlighted, setHighlighted] = useState<TDesignHeight | null>(null);
+  const sizes: TDesignSize[] = ["7", "8", "9", "10", "12"];
+  const [highlighted, setHighlighted] = useState<TDesignSize | null>(null);
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
@@ -46,12 +45,12 @@ export function DesignWrapperPaginationWidget({ className, ...props }: React.HTM
         {functionCode +
           "\n\n" +
           (highlighted
-            ? "const rendered = " + printElement(<Pagination height={highlighted} />)
+            ? "const rendered = " + printElement(<Pagination size={highlighted} />)
             : "// Hover an element to see the code")}
       </CodeHighlight>
       <HighlightedGrid
-        rowsDims={heights}
-        renderCell={({ row: height, key }) => <Pagination key={key} height={height} />}
+        rowsDims={sizes}
+        renderCell={({ row: size, key }) => <Pagination key={key} size={size} />}
         onHighlightedCell={(cell) => setHighlighted(cell.row)}
       />
     </div>

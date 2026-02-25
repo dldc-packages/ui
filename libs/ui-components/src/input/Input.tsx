@@ -4,14 +4,14 @@ import { ReactElement, useCallback, useRef } from "react";
 
 import { Action, ActionInputContent } from "../action";
 import { TActionContentProps } from "../action-content";
-import { TDesignProps } from "../design-context";
 import { TGeometryProps } from "../geometry";
+import { TSizeProps } from "../size";
 import { ComponentPropsBaseWith, mergeRender } from "../utils";
 import { TDesignVariantProps } from "../variant";
 
 export type InputSpecificProps = TActionContentProps &
   TGeometryProps &
-  TDesignProps &
+  TSizeProps &
   TDesignVariantProps & {
     disabled?: boolean;
 

@@ -3,6 +3,7 @@ import { clsx } from "clsx";
 
 import { contentSize, heightStyles } from "../common";
 import { CSSProperties } from "../utils/types";
+
 import { listItemClass, listWrappertClass, selectPopoverClass } from "./select.css";
 
 export { listWrappertClass };

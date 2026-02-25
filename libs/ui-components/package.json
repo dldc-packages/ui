@@ -41,6 +41,7 @@
     "@dldc/ui-styles": "workspace:^",
     "@dldc/utils": "workspace:^",
     "@vanilla-extract/css": "catalog:",
+    "@vanilla-extract/dynamic": "catalog:",
     "clsx": "catalog:",
     "overlayscrollbars": "catalog:",
     "overlayscrollbars-react": "catalog:",

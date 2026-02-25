@@ -16,12 +16,29 @@ export function Geometry(inProps: GeometryProps) {
   const [{ localGeometry }, props] = pipePropsSplitters(inProps, {
     localGeometry: geometryPropsSplitter,
   });
-  const { rounded, padding } = useGeometry(localGeometry);
+  const {
+    geometryPaddingVarName,
+    geometryRoundedVarName,
+    parentGeometryPaddingVarName,
+    parentGeometryRoundedVarName,
+    rounded,
+    padding,
+  } = useGeometry(localGeometry);
   const { className, style, children, ...divProps } = props;
-  const [geometryClass, geometryInline] = geometryStyles(rounded, padding);
+  const [geometryClass, geometryInline] = geometryStyles({
+    parentGeometryPaddingVarName,
+    parentGeometryRoundedVarName,
+    padding,
+    rounded,
+    geometryPaddingVarName,
+    geometryRoundedVarName,
+  });
 
   return (
-    <ParentGeometryContextProvider rounded={rounded} padding={padding}>
+    <ParentGeometryContextProvider
+      geometryPaddingVarName={geometryPaddingVarName}
+      geometryRoundedVarName={geometryRoundedVarName}
+    >
       <div {...divProps} className={clsx(geometryClass, className)} style={{ ...geometryInline, ...style }}>
         {children}
       </div>

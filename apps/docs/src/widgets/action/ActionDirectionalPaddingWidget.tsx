@@ -1,6 +1,5 @@
-import type { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";

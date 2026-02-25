@@ -3,14 +3,14 @@ import { ReactElement } from "react";
 
 import { Action } from "../action";
 import { TActionContentProps } from "../action-content";
-import { TDesignProps } from "../design-context";
 import { TGeometryProps } from "../geometry";
+import { TSizeProps } from "../size";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 import { TDesignVariantProps } from "../variant";
 
 export type ButtonLikeSpecificProps = TActionContentProps &
   TGeometryProps &
-  TDesignProps &
+  TSizeProps &
   TDesignVariantProps & {
     disabled?: boolean;
     color?: TPaletteColor;

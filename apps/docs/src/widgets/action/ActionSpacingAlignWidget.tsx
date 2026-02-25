@@ -1,6 +1,5 @@
-import type { TDesignHeight } from "@dldc/ui-core/size";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TDesignSize } from "@dldc/ui-core/size";
 import { HouseIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 
@@ -11,15 +10,20 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 export function ActionSpacingAlignWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const heights: TDesignHeight[] = ["6", "8", "10", "12"];
-  const [highlighted, setHighlighted] = useState<TDesignHeight | null>();
+  const heights: TDesignSize[] = ["6", "8", "10", "12"];
+  const [highlighted, setHighlighted] = useState<TDesignSize | null>();
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
-              <Action spacing="6" height={highlighted} contentHeight="3x">
+              <Action
+                spacing="6"
+                size={highlighted}
+                // TODO
+                // contentHeight="3x"
+              >
                 Height {highlighted}
               </Action>,
             )
@@ -28,7 +32,15 @@ export function ActionSpacingAlignWidget({ className, ...props }: ComponentProps
       <HighlightedGrid
         rowsDims={heights}
         renderCell={({ row: height, key }) => (
-          <Action key={key} height={height} spacing="6" className="w-full" contentHeight="3x" startIcon={<HouseIcon />}>
+          <Action
+            key={key}
+            size={height}
+            spacing="6"
+            className="w-full"
+            // TODO
+            // contentHeight="3x"
+            startIcon={<HouseIcon />}
+          >
             Height {height}
           </Action>
         )}

@@ -35,8 +35,9 @@ function MenuItem({ item, location, level = 0 }: MenuItemProps) {
       render={<Link to={item.link} />}
       variant={isActive ? "solid" : "ghost"}
       color={isActive ? "blue" : "neutral"}
-      height="8"
-      contentHeight="4x"
+      size="8"
+      // TODO
+      // contentHeight="4x"
       className="w-full"
     >
       {item.label}

@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 import { contentSize } from "../common";
 import { CSSProperties } from "../utils/types";
+
 import { labelClass, labelDisabledClass } from "./label.css";
 
 export interface LabelStylesOptions {

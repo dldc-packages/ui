@@ -1,4 +1,5 @@
 import { TColor } from "./colors";
+
 import { colorsVars } from "./colors.css";
 
 export function opacity(colorVar: string, value: number): string {

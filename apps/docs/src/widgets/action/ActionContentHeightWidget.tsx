@@ -1,6 +1,5 @@
-import type { TDesignHeight } from "@dldc/ui-core/size";
-
 import { Action } from "@dldc/ui-components/action";
+import type { TDesignSize } from "@dldc/ui-core/size";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -10,16 +9,20 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 export function ActionContentHeightWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const contentHeights: TDesignHeight[] = ["4", "5", "6", "7", "8"];
+  const contentHeights: TDesignSize[] = ["4", "5", "6", "7", "8"];
 
-  const [highlighted, setHighlighted] = useState<TDesignHeight | null>();
+  const [highlighted, setHighlighted] = useState<TDesignSize | null>();
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(
-              <Action height="12" contentHeight={highlighted}>
+              <Action
+                size="12"
+                // TODO
+                // contentHeight={highlighted}
+              >
                 Content {highlighted}
               </Action>,
             )
@@ -28,7 +31,12 @@ export function ActionContentHeightWidget({ className, ...props }: ComponentProp
       <HighlightedGrid
         rowsDims={contentHeights}
         renderCell={({ row: contentHeight, key }) => (
-          <Action key={key} height="12" contentHeight={contentHeight}>
+          <Action
+            key={key}
+            size="12"
+            // TODO
+            // contentHeight={contentHeight}
+          >
             Content {contentHeight}
           </Action>
         )}
