@@ -1,5 +1,33 @@
 # @dldc/ui-styles
 
+## 1.1.0
+
+### Minor Changes
+
+- 2d10e43: Implement select components
+- 2a424ed: Rename Frame into Action
+- 2e76d22: Implement Geometry logic and component
+- e1e4ce8: Add layers in styles
+
+### Patch Changes
+
+- b89d45c: Use Geometry in action
+- ac40257: Add ParityProvider and fix imports
+- 3d84f9f: Merge layers and make ActionGroup respect variant
+- 8c0ca52: Add readme to all packages
+- c263638: Many small changes and extract variant from design
+- Updated dependencies [b89d45c]
+- Updated dependencies [bb86b05]
+- Updated dependencies [2d10e43]
+- Updated dependencies [2a424ed]
+- Updated dependencies [2e76d22]
+- Updated dependencies [8c0ca52]
+- Updated dependencies [e1e4ce8]
+- Updated dependencies [c263638]
+  - @dldc/ui-core@1.1.0
+  - @dldc/css-builder@1.0.0
+  - @dldc/utils@1.0.3
+
 ## 1.0.2
 
 ### Patch Changes
