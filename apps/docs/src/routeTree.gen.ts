@@ -20,7 +20,7 @@ import { Route as R01Stories07LoadingIconRouteImport } from './routes/01-stories
 import { Route as R01Stories06InputRouteImport } from './routes/01-stories/06-input'
 import { Route as R01Stories05ButtonRouteImport } from './routes/01-stories/05-button'
 import { Route as R01Stories04DesignWrapperRouteImport } from './routes/01-stories/04-design-wrapper'
-import { Route as R01Stories03DefaultDesignProviderRouteImport } from './routes/01-stories/03-default-design-provider'
+import { Route as R01Stories03DefaultProvidersRouteImport } from './routes/01-stories/03-default-providers'
 import { Route as R01Stories02ActionGroupRouteImport } from './routes/01-stories/02-action-group'
 import { Route as R01Stories01ActionRouteImport } from './routes/01-stories/01-action'
 import { Route as R01Stories00PlaygroundRouteImport } from './routes/01-stories/00-playground'
@@ -82,10 +82,10 @@ const R01Stories04DesignWrapperRoute =
     path: '/01-stories/04-design-wrapper',
     getParentRoute: () => rootRouteImport,
   } as any)
-const R01Stories03DefaultDesignProviderRoute =
-  R01Stories03DefaultDesignProviderRouteImport.update({
-    id: '/01-stories/03-default-design-provider',
-    path: '/01-stories/03-default-design-provider',
+const R01Stories03DefaultProvidersRoute =
+  R01Stories03DefaultProvidersRouteImport.update({
+    id: '/01-stories/03-default-providers',
+    path: '/01-stories/03-default-providers',
     getParentRoute: () => rootRouteImport,
   } as any)
 const R01Stories02ActionGroupRoute = R01Stories02ActionGroupRouteImport.update({
@@ -109,7 +109,7 @@ export interface FileRoutesByFullPath {
   '/01-stories/00-playground': typeof R01Stories00PlaygroundRoute
   '/01-stories/01-action': typeof R01Stories01ActionRoute
   '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
-  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
+  '/01-stories/03-default-providers': typeof R01Stories03DefaultProvidersRoute
   '/01-stories/04-design-wrapper': typeof R01Stories04DesignWrapperRoute
   '/01-stories/05-button': typeof R01Stories05ButtonRoute
   '/01-stories/06-input': typeof R01Stories06InputRoute
@@ -126,7 +126,7 @@ export interface FileRoutesByTo {
   '/01-stories/00-playground': typeof R01Stories00PlaygroundRoute
   '/01-stories/01-action': typeof R01Stories01ActionRoute
   '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
-  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
+  '/01-stories/03-default-providers': typeof R01Stories03DefaultProvidersRoute
   '/01-stories/04-design-wrapper': typeof R01Stories04DesignWrapperRoute
   '/01-stories/05-button': typeof R01Stories05ButtonRoute
   '/01-stories/06-input': typeof R01Stories06InputRoute
@@ -144,7 +144,7 @@ export interface FileRoutesById {
   '/01-stories/00-playground': typeof R01Stories00PlaygroundRoute
   '/01-stories/01-action': typeof R01Stories01ActionRoute
   '/01-stories/02-action-group': typeof R01Stories02ActionGroupRoute
-  '/01-stories/03-default-design-provider': typeof R01Stories03DefaultDesignProviderRoute
+  '/01-stories/03-default-providers': typeof R01Stories03DefaultProvidersRoute
   '/01-stories/04-design-wrapper': typeof R01Stories04DesignWrapperRoute
   '/01-stories/05-button': typeof R01Stories05ButtonRoute
   '/01-stories/06-input': typeof R01Stories06InputRoute
@@ -163,7 +163,7 @@ export interface FileRouteTypes {
     | '/01-stories/00-playground'
     | '/01-stories/01-action'
     | '/01-stories/02-action-group'
-    | '/01-stories/03-default-design-provider'
+    | '/01-stories/03-default-providers'
     | '/01-stories/04-design-wrapper'
     | '/01-stories/05-button'
     | '/01-stories/06-input'
@@ -180,7 +180,7 @@ export interface FileRouteTypes {
     | '/01-stories/00-playground'
     | '/01-stories/01-action'
     | '/01-stories/02-action-group'
-    | '/01-stories/03-default-design-provider'
+    | '/01-stories/03-default-providers'
     | '/01-stories/04-design-wrapper'
     | '/01-stories/05-button'
     | '/01-stories/06-input'
@@ -197,7 +197,7 @@ export interface FileRouteTypes {
     | '/01-stories/00-playground'
     | '/01-stories/01-action'
     | '/01-stories/02-action-group'
-    | '/01-stories/03-default-design-provider'
+    | '/01-stories/03-default-providers'
     | '/01-stories/04-design-wrapper'
     | '/01-stories/05-button'
     | '/01-stories/06-input'
@@ -215,7 +215,7 @@ export interface RootRouteChildren {
   R01Stories00PlaygroundRoute: typeof R01Stories00PlaygroundRoute
   R01Stories01ActionRoute: typeof R01Stories01ActionRoute
   R01Stories02ActionGroupRoute: typeof R01Stories02ActionGroupRoute
-  R01Stories03DefaultDesignProviderRoute: typeof R01Stories03DefaultDesignProviderRoute
+  R01Stories03DefaultProvidersRoute: typeof R01Stories03DefaultProvidersRoute
   R01Stories04DesignWrapperRoute: typeof R01Stories04DesignWrapperRoute
   R01Stories05ButtonRoute: typeof R01Stories05ButtonRoute
   R01Stories06InputRoute: typeof R01Stories06InputRoute
@@ -307,11 +307,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R01Stories04DesignWrapperRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/01-stories/03-default-design-provider': {
-      id: '/01-stories/03-default-design-provider'
-      path: '/01-stories/03-default-design-provider'
-      fullPath: '/01-stories/03-default-design-provider'
-      preLoaderRoute: typeof R01Stories03DefaultDesignProviderRouteImport
+    '/01-stories/03-default-providers': {
+      id: '/01-stories/03-default-providers'
+      path: '/01-stories/03-default-providers'
+      fullPath: '/01-stories/03-default-providers'
+      preLoaderRoute: typeof R01Stories03DefaultProvidersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/01-stories/02-action-group': {
@@ -343,8 +343,7 @@ const rootRouteChildren: RootRouteChildren = {
   R01Stories00PlaygroundRoute: R01Stories00PlaygroundRoute,
   R01Stories01ActionRoute: R01Stories01ActionRoute,
   R01Stories02ActionGroupRoute: R01Stories02ActionGroupRoute,
-  R01Stories03DefaultDesignProviderRoute:
-    R01Stories03DefaultDesignProviderRoute,
+  R01Stories03DefaultProvidersRoute: R01Stories03DefaultProvidersRoute,
   R01Stories04DesignWrapperRoute: R01Stories04DesignWrapperRoute,
   R01Stories05ButtonRoute: R01Stories05ButtonRoute,
   R01Stories06InputRoute: R01Stories06InputRoute,

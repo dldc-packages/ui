@@ -11,7 +11,7 @@ import { printElement } from "../../utils/printElement";
 
 export function ActionGroupToolbarWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const element = (
-    <ActionGroup variant="surface">
+    <ActionGroup innerDividers="partial">
       <Button startIcon={<HouseIcon />}>Home</Button>
       <Button startIcon={<SettingsIcon />}>Settings</Button>
       <Button startIcon={<LogOutIcon />}>Logout</Button>

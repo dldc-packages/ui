@@ -3,7 +3,7 @@
  * If onHightlightedCell is provided, call it when a cell is hovered and add a highlight style to the cell
  */
 
-import { Paper } from "@dldc/ui-components/paper";
+import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
 import { Scrollbars } from "@dldc/ui-components/scrollbars";
 import { useCallback, useState } from "react";
 import { Fragment } from "react/jsx-runtime";
@@ -51,7 +51,7 @@ export function HighlightedGrid<TRow, TColumn>({
   );
 
   return (
-    <Paper background="900" className={className}>
+    <GeometryPaper background="900" className={className} rounded="2" skipProviders>
       <Scrollbars className="h-full w-full">
         <div className="w-max p-3">
           <div
@@ -95,6 +95,6 @@ export function HighlightedGrid<TRow, TColumn>({
           </div>
         </div>
       </Scrollbars>
-    </Paper>
+    </GeometryPaper>
   );
 }

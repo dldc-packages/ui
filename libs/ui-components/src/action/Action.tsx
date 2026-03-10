@@ -1,38 +1,56 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { TDesignSpacing } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
-import { actionStyles } from "@dldc/ui-styles/action";
+import { actionDesignStyles, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentStyles } from "@dldc/ui-styles/action-content";
-import { geometryStyles } from "@dldc/ui-styles/geometry";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
 import { actionContentPropsSplitter, TActionContentProps, useActionContent } from "../action-content/index";
 import {
-  geometryPropsSplitter,
-  ParentGeometryContextProvider,
-  TGeometryProps,
-  useGeometry,
-  useGeometryProps,
-} from "../geometry";
-import { sizePropsSplitter, TSizeProps, useSize, useSizeProps } from "../size";
-import { mergeRender } from "../utils/mergeRender";
+  contentSizePropsSplitter,
+  DefaultContentSizeProvider,
+  ParentContentSizeContextProvider,
+  TContentSizeProps,
+  useContentSize,
+} from "../content-size";
+import {
+  DefaultPaddingProvider,
+  paddingPropsSplitter,
+  ParentPaddingContextProvider,
+  TPaddingProps,
+  usePadding,
+} from "../padding";
+import {
+  DefaultRoundedProvider,
+  ParentRoundedContextProvider,
+  roundedPropsSplitter,
+  TRoundedProps,
+  useRounded,
+} from "../rounded";
+import { DefaultSizeProvider, ParentSizeContextProvider, sizePropsSplitter, TSizeProps, useSize } from "../size";
+import { applyProviders, createRender } from "../utils";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
-import { TDesignVariantProps, useVariant, variantPropsSplitter } from "../variant";
-import { useActionGeometrySize } from "./useActionGeometrySize";
+import {
+  DefaultHoverVariantProvider,
+  DefaultVariantProvider,
+  TVariantProps,
+  useVariant,
+  variantPropsSplitter,
+} from "../variant";
 
 export type ActionSpecificProps = TActionContentProps &
-  TGeometryProps &
+  TPaddingProps &
+  TRoundedProps &
   TSizeProps &
-  TDesignVariantProps & {
+  TContentSizeProps &
+  TVariantProps & {
     /**
      * This props only impact styling but is never forwarded to the underlying element.
      * Use `render={<button disabled={true} />}` to pass native props to the underlying element.
      */
     disabled?: boolean;
 
-    spacing?: TDesignSpacing | null;
     color?: TPaletteColor;
     highlightColor?: TPaletteColor;
     highlighted?: boolean;
@@ -54,18 +72,16 @@ export type ActionSpecificProps = TActionContentProps &
 
 export type ActionProps = ComponentPropsBaseWith<"div", ActionSpecificProps>;
 
-// const GEOMETRY_OPTIONS: TUseGeometryOptions = {
-//   minRounded: parseSize("0x"),
-//   defaultRounded: parseSize("1"),
-// };
-
 export function Action(inProps: ActionProps) {
-  const [{ localGeometry, localActionContent, localVariant, localSize }, props] = pipePropsSplitters(inProps, {
-    localVariant: variantPropsSplitter,
-    localGeometry: geometryPropsSplitter,
-    localSize: sizePropsSplitter,
-    localActionContent: actionContentPropsSplitter,
-  });
+  const [{ localVariant, localPadding, localRounded, localActionContent, localSize, localContentSize }, props] =
+    pipePropsSplitters(inProps, {
+      localVariant: variantPropsSplitter,
+      localPadding: paddingPropsSplitter,
+      localRounded: roundedPropsSplitter,
+      localSize: sizePropsSplitter,
+      localActionContent: actionContentPropsSplitter,
+      localContentSize: contentSizePropsSplitter,
+    });
 
   const {
     color,
@@ -87,30 +103,18 @@ export function Action(inProps: ActionProps) {
 
   const isDisabledAndInteractive = disabled && interactive;
 
-  const geometryProps = useGeometryProps(localGeometry);
-  const sizeProps = useSizeProps(localSize);
-
-  // TODO
-  useActionGeometrySize(geometryProps, sizeProps);
-
-  const {
-    geometryPaddingVarName,
-    geometryRoundedVarName,
-    parentGeometryPaddingVarName,
-    parentGeometryRoundedVarName,
-    rounded,
-    padding,
-  } = useGeometry(localGeometry);
-  const { direction, height, parentHeight, parentWidth, width } = useSize(localSize, {
-    defaultDirection: "horizontal",
-  });
-  const { hoverVariant, variant } = useVariant(localVariant, baseVariant);
-  // const { height, contentHeight, spacing, depth } = useFrameDesignProps(localDesign);
+  const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
+  const { rounded, roundedVarName, parentRoundedVarName, nextRoundedDefaultContext } = useRounded(localRounded);
+  const { sizeVarName, parentSizeVarName, size, nextSizeDefaultContext } = useSize(localSize);
+  const { contentSize, contentSizeVarName, parentContentSizeVarName, nextContentSizeDefaultContext } =
+    useContentSize(localContentSize);
+  const { hoverVariant, variant, nextHoverVariantDefaultContext, nextVariantDefaultContext } = useVariant(
+    localVariant,
+    baseVariant,
+  );
   const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(localActionContent, children);
 
-  const [baseClass, baseInline] = actionStyles({
-    height: 7,
-    contentHeight: 4.5,
+  const [designClass, designInline] = actionDesignStyles({
     variant,
     color,
     hoverVariant,
@@ -118,41 +122,48 @@ export function Action(inProps: ActionProps) {
     highlightColor,
     highlighted,
   });
-  const [geometryClass, geometryInline] = geometryStyles({
-    geometryPaddingVarName,
-    geometryRoundedVarName,
-    parentGeometryPaddingVarName,
-    parentGeometryRoundedVarName,
-    rounded,
+
+  const layoutInline = actionLayoutStylesInline({
+    defaultSize: 7,
     padding,
-    defaultRounded: 1.5,
+    paddingVarName,
+    parentPaddingVarName,
+    parentRoundedVarName,
+    parentSizeVarName,
+    rounded,
+    roundedVarName,
+    size,
+    sizeVarName,
+    contentSize,
+    contentSizeVarName,
+    parentContentSizeVarName,
   });
+
   const [contentClass, contentInline] = actionContentStyles({
-    contentHeight: 4.5,
-    spacing: 7,
     startPaddingMode,
     endPaddingMode,
     noLayout,
   });
 
-  // Merge base props into the custom render element
-  return mergeRender(
-    render,
-    <div
-      className={clsx(baseClass, geometryClass, contentClass, className)}
-      style={{ ...baseInline, ...geometryInline, ...contentInline, ...style }}
-      aria-disabled={isDisabledAndInteractive}
-      ref={ref}
-      {...htmlProps}
-    >
-      <ParentGeometryContextProvider
-        geometryPaddingVarName={geometryPaddingVarName}
-        geometryRoundedVarName={geometryRoundedVarName}
-      >
-        {fragment}
-      </ParentGeometryContextProvider>
-    </div>,
-  );
+  return createRender("div", render, {
+    className: clsx(designClass, actionLayoutStylesClasses, contentClass, className),
+    style: { ...designInline, ...layoutInline, ...contentInline, ...style },
+    "aria-disabled": isDisabledAndInteractive,
+    ref,
+    ...htmlProps,
+    children: applyProviders(
+      nextPaddingDefaultContext && <DefaultPaddingProvider contextValue={nextPaddingDefaultContext} />,
+      nextRoundedDefaultContext && <DefaultRoundedProvider contextValue={nextRoundedDefaultContext} />,
+      nextSizeDefaultContext && <DefaultSizeProvider contextValue={nextSizeDefaultContext} />,
+      nextContentSizeDefaultContext && <DefaultContentSizeProvider contextValue={nextContentSizeDefaultContext} />,
+      nextVariantDefaultContext && <DefaultVariantProvider contextValue={nextVariantDefaultContext} />,
+      nextHoverVariantDefaultContext && <DefaultHoverVariantProvider contextValue={nextHoverVariantDefaultContext} />,
+      <ParentPaddingContextProvider paddingVarName={paddingVarName} />,
+      <ParentRoundedContextProvider roundedVarName={roundedVarName} />,
+      <ParentSizeContextProvider sizeVarName={sizeVarName} />,
+      <ParentContentSizeContextProvider contentSizeVarName={contentSizeVarName} />,
+    )(fragment),
+  });
 }
 
 Action.displayName = "Action";

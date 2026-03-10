@@ -1,12 +1,12 @@
 import { keysOfType } from "@dldc/utils/keys-of-type";
 import { BaseRecord } from "@dldc/utils/props-splitters";
 
-import { TDesignVariantProps } from "./types";
+import { TVariantProps } from "./types";
 
-const VARIANTS_KEYS = keysOfType<TDesignVariantProps>({ hoverVariant: null, variant: null });
+const VARIANTS_KEYS = keysOfType<TVariantProps>({ hoverVariant: null, variant: null });
 
-export function variantPropsSplitter(props: BaseRecord): TDesignVariantProps {
-  const result: TDesignVariantProps = {};
+export function variantPropsSplitter(props: BaseRecord): TVariantProps {
+  const result: TVariantProps = {};
   VARIANTS_KEYS.forEach((key) => {
     if (key in props && props[key] !== undefined) {
       result[key] = (props as any)[key];

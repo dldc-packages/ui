@@ -11,43 +11,33 @@ import { printElement } from "../../utils/printElement";
 
 export function ActionAutoSpacingWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const heights: TDesignSize[] = ["7", "8", "9", "10", "12"];
-  const contentHeights: TDesignSize[] = ["4", "5", "6"];
+  const contentSizes: TDesignSize[] = ["3", "3x", "4", "4x"];
 
   const [highlighted, setHighlighted] = useState<{
     height: TDesignSize;
-    contentHeight: TDesignSize;
+    contentSize: TDesignSize;
   } | null>(null);
+
+  function renderElement(height: TDesignSize, contentSize: TDesignSize, key?: string) {
+    return (
+      <Action key={key} size={height} contentSize={contentSize} startIcon={<UserIcon />} className="w-full">
+        Hey
+      </Action>
+    );
+  }
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
-          ? printElement(
-              <Action
-                size={highlighted.height}
-                // TODO
-                // contentHeight={highlighted.contentHeight}
-                startIcon={<UserIcon />}
-              />,
-            )
+          ? printElement(renderElement(highlighted.height, highlighted.contentSize))
           : "// Hover an element to see the code"}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={heights}
-        columnsDims={contentHeights}
-        renderCell={({ row: size, column: _contentHeight, key }) => (
-          <Action
-            key={key}
-            size={size}
-            // TODO
-            // contentHeight={contentHeight}
-            startIcon={<UserIcon />}
-            className="w-full"
-          >
-            Hey
-          </Action>
-        )}
-        onHighlightedCell={(cell) => setHighlighted({ height: cell.row, contentHeight: cell.column })}
+        columnsDims={contentSizes}
+        renderCell={({ row: size, column: contentSize, key }) => renderElement(size, contentSize, key)}
+        onHighlightedCell={(cell) => setHighlighted({ height: cell.row, contentSize: cell.column })}
       />
     </div>
   );

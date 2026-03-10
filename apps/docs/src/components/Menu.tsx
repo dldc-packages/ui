@@ -36,8 +36,6 @@ function MenuItem({ item, location, level = 0 }: MenuItemProps) {
       variant={isActive ? "solid" : "ghost"}
       color={isActive ? "blue" : "neutral"}
       size="8"
-      // TODO
-      // contentHeight="4x"
       className="w-full"
     >
       {item.label}

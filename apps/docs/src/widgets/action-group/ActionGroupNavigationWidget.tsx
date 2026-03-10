@@ -11,7 +11,7 @@ import { printElement } from "../../utils/printElement";
 
 export function ActionGroupNavigationWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const element = (
-    <ActionGroup direction="vertical" variant="subtle">
+    <ActionGroup direction="vertical" variant="subtle" innerDividers="partial">
       <Button startIcon={<UserIcon />}>Profile</Button>
       <Button startIcon={<FileTextIcon />}>Documents</Button>
       <Button startIcon={<ChartBarIcon />}>Analytics</Button>

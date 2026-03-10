@@ -1,29 +1,8 @@
-import { PropsWithChildren, useMemo } from "react";
+import { createDefaultProvider } from "../utils/createDefaultProvider";
+import { THoverVariantPropValue, TVariantPropValue } from "./types";
 
-import { createNestedProvider } from "../depth/NestedProvider";
-import { TDesignVariantProps } from "./types";
+export const { DefaultProvider: DefaultVariantProvider, useDefault: useDefaultVariant } =
+  createDefaultProvider<TVariantPropValue>("Variant");
 
-const {
-  NestedContext: DefaultVariantNestedContext,
-  NestedProvider: DefaultVariantNestedProvider,
-  NextProvider: DefaultVariantNextProvider,
-  useNestedValues: useDefaultVariantNestedValues,
-  useNestedValueAtDepth: useDefaultVariantNestedValueAtDepth,
-  useNestedValueAtCurrentDepth: useDefaultVariant,
-} = createNestedProvider<TDesignVariantProps>();
-
-export {
-  DefaultVariantNestedContext,
-  DefaultVariantNestedProvider,
-  useDefaultVariant,
-  useDefaultVariantNestedValueAtDepth,
-  useDefaultVariantNestedValues,
-};
-
-export function DefaultVariantProvider({ variant, hoverVariant, children }: PropsWithChildren<TDesignVariantProps>) {
-  return (
-    <DefaultVariantNextProvider value={useMemo(() => ({ variant, hoverVariant }), [variant, hoverVariant])}>
-      {children}
-    </DefaultVariantNextProvider>
-  );
-}
+export const { DefaultProvider: DefaultHoverVariantProvider, useDefault: useDefaultHoverVariant } =
+  createDefaultProvider<THoverVariantPropValue>("HoverVariant");

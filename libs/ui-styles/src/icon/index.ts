@@ -1,7 +1,7 @@
 import { sizeToRemString, TDesignSize } from "@dldc/ui-core/size";
+import { contentSizeVar } from "@dldc/ui-core/variables";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
-import { designContentSizeVar } from "../common/index";
 import { CSSProperties } from "../utils/types";
 
 import { iconClass } from "./icon.css";
@@ -10,7 +10,7 @@ export function iconStyles(size: TDesignSize | undefined): [classNames: string, 
   return [
     iconClass,
     assignInlineVars({
-      [designContentSizeVar]: size ? sizeToRemString(size) : undefined,
+      [contentSizeVar]: size ? sizeToRemString(size) : undefined,
     }),
   ];
 }

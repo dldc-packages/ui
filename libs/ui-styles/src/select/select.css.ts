@@ -12,6 +12,7 @@ import {
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { globalStyle, style } from "@vanilla-extract/css";
 
+import { paddingVar } from "../padding";
 import { withLayer } from "../utils/layer";
 
 export const listWrappertClass = style(
@@ -25,6 +26,7 @@ export const selectPopoverClass = style(
   withLayer({
     zIndex: 50,
     outline: "none",
+    padding: paddingVar,
     // Used for focus ring
     [_after]: {
       borderRadius: "inherit",

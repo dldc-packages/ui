@@ -1,45 +1,28 @@
-import { parseMaybeSize, TDesignDirection } from "@dldc/ui-core/size";
+import { useCssVariable } from "@dldc/hooks/use-css-variable";
+import { parseMaybeSize } from "@dldc/ui-core/size";
 
+import { TDefaultProviderValue } from "../utils/createDefaultProvider";
 import { useDefaultSize } from "./DefaultSizeContext";
 import { useParentSizeContext } from "./ParentSizeContext";
-import { TSizeProps } from "./types";
-
-export function useSizeProps(props: TSizeProps): TSizeProps {
-  const defaultSize = useDefaultSize();
-  return {
-    size: props.size ?? defaultSize?.size,
-    direction: props.direction ?? defaultSize?.direction,
-  };
-}
-
-export interface TUseSizeOptions {
-  defaultDirection?: TDesignDirection;
-}
+import { TSizeProps, TSizePropValue } from "./types";
 
 export interface TUseSizeResult {
-  parentWidth: number | null;
-  parentHeight: number | null;
-  width: number | null;
-  height: number | null;
-  direction: TDesignDirection;
+  sizeVarName: string;
+  parentSizeVarName: string | null;
+  size: number | null;
+  nextSizeDefaultContext: TDefaultProviderValue<TSizePropValue> | undefined;
 }
 
-export function useSize(
-  inProps: TSizeProps,
-  { defaultDirection = "horizontal" }: TUseSizeOptions = {},
-): TUseSizeResult {
+export function useSize(inProps: TSizeProps): TUseSizeResult {
+  const { defaultValue: defaultSize, nextDefaultContext: nextSizeDefaultContext } = useDefaultSize();
   const parentSize = useParentSizeContext();
-  const props = useSizeProps(inProps);
 
-  const parentDirection = parentSize?.direction ?? null;
-  const parentSizeValue = parentSize?.size ?? null;
-  const direction = props.direction ?? parentDirection ?? defaultDirection;
-  const size = parseMaybeSize(props.size ?? null);
+  const sizeVarName = useCssVariable("size");
 
-  const parentWidth = parentDirection === "horizontal" ? parentSizeValue : null;
-  const parentHeight = parentDirection === "vertical" ? parentSizeValue : null;
-  const width = direction === "horizontal" ? size : null;
-  const height = direction === "vertical" ? size : null;
-
-  return { parentWidth, parentHeight, width, height, direction };
+  return {
+    sizeVarName,
+    parentSizeVarName: parentSize?.sizeVarName ?? null,
+    size: parseMaybeSize(inProps.size ?? defaultSize),
+    nextSizeDefaultContext,
+  };
 }

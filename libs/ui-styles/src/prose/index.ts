@@ -1,7 +1,9 @@
 import clsx from "clsx";
 
 import {
+  notProseBleedClass,
   notProseClass,
+  notProseContentClass,
   proseBaseClass,
   proseBleedClass,
   proseColor,
@@ -10,7 +12,7 @@ import {
   proseVars,
 } from "./prose.css";
 
-export { notProseClass, proseBleedClass, proseVars };
+export { notProseBleedClass, notProseClass, notProseContentClass, proseBleedClass, proseVars };
 
 export type TProseColor = keyof typeof proseColor;
 

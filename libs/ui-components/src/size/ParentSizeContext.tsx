@@ -1,16 +1,14 @@
-import { TDesignDirection } from "@dldc/ui-core/size";
 import { createContext, PropsWithChildren, useContext, useMemo } from "react";
 
 export interface TParentSizeValues {
-  size: number | null;
-  direction: TDesignDirection | null;
+  sizeVarName: string;
 }
 
 export const ParentSizeContext = createContext<TParentSizeValues | null>(null);
 
-export function ParentSizeContextProvider({ size, direction, children }: PropsWithChildren<TParentSizeValues>) {
-  const contextValue = useMemo(() => ({ size, direction }), [size, direction]);
-  return <ParentSizeContext value={contextValue}>{children}</ParentSizeContext>;
+export function ParentSizeContextProvider({ sizeVarName, children }: PropsWithChildren<TParentSizeValues>) {
+  const contextValue = useMemo(() => ({ sizeVarName }), [sizeVarName]);
+  return <ParentSizeContext.Provider value={contextValue}>{children}</ParentSizeContext.Provider>;
 }
 ParentSizeContextProvider.displayName = "ParentSizeContextProvider";
 

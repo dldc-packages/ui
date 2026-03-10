@@ -3,20 +3,27 @@ import { paperBaseClass, paperClass } from "@dldc/ui-styles/paper";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
-import { mergeRender } from "../utils/mergeRender";
+import { createRender } from "../utils";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type PaperSpecificProps = {
-  render?: ReactElement;
   background?: TNeutralColorShade;
 };
 
-export type PaperProps = ComponentPropsBaseWith<"div", PaperSpecificProps>;
+export type PaperProps = ComponentPropsBaseWith<
+  "div",
+  PaperSpecificProps & {
+    render?: ReactElement;
+  }
+>;
 
 export function Paper(inProps: PaperProps) {
   const { className, background, render, ...props } = inProps;
 
   const paperClassResolved = background ? paperClass[background] : paperBaseClass;
 
-  return mergeRender(render, <div className={clsx(paperClassResolved, className)} {...props} />);
+  return createRender("div", render, {
+    className: clsx(paperClassResolved, className),
+    ...props,
+  });
 }

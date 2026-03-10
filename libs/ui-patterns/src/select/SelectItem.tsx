@@ -1,9 +1,7 @@
 import * as Ariakit from "@ariakit/react";
 import { useActionContent } from "@dldc/ui-components/action-content";
-import { DefaultDesignProvider, designPropsSplitter, useFrameDesignProps } from "@dldc/ui-components/design-context";
 import { actionContentStyles } from "@dldc/ui-styles/action-content";
-import { heightStyles } from "@dldc/ui-styles/common";
-import { pipePropsSplitters } from "@dldc/utils/props-splitters";
+// import { heightStyles } from "@dldc/ui-styles/common";
 import clsx from "clsx";
 import { CheckIcon } from "lucide-react";
 
@@ -14,11 +12,9 @@ interface SelectItemProps extends Ariakit.SelectItemProps {
 }
 
 export function SelectItem(inProps: SelectItemProps) {
-  const [{ localDesign }, props] = pipePropsSplitters(inProps, {
-    localDesign: designPropsSplitter,
-  });
+  // const [{}, props] = pipePropsSplitters(inProps, {});
 
-  const { item, className, style, ...htmlProps } = props;
+  const { item, className, style, ...htmlProps } = inProps;
 
   const store = Ariakit.useSelectContext();
   if (!store) {
@@ -34,11 +30,11 @@ export function SelectItem(inProps: SelectItemProps) {
     item.content,
   );
 
-  const { height, contentHeight, spacing } = useFrameDesignProps(localDesign);
-  const [heightClass, heightInline] = heightStyles(height);
+  // const { height, contentHeight, spacing } = useFrameDesignProps(localDesign);
+  // const [heightClass, heightInline] = heightStyles(height);
   const [contentClass, contentInline] = actionContentStyles({
-    contentHeight,
-    spacing,
+    // contentHeight,
+    // spacing,
     startPaddingMode,
     endPaddingMode,
     noLayout,
@@ -48,17 +44,23 @@ export function SelectItem(inProps: SelectItemProps) {
     <Ariakit.SelectItem
       {...htmlProps}
       className={clsx(
-        heightClass,
+        // heightClass,
         // selectItemClass,
         contentClass,
         // item.hidden && { display: "none" },
         className,
       )}
-      style={{ ...style, ...heightInline, ...contentInline }}
+      style={{
+        ...style,
+        // ...heightInline,
+        ...contentInline,
+      }}
       disabled={item.disabled || item.hidden}
       value={item.value}
     >
-      <DefaultDesignProvider {...localDesign}>{fragment}</DefaultDesignProvider>
+      {/* <DefaultDesignProvider {...localDesign}> */}
+      {fragment}
+      {/* </DefaultDesignProvider> */}
     </Ariakit.SelectItem>
   );
 }

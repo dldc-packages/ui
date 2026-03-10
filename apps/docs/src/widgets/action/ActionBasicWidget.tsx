@@ -1,5 +1,5 @@
 import { Action } from "@dldc/ui-components/action";
-import { Paper } from "@dldc/ui-components/paper";
+import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
 import { type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -13,9 +13,9 @@ export function ActionBasicWidget({ className, ...props }: ComponentPropsWithRef
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(<Action>Basic Action</Action>)}
       </CodeHighlight>
-      <Paper background="900" className="p-3">
+      <GeometryPaper background="900" className="p-3" rounded="2" skipProviders>
         <Action>Basic Action</Action>
-      </Paper>
+      </GeometryPaper>
     </div>
   );
 }

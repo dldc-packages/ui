@@ -1,20 +1,26 @@
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
-import { contentSize } from "@dldc/ui-styles/common";
+import { actionLayoutStylesInline } from "@dldc/ui-styles/action";
+import { contentSizeLineHeightClass } from "@dldc/ui-styles/content-size";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import { clsx } from "clsx";
 import { ReactElement } from "react";
 
-import { DefaultDesignProvider, designPropsSplitter, useFrameDesignProps } from "../design-context/DesignContext";
-import { TDesignProps } from "../design-context/types";
-import { ComponentPropsBaseWith, mergeRender } from "../utils";
-import { DefaultVariantProvider, TDesignVariantProps, variantPropsSplitter } from "../variant";
+import { contentSizePropsSplitter, TContentSizeProps, useContentSize } from "../content-size";
+import { DefaultDesignProvider } from "../default-design-provider";
+import { paddingPropsSplitter, TPaddingProps, usePadding } from "../padding";
+import { roundedPropsSplitter, TRoundedProps, useRounded } from "../rounded";
+import { sizePropsSplitter, TSizeProps, useSize } from "../size";
+import { ComponentPropsBaseWith, createRender } from "../utils";
+import { TVariantProps, variantPropsSplitter } from "../variant";
 
 export type DesignWrapperProps = ComponentPropsBaseWith<
   "div",
-  TDesignProps &
-    TDesignVariantProps & {
+  TPaddingProps &
+    TRoundedProps &
+    TSizeProps &
+    TContentSizeProps &
+    TVariantProps & {
       color?: TPaletteColor;
-
       render?: ReactElement;
     }
 >;
@@ -26,33 +32,54 @@ export type DesignWrapperProps = ComponentPropsBaseWith<
  * @returns
  */
 export function DesignWrapper(inProps: DesignWrapperProps) {
-  const [{ localDesign }, props] = pipePropsSplitters(inProps, {
-    localDesign: designPropsSplitter,
-    localDesignVariant: variantPropsSplitter,
-  });
+  const [{ localVariant, localPadding, localRounded, localSize, localContentSize }, props] = pipePropsSplitters(
+    inProps,
+    {
+      localVariant: variantPropsSplitter,
+      localPadding: paddingPropsSplitter,
+      localRounded: roundedPropsSplitter,
+      localSize: sizePropsSplitter,
+      localContentSize: contentSizePropsSplitter,
+    },
+  );
 
-  const { color, style, className, ref, render, children, ...htmlProps } = props;
-  const { contentHeight } = useFrameDesignProps(localDesign);
+  const { padding, paddingVarName, parentPaddingVarName } = usePadding(localPadding);
+  const { rounded, roundedVarName, parentRoundedVarName } = useRounded(localRounded);
+  const { sizeVarName, parentSizeVarName, size } = useSize(localSize);
+  const { contentSize, contentSizeVarName, parentContentSizeVarName } = useContentSize(localContentSize);
 
-  const [contentClass, contentInline] = contentSize(contentHeight);
+  const { color, className, style, ref, render, children, ...htmlProps } = props;
+
   const colorClass = color && dynamicColor[color];
 
+  // Compute CSS vars same as Action to get CSS vars available for any child, even if not using Action or other components
+  const layoutInline = actionLayoutStylesInline({
+    defaultSize: 7,
+    padding,
+    paddingVarName,
+    parentPaddingVarName,
+    parentRoundedVarName,
+    parentSizeVarName,
+    rounded,
+    roundedVarName,
+    size,
+    sizeVarName,
+    contentSize,
+    contentSizeVarName,
+    parentContentSizeVarName,
+  });
+
   return (
-    <DefaultDesignProvider contentHeight={inProps.contentHeight} height={inProps.height}>
-      <DefaultVariantProvider variant={inProps.variant} hoverVariant={inProps.hoverVariant}>
-        {mergeRender(
-          render,
-          <div
-            className={clsx(contentClass, colorClass, className)}
-            style={{ ...contentInline, ...style }}
-            ref={ref}
-            {...htmlProps}
-          >
-            {children}
-          </div>,
-        )}
-      </DefaultVariantProvider>
+    <DefaultDesignProvider {...localVariant} {...localSize} {...localContentSize} {...localPadding} {...localRounded}>
+      {createRender("div", render, {
+        className: clsx(colorClass, contentSizeLineHeightClass, className),
+        style: { ...layoutInline, ...style },
+        ref,
+        ...htmlProps,
+        children,
+      })}
     </DefaultDesignProvider>
   );
 }
+
 DesignWrapper.displayName = "DesignWrapper";

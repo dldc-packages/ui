@@ -1,6 +1,7 @@
-import { TDesignDirection, TDesignSize } from "@dldc/ui-core/size";
+import { TDesignSize } from "@dldc/ui-core/size";
+
+export type TSizePropValue = TDesignSize;
 
 export interface TSizeProps {
-  size?: TDesignSize;
-  direction?: TDesignDirection;
+  size?: TSizePropValue;
 }

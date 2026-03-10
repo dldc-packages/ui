@@ -7,19 +7,29 @@ import {
   _focusWithinVisible,
   _hover,
   isAfter,
-  isBefore,
   isDisabled,
   isFocusWithin,
   isHover,
 } from "@dldc/ui-core/conditions";
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
-import { ComplexStyleRule, createVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
+import { ComplexStyleRule, createVar, fallbackVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
-import { withLayer } from "../utils/layer";
+import { varsWithLayer, withLayer } from "../utils/layer";
 
-const borderWidthVar = createVar("border-width");
-const focusBorderWidthVar = createVar("focus-border-width");
+export const borderWidthVar = createVar("border-width");
+export const focusBorderWidthVar = createVar("focus-border-width");
+export const focusBorderColorVar = createVar("focus-border-color");
+export const backgroundColorVar = createVar("background-color");
+export const textColorVar = createVar("text-color");
+export const borderColorVar = createVar("border-color");
+
+export const disabledTextColorVar = createVar("disabled-text-color");
+export const disabledBackgroundColorVar = createVar("disabled-background-color");
+
+export const activeBackgroundColorVar = createVar("active-background-color");
+export const activeTextColorVar = createVar("active-text-color");
+export const focusBackgroundColorVar = createVar("focus-background-color");
 
 export const actionClass = style(
   withLayer({
@@ -28,18 +38,10 @@ export const actionClass = style(
     alignItems: "center",
     outline: "none",
     position: "relative",
+    backgroundColor: backgroundColorVar,
+    color: fallbackVar(textColorVar, dynamicColorVars[200]),
 
     selectors: {
-      // Used for visual border for input and surface variants
-      [_before]: {
-        borderRadius: "inherit",
-        ["cornerShape" as any]: "inherit",
-        pointerEvents: "none",
-        content: "''",
-        position: "absolute",
-        inset: 0,
-        borderWidth: borderWidthVar,
-      },
       // Used for focus and highlight border
       [_after]: {
         borderRadius: "inherit",
@@ -49,68 +51,112 @@ export const actionClass = style(
         position: "absolute",
         inset: 0,
       },
+      // Used for visual border for input and surface variants
+      [_before]: {
+        borderRadius: "inherit",
+        ["cornerShape" as any]: "inherit",
+        pointerEvents: "none",
+        content: "''",
+        position: "absolute",
+        inset: 0,
+        borderWidth: borderWidthVar,
+        borderColor: borderColorVar,
+      },
     },
   }),
 );
 
-function varsWithLayer(vars: Record<string, string>): ComplexStyleRule {
-  return withLayer({
-    vars,
-  });
-}
-
-export const actionBorderSizeClass = styleVariants({
+export const actionVariantsClass = styleVariants({
   solid: varsWithLayer({
     [borderWidthVar]: sizeToRemString("0"),
-    [focusBorderWidthVar]: sizeToRemString("0x"),
+    [backgroundColorVar]: dynamicColorVars[600],
+    [textColorVar]: dynamicColorVars[100],
   }),
   surface: varsWithLayer({
     [borderWidthVar]: sizeToRemString("0__x"),
-    [focusBorderWidthVar]: sizeToRemString("0_x"),
+    [backgroundColorVar]: opacity(colorsVars.white, 5),
+    [borderColorVar]: opacity(colorsVars.white, 10),
   }),
   subtle: varsWithLayer({
     [borderWidthVar]: sizeToRemString("0"),
-    [focusBorderWidthVar]: sizeToRemString("0_x"),
+    [backgroundColorVar]: opacity(colorsVars.white, 5),
   }),
   ghost: varsWithLayer({
     [borderWidthVar]: sizeToRemString("0"),
-    [focusBorderWidthVar]: sizeToRemString("0_x"),
+    [backgroundColorVar]: "transparent",
   }),
   input: varsWithLayer({
     [borderWidthVar]: sizeToRemString("0_x"),
-    [focusBorderWidthVar]: sizeToRemString("0_x"),
+    [backgroundColorVar]: opacity(colorsVars.black, 15),
+    [borderColorVar]: opacity(colorsVars.black, 30),
   }),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
-export const actionVariantsClass = styleVariants({
-  solid: withLayer({
-    backgroundColor: dynamicColorVars[600],
-    color: dynamicColorVars[200],
+export const actionFocusVariantsClass = styleVariants({
+  solid: varsWithLayer({
+    [focusBorderWidthVar]: sizeToRemString("0x"),
+    [focusBackgroundColorVar]: dynamicColorVars[700],
   }),
-  surface: withLayer({
-    backgroundColor: opacity(colorsVars.white, 5),
-    color: dynamicColorVars[200],
-    selectors: {
-      [_before]: {
-        borderColor: opacity(colorsVars.white, 10),
-      },
-    },
+  surface: varsWithLayer({
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
   }),
-  subtle: withLayer({
-    backgroundColor: opacity(colorsVars.white, 5),
-    color: dynamicColorVars[200],
+  subtle: varsWithLayer({
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
   }),
-  ghost: withLayer({
-    color: dynamicColorVars[200],
+  ghost: varsWithLayer({
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
   }),
-  input: withLayer({
-    backgroundColor: opacity(colorsVars.black, 15),
-    color: dynamicColorVars[200],
-    selectors: {
-      [_before]: {
-        borderColor: opacity(colorsVars.black, 30),
-      },
-    },
+  input: varsWithLayer({
+    [focusBorderWidthVar]: sizeToRemString("0_x"),
+    [focusBorderColorVar]: opacity(dynamicColorVars[300], 40),
+  }),
+} satisfies Record<TDesignVariant, ComplexStyleRule>);
+
+// Set variable for each variant
+export const actionDisabledVariantsClass = styleVariants({
+  solid: varsWithLayer({
+    [disabledTextColorVar]: opacity(colorsVars.neutral[200], 60),
+    [disabledBackgroundColorVar]: dynamicColorVars[800],
+  }),
+  surface: varsWithLayer({
+    [disabledTextColorVar]: opacity(dynamicColorVars[200], 40),
+    [disabledBackgroundColorVar]: opacity(colorsVars.white, 3),
+  }),
+  subtle: varsWithLayer({
+    [disabledTextColorVar]: opacity(dynamicColorVars[200], 40),
+    [disabledBackgroundColorVar]: opacity(colorsVars.white, 3),
+  }),
+  ghost: varsWithLayer({
+    [disabledTextColorVar]: opacity(dynamicColorVars[200], 40),
+    [disabledBackgroundColorVar]: "transparent",
+  }),
+  input: varsWithLayer({
+    [disabledTextColorVar]: opacity(dynamicColorVars[200], 40),
+    [disabledBackgroundColorVar]: opacity(colorsVars.black, 3),
+  }),
+} satisfies Record<TDesignVariant, ComplexStyleRule>);
+
+// Set variable for each variant
+export const actionActiveVariantsClass = styleVariants({
+  solid: varsWithLayer({
+    [activeBackgroundColorVar]: dynamicColorVars[500],
+    [activeTextColorVar]: colorsVars.neutral[100],
+  }),
+  surface: varsWithLayer({
+    [activeBackgroundColorVar]: opacity(colorsVars.white, 10),
+    [activeTextColorVar]: dynamicColorVars[100],
+  }),
+  subtle: varsWithLayer({
+    [activeBackgroundColorVar]: opacity(colorsVars.white, 10),
+    [activeTextColorVar]: dynamicColorVars[100],
+  }),
+  ghost: varsWithLayer({
+    [activeBackgroundColorVar]: opacity(colorsVars.white, 5),
+    [activeTextColorVar]: dynamicColorVars[100],
+  }),
+  input: varsWithLayer({
+    [activeBackgroundColorVar]: opacity(colorsVars.black, 5),
+    [activeTextColorVar]: dynamicColorVars[100],
   }),
 } satisfies Record<TDesignVariant, ComplexStyleRule>);
 
@@ -118,8 +164,20 @@ export const actionInteractiveClass = style(
   withLayer({
     selectors: {
       [_focusWithinVisible + isAfter]: {
-        borderColor: colorsVars.neutral[300],
+        borderColor: fallbackVar(focusBorderColorVar, colorsVars.neutral[300]),
         borderWidth: focusBorderWidthVar,
+      },
+      [_disabledHover]: {
+        color: disabledTextColorVar,
+        backgroundColor: disabledBackgroundColorVar,
+      },
+      [_hover]: {
+        backgroundColor: activeBackgroundColorVar,
+        color: activeTextColorVar,
+      },
+      [_focusWithin]: {
+        backgroundColor: fallbackVar(focusBackgroundColorVar, activeBackgroundColorVar),
+        color: activeTextColorVar,
       },
     },
   }),
@@ -129,186 +187,15 @@ export const actionInteractiveClass = style(
 globalStyle(`${actionClass} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
 globalStyle(`${actionInteractiveClass}${isHover} [data-item-main-icon]`, withLayer({ opacity: 1 }));
 globalStyle(`${actionInteractiveClass}${isFocusWithin} [data-item-main-icon]`, withLayer({ opacity: 1 }));
-// Don't change icon opacity when disabled
 globalStyle(`${actionInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
-
-// Disabled styles based on variant
-export const actionInteractiveVariantsClass = styleVariants({
-  solid: withLayer({
-    selectors: {
-      [_disabledHover]: {
-        backgroundColor: dynamicColorVars[800],
-        color: opacity(colorsVars.neutral[200], 60),
-      },
-    },
-  }),
-  surface: withLayer({
-    selectors: {
-      [_disabledHover]: {
-        color: opacity(dynamicColorVars[200], 40),
-        backgroundColor: opacity(colorsVars.white, 3),
-      },
-    },
-  }),
-  subtle: withLayer({
-    selectors: {
-      [_disabledHover]: {
-        color: opacity(dynamicColorVars[200], 40),
-        backgroundColor: opacity(colorsVars.white, 3),
-      },
-    },
-  }),
-  ghost: withLayer({
-    selectors: {
-      [_disabledHover]: {
-        color: opacity(dynamicColorVars[200], 40),
-        backgroundColor: "transparent",
-      },
-    },
-  }),
-  input: withLayer({
-    selectors: {
-      [_disabledHover]: {
-        color: opacity(dynamicColorVars[200], 40),
-        backgroundColor: opacity(colorsVars.black, 3),
-      },
-      [_focusWithinVisible + isAfter]: {
-        borderColor: opacity(dynamicColorVars[300], 40),
-      },
-    },
-  }),
-} satisfies Record<TDesignVariant, ComplexStyleRule>);
-
-// Icons don't like opacity on fill color, so instead we set colro + opacity
+// SVG don't like opacity on fill color, so instead we set color + opacity
 globalStyle(
-  `${actionInteractiveVariantsClass.solid}${isDisabled} svg`,
+  `${actionInteractiveClass}${isDisabled} svg`,
   withLayer({
     color: colorsVars.neutral[200],
     opacity: 0.4,
   }),
 );
-globalStyle(
-  `${actionInteractiveVariantsClass.surface}${isDisabled} svg`,
-  withLayer({
-    color: colorsVars.neutral[200],
-    opacity: 0.4,
-  }),
-);
-globalStyle(
-  `${actionInteractiveVariantsClass.subtle}${isDisabled} svg`,
-  withLayer({
-    color: colorsVars.neutral[200],
-    opacity: 0.4,
-  }),
-);
-globalStyle(
-  `${actionInteractiveVariantsClass.ghost}${isDisabled} svg`,
-  withLayer({
-    color: colorsVars.neutral[200],
-    opacity: 0.4,
-  }),
-);
-globalStyle(
-  `${actionInteractiveVariantsClass.input}${isDisabled} svg`,
-  withLayer({
-    color: colorsVars.neutral[200],
-    opacity: 0.4,
-  }),
-);
-
-export const actionInteractiveHoverVariantsClass = styleVariants({
-  solid: withLayer({
-    selectors: {
-      [_hover]: {
-        backgroundColor: dynamicColorVars[500],
-        color: colorsVars.neutral[100],
-      },
-      [_hover + isBefore]: {
-        borderWidth: 0,
-      },
-      [_focusWithin]: {
-        backgroundColor: dynamicColorVars[500],
-        color: colorsVars.neutral[100],
-      },
-      [_focusWithin + isBefore]: {
-        borderWidth: 0,
-      },
-      // Special focus style for solid variant
-      [_focusWithinVisible]: {
-        backgroundColor: dynamicColorVars[700],
-        color: colorsVars.neutral[100],
-      },
-      [_focusWithinVisible + isAfter]: {
-        borderColor: colorsVars.neutral[200],
-        borderWidth: sizeToRemString("0x"),
-      },
-    },
-  }),
-  surface: withLayer({
-    [_hover]: {
-      backgroundColor: opacity(colorsVars.white, 10),
-      color: dynamicColorVars[100],
-    },
-    [_hover + isBefore]: {
-      borderColor: opacity(colorsVars.white, 10),
-    },
-    [_focusWithin]: {
-      backgroundColor: opacity(colorsVars.white, 10),
-      color: dynamicColorVars[100],
-    },
-    [_focusWithin + isBefore]: {
-      borderColor: opacity(colorsVars.white, 10),
-    },
-  }),
-  subtle: withLayer({
-    [_hover]: {
-      backgroundColor: opacity(colorsVars.white, 10),
-      color: dynamicColorVars[100],
-    },
-    [_hover + isBefore]: {
-      borderWidth: 0,
-    },
-    [_focusWithin]: {
-      backgroundColor: opacity(colorsVars.white, 10),
-      color: dynamicColorVars[100],
-    },
-    [_focusWithin + isBefore]: {
-      borderWidth: 0,
-    },
-  }),
-  ghost: withLayer({
-    [_hover]: {
-      backgroundColor: opacity(colorsVars.white, 5),
-      color: dynamicColorVars[100],
-    },
-    [_hover + isBefore]: {
-      borderWidth: 0,
-    },
-    [_focusWithin]: {
-      backgroundColor: opacity(colorsVars.white, 5),
-      color: dynamicColorVars[100],
-    },
-    [_focusWithin + isBefore]: {
-      borderWidth: 0,
-    },
-  }),
-  input: withLayer({
-    [_hover]: {
-      backgroundColor: opacity(colorsVars.black, 5),
-      color: dynamicColorVars[100],
-    },
-    [_hover + isBefore]: {
-      borderColor: opacity(colorsVars.black, 30),
-    },
-    [_focusWithin]: {
-      backgroundColor: opacity(colorsVars.black, 5),
-      color: dynamicColorVars[100],
-    },
-    [_focusWithin + isBefore]: {
-      borderColor: opacity(colorsVars.black, 30),
-    },
-  }),
-} satisfies Record<TDesignVariant, ComplexStyleRule>);
 
 export const actionHighlightClass = style(
   withLayer({

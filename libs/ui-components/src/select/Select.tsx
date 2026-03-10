@@ -1,10 +1,9 @@
-import { ButtonSpecificProps } from "../button";
-import { Button } from "../button";
+import { Button, ButtonSpecificProps } from "../button";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type SelectSpecificProps = ButtonSpecificProps;
 
-export type SelectProps = ComponentPropsBaseWith<"button", SelectSpecificProps>;
+export type SelectProps = ComponentPropsBaseWith<"button", SelectSpecificProps & { render?: React.ReactElement }>;
 
 export function Select({ ...props }: SelectProps) {
   return <Button {...props} />;

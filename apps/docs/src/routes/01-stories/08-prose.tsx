@@ -1,4 +1,5 @@
 import { Prose } from "@dldc/ui-components/prose";
+import { notProseBleedClass, notProseClass, notProseContentClass } from "@dldc/ui-styles/prose";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { StoryLayout } from "@/components/StoryLayout";
@@ -21,6 +22,10 @@ function ProseContent() {
   return (
     <>
       <h1>Prose</h1>
+      <p>
+        The <code>Prose</code> component provides a set of beautiful default styles for any vanilla HTML content.
+      </p>
+
       <p className="lead">
         Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that
         required a keen eye for typography and a lot of complex custom CSS.
@@ -383,6 +388,44 @@ function ProseContent() {
         is a heading too close to the end of the document.
       </p>
       <p>What I've written here is probably long enough, but adding this final sentence can't hurt.</p>
+      <h2>Not prose</h2>
+      <p>
+        Use the <code>notProseClass</code> to exclude elements from the prose styles. Note that since Prose uses a grid
+        layout, you need to make sure to place the excluded element in the second column of the grid.
+      </p>
+      <div className={notProseClass} style={{ gridColumn: "2 / 3" }}>
+        <div className="flex h-20 w-full items-center justify-center bg-gray-100 text-gray-950">
+          <pre>
+            <code>notProseClass + gridColumn: 2 / 3</code>
+          </pre>
+        </div>
+      </div>
+      <p>
+        You can use the <code>notProseContentClass</code> to exclude elements from the prose styles without having to
+        worry about the grid layout.
+      </p>
+      <div className={notProseContentClass}>
+        <div className="flex h-20 w-full items-center justify-center bg-gray-100 text-gray-950">
+          <pre>
+            <code>notProseContentClass</code>
+          </pre>
+        </div>
+      </div>
+      <p>
+        Use the <code>notProseBleedClass</code> to exclude elements from the prose styles and make them bleed to the
+        edges of the container.
+      </p>
+      <div className={notProseBleedClass}>
+        <div className="flex h-20 w-full items-center justify-center bg-gray-100 text-gray-950">
+          <pre>
+            <code>notProseBleedClass</code>
+          </pre>
+        </div>
+      </div>
+      <h1>All titles - h1</h1>
+      <h2>All titles - h2</h2>
+      <h3>All titles - h3</h3>
+      <h4>All titles - h4</h4>
     </>
   );
 }

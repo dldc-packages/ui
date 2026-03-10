@@ -13,20 +13,22 @@ export function ActionVariantsWidget({ className, ...props }: ComponentPropsWith
 
   const [highlighted, setHighlighted] = useState<TDesignVariant | null>();
 
+  function renderElement(variant: TDesignVariant, key?: string) {
+    return (
+      <Action key={key} variant={variant} interactive>
+        {variant}
+      </Action>
+    );
+  }
+
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
-        {highlighted
-          ? printElement(<Action variant={highlighted}>{highlighted}</Action>)
-          : "// Hover an element to see the code"}
+        {highlighted ? printElement(renderElement(highlighted)) : "// Hover an element to see the code"}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={variants}
-        renderCell={({ row: variant, key }) => (
-          <Action key={key} variant={variant} interactive>
-            {variant}
-          </Action>
-        )}
+        renderCell={({ row: variant, key }) => renderElement(variant, key)}
         onHighlightedCell={(cell) => setHighlighted(cell ? cell.row : null)}
       />
     </div>

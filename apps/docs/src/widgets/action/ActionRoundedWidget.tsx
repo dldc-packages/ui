@@ -9,7 +9,7 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 export function ActionRoundedWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const roundedValues: TDesignRounded[] = ["0", "0x", "1", "2", "3", "4", "5"];
+  const roundedValues: TDesignRounded[] = ["0", "1", "2", "3", "4", "5"];
 
   const [highlighted, setHighlighted] = useState<TDesignRounded | null>(null);
 

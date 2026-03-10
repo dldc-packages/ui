@@ -1,3 +1,5 @@
+import { Geometry } from "@dldc/ui-components/geometry";
+import { Scrollbars } from "@dldc/ui-components/scrollbars";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import estreePlugin from "prettier/plugins/estree";
 import tsPlugin from "prettier/plugins/typescript";
@@ -100,10 +102,10 @@ export function CodeHighlight({ language, theme, children }: CodeHighlightProps)
   }, [language, theme, children]);
 
   return (
-    <div className="rounded-1x h-full w-full overflow-hidden bg-neutral-800">
-      {/* <Scrollbars className={css({ h: "full", w: "full" })}> */}
-      <div className="h-full w-full *:h-full *:p-4 *:text-sm">{highlightedCode}</div>
-      {/* </Scrollbars> */}
-    </div>
+    <Geometry className="h-full w-full overflow-hidden bg-neutral-800" rounded="2" skipProviders>
+      <Scrollbars className="h-full w-full">
+        <div className="h-full w-full *:h-full *:p-4 *:text-sm">{highlightedCode}</div>
+      </Scrollbars>
+    </Geometry>
   );
 }

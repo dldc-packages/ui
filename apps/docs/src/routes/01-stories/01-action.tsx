@@ -8,18 +8,18 @@ import { ActionAutoRoundedWidget } from "@/widgets/action/ActionAutoRoundedWidge
 import { ActionAutoSpacingWidget } from "@/widgets/action/ActionAutoSpacingWidget";
 import { ActionBasicWidget } from "@/widgets/action/ActionBasicWidget";
 import { ActionColorsWidget } from "@/widgets/action/ActionColorsWidget";
-import { ActionContentHeightWidget } from "@/widgets/action/ActionContentHeightWidget";
+import { ActionContentSizeWidget } from "@/widgets/action/ActionContentSizeWidget";
 import { ActionContentWidget } from "@/widgets/action/ActionContentWidget";
 import { ActionDirectionalPaddingWidget } from "@/widgets/action/ActionDirectionalPaddingWidget";
 import { ActionDisabledWidget } from "@/widgets/action/ActionDisabledWidget";
-import { ActionHeightWidget } from "@/widgets/action/ActionHeightWidget";
 import { ActionInteractiveWidget } from "@/widgets/action/ActionInteractiveWidget";
+import { ActionPaddingFixContentSizeWidget } from "@/widgets/action/ActionPaddingFixContentSizeWidget";
+import { ActionPaddingModesWidget } from "@/widgets/action/ActionPaddingModesWidget";
 import { ActionPaddingWidget } from "@/widgets/action/ActionPaddingWidget";
 import { ActionRoundedWidget } from "@/widgets/action/ActionRoundedWidget";
+import { ActionSizeWidget } from "@/widgets/action/ActionSizeWidget";
 import { ActionSlotsAlignementWidget } from "@/widgets/action/ActionSlotsAlignementWidget";
 import { ActionSlotsWidget } from "@/widgets/action/ActionSlotsWidget";
-import { ActionSpacingAlignWidget } from "@/widgets/action/ActionSpacingAlignWidget";
-import { ActionSpacingEquivalentWidget } from "@/widgets/action/ActionSpacingEquivalentWidget";
 import { ActionVariantsWidget } from "@/widgets/action/ActionVariantsWidget";
 
 export const Route = createFileRoute("/01-stories/01-action")({
@@ -37,11 +37,12 @@ function RouteComponent() {
           functionalities:
         </p>
         <ul>
-          <li>Design: background, colors, border and radius</li>
-          <li>Color variants</li>
           <li>
-            Changing defaults design props with <code>DefaultDesignProvider</code>
+            Variants: <code>solid</code>, <code>surface</code>, <code>subtle</code>, <code>ghost</code>,{" "}
+            <code>input</code>
           </li>
+          <li>Color variants</li>
+          <li>Automatic padding and content sizing based on the size, with support for manual overrides</li>
           <li>
             Auto size and radius for nested <code>Action</code>s
           </li>
@@ -52,6 +53,7 @@ function RouteComponent() {
           You are not supposed to use <code>Action</code> directly but rather use one of the components built on top of
           it.
         </p>
+
         <h2>Basic</h2>
         <ActionBasicWidget className={cn(notProseClass, proseBleedClass)} />
         <h2>Interactive</h2>
@@ -67,22 +69,7 @@ function RouteComponent() {
           attributes.
         </p>
         <ActionInteractiveWidget className={cn(notProseClass, proseBleedClass)} />
-        <h2>Disabled</h2>
-        <p>
-          The <code>disabled</code> prop controls the disabled state of Action components. When{" "}
-          <code>disabled={`{true}`}</code>, the Action will have reduced opacity and pointer events will be disabled,
-          providing clear visual feedback that the element is not interactive.
-        </p>
-        <p>
-          <strong>Important:</strong> The <code>disabled</code> prop only takes effect when <code>interactive</code> is
-          set to <code>true</code>. Non-interactive Actions cannot be disabled as they are not meant to respond to user
-          interactions in the first place.
-        </p>
-        <p>
-          The disabled state works consistently across all color variants and maintains accessibility by setting
-          appropriate ARIA attributes.
-        </p>
-        <ActionDisabledWidget className={cn(notProseClass, proseBleedClass)} />
+
         <h2>Variants</h2>
         <p>Action comes with different visual variants to serve different purposes:</p>
         <ul>
@@ -106,6 +93,7 @@ function RouteComponent() {
           <strong>Note:</strong> Here the <code>interactive</code> is enabled to show the hover effect on all variants.
         </p>
         <ActionVariantsWidget className={cn(notProseClass, proseBleedClass)} />
+
         <h2>Colors</h2>
         <p>
           Action supports a comprehensive color palette through the <code>color</code> prop. The color system includes:
@@ -123,21 +111,33 @@ function RouteComponent() {
           The default color is <code>neutral</code>.
         </p>
         <ActionColorsWidget className={cn(notProseClass, proseBleedClass)} />
-        <h2>Height</h2>
+
+        <h2>Disabled</h2>
         <p>
-          Action components can be sized using the <code>height</code> prop. The default height is <code>7</code>.
-        </p>
-        <ActionHeightWidget className={cn(notProseClass, proseBleedClass)} />
-        <h2>Content Height</h2>
-        <p>
-          The <code>contentHeight</code> prop controls the internal content sizing within a Action. This is particularly
-          useful when you need to manage the size of inner content independently from the Action's overall height.
+          The <code>disabled</code> prop controls the disabled state of Action components. When{" "}
+          <code>disabled={`{true}`}</code>, the Action will have reduced opacity and pointer events will be disabled,
+          providing clear visual feedback that the element is not interactive.
         </p>
         <p>
-          When not specified, the content height is automatically calculated based on the Action's height and internal
-          spacing to ensure optimal content display.
+          <strong>Important:</strong> The <code>disabled</code> prop only takes effect when <code>interactive</code> is
+          set to <code>true</code>. Non-interactive Actions cannot be disabled as they are not meant to respond to user
+          interactions in the first place.
         </p>
-        <ActionContentHeightWidget className={cn(notProseClass, proseBleedClass)} />
+        <p>
+          The disabled state works consistently across all color variants and maintains accessibility by setting
+          appropriate ARIA attributes.
+        </p>
+        <ActionDisabledWidget className={cn(notProseClass, proseBleedClass)} />
+        <h2>Size</h2>
+        <p>
+          Action components can be sized using the <code>size</code> prop. The default size is <code>7</code>.
+        </p>
+        <ActionSizeWidget className={cn(notProseClass, proseBleedClass)} />
+        <p className="italic">
+          Notice how the padding, content size and border radius are automatically adjusted based on the size to
+          maintain a balanced and visually consistent design.
+        </p>
+
         <h2>How Sizing Works</h2>
         <p>
           The design system uses a systematic sizing approach based on units of 4 pixels with support for fractional
@@ -220,79 +220,76 @@ function RouteComponent() {
           </tbody>
         </table>
         <p>
-          This fractional system applies to all size-related props including <code>height</code>,{" "}
-          <code>contentHeight</code>,<code>rounded</code>, and <code>spacing</code>.
+          This fractional system applies to all size-related props including <code>size</code>, <code>contentSize</code>
+          ,<code>rounded</code>, and <code>padding</code>.
         </p>
+
+        <h2>Content Size</h2>
+        <p>
+          The <code>contentSize</code> prop controls the internal content sizing within an Action. This is particularly
+          useful when you need to manage the size of inner content independently from the Action's overall size.
+        </p>
+        <ActionContentSizeWidget className={cn(notProseClass, proseBleedClass)} />
+        <p className="italic">
+          In the example above, you can see how changing the content size automatically adjusts the padding to maintain
+          visual harmony.
+        </p>
+
         <h2>Rounded</h2>
         <p>
           The <code>rounded</code> prop controls the border radius of Action components. Like other sizing props, it
           follows the same 4px-based unit system with support for fractional values.
         </p>
         <p>
-          The default rounded value is <code>1</code> (4px).
+          The default rounded value is based on the size of the action (<code>size × 0.25</code>)
         </p>
         <ActionRoundedWidget className={cn(notProseClass, proseBleedClass)} />
-        <h2>Auto Rounded</h2>
+
+        <h2>Padding</h2>
         <p>
-          When nesting Action components, the rounded values are automatically computed to create harmonious visual
-          relationships. The inner Action's radius is calculated based on the outer Action's radius and the spacing
-          between them.
+          The <code>padding</code> prop controls the internal spacing of Action components. It also follows the same
+          4px-based unit system with support for fractional values. The default padding is automatically calculated
+          based on the size of the Action and its content to maintain visual balance.
+        </p>
+        <ActionPaddingWidget className={cn(notProseClass, proseBleedClass)} />
+        <p>
+          You can see that as the padding value increases, the space around the content grows accordingly and the{" "}
+          <code>contentSize</code> decreases to maintain the overall size of the Action.
         </p>
         <p>
-          In the example below, you can see how different <code>rounded</code> values on the outer Action (height 12)
-          automatically affect the inner Actions (heights 10 and 8). Notice how the nested radii scale proportionally to
-          maintain visual consistency.
+          Of course you can also set the <code>contentSize</code> manually:
         </p>
-        <p>
-          <strong>Note:</strong> For automatic rounded calculations to work, the parent Action must know the size of its
-          content. This means you should use the <code>contentHeight</code> prop (not <code>height</code>) on nested
-          Actions to ensure correct radius scaling.
-        </p>
-        <p>
-          <strong>Note:</strong> The auto rounded calculation has a minimum of <code>0x</code> (2px), except if the
-          parent radius is <code>0</code> in which case the child radius will also be <code>0</code>.
-        </p>
-        <ActionAutoRoundedWidget className={cn(notProseClass, proseBleedClass)} />
+        <ActionPaddingFixContentSizeWidget className={cn(notProseClass, proseBleedClass)} />
+
         <h2>Content</h2>
         <p>
           Action components can contain various types of content including text, icons, and complex layouts. The content
           system provides flexible ways to structure your Action components.
         </p>
-        <h3>Basic Content</h3>
         <p>
           Use <code>children</code> for text content, <code>startIcon</code> and <code>endIcon</code> for simple icon
           placement:
         </p>
         <ActionContentWidget className={cn(notProseClass, proseBleedClass)} />
-        <h3>Advanced Layout</h3>
+
+        <h2>Automatic Spacing</h2>
         <p>
-          For more complex layouts, use <code>startSlot</code> and <code>endSlot</code> to embed custom components like
-          nested Actions or any other UI elements:
+          As mentioned before, <code>Action</code> automatically calculates <code>padding</code> and{" "}
+          <code>contentSize</code> based on the <code>size</code> prop. This also applies to <code>gap</code> when you
+          have multiple children or icons. This automatic spacing ensures that the visual rhythm is maintained across
+          different sizes and content configurations without needing manual adjustments.
         </p>
-        <ActionSlotsWidget className={cn(notProseClass, proseBleedClass)} />
         <p>
-          When <code>children</code> is text, it will automatically get <code>flex: 1</code>, if you pass a custom
-          element to <code>children</code> you might need to set <code>flex: 1</code> manually to get the proper{" "}
-          <code>endSlot</code> alignment. You can also solve this by adding <code>margin-left: "auto"</code> on{" "}
-          <code>endSlot</code> (we already do it for you with <code>endIcon</code>).
-        </p>
-        <ActionSlotsAlignementWidget className={cn(notProseClass, proseBleedClass)} />
-        <h2>Spacing</h2>
-        <p>
-          Action provides comprehensive control over internal spacing through multiple props that affect padding and
-          gaps between content elements.
-        </p>
-        <h3>Automatic Spacing</h3>
-        <p>
-          By default, spacing (padding and gap) is automatically computed from <code>height</code> and{" "}
-          <code>contentHeight</code> to ensure visual consistency. Notice in the example below how the icon is always
-          "centered" within the Action.
+          The automatic spacing also ensures that icons are always perfectly centered within the Action, regardless of
+          the Action's size or content configuration. For example, see how in the example below the icon is always
+          "centered" with equal space on all 4 sides.
         </p>
         <ActionAutoSpacingWidget className={cn(notProseClass, proseBleedClass)} />
-        <h3>Padding Types</h3>
+
+        <h2>Padding Modes</h2>
         <p>
-          The <code>padding</code>, <code>startPadding</code>, and <code>endPadding</code> props control how much space
-          is added around the content:
+          The <code>paddingMode</code>, <code>startPaddingMode</code>, and <code>endPaddingMode</code> props control how
+          much space is added around the content:
         </p>
         <ul>
           <li>
@@ -312,28 +309,41 @@ function RouteComponent() {
         </ul>
         <p>
           By default, <code>Action</code> will automatically detect and apply the appropriate padding size based on its
-          content. This means you usually don't need to specify the <code>padding</code> prop manually.
+          content. This means you usually don't need to specify the <code>paddingMode</code> prop manually.
         </p>
-        <ActionPaddingWidget className={cn(notProseClass, proseBleedClass)} />
-        <h3>Directional Padding Control</h3>
+        <ActionPaddingModesWidget className={cn(notProseClass, proseBleedClass)} />
         <p>
-          Use <code>startPadding</code> and <code>endPadding</code> to fine-tune padding on specific sides when you have
-          mixed content or custom layouts.
+          Use <code>startPaddingMode</code> and <code>endPaddingMode</code> to fine-tune padding on specific sides when
+          you have mixed content or custom layouts.
         </p>
         <ActionDirectionalPaddingWidget className={cn(notProseClass, proseBleedClass)} />
-        <h3>Manual Spacing Override</h3>
+
+        <h2>Auto nested Rounded</h2>
         <p>
-          The <code>spacing</code> prop allows you to override the automatic spacing calculation. Note that this prop
-          doesn't control the actual pixel size directly—instead, <code>spacing="8"</code> means "use the same spacing
-          as a Action with height 8 and default contentHeight.".
+          When nesting Action components, the rounded values are automatically computed to create harmonious visual
+          relationships. The inner Action's radius is calculated based on the outer Action's radius and the spacing
+          between them.
         </p>
-        <ActionSpacingEquivalentWidget className={cn(notProseClass, proseBleedClass)} />
         <p>
-          This is particularly useful when you want to adjust the spacing for Actions with different heights to maintain
-          a consistent visual rhythm. For this to work you need all the Actions to have the same{" "}
-          <code>contentHeight</code>.
+          In the example below, you can see how different <code>rounded</code> values on the outer Action (size 12)
+          automatically affect the inner Actions (sizes 10 and 8). Notice how the nested radii scale proportionally to
+          maintain visual consistency.
         </p>
-        <ActionSpacingAlignWidget className={cn(notProseClass, proseBleedClass)} />
+        <ActionAutoRoundedWidget className={cn(notProseClass, proseBleedClass)} />
+
+        <h2>Advanced Content Layout</h2>
+        <p>
+          For more complex layouts, use <code>startSlot</code> and <code>endSlot</code> to embed custom components like
+          nested Actions or any other UI elements:
+        </p>
+        <ActionSlotsWidget className={cn(notProseClass, proseBleedClass)} />
+        <p>
+          When <code>children</code> is text, it will automatically get <code>flex: 1</code>, if you pass a custom
+          element to <code>children</code> you might need to set <code>flex: 1</code> manually to get the proper{" "}
+          <code>endSlot</code> alignment. You can also solve this by adding <code>margin-left: "auto"</code> on{" "}
+          <code>endSlot</code> (we already do it for you with <code>endIcon</code>).
+        </p>
+        <ActionSlotsAlignementWidget className={cn(notProseClass, proseBleedClass)} />
       </Prose>
     </StoryLayout>
   );

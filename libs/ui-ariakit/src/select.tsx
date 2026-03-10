@@ -2,6 +2,7 @@ import * as AKSelect from "@ariakit/react/select";
 import { ActionContentFragment } from "@dldc/ui-components/action-content";
 import * as CSelect from "@dldc/ui-components/select";
 import { ChevronDownIcon } from "lucide-react";
+import { ReactElement } from "react";
 import { Merge } from "type-fest";
 
 export {
@@ -35,48 +36,42 @@ export function SelectArrow(props: SelectArrowProps) {
 }
 SelectArrow.displayName = "SelectArrow";
 
-export type SelectLabelProps = Merge<AKSelect.SelectLabelProps, CSelect.SelectLabelSpecificProps>;
+export type SelectLabelProps = Merge<AKSelect.SelectLabelProps<"label">, CSelect.SelectLabelSpecificProps>;
 export function SelectLabel({ render, ...props }: SelectLabelProps) {
-  return <AKSelect.SelectLabel render={<CSelect.SelectLabel render={render} />} {...props} />;
+  return <CSelect.SelectLabel render={<AKSelect.SelectLabel render={render} />} {...props} />;
 }
 SelectLabel.displayName = "SelectLabel";
 
-export type SelectProps = Merge<AKSelect.SelectProps, CSelect.SelectSpecificProps>;
-export function Select({ render, endPaddingMode, startPaddingMode, paddingMode, children, ...props }: SelectProps) {
+export type SelectProps = Merge<AKSelect.SelectProps, CSelect.SelectSpecificProps & { render?: ReactElement }>;
+export function Select({ render, children, ...props }: SelectProps) {
   const defaultChildren = (
     <ActionContentFragment endIcon={<SelectArrow />}>
       <AKSelect.SelectValue />
     </ActionContentFragment>
   );
 
-  const endPaddingModeResolved = endPaddingMode ?? paddingMode ?? "icon";
-  const startPaddingModeResolved = startPaddingMode ?? paddingMode ?? "text";
-
   return (
-    <AKSelect.Select
-      render={
-        <CSelect.Select
-          endPaddingMode={endPaddingModeResolved}
-          startPaddingMode={startPaddingModeResolved}
-          render={render}
-        />
-      }
-      {...props}
-    >
+    <CSelect.Select render={<AKSelect.Select render={render} />} {...props}>
       {children ?? defaultChildren}
-    </AKSelect.Select>
+    </CSelect.Select>
   );
 }
 Select.displayName = "Select";
 
-export type SelectPopoverProps = Merge<AKSelect.SelectPopoverProps, CSelect.SelectPropoverSpecificProps>;
+export type SelectPopoverProps = Merge<
+  AKSelect.SelectPopoverProps,
+  CSelect.SelectPopoverSpecificProps & { render?: ReactElement }
+>;
 export function SelectPopover({ render, ...props }: SelectPopoverProps) {
-  return <AKSelect.SelectPopover render={<CSelect.SelectPopover render={render} />} {...props} />;
+  return <CSelect.SelectPopover render={<AKSelect.SelectPopover render={render} />} {...props} />;
 }
 SelectPopover.displayName = "SelectPopover";
 
-export type SelectItemProps = Merge<AKSelect.SelectItemProps, CSelect.SelectItemSpecificProps>;
-export function SelectItem({ render, ...props }: SelectItemProps) {
-  return <AKSelect.SelectItem render={<CSelect.SelectItem render={render} />} {...props} />;
+export type SelectItemProps = Merge<
+  AKSelect.SelectItemProps,
+  CSelect.SelectItemSpecificProps & { render?: ReactElement }
+>;
+export function SelectItem({ render, disabled, ...props }: SelectItemProps) {
+  return <CSelect.SelectItem render={<AKSelect.SelectItem disabled={disabled} render={render} />} {...props} />;
 }
 SelectItem.displayName = "SelectItem";

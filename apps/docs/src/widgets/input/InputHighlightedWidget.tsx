@@ -1,5 +1,6 @@
 import { Input } from "@dldc/ui-components/input";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
+import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -21,7 +22,11 @@ export function InputHighlightedWidget({ className, ...props }: ComponentPropsWi
     { label: "Error state (red)", highlighted: true, highlightColor: "red" },
     { label: "Success state (green)", highlighted: true, highlightColor: "green" },
   ];
-  const [highlightedState, setHighlightedState] = useState<HighlightState | null>();
+  const variants: TDesignVariant[] = ["input", "surface", "subtle"];
+  const [highlightedState, setHighlightedState] = useState<{
+    variant: TDesignVariant;
+    hitghligh: HighlightState;
+  } | null>();
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
@@ -29,24 +34,27 @@ export function InputHighlightedWidget({ className, ...props }: ComponentPropsWi
         {highlightedState
           ? printElement(
               <Input
-                highlighted={highlightedState.highlighted}
-                highlightColor={highlightedState.highlightColor}
-                placeholder={highlightedState.label}
+                highlighted={highlightedState.hitghligh.highlighted}
+                highlightColor={highlightedState.hitghligh.highlightColor}
+                placeholder={highlightedState.hitghligh.label}
+                variant={highlightedState.variant}
               />,
             )
           : "// Hover an input to see the code"}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={states}
-        renderCell={({ row: state, key }) => (
+        columnsDims={variants}
+        renderCell={({ row: state, column: variant, key }) => (
           <Input
             key={key}
             highlighted={state.highlighted}
             highlightColor={state.highlightColor}
             placeholder={state.label}
+            variant={variant}
           />
         )}
-        onHighlightedCell={(cell) => setHighlightedState(cell?.row ?? null)}
+        onHighlightedCell={(cell) => setHighlightedState(cell ? { variant: cell.column, hitghligh: cell.row } : null)}
       />
     </div>
   );

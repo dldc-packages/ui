@@ -4,43 +4,47 @@ import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
 
-import { DefaultDesignProvider, designPropsSplitter, TDesignProps } from "../design-context";
-import { DefaultGeometryProvider, geometryPropsSplitter, TGeometryProps } from "../geometry";
+import { TContentSizeProps } from "../content-size";
+import { DesignWrapper } from "../design-wrapper";
+import { TPaddingProps } from "../padding";
+import { TRoundedProps } from "../rounded";
+import { TSizeProps } from "../size";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
-import { DefaultVariantProvider, TDesignVariantProps, useVariant, variantPropsSplitter } from "../variant";
+import { TVariantProps, useVariant, variantPropsSplitter } from "../variant";
 
 export type ActionGroupProps = ComponentPropsBaseWith<
   "div",
-  TGeometryProps &
-    TDesignProps &
-    TDesignVariantProps & {
+  TPaddingProps &
+    TRoundedProps &
+    TSizeProps &
+    TContentSizeProps &
+    TVariantProps & {
       disabled?: boolean;
 
       color?: TPaletteColor;
 
       direction?: "horizontal" | "vertical";
       roundedEnds?: "start" | "end" | "both" | "none";
-      innerDividers?: boolean;
+      innerDividers?: "none" | "partial" | "full";
     }
 >;
 
 export function ActionGroup(inProps: ActionGroupProps) {
-  const [{ localDesignVariant, localDesign, localGeometry }, props] = pipePropsSplitters(inProps, {
-    localDesignVariant: variantPropsSplitter,
-    localGeometry: geometryPropsSplitter,
-    localDesign: designPropsSplitter,
+  const [{ localVariant }, props] = pipePropsSplitters(inProps, {
+    localVariant: variantPropsSplitter,
   });
 
-  const { variant } = useVariant(localDesignVariant, "surface");
+  const { variant } = useVariant(localVariant, "surface");
+
   const {
     color,
     className,
     children,
     direction = "horizontal",
-    innerDividers = true,
+    innerDividers = "full",
     roundedEnds = "both",
     style,
-    ...divProps
+    ...wrapperProps
   } = props;
 
   const childrenFiltered = Children.toArray(children).filter((c) => c);
@@ -59,37 +63,40 @@ export function ActionGroup(inProps: ActionGroupProps) {
   const [separatorClass, separatorInline] = actionGroupSeparatorStyles({
     direction,
     variant,
+    separatorVariant: innerDividers,
   });
 
+  const renderInnerDividers = innerDividers !== "none";
+
   return (
-    <DefaultDesignProvider {...localDesign}>
-      <DefaultVariantProvider {...localDesignVariant}>
-        <DefaultGeometryProvider {...localGeometry}>
-          <div className={clsx(baseClass, className)} style={{ ...baseInline, ...style }} {...divProps}>
-            {Children.map(childrenFiltered, (child, i) => {
-              if (!child) return null;
+    <DesignWrapper
+      {...localVariant}
+      color={color}
+      className={clsx(baseClass, className)}
+      style={{ ...baseInline, ...style }}
+      {...wrapperProps}
+    >
+      {Children.map(childrenFiltered, (child, i) => {
+        if (!child) return null;
 
-              const isFirst = i === 0;
-              const isLast = i === childrenLength - 1;
-              const roundStart = roundedStart && isFirst;
-              const roundEnd = roundedEnd && isLast;
-              const roundedBase = roundStart && roundEnd ? "all" : roundStart ? "start" : roundEnd ? "end" : "none";
+        const isFirst = i === 0;
+        const isLast = i === childrenLength - 1;
+        const roundStart = roundedStart && isFirst;
+        const roundEnd = roundedEnd && isLast;
+        const roundedBase = roundStart && roundEnd ? "all" : roundStart ? "start" : roundEnd ? "end" : "none";
 
-              return (
-                <Fragment>
-                  {innerDividers && !isFirst && <span className={separatorClass} style={separatorInline} />}
-                  {cloneElement(child as any, {
-                    ["data-first"]: roundedBase === "start" ? "true" : undefined,
-                    ["data-last"]: roundedBase === "end" ? "true" : undefined,
-                    ["data-between"]: roundedBase === "none" ? "true" : undefined,
-                  })}
-                </Fragment>
-              );
+        return (
+          <Fragment>
+            {renderInnerDividers && !isFirst && <span className={separatorClass} style={separatorInline} />}
+            {cloneElement(child as any, {
+              ["data-first"]: roundedBase === "start" ? "true" : undefined,
+              ["data-last"]: roundedBase === "end" ? "true" : undefined,
+              ["data-between"]: roundedBase === "none" ? "true" : undefined,
             })}
-          </div>
-        </DefaultGeometryProvider>
-      </DefaultVariantProvider>
-    </DefaultDesignProvider>
+          </Fragment>
+        );
+      })}
+    </DesignWrapper>
   );
 }
 

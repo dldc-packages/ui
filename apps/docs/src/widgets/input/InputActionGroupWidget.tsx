@@ -2,7 +2,7 @@ import { ActionGroup } from "@dldc/ui-components/action";
 import { Button, ButtonLike } from "@dldc/ui-components/button";
 import { Input } from "@dldc/ui-components/input";
 import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
-import { useState, type ComponentPropsWithRef } from "react";
+import { useId, useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
 
@@ -18,11 +18,13 @@ type Example = {
 export function InputActionGroupWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const [highlighted, setHighlighted] = useState<Example | null>();
 
+  const id = useId();
+
   const examples: Example[] = [
     {
       label: "Search Bar",
       element: (
-        <ActionGroup variant="solid" color="blue">
+        <ActionGroup variant="solid" color="blue" innerDividers="partial">
           <Input placeholder="Search..." startIcon={<SearchIcon />} />
           <Button>Search</Button>
         </ActionGroup>
@@ -31,7 +33,7 @@ export function InputActionGroupWidget({ className, ...props }: ComponentPropsWi
     {
       label: "Message Form",
       element: (
-        <ActionGroup variant="surface" color="green">
+        <ActionGroup variant="surface" color="green" innerDividers="none">
           <Input placeholder="Type a message..." startIcon={<UserIcon />} />
           <Button variant="solid" startIcon={<SendIcon />}>
             Send
@@ -42,9 +44,9 @@ export function InputActionGroupWidget({ className, ...props }: ComponentPropsWi
     {
       label: "Form item",
       element: (
-        <ActionGroup variant="input">
-          <ButtonLike>Username</ButtonLike>
-          <Input placeholder="Enter username" />
+        <ActionGroup variant="input" innerDividers="partial">
+          <ButtonLike render={<label htmlFor={id} />}>Username</ButtonLike>
+          <Input placeholder="Enter username" id={id} />
         </ActionGroup>
       ),
     },

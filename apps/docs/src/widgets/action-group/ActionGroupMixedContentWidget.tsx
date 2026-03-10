@@ -1,6 +1,7 @@
 import { Button } from "@dldc/ui-ariakit/button";
 import { ActionGroup } from "@dldc/ui-components/action";
 import { ButtonLike } from "@dldc/ui-components/button";
+import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
 import { type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -22,7 +23,9 @@ export function ActionGroupMixedContentWidget({ className, ...props }: Component
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(element)}
       </CodeHighlight>
-      <div>{element}</div>
+      <GeometryPaper background="900" className="p-3" rounded="2" skipProviders>
+        {element}
+      </GeometryPaper>
     </div>
   );
 }

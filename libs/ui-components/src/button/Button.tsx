@@ -1,36 +1,43 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { TDesignSpacing } from "@dldc/ui-core/size";
 import { ReactElement } from "react";
 
 import { Action } from "../action";
 import { TActionContentProps } from "../action-content";
+import { TContentSizeProps } from "../content-size";
+import { TPaddingProps } from "../padding";
+import { TRoundedProps } from "../rounded";
 import { TSizeProps } from "../size";
-import { ComponentPropsBaseWith, mergeRender } from "../utils";
-import { TDesignVariantProps } from "../variant";
+import { ComponentPropsBaseWith, createRender } from "../utils";
+import { TVariantProps } from "../variant";
 
 export type ButtonSpecificProps = TActionContentProps &
+  TPaddingProps &
+  TRoundedProps &
   TSizeProps &
-  TDesignVariantProps & {
+  TContentSizeProps &
+  TVariantProps & {
     disabled?: boolean;
 
-    spacing?: TDesignSpacing | null;
     color?: TPaletteColor;
     type?: "button" | "submit" | "reset" | undefined;
-
-    render?: ReactElement;
 
     // Data attributes
     "data-hover"?: boolean;
     "data-focus-visible"?: boolean;
   };
 
-export type ButtonProps = ComponentPropsBaseWith<"button", ButtonSpecificProps>;
+export type ButtonProps = ComponentPropsBaseWith<
+  "button",
+  ButtonSpecificProps & {
+    render?: ReactElement;
+  }
+>;
 
 export function Button({ type = "button", disabled = false, render, ref, ...actionProps }: ButtonProps) {
   return (
     <Action
       disabled={disabled}
-      render={mergeRender(render, <button type={type} ref={ref} disabled={disabled} />)}
+      render={createRender("button", render, { type, ref, disabled })}
       interactive
       {...(actionProps as any)}
     />

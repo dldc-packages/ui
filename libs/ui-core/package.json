@@ -10,9 +10,9 @@
   "exports": {
     "./colors": "./dist/colors/index.js",
     "./conditions": "./dist/conditions.js",
-    "./geometry": "./dist/geometry/index.js",
     "./helpers": "./dist/helpers/index.js",
     "./size": "./dist/size/index.js",
+    "./variables": "./dist/variables/index.js",
     "./variants": "./dist/variants/index.js",
     "./package.json": "./package.json",
     "./styles.css": "./dist/styles.css"

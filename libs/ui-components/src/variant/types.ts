@@ -1,6 +1,9 @@
 import { TDesignVariant } from "@dldc/ui-core/variants";
 
-export interface TDesignVariantProps {
-  variant?: TDesignVariant;
-  hoverVariant?: TDesignVariant | null;
+export type TVariantPropValue = TDesignVariant;
+export type THoverVariantPropValue = TDesignVariant | null;
+
+export interface TVariantProps {
+  variant?: TVariantPropValue;
+  hoverVariant?: THoverVariantPropValue;
 }

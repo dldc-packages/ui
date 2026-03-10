@@ -1,5 +1,6 @@
 import { Button } from "@dldc/ui-ariakit/button";
 import { ActionGroup } from "@dldc/ui-components/action";
+import { ChevronDown } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { HighlightedGrid } from "@/components/HighlightedGrid";
@@ -34,6 +35,19 @@ export function ActionGroupNestedWidget({ className, ...props }: ComponentPropsW
             <Button>Open</Button>
             <Button>Save</Button>
           </ActionGroup>
+        </ActionGroup>
+      ),
+    },
+    {
+      key: "third",
+      element: (
+        <ActionGroup>
+          <ActionGroup roundedEnds="start" innerDividers="partial">
+            <Button>Open</Button>
+            <Button startIcon={<ChevronDown />} />
+          </ActionGroup>
+          <Button>New</Button>
+          <Button>Save</Button>
         </ActionGroup>
       ),
     },

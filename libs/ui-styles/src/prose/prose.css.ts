@@ -1,13 +1,16 @@
+import * as css from "@dldc/css-builder";
 import { colorsVars, opacity } from "@dldc/ui-core/colors";
+import { contentSizeVar } from "@dldc/ui-core/variables";
 import { createGlobalTheme, createTheme, globalStyle, GlobalStyleRule, style } from "@vanilla-extract/css";
 
-import { designContentSizeVar } from "../common/index";
 import { layer, withLayer } from "../utils/layer";
 import { em, rem, round } from "./utils";
 
 export const notProseClass = style({});
-export const proseBaseClass = style({});
+export const notProseContentClass = style([notProseClass, { gridColumn: "2 / 3" }]);
 export const proseBleedClass = style({});
+export const notProseBleedClass = style([notProseClass, proseBleedClass]);
+export const proseBaseClass = style({});
 
 const isNotProse = `:not(:where(.${notProseClass}, .${notProseClass} *))`;
 
@@ -51,11 +54,19 @@ globalStyleWithNotProse(`${proseBaseClass} > *`, {
 globalStyleWithNotProse(`${proseBaseClass} > ${proseBleedClass}`, {
   gridColumn: "1 / -1",
 });
+
 // Allow notprose + bleed
 globalStyle(
   `${proseBaseClass} > ${notProseClass}${proseBleedClass}`,
   withLayer({
     gridColumn: "1 / -1",
+  }),
+);
+// Apply padding notProse
+globalStyle(
+  `${proseBaseClass} > ${notProseClass}`,
+  withLayer({
+    marginBottom: em(16, 14),
   }),
 );
 
@@ -240,7 +251,6 @@ globalStyleWithNotProse(`${proseBaseClass} pre code::after`, {
 globalStyleWithNotProse(`${proseBaseClass} table`, {
   width: "100%",
   tableLayout: "auto",
-  marginTop: em(32, 16),
   marginBottom: em(32, 16),
 });
 globalStyleWithNotProse(`${proseBaseClass} thead`, {
@@ -278,56 +288,49 @@ globalStyleWithNotProse(`${proseBaseClass} figcaption`, {
 
 export const proseSizeDynamicClass = style(
   withLayer({
-    fontSize: `calc(${designContentSizeVar} * (1 / 1.75))`,
-    lineHeight: round(24 / 14),
+    fontSize: css.serialize(css.multiply(contentSizeVar, css.divide(1, css.divide(24, 14)))),
+    lineHeight: css.serialize(css.divide(24, 14)),
   }),
 );
 globalStyleWithNotProse(`${proseSizeDynamicClass} p`, {
-  marginTop: em(16, 14),
   marginBottom: em(16, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} blockquote`, {
-  marginTop: em(24, 18),
   marginBottom: em(24, 18),
   paddingInlineStart: em(20, 18),
 });
+globalStyleWithNotProse(`${proseSizeDynamicClass} *:last-child`, {
+  marginBottom: "0",
+});
 globalStyleWithNotProse(`${proseSizeDynamicClass} h1`, {
   fontSize: em(30, 14),
-  marginTop: "0",
   marginBottom: em(24, 30),
   lineHeight: round(36 / 30),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} h2`, {
-  fontSize: em(20, 14),
-  marginTop: em(32, 20),
+  fontSize: em(22, 14),
   marginBottom: em(16, 20),
   lineHeight: round(28 / 20),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} h3`, {
   fontSize: em(18, 14),
-  marginTop: em(28, 18),
   marginBottom: em(8, 18),
   lineHeight: round(28 / 18),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} h4`, {
-  marginTop: em(20, 14),
   marginBottom: em(8, 14),
   lineHeight: round(20 / 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} img`, {
-  marginTop: em(24, 14),
   marginBottom: em(24, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} picture`, {
-  marginTop: em(24, 14),
   marginBottom: em(24, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} picture > img`, {
-  marginTop: "0",
   marginBottom: "0",
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} video`, {
-  marginTop: em(24, 14),
   marginBottom: em(24, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} kbd`, {
@@ -350,7 +353,6 @@ globalStyleWithNotProse(`${proseSizeDynamicClass} h3 code`, {
 globalStyleWithNotProse(`${proseSizeDynamicClass} pre`, {
   fontSize: em(12, 14),
   lineHeight: round(20 / 12),
-  marginTop: em(20, 12),
   marginBottom: em(20, 12),
   borderRadius: rem(4),
   paddingTop: em(8, 12),
@@ -358,20 +360,28 @@ globalStyleWithNotProse(`${proseSizeDynamicClass} pre`, {
   paddingBottom: em(8, 12),
   paddingInlineStart: em(12, 12),
 });
+
 globalStyleWithNotProse(`${proseSizeDynamicClass} ol`, {
-  marginTop: em(16, 14),
   marginBottom: em(16, 14),
   paddingInlineStart: em(20, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} ul`, {
-  marginTop: em(16, 14),
   marginBottom: em(16, 14),
   paddingInlineStart: em(20, 14),
 });
+
 globalStyleWithNotProse(`${proseSizeDynamicClass} li`, {
   marginTop: em(4, 14),
   marginBottom: em(4, 14),
 });
+
+globalStyleWithNotProse(`${proseSizeDynamicClass} li:first-child`, {
+  marginTop: "0",
+});
+globalStyleWithNotProse(`${proseSizeDynamicClass} li:last-child`, {
+  marginBottom: "0",
+});
+
 globalStyleWithNotProse(`${proseSizeDynamicClass} ol > li`, {
   paddingInlineStart: em(6, 14),
 });
@@ -382,18 +392,35 @@ globalStyleWithNotProse(`${proseSizeDynamicClass} > ul > li p`, {
   marginTop: em(8, 14),
   marginBottom: em(8, 14),
 });
+
 globalStyleWithNotProse(`${proseSizeDynamicClass} > ul > li > p:first-child`, {
   marginTop: em(16, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} > ul > li > p:last-child`, {
   marginBottom: em(16, 14),
 });
+
 globalStyleWithNotProse(`${proseSizeDynamicClass} > ol > li > p:first-child`, {
   marginTop: em(16, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} > ol > li > p:last-child`, {
   marginBottom: em(16, 14),
 });
+
+globalStyleWithNotProse(`${proseSizeDynamicClass} > ul > li:first-child > p:first-child`, {
+  marginTop: "0",
+});
+globalStyleWithNotProse(`${proseSizeDynamicClass} > ol > li:first-child > p:first-child`, {
+  marginTop: "0",
+});
+
+globalStyleWithNotProse(`${proseSizeDynamicClass} > ul > li:last-child > p:last-child`, {
+  marginBottom: "0",
+});
+globalStyleWithNotProse(`${proseSizeDynamicClass} > ol > li:last-child > p:last-child`, {
+  marginBottom: "0",
+});
+
 globalStyleWithNotProse(
   `${proseSizeDynamicClass} ul ul, ${proseSizeDynamicClass} ul ol, ${proseSizeDynamicClass} ol ul, ${proseSizeDynamicClass} ol ol`,
   {
@@ -401,12 +428,29 @@ globalStyleWithNotProse(
     marginBottom: em(8, 14),
   },
 );
+
+globalStyleWithNotProse(
+  `${proseSizeDynamicClass} ul ul:first-child, ${proseSizeDynamicClass} ul ol:first-child, ${proseSizeDynamicClass} ol ul:first-child, ${proseSizeDynamicClass} ol ol:first-child`,
+  {
+    marginTop: "0",
+  },
+);
+
+globalStyleWithNotProse(
+  `${proseSizeDynamicClass} ul ul:last-child, ${proseSizeDynamicClass} ul ol:last-child, ${proseSizeDynamicClass} ol ul:last-child, ${proseSizeDynamicClass} ol ol:last-child`,
+  {
+    marginBottom: "0",
+  },
+);
+
 globalStyleWithNotProse(`${proseSizeDynamicClass} dl`, {
-  marginTop: em(16, 14),
   marginBottom: em(16, 14),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} dt`, {
   marginTop: em(16, 14),
+});
+globalStyleWithNotProse(`${proseSizeDynamicClass} dt:first-child`, {
+  marginTop: "0",
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} dd`, {
   marginTop: em(4, 14),
@@ -418,6 +462,9 @@ globalStyleWithNotProse(`${proseSizeDynamicClass} hr`, {
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} hr + *`, {
   marginTop: "0",
+});
+globalStyleWithNotProse(`${proseSizeDynamicClass} *:has(+ hr)`, {
+  marginBottom: "0",
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} h2 + *`, {
   marginTop: "0",
@@ -459,7 +506,6 @@ globalStyleWithNotProse(`${proseSizeDynamicClass} tbody td:last-child, ${proseSi
   paddingInlineEnd: "0",
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} figure`, {
-  marginTop: em(16, 12),
   marginBottom: em(16, 12),
 });
 globalStyleWithNotProse(`${proseSizeDynamicClass} figure > *`, {

@@ -36,3 +36,4 @@ export function LoadingIcon({ color = "currentColor", size = 24, strokeWidth = 2
     </svg>
   );
 }
+LoadingIcon.displayName = "LoadingIcon";

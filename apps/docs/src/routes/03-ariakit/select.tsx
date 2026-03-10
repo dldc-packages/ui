@@ -1,5 +1,4 @@
 import * as Select from "@dldc/ui-ariakit/select";
-import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
 import { Prose } from "@dldc/ui-components/prose";
 import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
 import { createFileRoute } from "@tanstack/react-router";
@@ -17,27 +16,28 @@ function RouteComponent() {
     <StoryLayout>
       <Prose invert>
         <h1>Select</h1>
-        <DesignWrapper
-          height="10"
-          color="blue"
-          // TODO rounded="4"
-          variant="solid"
-        >
-          <div className={cn(notProseClass, proseBleedClass, "flex flex-col items-center gap-2")}>
-            <div className="gap-0x flex flex-col">
-              <Select.SelectProvider defaultValue="Apple">
-                <Select.SelectLabel>Favorite fruit</Select.SelectLabel>
-                <Select.Select className="min-w-[150px]" startIcon={<GrapeIcon />} />
-                <Select.SelectPopover gutter={4} sameWidth className="p-1">
-                  <Select.SelectItem value="Apple" startIcon={<AppleIcon />} />
-                  <Select.SelectItem value="Banana" startIcon={<BananaIcon />} />
-                  <Select.SelectItem value="Grape" disabled startIcon={<GrapeIcon />} />
-                  <Select.SelectItem value="Orange" startIcon={<CircleIcon />} />
-                </Select.SelectPopover>
-              </Select.SelectProvider>
-            </div>
+        <div className={cn(notProseClass, proseBleedClass, "flex flex-col items-center gap-2")}>
+          <div className="gap-0x flex flex-col">
+            <Select.SelectProvider defaultValue="Apple">
+              <Select.SelectLabel>Favorite fruit</Select.SelectLabel>
+              <Select.Select className="min-w-[150px]" />
+              <Select.SelectPopover gutter={4} sameWidth className="p-1">
+                <Select.SelectItem value="Apple" startIcon={<AppleIcon />}>
+                  Apple
+                </Select.SelectItem>
+                <Select.SelectItem value="Banana" startIcon={<BananaIcon />}>
+                  Banana
+                </Select.SelectItem>
+                <Select.SelectItem value="Grape" disabled startIcon={<GrapeIcon />}>
+                  Grape
+                </Select.SelectItem>
+                <Select.SelectItem value="Orange" startIcon={<CircleIcon />}>
+                  Orange
+                </Select.SelectItem>
+              </Select.SelectPopover>
+            </Select.SelectProvider>
           </div>
-        </DesignWrapper>
+        </div>
       </Prose>
     </StoryLayout>
   );

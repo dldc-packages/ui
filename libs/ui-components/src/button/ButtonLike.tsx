@@ -3,15 +3,19 @@ import { ReactElement } from "react";
 
 import { Action } from "../action";
 import { TActionContentProps } from "../action-content";
-import { TGeometryProps } from "../geometry";
+import { TContentSizeProps } from "../content-size";
+import { TPaddingProps } from "../padding";
+import { TRoundedProps } from "../rounded";
 import { TSizeProps } from "../size";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
-import { TDesignVariantProps } from "../variant";
+import { TVariantProps } from "../variant";
 
 export type ButtonLikeSpecificProps = TActionContentProps &
-  TGeometryProps &
+  TPaddingProps &
+  TRoundedProps &
   TSizeProps &
-  TDesignVariantProps & {
+  TContentSizeProps &
+  TVariantProps & {
     disabled?: boolean;
     color?: TPaletteColor;
 

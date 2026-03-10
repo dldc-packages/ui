@@ -3,7 +3,7 @@ import { BaseRecord } from "@dldc/utils/props-splitters";
 
 import { TSizeProps } from "./types";
 
-const SIZE_KEYS = keysOfType<TSizeProps>({ direction: null, size: null });
+const SIZE_KEYS = keysOfType<TSizeProps>({ size: null });
 
 export function sizePropsSplitter(props: BaseRecord): TSizeProps {
   const result: TSizeProps = {};

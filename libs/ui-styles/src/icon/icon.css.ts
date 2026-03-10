@@ -1,6 +1,6 @@
+import { contentSizeVar } from "@dldc/ui-core/variables";
 import { globalStyle, style } from "@vanilla-extract/css";
 
-import { designContentSizeVar } from "../common/index";
 import { withLayer } from "../utils/layer";
 
 export const iconClass = style(
@@ -10,8 +10,8 @@ export const iconClass = style(
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0,
-    width: designContentSizeVar,
-    height: designContentSizeVar,
+    width: contentSizeVar,
+    height: contentSizeVar,
   }),
 );
 

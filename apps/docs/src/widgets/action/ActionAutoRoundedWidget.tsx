@@ -14,18 +14,8 @@ export function ActionAutoRoundedWidget({ className, ...props }: ComponentPropsW
   const [highlighted, setHighlighted] = useState<TDesignRounded | null>();
 
   const renderNestedActions = (rounded: TDesignRounded) => (
-    <Action
-      rounded={rounded}
-      size="12"
-      paddingMode="icon"
-      // TODO
-      // contentHeight="10"
-    >
-      <Action
-        // TODO
-        // contentHeight="8"
-        paddingMode="icon"
-      >
+    <Action rounded={rounded} size="12" paddingMode="icon" padding="1">
+      <Action paddingMode="icon" padding="1">
         <Action>Nested</Action>
       </Action>
     </Action>

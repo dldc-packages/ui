@@ -4,8 +4,8 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
-import { DesignWrapperBasicWidget } from "@/widgets/DesignWrapperBasicWidget";
-import { DesignWrapperPaginationWidget } from "@/widgets/DesignWrapperPaginationWidget";
+import { DesignWrapperBasicWidget } from "@/widgets/design-wrapper/DesignWrapperBasicWidget";
+import { DesignWrapperPaginationWidget } from "@/widgets/design-wrapper/DesignWrapperPaginationWidget";
 
 export const Route = createFileRoute("/01-stories/04-design-wrapper")({
   component: RouteComponent,

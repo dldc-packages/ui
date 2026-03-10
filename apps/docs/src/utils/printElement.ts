@@ -1,10 +1,14 @@
 import React from "react";
 
+export interface PrintElementOptions {
+  replacePropsRow?: Record<string, any>;
+}
+
 /**
  * Given some JSX element, return a string representation of it.
  * printElement(<Button foo="bar" />) -> '<Button foo="bar" />'
  */
-export function printElement(element: React.ReactElement): string {
+export function printElement(element: React.ReactElement, options: PrintElementOptions = {}): string {
   if (!element) {
     return "";
   }
@@ -20,10 +24,10 @@ export function printElement(element: React.ReactElement): string {
   const isFragment = element.type === React.Fragment || (element.type as any) === Symbol.for("react.fragment");
 
   // Format props
-  const propsString = formatProps(otherProps);
+  const propsString = formatProps(otherProps, options);
 
   // Format children
-  const childrenString = formatChildren(children);
+  const childrenString = formatChildren(children, options);
 
   // Handle Fragment with short syntax if no props
   if (isFragment && Object.keys(otherProps).length === 0) {
@@ -67,7 +71,7 @@ function getDisplayName(type: any): string {
   return type.displayName;
 }
 
-function formatProps(props: Record<string, any>): string {
+function formatProps(props: Record<string, any>, options: PrintElementOptions): string {
   if (!props || Object.keys(props).length === 0) {
     return "";
   }
@@ -75,6 +79,9 @@ function formatProps(props: Record<string, any>): string {
   const propEntries = Object.entries(props);
   const propStrings = propEntries
     .map(([key, value]) => {
+      if (options?.replacePropsRow && key in options.replacePropsRow) {
+        return options.replacePropsRow[key];
+      }
       if (value === true) {
         // Boolean prop set to true - use shortcut
         return key;
@@ -97,7 +104,11 @@ function formatProps(props: Record<string, any>): string {
   return propStrings.length > 0 ? " " + propStrings.join(" ") : "";
 }
 
-function formatChildren(children: any): string {
+function formatChildren(children: any, options: PrintElementOptions): string {
+  if (options.replacePropsRow && options.replacePropsRow.children) {
+    return options.replacePropsRow.children;
+  }
+
   if (!children) {
     return "";
   }

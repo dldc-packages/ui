@@ -3,16 +3,22 @@ import { ReactElement } from "react";
 
 import { Action } from "../action";
 import { TActionContentProps } from "../action-content";
+import { TContentSizeProps } from "../content-size";
+import { TPaddingProps } from "../padding";
+import { TRoundedProps } from "../rounded";
 import { TSizeProps } from "../size";
-import { mergeRender } from "../utils/mergeRender";
+import { createRender } from "../utils";
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
-import { TDesignVariantProps } from "../variant";
+import { TVariantProps } from "../variant";
 
 export type ButtonLinkProps = ComponentPropsBaseWith<
   "a",
   TActionContentProps &
+    TPaddingProps &
+    TRoundedProps &
     TSizeProps &
-    TDesignVariantProps & {
+    TContentSizeProps &
+    TVariantProps & {
       disabled?: boolean;
 
       color?: TPaletteColor;
@@ -28,7 +34,7 @@ export type ButtonLinkProps = ComponentPropsBaseWith<
 export function ButtonLink(inProps: ButtonLinkProps) {
   const { href, render, ...actionProps } = inProps;
 
-  return <Action {...(actionProps as any)} render={mergeRender(render, <a href={href} />)} interactive />;
+  return <Action {...(actionProps as any)} interactive render={createRender("a", render, { href })} />;
 }
 
 ButtonLink.displayName = "ButtonLink";

@@ -20,7 +20,7 @@ export function defineLibraryConfig({ entry, vanillaExtract = false }: LibraryCo
   if (vanillaExtract) {
     config.plugins = [
       vanillaExtractPlugin({
-        identifiers: "short",
+        identifiers: "debug",
         extract: { name: "styles.css", sourcemap: true },
       }),
       dts({}),

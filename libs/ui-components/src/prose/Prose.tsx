@@ -1,5 +1,7 @@
-import { contentSize } from "@dldc/ui-styles/common";
+import { sizeToRemString, TDesignSize } from "@dldc/ui-core/size";
+import { contentSizeVar } from "@dldc/ui-core/variables";
 import { proseStyles, TProseColor } from "@dldc/ui-styles/prose";
+import { assignInlineVars } from "@vanilla-extract/dynamic";
 import clsx from "clsx";
 
 import { ComponentPropsBaseWith } from "../utils/propsTypes";
@@ -9,12 +11,17 @@ export type ProseProps = ComponentPropsBaseWith<
   {
     color?: TProseColor;
     invert?: boolean;
-    size?: number;
+    size?: TDesignSize;
   }
 >;
 
-export function Prose({ color, invert, className, size, ...props }: ProseProps) {
-  const [contentSizeClass, contentSizeInline] = size ? contentSize(size) : ["", {}];
+export function Prose({ color, invert, className, size = 7, ...props }: ProseProps) {
   const proseClass = proseStyles({ color, invert });
-  return <div className={clsx(proseClass, contentSizeClass, className)} style={contentSizeInline} {...props} />;
+  return (
+    <div
+      className={clsx(proseClass, className)}
+      style={size ? assignInlineVars({ [contentSizeVar]: sizeToRemString(size) }) : undefined}
+      {...props}
+    />
+  );
 }

@@ -4,15 +4,19 @@ import { ReactElement, useCallback, useRef } from "react";
 
 import { Action, ActionInputContent } from "../action";
 import { TActionContentProps } from "../action-content";
-import { TGeometryProps } from "../geometry";
+import { TContentSizeProps } from "../content-size";
+import { TPaddingProps } from "../padding";
+import { TRoundedProps } from "../rounded";
 import { TSizeProps } from "../size";
-import { ComponentPropsBaseWith, mergeRender } from "../utils";
-import { TDesignVariantProps } from "../variant";
+import { ComponentPropsBaseWith, createRender } from "../utils";
+import { TVariantProps } from "../variant";
 
 export type InputSpecificProps = TActionContentProps &
-  TGeometryProps &
+  TPaddingProps &
+  TRoundedProps &
   TSizeProps &
-  TDesignVariantProps & {
+  TContentSizeProps &
+  TVariantProps & {
     disabled?: boolean;
 
     color?: TPaletteColor;
@@ -42,6 +46,7 @@ export function Input({
   children,
   render,
   // Input props
+  id,
   value,
   onChange,
   placeholder,
@@ -69,8 +74,11 @@ export function Input({
     [onPointerDownProps],
   );
 
+  const shouldPassIdDown = !children && id;
+
   const childrenResolved = children ?? (
     <ActionInputContent
+      id={shouldPassIdDown ? id : undefined}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
@@ -89,7 +97,8 @@ export function Input({
       onPointerDown={onPointerDown}
       disabled={disabled}
       ref={ref}
-      render={mergeRender(render, <div />)}
+      render={createRender("div", render, {})}
+      id={shouldPassIdDown ? undefined : id}
       {...frameProps}
     >
       {childrenResolved}

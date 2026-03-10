@@ -1,24 +1,23 @@
+import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
 import { Input } from "@dldc/ui-components/input";
-import { Paper } from "@dldc/ui-components/paper";
-import { useState, type ComponentPropsWithRef } from "react";
+import { type ComponentPropsWithRef } from "react";
 
+import { printElement } from "@/utils/printElement";
 import { cn } from "@/utils/styles";
 
 import { CodeHighlight } from "../../components/CodeHighlight";
 
 export function InputBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const [value, setValue] = useState("");
-
-  const example = <Input value={value} onChange={(e) => setValue(e.target.value)} />;
+  const example = <Input />;
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
-        {`<Input value={value} onChange={/* ... */} />`}
+        {printElement(example)}
       </CodeHighlight>
-      <Paper background="900" className="p-3">
+      <GeometryPaper background="900" rounded="2" padding={3} skipProviders className="p-paddingVar">
         {example}
-      </Paper>
+      </GeometryPaper>
     </div>
   );
 }

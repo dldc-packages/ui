@@ -6,8 +6,6 @@ import { withLayer } from "../utils/layer";
 
 export const labelClass = style(
   withLayer({
-    // TODO
-    // textStyle: "4",
     fontWeight: "semibold",
     color: colorsVars.neutral[400],
     marginBottom: sizeToRemString("0x"),

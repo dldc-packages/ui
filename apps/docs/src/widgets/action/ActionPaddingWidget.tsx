@@ -1,6 +1,5 @@
 import { Action } from "@dldc/ui-components/action";
-import type { TActionContentPaddingMode } from "@dldc/ui-components/action-content";
-import { UserIcon } from "lucide-react";
+import type { TDesignPadding } from "@dldc/ui-core/size";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -10,32 +9,27 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 export function ActionPaddingWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const paddingModes: TActionContentPaddingMode[] = ["auto", "text", "icon", "none"];
-  const examples = [
-    { props: { children: "Hello World" } },
-    { props: { startIcon: <UserIcon /> } },
-    { props: { children: "Hey", endIcon: <UserIcon /> } },
-  ];
+  const paddings: TDesignPadding[] = ["1", "1x", "2", "2_x", "2x"];
 
-  const [highlighted, setHighlighted] = useState<{
-    padding: TActionContentPaddingMode;
-    example: (typeof examples)[number];
-  } | null>();
+  const [highlighted, setHighlighted] = useState<TDesignPadding | null>();
+
+  function renderElement(padding: TDesignPadding, key?: string) {
+    return (
+      <Action key={key} padding={padding}>
+        Padding {padding}
+      </Action>
+    );
+  }
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
-        {highlighted
-          ? printElement(<Action paddingMode={highlighted.padding} {...highlighted.example.props} />)
-          : "// Hover an element to see the code"}
+        {highlighted ? printElement(renderElement(highlighted)) : "// Hover an element to see the code"}
       </CodeHighlight>
       <HighlightedGrid
-        rowsDims={paddingModes}
-        columnsDims={examples}
-        renderCell={({ row: paddingMode, column: example, key }) => (
-          <Action key={key} paddingMode={paddingMode} {...example.props} />
-        )}
-        onHighlightedCell={(cell) => setHighlighted(cell ? { padding: cell.row, example: cell.column } : null)}
+        rowsDims={paddings}
+        renderCell={({ row: padding, key }) => renderElement(padding, key)}
+        onHighlightedCell={(cell) => setHighlighted(cell ? cell.row : null)}
       />
     </div>
   );
