@@ -1,5 +1,11 @@
 # @config/typescript
 
+## 1.1.0
+
+### Minor Changes
+
+- ee42064: Move logic to CSS calc and many refactors
+
 ## 1.0.3
 
 ### Patch Changes
