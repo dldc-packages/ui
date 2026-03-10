@@ -1,5 +1,16 @@
 # @dldc/ui-core
 
+## 1.2.0
+
+### Minor Changes
+
+- ee42064: Move logic to CSS calc and many refactors
+
+### Patch Changes
+
+- Updated dependencies [ee42064]
+  - @dldc/utils@1.1.0
+
 ## 1.1.0
 
 ### Minor Changes
