@@ -11,7 +11,8 @@
     "libs:watch": "turbo watch --filter='./libs/*' build -- --no-clean",
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "pnpm run libs:build && changeset publish"
+    "release": "pnpm run libs:build && changeset publish",
+    "actions:upgrade": "pnpx actions-up"
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",
