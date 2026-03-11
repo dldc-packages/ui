@@ -38,13 +38,18 @@ export function Geometry(inProps: GeometryProps) {
     paddingVarName,
     padding,
     defaultPadding: 1,
+    contentSize: null,
+    contentSizeVarName: null,
+    sizeVarName: null,
   });
+
   const roundedInline = roundedInlineStyles({
     roundedVarName,
     parentPaddingVarName,
     parentRoundedVarName,
     rounded,
     defaultRounded: 1.5,
+    sizeVarName: null,
   });
 
   const content = createRender("div", render, {

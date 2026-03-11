@@ -1,5 +1,5 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { actionGroupSeparatorStyles, actionGroupStyles } from "@dldc/ui-styles/action-group";
+import { actionGroupSeparatorStyles, actionGroupStylesClass } from "@dldc/ui-styles/action-group";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
@@ -55,7 +55,7 @@ export function ActionGroup(inProps: ActionGroupProps) {
   const roundedStart = roundedEnds === "start" || roundedEnds === "both";
   const roundedEnd = roundedEnds === "end" || roundedEnds === "both";
 
-  const [baseClass, baseInline] = actionGroupStyles({
+  const baseClass = actionGroupStylesClass({
     direction,
     color,
     variant,
@@ -73,7 +73,7 @@ export function ActionGroup(inProps: ActionGroupProps) {
       {...localVariant}
       color={color}
       className={clsx(baseClass, className)}
-      style={{ ...baseInline, ...style }}
+      style={style}
       {...wrapperProps}
     >
       {Children.map(childrenFiltered, (child, i) => {

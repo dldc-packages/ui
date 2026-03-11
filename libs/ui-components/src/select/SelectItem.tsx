@@ -72,6 +72,8 @@ export function SelectItem(inProps: SelectItemProps) {
 
   const layoutInline = actionLayoutStylesInline({
     defaultSize: 7,
+    defaultRounded: 2,
+    defaultPadding: 1,
     padding,
     paddingVarName,
     parentPaddingVarName,

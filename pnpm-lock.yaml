@@ -16,8 +16,8 @@ catalogs:
       specifier: ^2.30.0
       version: 2.30.0
     '@dldc/css-builder':
-      specifier: jsr:^1.3.0
-      version: 1.3.0
+      specifier: jsr:^1.5.0
+      version: 1.5.0
     '@tailwindcss/vite':
       specifier: ^4.2.1
       version: 4.2.1
@@ -567,7 +567,7 @@ importers:
     dependencies:
       '@dldc/css-builder':
         specifier: 'catalog:'
-        version: '@jsr/dldc__css-builder@1.3.0'
+        version: '@jsr/dldc__css-builder@1.5.0'
       '@dldc/ui-core':
         specifier: workspace:^
         version: link:../ui-core
@@ -1404,8 +1404,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@jsr/dldc__css-builder@1.3.0':
-    resolution: {integrity: sha512-/M90XLC8a/PCvyYPc4wFaCW3YbMH+taOfujLfGZZ8eS8JX7cK9I5idnZKzMXG1ovRgrIzymk7EP0LkgMYJeypQ==, tarball: https://npm.jsr.io/~/11/@jsr/dldc__css-builder/1.3.0.tgz}
+  '@jsr/dldc__css-builder@1.5.0':
+    resolution: {integrity: sha512-Hmw+m4c2q5YHIrl6jdV1j3ygp/NjI6ePIbPzSWVug/VWfO1aZ2Ls8+VZlZ9Ed+t4VdCQXrrKhbFOutmmPLLZjQ==, tarball: https://npm.jsr.io/~/11/@jsr/dldc__css-builder/1.5.0.tgz}
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -4356,7 +4356,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@jsr/dldc__css-builder@1.3.0': {}
+  '@jsr/dldc__css-builder@1.5.0': {}
 
   '@manypkg/find-root@1.1.0':
     dependencies:

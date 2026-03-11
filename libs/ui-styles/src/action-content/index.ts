@@ -1,7 +1,5 @@
 import clsx from "clsx";
 
-import { CSSProperties } from "../utils/types";
-
 import {
   actionContentEndPaddingClass,
   actionContentLayoutClass,
@@ -10,20 +8,17 @@ import {
 
 export type TActionContentPaddingModeResolved = "icon" | "text" | "none";
 
-export interface TActionContentStylesOptions {
+export interface TActionContentClassOptions {
   startPaddingMode: TActionContentPaddingModeResolved;
   endPaddingMode: TActionContentPaddingModeResolved;
   noLayout: boolean;
 }
 
-export function actionContentStyles(options: TActionContentStylesOptions): [className: string, styles: CSSProperties] {
+export function actionContentClass(options: TActionContentClassOptions): string {
   const { startPaddingMode, endPaddingMode, noLayout } = options;
-  return [
-    clsx(
-      actionContentStartPaddingClass[startPaddingMode],
-      actionContentEndPaddingClass[endPaddingMode],
-      !noLayout && actionContentLayoutClass,
-    ),
-    {},
-  ];
+  return clsx(
+    actionContentStartPaddingClass[startPaddingMode],
+    actionContentEndPaddingClass[endPaddingMode],
+    !noLayout && actionContentLayoutClass,
+  );
 }

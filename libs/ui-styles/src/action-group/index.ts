@@ -24,19 +24,16 @@ export interface ActionGroupStylesParams {
   variant: TDesignVariant;
 }
 
-export function actionGroupStyles(params: ActionGroupStylesParams): [className: string, styles: CSSProperties] {
+export function actionGroupStylesClass(params: ActionGroupStylesParams): string {
   const { direction, color, variant } = params;
 
-  return [
-    clsx(
-      actionGroupClass,
-      actionGroupDirectionClass[direction],
-      actionVariantsClass[variant], // This will only set variants variables
-      actionGroupVariantsClass[variant],
-      color && dynamicColor[color],
-    ),
-    {},
-  ];
+  return clsx(
+    actionGroupClass,
+    actionGroupDirectionClass[direction],
+    actionVariantsClass[variant], // This will only set variants variables
+    actionGroupVariantsClass[variant],
+    color && dynamicColor[color],
+  );
 }
 
 export interface ActionGroupSeparatorStylesParams {

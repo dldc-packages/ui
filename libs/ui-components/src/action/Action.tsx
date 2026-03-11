@@ -1,7 +1,7 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
-import { actionDesignStyles, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
-import { actionContentStyles } from "@dldc/ui-styles/action-content";
+import { actionDesignClass, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
+import { actionContentClass } from "@dldc/ui-styles/action-content";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
@@ -114,17 +114,10 @@ export function Action(inProps: ActionProps) {
   );
   const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(localActionContent, children);
 
-  const [designClass, designInline] = actionDesignStyles({
-    variant,
-    color,
-    hoverVariant,
-    interactive,
-    highlightColor,
-    highlighted,
-  });
-
   const layoutInline = actionLayoutStylesInline({
     defaultSize: 7,
+    defaultRounded: 2,
+    defaultPadding: 1,
     padding,
     paddingVarName,
     parentPaddingVarName,
@@ -139,7 +132,16 @@ export function Action(inProps: ActionProps) {
     parentContentSizeVarName,
   });
 
-  const [contentClass, contentInline] = actionContentStyles({
+  const designClass = actionDesignClass({
+    variant,
+    color,
+    hoverVariant,
+    interactive,
+    highlightColor,
+    highlighted,
+  });
+
+  const contentClass = actionContentClass({
     startPaddingMode,
     endPaddingMode,
     noLayout,
@@ -147,7 +149,7 @@ export function Action(inProps: ActionProps) {
 
   return createRender("div", render, {
     className: clsx(designClass, actionLayoutStylesClasses, contentClass, className),
-    style: { ...designInline, ...layoutInline, ...contentInline, ...style },
+    style: { ...layoutInline, ...style },
     "aria-disabled": isDisabledAndInteractive,
     ref,
     ...htmlProps,

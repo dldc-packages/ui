@@ -55,6 +55,8 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
   // Compute CSS vars same as Action to get CSS vars available for any child, even if not using Action or other components
   const layoutInline = actionLayoutStylesInline({
     defaultSize: 7,
+    defaultRounded: 2,
+    defaultPadding: 1,
     padding,
     paddingVarName,
     parentPaddingVarName,
