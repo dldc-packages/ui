@@ -2,7 +2,7 @@ import { actionInputContentClass } from "@dldc/ui-styles/action-input";
 import clsx from "clsx";
 import { useMemo } from "react";
 
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
+import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type ActionInputContentProps = ComponentPropsBaseWith<
   "input",

@@ -1,6 +1,6 @@
 {
-  "name": "@dldc/utils",
-  "version": "1.1.0",
+  "name": "@dldc/react-utils",
+  "version": "1.0.0",
   "private": false,
   "repository": {
     "url": "https://github.com/dldc-packages/ui"
@@ -8,12 +8,12 @@
   "type": "module",
   "types": "./dist/demo.d.ts",
   "exports": {
-    "./iterable": "./dist/iterable.js",
-    "./keys-of-type": "./dist/keys-of-type.js",
-    "./math": "./dist/math.js",
-    "./measure-text": "./dist/measure-text.js",
-    "./object": "./dist/object.js",
-    "./random": "./dist/random.js",
+    "./apply-providers": "./dist/apply-providers.js",
+    "./create-render": "./dist/create-render.js",
+    "./default-provider": "./dist/default-provider.js",
+    "./merge-props": "./dist/merge-props.js",
+    "./props-splitters": "./dist/props-splitters.js",
+    "./types": "./dist/types.js",
     "./package.json": "./package.json"
   },
   "scripts": {
@@ -22,11 +22,14 @@
     "typecheck": "tsgo --noEmit"
   },
   "dependencies": {
+    "@dldc/utils": "workspace:^",
+    "react": "catalog:",
     "type-fest": "catalog:"
   },
   "devDependencies": {
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
+    "@types/react": "catalog:",
     "@typescript/native-preview": "catalog:",
     "tsdown": "catalog:"
   }

@@ -1,15 +1,15 @@
+import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { actionGroupSeparatorStyles, actionGroupStylesClass } from "@dldc/ui-styles/action-group";
-import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { Children, cloneElement, Fragment } from "react";
 
+import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 import { TContentSizeProps } from "../content-size";
 import { DesignWrapper } from "../design-wrapper";
 import { TPaddingProps } from "../padding";
 import { TRoundedProps } from "../rounded";
 import { TSizeProps } from "../size";
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
 import { TVariantProps, useVariant, variantPropsSplitter } from "../variant";
 
 export type ActionGroupProps = ComponentPropsBaseWith<

@@ -1,7 +1,9 @@
+import { createRender } from "@dldc/react-utils/create-render";
+import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { contentSizeLineHeightClass } from "@dldc/ui-styles/content-size";
-import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import { clsx } from "clsx";
 import { ReactElement } from "react";
 
@@ -10,7 +12,6 @@ import { DefaultDesignProvider } from "../default-design-provider";
 import { paddingPropsSplitter, TPaddingProps, usePadding } from "../padding";
 import { roundedPropsSplitter, TRoundedProps, useRounded } from "../rounded";
 import { sizePropsSplitter, TSizeProps, useSize } from "../size";
-import { ComponentPropsBaseWith, createRender } from "../utils";
 import { TVariantProps, variantPropsSplitter } from "../variant";
 
 export type DesignWrapperProps = ComponentPropsBaseWith<

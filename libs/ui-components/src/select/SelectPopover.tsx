@@ -1,3 +1,4 @@
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { selectPopoverStyles } from "@dldc/ui-styles/select";
 import { clsx } from "clsx";
 import { ReactElement } from "react";
@@ -5,7 +6,6 @@ import { ReactElement } from "react";
 import { GeometryPaper } from "../geometry-paper";
 import { PaperSpecificProps } from "../paper";
 import { TRoundedProps } from "../rounded";
-import { ComponentPropsBaseWith } from "../utils";
 import { DefaultHoverVariantProvider, DefaultVariantProvider } from "../variant";
 
 export type SelectPopoverSpecificProps = PaperSpecificProps & TRoundedProps;

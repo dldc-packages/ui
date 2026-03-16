@@ -1,6 +1,6 @@
+import { TPropsSplitter } from "@dldc/react-utils/props-splitters";
 import { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
 import { ellipsisClass } from "@dldc/ui-styles/ellipsis";
-import { TPropsSplitter } from "@dldc/utils/props-splitters";
 import { Fragment } from "react/jsx-runtime";
 
 import { ActionSideSlot } from "./ActionSideSlot";

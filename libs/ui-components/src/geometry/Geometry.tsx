@@ -1,6 +1,8 @@
+import { createRender } from "@dldc/react-utils/create-render";
+import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { paddingInlineStyles } from "@dldc/ui-styles/padding";
 import { roundedBorderRadiusClass, roundedInlineStyles } from "@dldc/ui-styles/rounded";
-import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
@@ -14,7 +16,6 @@ import {
   TRoundedProps,
   useRounded,
 } from "../rounded";
-import { ComponentPropsBaseWith, createRender } from "../utils";
 
 export type GeometrySpecificProps = TPaddingProps &
   TRoundedProps & {

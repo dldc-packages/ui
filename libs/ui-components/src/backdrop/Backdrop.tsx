@@ -1,7 +1,7 @@
 import { backdropClass } from "@dldc/ui-styles/backdrop";
 import clsx from "clsx";
 
-import { ComponentPropsBase } from "../utils/propsTypes";
+import { ComponentPropsBase } from "../../../react-utils/src/types";
 
 export type BackdropProps = ComponentPropsBase<"div">;
 

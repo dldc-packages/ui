@@ -1,8 +1,8 @@
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { ReactElement } from "react";
 
 import { Geometry, GeometrySpecificProps } from "../geometry";
 import { Paper, PaperSpecificProps } from "../paper";
-import { ComponentPropsBaseWith } from "../utils";
 
 export type GeometryPaperSpecificProps = PaperSpecificProps & GeometrySpecificProps;
 

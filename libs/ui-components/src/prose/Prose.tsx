@@ -4,7 +4,7 @@ import { proseStyles, TProseColor } from "@dldc/ui-styles/prose";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import clsx from "clsx";
 
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
+import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type ProseProps = ComponentPropsBaseWith<
   "div",

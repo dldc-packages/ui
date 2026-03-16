@@ -1,3 +1,5 @@
+import { createRender } from "@dldc/react-utils/create-render";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { ReactElement } from "react";
 
@@ -7,7 +9,6 @@ import { TContentSizeProps } from "../content-size";
 import { TPaddingProps } from "../padding";
 import { TRoundedProps } from "../rounded";
 import { TSizeProps } from "../size";
-import { ComponentPropsBaseWith, createRender } from "../utils";
 import { TVariantProps } from "../variant";
 
 export type ButtonSpecificProps = TActionContentProps &

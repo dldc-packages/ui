@@ -1,7 +1,7 @@
 import { useCssVariable } from "@dldc/hooks/use-css-variable";
 import { parseMaybeSize } from "@dldc/ui-core/size";
 
-import { TDefaultProviderValue } from "../utils/createDefaultProvider";
+import { TDefaultProviderValue } from "../../../react-utils/src/default-provider";
 import { useDefaultPadding } from "./DefaultPaddingContext";
 import { useParentPaddingContext } from "./ParentPaddingContext";
 import { TPaddingProps, TPaddingPropValue } from "./types";

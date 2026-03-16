@@ -1,7 +1,7 @@
 import { useCssVariable } from "@dldc/hooks/use-css-variable";
 import { parseMaybeSize } from "@dldc/ui-core/size";
 
-import { TDefaultProviderValue } from "../utils/createDefaultProvider";
+import { TDefaultProviderValue } from "../../../react-utils/src/default-provider";
 import { useDefaultContentSize } from "./DefaultContentSizeContext";
 import { useParentContentSizeContext } from "./ParentContentSizeContext";
 import { TContentSizeProps, TContentSizePropValue } from "./types";

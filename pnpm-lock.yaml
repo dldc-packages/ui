@@ -317,6 +317,34 @@ importers:
         specifier: 'catalog:'
         version: 0.21.4(@typescript/native-preview@7.0.0-dev.20260316.1)(typescript@5.9.3)
 
+  libs/react-utils:
+    dependencies:
+      '@dldc/utils':
+        specifier: workspace:^
+        version: link:../utils
+      react:
+        specifier: 'catalog:'
+        version: 19.2.4
+      type-fest:
+        specifier: 'catalog:'
+        version: 5.4.4
+    devDependencies:
+      '@config/typescript':
+        specifier: workspace:*
+        version: link:../../config/typescript
+      '@types/node':
+        specifier: 'catalog:'
+        version: 25.5.0
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      '@typescript/native-preview':
+        specifier: 'catalog:'
+        version: 7.0.0-dev.20260316.1
+      tsdown:
+        specifier: 'catalog:'
+        version: 0.21.4(@typescript/native-preview@7.0.0-dev.20260316.1)(typescript@5.9.3)
+
   libs/ui-ariakit:
     dependencies:
       '@ariakit/react':
@@ -399,6 +427,9 @@ importers:
       '@dldc/hooks':
         specifier: workspace:^
         version: link:../hooks
+      '@dldc/react-utils':
+        specifier: workspace:^
+        version: link:../react-utils
       '@dldc/ui-core':
         specifier: workspace:^
         version: link:../ui-core

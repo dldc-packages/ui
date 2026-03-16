@@ -8,8 +8,8 @@ import {
   ReactNode,
 } from "react";
 
-import { isIterable } from "./isIterable";
-import { mergeProps } from "./mergeProps";
+import { isIterable } from "@dldc/utils/iterable";
+import { mergeProps } from "./merge-props";
 
 /**
  * From: https://github.com/ariakit/ariakit/blob/a31b051bf4bdcce793351cf9209c9311785d6856/site/src/examples/_lib/react-utils/create-render.ts

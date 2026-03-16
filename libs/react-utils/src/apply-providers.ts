@@ -1,11 +1,11 @@
-import { cloneElement, Fragment, ReactElement, ReactNode } from "react";
+import { cloneElement, createElement, Fragment, ReactElement, ReactNode } from "react";
 
 export function applyProviders(
   ...providers: (ReactElement | undefined | null)[]
 ): (children: ReactNode | undefined) => ReactElement {
   const filteredProviders = providers.filter((provider): provider is ReactElement => !!provider);
   if (filteredProviders.length === 0) {
-    return (children: ReactNode | undefined): ReactElement => <Fragment>{children}</Fragment>;
+    return (children: ReactNode | undefined): ReactElement => createElement(Fragment, undefined, children);
   }
 
   return (children: ReactNode | undefined): ReactElement => {

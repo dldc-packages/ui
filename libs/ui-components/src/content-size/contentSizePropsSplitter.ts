@@ -1,5 +1,5 @@
+import { BaseRecord } from "@dldc/react-utils/props-splitters";
 import { keysOfType } from "@dldc/utils/keys-of-type";
-import { BaseRecord } from "@dldc/utils/props-splitters";
 
 import { TContentSizeProps } from "./types";
 

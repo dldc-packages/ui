@@ -1,8 +1,11 @@
+import { applyProviders } from "@dldc/react-utils/apply-providers";
+import { createRender } from "@dldc/react-utils/create-render";
+import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { actionDesignClass, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
-import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
@@ -29,8 +32,6 @@ import {
   useRounded,
 } from "../rounded";
 import { DefaultSizeProvider, ParentSizeContextProvider, sizePropsSplitter, TSizeProps, useSize } from "../size";
-import { applyProviders, createRender } from "../utils";
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
 import {
   DefaultHoverVariantProvider,
   DefaultVariantProvider,

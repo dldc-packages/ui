@@ -29,7 +29,6 @@
     "./select": "./dist/select/index.js",
     "./size": "./dist/size/index.js",
     "./tooltip": "./dist/tooltip/index.js",
-    "./utils": "./dist/utils/index.js",
     "./variant": "./dist/variant/index.js",
     "./package.json": "./package.json"
   },
@@ -40,6 +39,7 @@
   },
   "dependencies": {
     "@dldc/hooks": "workspace:^",
+    "@dldc/react-utils": "workspace:^",
     "@dldc/ui-core": "workspace:^",
     "@dldc/ui-styles": "workspace:^",
     "@dldc/utils": "workspace:^",

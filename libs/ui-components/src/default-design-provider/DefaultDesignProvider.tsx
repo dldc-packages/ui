@@ -1,11 +1,11 @@
-import { pipePropsSplitters } from "@dldc/utils/props-splitters";
+import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
 import { PropsWithChildren } from "react";
 
+import { applyProviders } from "../../../react-utils/src/apply-providers";
 import { contentSizePropsSplitter, DefaultContentSizeProvider, TContentSizeProps } from "../content-size";
 import { DefaultPaddingProvider, paddingPropsSplitter, TPaddingProps } from "../padding";
 import { DefaultRoundedProvider, roundedPropsSplitter, TRoundedProps } from "../rounded";
 import { DefaultSizeProvider, sizePropsSplitter, TSizeProps } from "../size";
-import { applyProviders } from "../utils/applyProviders";
 import { DefaultHoverVariantProvider, DefaultVariantProvider, TVariantProps, variantPropsSplitter } from "../variant";
 
 export type DefaultDesignProviderProps = PropsWithChildren<

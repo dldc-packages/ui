@@ -1,10 +1,10 @@
+import { createRender } from "@dldc/react-utils/create-render";
 import { TNeutralColorShade } from "@dldc/ui-core/colors";
 import { paperBaseClass, paperClass } from "@dldc/ui-styles/paper";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
-import { createRender } from "../utils";
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
+import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type PaperSpecificProps = {
   background?: TNeutralColorShade;

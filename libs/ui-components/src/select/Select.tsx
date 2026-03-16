@@ -1,5 +1,5 @@
+import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 import { Button, ButtonSpecificProps } from "../button";
-import { ComponentPropsBaseWith } from "../utils/propsTypes";
 
 export type SelectSpecificProps = ButtonSpecificProps;
 
