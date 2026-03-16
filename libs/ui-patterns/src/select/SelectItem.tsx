@@ -1,6 +1,6 @@
 import * as Ariakit from "@ariakit/react";
 import { useActionContent } from "@dldc/ui-components/action-content";
-import { actionContentStyles } from "@dldc/ui-styles/action-content";
+import { actionContentClass } from "@dldc/ui-styles/action-content";
 // import { heightStyles } from "@dldc/ui-styles/common";
 import clsx from "clsx";
 import { CheckIcon } from "lucide-react";
@@ -32,7 +32,7 @@ export function SelectItem(inProps: SelectItemProps) {
 
   // const { height, contentHeight, spacing } = useFrameDesignProps(localDesign);
   // const [heightClass, heightInline] = heightStyles(height);
-  const [contentClass, contentInline] = actionContentStyles({
+  const contentClass = actionContentClass({
     // contentHeight,
     // spacing,
     startPaddingMode,
@@ -53,7 +53,7 @@ export function SelectItem(inProps: SelectItemProps) {
       style={{
         ...style,
         // ...heightInline,
-        ...contentInline,
+        // ...contentInline,
       }}
       disabled={item.disabled || item.hidden}
       value={item.value}

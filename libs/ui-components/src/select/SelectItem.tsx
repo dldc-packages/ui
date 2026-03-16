@@ -1,6 +1,6 @@
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
-import { actionContentStyles } from "@dldc/ui-styles/action-content";
+import { actionContentClass } from "@dldc/ui-styles/action-content";
 import { selectItemStyles } from "@dldc/ui-styles/select";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
@@ -88,7 +88,7 @@ export function SelectItem(inProps: SelectItemProps) {
     parentContentSizeVarName,
   });
 
-  const [contentClass, contentInline] = actionContentStyles({
+  const contentClass = actionContentClass({
     startPaddingMode,
     endPaddingMode,
     noLayout,
@@ -99,7 +99,7 @@ export function SelectItem(inProps: SelectItemProps) {
   return createRender("div", render, {
     ref,
     className: clsx(contentClass, actionLayoutStylesClasses, selectItemClassName, className),
-    style: { ...layoutInline, ...contentInline, ...selectItemInline },
+    style: { ...layoutInline, ...selectItemInline },
     "data-disabled": disabled ? "" : undefined,
     "data-color": color,
     ...htmlProps,

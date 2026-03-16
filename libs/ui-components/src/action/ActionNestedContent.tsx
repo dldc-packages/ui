@@ -1,4 +1,4 @@
-import { actionContentStyles } from "@dldc/ui-styles/action-content";
+import { actionContentClass } from "@dldc/ui-styles/action-content";
 // import { heightStyles } from "@dldc/ui-styles/common";
 import { pipePropsSplitters } from "@dldc/utils/props-splitters";
 import clsx from "clsx";
@@ -33,7 +33,7 @@ export function ActionNestedContent(inProps: ActionNestedContentProps) {
   } = useActionContent(localActionContent, children);
 
   // const [heightClass, heightInline] = heightStyles(height);
-  const [contentClass, contentInline] = actionContentStyles({
+  const contentClass = actionContentClass({
     // contentHeight,
     // spacing,
     startPaddingMode: startPadding,
@@ -51,7 +51,7 @@ export function ActionNestedContent(inProps: ActionNestedContentProps) {
       style={{
         ...style,
         // ...heightInline,
-        ...contentInline,
+        // ...contentInline,
       }}
       {...htmlProps}
     >
