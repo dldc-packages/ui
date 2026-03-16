@@ -14,7 +14,7 @@ const MIN_AUTO_ROUNDED = 0.25;
 const AUTO_ROUNDED_FACTOR = 0.25;
 
 export interface TRoundedInlineStylesOptions {
-  roundedVarName: string;
+  roundedVarName: string | null;
   parentPaddingVarName: string | null;
   parentRoundedVarName: string | null;
   rounded: number | "autoFromSize" | null;
@@ -30,6 +30,10 @@ export function roundedInlineStyles({
   rounded,
   sizeVarName,
 }: TRoundedInlineStylesOptions): CSSProperties {
+  if (!roundedVarName) {
+    return {};
+  }
+
   return assignInlineVars({
     [roundedVarName]: css.maybeSerialize(
       roundedVarValue({

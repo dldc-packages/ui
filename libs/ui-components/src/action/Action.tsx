@@ -63,14 +63,17 @@ export type ActionSpecificProps = TActionContentProps &
 
     interactive?: boolean;
 
-    render?: ReactElement;
-
     // Data attributes
     "data-hover"?: boolean;
     "data-focus-visible"?: boolean;
   };
 
-export type ActionProps = ComponentPropsBaseWith<"div", ActionSpecificProps>;
+export type ActionProps = ComponentPropsBaseWith<
+  "div",
+  ActionSpecificProps & {
+    render?: ReactElement;
+  }
+>;
 
 export function Action(inProps: ActionProps) {
   const [{ localVariant, localPadding, localRounded, localActionContent, localSize, localContentSize }, props] =

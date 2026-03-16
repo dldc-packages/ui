@@ -52,7 +52,7 @@ interface ActionLayoutStylesParams {
   defaultPadding: number;
 
   rounded: number | "autoFromSize" | null;
-  roundedVarName: string;
+  roundedVarName: string | null;
   parentRoundedVarName: string | null;
   defaultRounded: number;
 
