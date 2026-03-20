@@ -2,11 +2,11 @@ import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
 import { PropsWithChildren } from "react";
 
 import { applyProviders } from "../../../react-utils/src/apply-providers";
-import { contentSizePropsSplitter, DefaultContentSizeProvider, TContentSizeProps } from "../content-size";
-import { DefaultPaddingProvider, paddingPropsSplitter, TPaddingProps } from "../padding";
-import { DefaultRoundedProvider, roundedPropsSplitter, TRoundedProps } from "../rounded";
-import { DefaultSizeProvider, sizePropsSplitter, TSizeProps } from "../size";
-import { DefaultHoverVariantProvider, DefaultVariantProvider, TVariantProps, variantPropsSplitter } from "../variant";
+import { contentSizeProps, DefaultContentSizeProvider, TContentSizeProps } from "../content-size";
+import { DefaultPaddingProvider, paddingProps, TPaddingProps } from "../padding";
+import { DefaultRoundedProvider, roundedProps, TRoundedProps } from "../rounded";
+import { DefaultSizeProvider, sizeProps, TSizeProps } from "../size";
+import { DefaultHoverVariantProvider, DefaultVariantProvider, TVariantProps, variantProps } from "../variant";
 
 export type DefaultDesignProviderProps = PropsWithChildren<
   TPaddingProps & TRoundedProps & TSizeProps & TContentSizeProps & TVariantProps
@@ -16,11 +16,11 @@ export function DefaultDesignProvider(inProps: DefaultDesignProviderProps) {
   const [{ localVariant, localPadding, localRounded, localSize, localContentSize }, props] = pipePropsSplitters(
     inProps,
     {
-      localVariant: variantPropsSplitter,
-      localPadding: paddingPropsSplitter,
-      localRounded: roundedPropsSplitter,
-      localSize: sizePropsSplitter,
-      localContentSize: contentSizePropsSplitter,
+      localVariant: variantProps,
+      localPadding: paddingProps,
+      localRounded: roundedProps,
+      localSize: sizeProps,
+      localContentSize: contentSizeProps,
     },
   );
 

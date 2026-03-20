@@ -1,5 +1,5 @@
 export * from "./DefaultPaddingContext";
-export * from "./paddingPropsSplitter";
+export * from "./paddingProps";
 export * from "./ParentPaddingContext";
 export * from "./types";
 export * from "./usePadding";

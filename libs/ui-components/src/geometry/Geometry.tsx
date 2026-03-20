@@ -7,12 +7,12 @@ import clsx from "clsx";
 import { ReactElement } from "react";
 
 import { DefaultPaddingProvider, ParentPaddingContextProvider, TPaddingProps } from "../padding";
-import { paddingPropsSplitter } from "../padding/paddingPropsSplitter";
+import { paddingProps } from "../padding/paddingProps";
 import { usePadding } from "../padding/usePadding";
 import {
   DefaultRoundedProvider,
   ParentRoundedContextProvider,
-  roundedPropsSplitter,
+  roundedProps,
   TRoundedProps,
   useRounded,
 } from "../rounded";
@@ -26,8 +26,8 @@ export type GeometryProps = ComponentPropsBaseWith<"div", GeometrySpecificProps 
 
 export function Geometry(inProps: GeometryProps) {
   const [{ localPadding, localRounded }, props] = pipePropsSplitters(inProps, {
-    localPadding: paddingPropsSplitter,
-    localRounded: roundedPropsSplitter,
+    localPadding: paddingProps,
+    localRounded: roundedProps,
   });
 
   const { className, style, children, skipProviders = false, render, ...divProps } = props;

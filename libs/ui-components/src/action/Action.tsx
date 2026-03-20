@@ -1,91 +1,88 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { actionDesignClass, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
 import clsx from "clsx";
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement, ReactNode, Ref } from "react";
 
-import { actionContentPropsSplitter, TActionContentProps, useActionContent } from "../action-content/index";
+import { actionContentProps, useActionContent } from "../action-content/index";
 import {
-  contentSizePropsSplitter,
+  contentSizeProps,
   DefaultContentSizeProvider,
   ParentContentSizeContextProvider,
-  TContentSizeProps,
   useContentSize,
 } from "../content-size";
-import {
-  DefaultPaddingProvider,
-  paddingPropsSplitter,
-  ParentPaddingContextProvider,
-  TPaddingProps,
-  usePadding,
-} from "../padding";
-import {
-  DefaultRoundedProvider,
-  ParentRoundedContextProvider,
-  roundedPropsSplitter,
-  TRoundedProps,
-  useRounded,
-} from "../rounded";
-import { DefaultSizeProvider, ParentSizeContextProvider, sizePropsSplitter, TSizeProps, useSize } from "../size";
-import {
-  DefaultHoverVariantProvider,
-  DefaultVariantProvider,
-  TVariantProps,
-  useVariant,
-  variantPropsSplitter,
-} from "../variant";
+import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
+import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
+import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
+import { DefaultHoverVariantProvider, DefaultVariantProvider, useVariant, variantProps } from "../variant";
 
-export type ActionSpecificProps = TActionContentProps &
-  TPaddingProps &
-  TRoundedProps &
-  TSizeProps &
-  TContentSizeProps &
-  TVariantProps & {
-    /**
-     * This props only impact styling but is never forwarded to the underlying element.
-     * Use `render={<button disabled={true} />}` to pass native props to the underlying element.
-     */
-    disabled?: boolean;
+export interface ActionSpecificProps {
+  /**
+   * This props only impact styling but is never forwarded to the underlying element.
+   * Use `render={<button disabled={true} />}` to pass native props to the underlying element.
+   */
+  disabled?: boolean;
 
-    color?: TPaletteColor;
-    highlightColor?: TPaletteColor;
-    highlighted?: boolean;
+  color?: TPaletteColor;
+  highlightColor?: TPaletteColor;
+  highlighted?: boolean;
 
-    /**
-     * Defines the variant used as the base for this Action.
-     * For example, Input components use the "input" variant by default.
-     */
-    baseVariant?: TDesignVariant;
+  /**
+   * Defines the variant used as the base for this Action.
+   * For example, Input components use the "input" variant by default.
+   */
+  baseVariant?: TDesignVariant;
+  interactive?: boolean;
 
-    interactive?: boolean;
+  // Data attributes
+  "data-hover"?: boolean;
+  "data-focus-visible"?: boolean;
+  children?: ReactNode;
+  style?: CSSProperties;
+  className?: string;
+  ref?: Ref<HTMLDivElement>;
 
-    // Data attributes
-    "data-hover"?: boolean;
-    "data-focus-visible"?: boolean;
-  };
+  render?: ReactElement;
+}
 
-export type ActionProps = ComponentPropsBaseWith<
-  "div",
-  ActionSpecificProps & {
-    render?: ReactElement;
-  }
->;
+export const actionSpecificProps = createProps<ActionSpecificProps>({
+  "data-focus-visible": null,
+  "data-hover": null,
+  baseVariant: null,
+  color: null,
+  highlightColor: null,
+  highlighted: null,
+  interactive: null,
+  disabled: null,
+  children: null,
+  className: null,
+  style: null,
+  ref: null,
+  render: null,
+});
+
+export const actionProps = mergeProps(
+  actionSpecificProps,
+  variantProps,
+  paddingProps,
+  roundedProps,
+  sizeProps,
+  actionContentProps,
+  contentSizeProps,
+);
+
+export type ActionProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof actionProps>>;
 
 export function Action(inProps: ActionProps) {
-  const [{ localVariant, localPadding, localRounded, localActionContent, localSize, localContentSize }, props] =
-    pipePropsSplitters(inProps, {
-      localVariant: variantPropsSplitter,
-      localPadding: paddingPropsSplitter,
-      localRounded: roundedPropsSplitter,
-      localSize: sizePropsSplitter,
-      localActionContent: actionContentPropsSplitter,
-      localContentSize: contentSizePropsSplitter,
-    });
+  const [
+    [localAction, localVariant, localPadding, localRounded, localSize, localActionContent, localContentSize],
+    htmlProps,
+  ] = extractProps(inProps, actionProps);
 
   const {
     color,
@@ -101,9 +98,7 @@ export function Action(inProps: ActionProps) {
     className,
     ref,
     render,
-
-    ...htmlProps
-  } = props;
+  } = localAction;
 
   const isDisabledAndInteractive = disabled && interactive;
 

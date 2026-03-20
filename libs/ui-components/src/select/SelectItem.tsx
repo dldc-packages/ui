@@ -9,9 +9,9 @@ import clsx from "clsx";
 import { ReactElement } from "react";
 
 import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
-import { actionContentPropsSplitter, TActionContentProps, useActionContent } from "../action-content";
+import { actionContentProps, TActionContentProps, useActionContent } from "../action-content";
 import {
-  contentSizePropsSplitter,
+  contentSizeProps,
   DefaultContentSizeProvider,
   ParentContentSizeContextProvider,
   TContentSizeProps,
@@ -19,7 +19,7 @@ import {
 } from "../content-size";
 import {
   DefaultPaddingProvider,
-  paddingPropsSplitter,
+  paddingProps,
   ParentPaddingContextProvider,
   TPaddingProps,
   usePadding,
@@ -27,11 +27,11 @@ import {
 import {
   DefaultRoundedProvider,
   ParentRoundedContextProvider,
-  roundedPropsSplitter,
+  roundedProps,
   TRoundedProps,
   useRounded,
 } from "../rounded";
-import { DefaultSizeProvider, ParentSizeContextProvider, sizePropsSplitter, TSizeProps, useSize } from "../size";
+import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, TSizeProps, useSize } from "../size";
 
 export type SelectItemSpecificProps = TActionContentProps &
   TPaddingProps &
@@ -54,11 +54,11 @@ export function SelectItem(inProps: SelectItemProps) {
   const [{ localPadding, localRounded, localActionContent, localSize, localContentSize }, props] = pipePropsSplitters(
     inProps,
     {
-      localPadding: paddingPropsSplitter,
-      localRounded: roundedPropsSplitter,
-      localSize: sizePropsSplitter,
-      localActionContent: actionContentPropsSplitter,
-      localContentSize: contentSizePropsSplitter,
+      localPadding: paddingProps,
+      localRounded: roundedProps,
+      localSize: sizeProps,
+      localActionContent: actionContentProps,
+      localContentSize: contentSizeProps,
     },
   );
 

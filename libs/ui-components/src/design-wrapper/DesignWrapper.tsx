@@ -7,12 +7,12 @@ import { contentSizeLineHeightClass } from "@dldc/ui-styles/content-size";
 import { clsx } from "clsx";
 import { ReactElement } from "react";
 
-import { contentSizePropsSplitter, TContentSizeProps, useContentSize } from "../content-size";
+import { contentSizeProps, TContentSizeProps, useContentSize } from "../content-size";
 import { DefaultDesignProvider } from "../default-design-provider";
-import { paddingPropsSplitter, TPaddingProps, usePadding } from "../padding";
-import { roundedPropsSplitter, TRoundedProps, useRounded } from "../rounded";
-import { sizePropsSplitter, TSizeProps, useSize } from "../size";
-import { TVariantProps, variantPropsSplitter } from "../variant";
+import { paddingProps, TPaddingProps, usePadding } from "../padding";
+import { roundedProps, TRoundedProps, useRounded } from "../rounded";
+import { sizeProps, TSizeProps, useSize } from "../size";
+import { TVariantProps, variantProps } from "../variant";
 
 export type DesignWrapperProps = ComponentPropsBaseWith<
   "div",
@@ -36,11 +36,11 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
   const [{ localVariant, localPadding, localRounded, localSize, localContentSize }, props] = pipePropsSplitters(
     inProps,
     {
-      localVariant: variantPropsSplitter,
-      localPadding: paddingPropsSplitter,
-      localRounded: roundedPropsSplitter,
-      localSize: sizePropsSplitter,
-      localContentSize: contentSizePropsSplitter,
+      localVariant: variantProps,
+      localPadding: paddingProps,
+      localRounded: roundedProps,
+      localSize: sizeProps,
+      localContentSize: contentSizeProps,
     },
   );
 

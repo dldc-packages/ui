@@ -1,59 +1,58 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
 import clsx from "clsx";
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement, ReactNode } from "react";
 
 import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
-import { actionContentPropsSplitter, TActionContentProps, useActionContent } from "../action-content/index";
+import { actionContentProps, useActionContent } from "../action-content/index";
 import {
-  contentSizePropsSplitter,
+  contentSizeProps,
   DefaultContentSizeProvider,
   ParentContentSizeContextProvider,
-  TContentSizeProps,
   useContentSize,
 } from "../content-size";
-import {
-  DefaultPaddingProvider,
-  paddingPropsSplitter,
-  ParentPaddingContextProvider,
-  TPaddingProps,
-  usePadding,
-} from "../padding";
+import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
 import { ParentRoundedContextProvider, useRounded } from "../rounded";
-import { DefaultSizeProvider, ParentSizeContextProvider, sizePropsSplitter, TSizeProps, useSize } from "../size";
+import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
 
-export type ActionNestedContentSpecificProps = TActionContentProps & TPaddingProps & TSizeProps & TContentSizeProps;
+export interface ActionNestedContentSpecificProps {
+  render?: ReactElement;
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+export const actionNestedContentSpecificProps = createProps<ActionNestedContentSpecificProps>({
+  render: null,
+  className: null,
+  style: null,
+  children: null,
+});
+
+export const actionNestedContentProps = mergeProps(
+  actionNestedContentSpecificProps,
+  actionContentProps,
+  paddingProps,
+  sizeProps,
+  contentSizeProps,
+);
 
 export type ActionNestedContentProps = ComponentPropsBaseWith<
   "div",
-  ActionNestedContentSpecificProps & {
-    render?: ReactElement;
-  }
+  TPropsSplittersTypes<typeof actionNestedContentProps>
 >;
 
 /**
  * This component lets you nest Action content
  */
 export function ActionNestedContent(inProps: ActionNestedContentProps) {
-  const [{ localPadding, localActionContent, localSize, localContentSize }, props] = pipePropsSplitters(inProps, {
-    localPadding: paddingPropsSplitter,
-    localSize: sizePropsSplitter,
-    localActionContent: actionContentPropsSplitter,
-    localContentSize: contentSizePropsSplitter,
-  });
+  const [[localActionNestedContentSpecific, localActionContent, localPadding, localSize, localContentSize], htmlProps] =
+    extractProps(inProps, actionNestedContentProps);
 
-  const {
-    children,
-
-    style,
-    className,
-    render,
-
-    ...htmlProps
-  } = props;
+  const { children, style, className, render } = localActionNestedContentSpecific;
 
   const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName } = useRounded({});

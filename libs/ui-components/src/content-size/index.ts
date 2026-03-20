@@ -1,4 +1,4 @@
-export * from "./contentSizePropsSplitter";
+export * from "./contentSizeProps";
 export * from "./DefaultContentSizeContext";
 export * from "./ParentContentSizeContext";
 export * from "./types";

@@ -1,51 +1,69 @@
-import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { actionGroupSeparatorStyles, actionGroupStylesClass } from "@dldc/ui-styles/action-group";
 import clsx from "clsx";
-import { Children, cloneElement, Fragment } from "react";
+import { Children, cloneElement, CSSProperties, Fragment, ReactNode } from "react";
 
 import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
-import { TContentSizeProps } from "../content-size";
+import { contentSizeProps } from "../content-size";
 import { DesignWrapper } from "../design-wrapper";
-import { TPaddingProps } from "../padding";
-import { TRoundedProps } from "../rounded";
-import { TSizeProps } from "../size";
-import { TVariantProps, useVariant, variantPropsSplitter } from "../variant";
+import { paddingProps } from "../padding";
+import { roundedProps } from "../rounded";
+import { sizeProps } from "../size";
+import { useVariant, variantProps } from "../variant";
 
-export type ActionGroupProps = ComponentPropsBaseWith<
-  "div",
-  TPaddingProps &
-    TRoundedProps &
-    TSizeProps &
-    TContentSizeProps &
-    TVariantProps & {
-      disabled?: boolean;
+export interface ActionGroupSpecificProps {
+  disabled?: boolean;
+  color?: TPaletteColor;
+  direction?: "horizontal" | "vertical";
+  roundedEnds?: "start" | "end" | "both" | "none";
+  innerDividers?: "none" | "partial" | "full";
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
 
-      color?: TPaletteColor;
+export const actionGroupSpecificProps = createProps<ActionGroupSpecificProps>({
+  color: null,
+  disabled: null,
+  direction: null,
+  roundedEnds: null,
+  innerDividers: null,
+  className: null,
+  style: null,
+  children: null,
+});
 
-      direction?: "horizontal" | "vertical";
-      roundedEnds?: "start" | "end" | "both" | "none";
-      innerDividers?: "none" | "partial" | "full";
-    }
->;
+export const actionGroupProps = mergeProps(
+  actionGroupSpecificProps,
+  variantProps,
+  sizeProps,
+  contentSizeProps,
+  paddingProps,
+  roundedProps,
+);
+
+export type ActionGroupProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof actionGroupProps>>;
 
 export function ActionGroup(inProps: ActionGroupProps) {
-  const [{ localVariant }, props] = pipePropsSplitters(inProps, {
-    localVariant: variantPropsSplitter,
-  });
+  const [
+    [localActionGroupSpecific, localVariant, localSize, localContentSize, localPadding, localRounded],
+    wrapperProps,
+  ] = extractProps(inProps, actionGroupProps);
 
   const { variant } = useVariant(localVariant, "surface");
 
   const {
     color,
-    className,
-    children,
     direction = "horizontal",
     innerDividers = "full",
     roundedEnds = "both",
+    className,
+    children,
     style,
-    ...wrapperProps
-  } = props;
+    // TODO: handle disabled
+    // disabled,
+  } = localActionGroupSpecific;
 
   const childrenFiltered = Children.toArray(children).filter((c) => c);
   const childrenLength = Children.count(childrenFiltered);
@@ -75,6 +93,10 @@ export function ActionGroup(inProps: ActionGroupProps) {
       className={clsx(baseClass, className)}
       style={style}
       {...wrapperProps}
+      {...localSize}
+      {...localContentSize}
+      {...localPadding}
+      {...localRounded}
     >
       {Children.map(childrenFiltered, (child, i) => {
         if (!child) return null;

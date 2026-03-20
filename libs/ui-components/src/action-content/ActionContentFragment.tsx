@@ -1,4 +1,4 @@
-import { TPropsSplitter } from "@dldc/react-utils/props-splitters";
+import { createProps } from "@dldc/react-utils/props-splitters";
 import { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
 import { ellipsisClass } from "@dldc/ui-styles/ellipsis";
 import { Fragment } from "react/jsx-runtime";
@@ -111,27 +111,17 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
   };
 }
 
-const ACTION_CONTENT_PROPS_KEYS = Object.keys({
-  startIcon: "startIcon",
-  startSlot: "startSlot",
-  endIcon: "endIcon",
-  endSlot: "endSlot",
-  paddingMode: "paddingMode",
-  startPaddingMode: "startPaddingMode",
-  endPaddingMode: "endPaddingMode",
-  loading: "loading",
-  noLayout: "noLayout",
-} satisfies { [K in keyof Required<TActionContentProps>]: K });
-
-export const actionContentPropsSplitter: TPropsSplitter<TActionContentProps> = (props) => {
-  const result: Partial<TActionContentProps> = {};
-  ACTION_CONTENT_PROPS_KEYS.forEach((key) => {
-    if (key in props) {
-      result[key as keyof TActionContentProps] = props[key as keyof TActionContentProps];
-    }
-  });
-  return result;
-};
+export const actionContentProps = createProps<TActionContentProps>({
+  startIcon: null,
+  startSlot: null,
+  endIcon: null,
+  endSlot: null,
+  paddingMode: null,
+  startPaddingMode: null,
+  endPaddingMode: null,
+  loading: null,
+  noLayout: null,
+});
 
 export function ActionContentFragment(props: TActionContentProps & { children?: React.ReactNode }) {
   return useActionContent(props, props.children).fragment;
