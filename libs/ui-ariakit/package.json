@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@ariakit/react": "catalog:",
+    "@dldc/react-utils": "workspace:^",
     "@dldc/ui-components": "workspace:^",
     "lucide-react": "catalog:",
     "react": "catalog:",

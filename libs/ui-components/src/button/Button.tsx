@@ -1,46 +1,72 @@
 import { createRender } from "@dldc/react-utils/create-render";
+import { createProps, extractAllProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement, ReactNode, Ref } from "react";
 
 import { Action } from "../action";
-import { TActionContentProps } from "../action-content";
-import { TContentSizeProps } from "../content-size";
-import { TPaddingProps } from "../padding";
-import { TRoundedProps } from "../rounded";
-import { TSizeProps } from "../size";
-import { TVariantProps } from "../variant";
+import { actionContentProps } from "../action-content";
+import { contentSizeProps } from "../content-size";
+import { paddingProps } from "../padding";
+import { roundedProps } from "../rounded";
+import { sizeProps } from "../size";
+import { variantProps } from "../variant";
 
-export type ButtonSpecificProps = TActionContentProps &
-  TPaddingProps &
-  TRoundedProps &
-  TSizeProps &
-  TContentSizeProps &
-  TVariantProps & {
-    disabled?: boolean;
+export interface ButtonSpecificProps {
+  disabled?: boolean;
 
-    color?: TPaletteColor;
-    type?: "button" | "submit" | "reset" | undefined;
+  color?: TPaletteColor;
+  type?: "button" | "submit" | "reset" | undefined;
 
-    // Data attributes
-    "data-hover"?: boolean;
-    "data-focus-visible"?: boolean;
-  };
+  // Data attributes
+  "data-hover"?: boolean;
+  "data-focus-visible"?: boolean;
 
-export type ButtonProps = ComponentPropsBaseWith<
-  "button",
-  ButtonSpecificProps & {
-    render?: ReactElement;
-  }
->;
+  children?: ReactNode;
+  style?: CSSProperties;
+  className?: string;
 
-export function Button({ type = "button", disabled = false, render, ref, ...actionProps }: ButtonProps) {
+  ref?: Ref<HTMLButtonElement>;
+  render?: ReactElement;
+}
+
+export const buttonSpecificProps = createProps<ButtonSpecificProps>({
+  "data-focus-visible": null,
+  "data-hover": null,
+  color: null,
+  disabled: null,
+  type: null,
+  children: null,
+  style: null,
+  className: null,
+  ref: null,
+  render: null,
+});
+
+export const buttonProps = mergeProps(
+  buttonSpecificProps,
+  actionContentProps,
+  contentSizeProps,
+  paddingProps,
+  roundedProps,
+  sizeProps,
+  variantProps,
+);
+
+export type ButtonProps = ComponentPropsBaseWith<"button", TPropsSplittersTypes<typeof buttonProps>>;
+
+export function Button(inProps: ButtonProps) {
+  const [props, htmlProps] = extractAllProps(inProps, buttonProps);
+
+  const { type = "button", disabled = false, render, ref, ...actionProps } = props;
+
   return (
     <Action
       disabled={disabled}
       render={createRender("button", render, { type, ref, disabled })}
       interactive
-      {...(actionProps as any)}
+      {...actionProps}
+      {...(htmlProps as any)}
     />
   );
 }
