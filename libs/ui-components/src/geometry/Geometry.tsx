@@ -1,5 +1,5 @@
 import { createRender } from "@dldc/react-utils/create-render";
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { paddingInlineStyles } from "@dldc/ui-styles/padding";
 import { roundedBorderRadiusClass, roundedInlineStyles } from "@dldc/ui-styles/rounded";
@@ -15,7 +15,7 @@ export interface GeometryProviderProps {
   skipProviders?: boolean;
 }
 
-export const geometryProviderProps = createProps<GeometryProviderProps>({
+export const geometryProviderProps = createPropsKeys<GeometryProviderProps>({
   skipProviders: null,
 });
 
@@ -26,23 +26,23 @@ export interface GeometrySpecificProps {
   children?: ReactNode;
 }
 
-export const geometrySpecificProps = createProps<GeometrySpecificProps>({
+export const geometrySpecificProps = createPropsKeys<GeometrySpecificProps>({
   render: null,
   className: null,
   style: null,
   children: null,
 });
 
-export const geometryBaseProps = mergeProps(paddingProps, roundedProps, geometryProviderProps);
+export const geometryBaseProps = mergePropsKeys(paddingProps, roundedProps, geometryProviderProps);
 
-export const geometryProps = mergeProps(...geometryBaseProps, geometrySpecificProps);
+export const geometryProps = mergePropsKeys(...geometryBaseProps.content, geometrySpecificProps);
 
-export type GeometryProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof geometryProps>>;
+export type GeometryProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof geometryProps>>;
 
 export function Geometry(inProps: GeometryProps) {
   const [[localPadding, localRounded, localGeometryProvider, localGeometrySpecific], divProps] = extractProps(
     inProps,
-    geometryProps,
+    geometryProps.content,
   );
 
   const { className, style, children, render } = localGeometrySpecific;

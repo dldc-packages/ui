@@ -1,7 +1,7 @@
-import { createProps } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys } from "@dldc/react-utils/props-keys";
 
 import { TSizeProps } from "./types";
 
-export const sizeProps = createProps<TSizeProps>({
+export const sizeProps = createPropsKeys<TSizeProps>({
   size: null,
 });

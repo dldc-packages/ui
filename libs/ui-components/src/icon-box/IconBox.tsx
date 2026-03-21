@@ -1,8 +1,7 @@
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TDesignSize } from "@dldc/ui-core/size";
 import { iconStyles } from "@dldc/ui-styles/icon";
 import clsx from "clsx";
-
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type IconBoxProps = ComponentPropsBaseWith<
   "div",

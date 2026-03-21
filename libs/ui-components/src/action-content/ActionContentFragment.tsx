@@ -1,4 +1,4 @@
-import { createProps } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys } from "@dldc/react-utils/props-keys";
 import { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
 import { ellipsisClass } from "@dldc/ui-styles/ellipsis";
 import { Fragment } from "react/jsx-runtime";
@@ -111,7 +111,7 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
   };
 }
 
-export const actionContentProps = createProps<TActionContentProps>({
+export const actionContentProps = createPropsKeys<TActionContentProps>({
   startIcon: null,
   startSlot: null,
   endIcon: null,

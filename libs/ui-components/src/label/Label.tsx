@@ -1,8 +1,7 @@
 import { createRender } from "@dldc/react-utils/create-render";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { labelStyles } from "@dldc/ui-styles/label";
 import clsx from "clsx";
-
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type LabelSpecificProps = { disabled?: boolean; render?: React.ReactElement };
 

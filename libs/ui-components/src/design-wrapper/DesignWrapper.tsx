@@ -1,5 +1,5 @@
 import { createRender } from "@dldc/react-utils/create-render";
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { actionLayoutStylesInline } from "@dldc/ui-styles/action";
@@ -23,7 +23,7 @@ export interface DesignWrapperSpecificProps {
   children?: React.ReactNode;
 }
 
-export const designWrapperSpecificProps = createProps<DesignWrapperSpecificProps>({
+export const designWrapperSpecificProps = createPropsKeys<DesignWrapperSpecificProps>({
   color: null,
   render: null,
   className: null,
@@ -32,7 +32,7 @@ export const designWrapperSpecificProps = createProps<DesignWrapperSpecificProps
   children: null,
 });
 
-export const designWrapperProps = mergeProps(
+export const designWrapperProps = mergePropsKeys(
   variantProps,
   paddingProps,
   roundedProps,
@@ -41,7 +41,7 @@ export const designWrapperProps = mergeProps(
   designWrapperSpecificProps,
 );
 
-export type DesignWrapperProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof designWrapperProps>>;
+export type DesignWrapperProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof designWrapperProps>>;
 
 /**
  * Render an element, applying design context props and variables
@@ -53,7 +53,7 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
   const [
     [localVariant, localPadding, localRounded, localSize, localContentSize, localDesignWrapperSpecific],
     htmlProps,
-  ] = extractProps(inProps, designWrapperProps);
+  ] = extractProps(inProps, designWrapperProps.content);
 
   const { padding, paddingVarName, parentPaddingVarName } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName } = useRounded(localRounded);

@@ -1,10 +1,8 @@
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
-import { ComponentPropsBase } from "@dldc/react-utils/types";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { ComponentPropsBase, ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { actionInputContentClass } from "@dldc/ui-styles/action-input";
 import clsx from "clsx";
 import { useMemo } from "react";
-
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export interface ActionInputContentSpecificProps {
   disabled?: boolean;
@@ -14,8 +12,8 @@ export interface ActionInputContentSpecificProps {
   onChange?: ComponentPropsBase<"input">["onChange"];
 }
 
-const actionInputProps = mergeProps(
-  createProps<ActionInputContentSpecificProps>({
+const actionInputProps = mergePropsKeys(
+  createPropsKeys<ActionInputContentSpecificProps>({
     disabled: null,
     onValueChange: null,
     value: null,
@@ -24,10 +22,10 @@ const actionInputProps = mergeProps(
   }),
 );
 
-export type ActionInputContentProps = ComponentPropsBaseWith<"input", TPropsSplittersTypes<typeof actionInputProps>>;
+export type ActionInputContentProps = ComponentPropsBaseWith<"input", TypeOfPropsKeys<typeof actionInputProps>>;
 
 export function ActionInputContent(inProps: ActionInputContentProps) {
-  const [[localProps], htmlProps] = extractProps(inProps, actionInputProps);
+  const [[localProps], htmlProps] = extractProps(inProps, actionInputProps.content);
   const { className, onValueChange, onChange, disabled, value } = localProps;
 
   const inputOnChange = useMemo(() => {

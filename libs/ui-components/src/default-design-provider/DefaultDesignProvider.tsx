@@ -1,5 +1,5 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
-import { extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { PropsWithChildren } from "react";
 
 import { contentSizeProps, DefaultContentSizeProvider } from "../content-size";
@@ -8,14 +8,20 @@ import { DefaultRoundedProvider, roundedProps } from "../rounded";
 import { DefaultSizeProvider, sizeProps } from "../size";
 import { DefaultHoverVariantProvider, DefaultVariantProvider, variantProps } from "../variant";
 
-const defaultDesignProviderProps = mergeProps(variantProps, paddingProps, roundedProps, sizeProps, contentSizeProps);
+const defaultDesignProviderProps = mergePropsKeys(
+  variantProps,
+  paddingProps,
+  roundedProps,
+  sizeProps,
+  contentSizeProps,
+);
 
-export type DefaultDesignProviderProps = PropsWithChildren<TPropsSplittersTypes<typeof defaultDesignProviderProps>>;
+export type DefaultDesignProviderProps = PropsWithChildren<TypeOfPropsKeys<typeof defaultDesignProviderProps>>;
 
 export function DefaultDesignProvider(inProps: DefaultDesignProviderProps) {
   const [[localVariant, localPadding, localRounded, localSize, localContentSize], props] = extractProps(
     inProps,
-    defaultDesignProviderProps,
+    defaultDesignProviderProps.content,
   );
 
   const { children } = props;

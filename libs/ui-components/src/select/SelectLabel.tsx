@@ -1,4 +1,5 @@
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
+
 import { Label, LabelSpecificProps } from "../label";
 
 export type SelectLabelSpecificProps = LabelSpecificProps;

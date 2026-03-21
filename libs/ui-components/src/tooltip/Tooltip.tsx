@@ -1,9 +1,8 @@
 import { createRender } from "@dldc/react-utils/create-render";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { tooltipClass } from "@dldc/ui-styles/tooltip";
 import clsx from "clsx";
 import { ReactElement } from "react";
-
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type TooltipSpecificProps = {
   render?: ReactElement;

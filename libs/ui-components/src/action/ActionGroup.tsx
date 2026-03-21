@@ -1,10 +1,10 @@
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { actionGroupSeparatorStyles, actionGroupStylesClass } from "@dldc/ui-styles/action-group";
 import clsx from "clsx";
 import { Children, cloneElement, CSSProperties, Fragment, ReactNode } from "react";
 
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 import { contentSizeProps } from "../content-size";
 import { DesignWrapper } from "../design-wrapper";
 import { paddingProps } from "../padding";
@@ -23,7 +23,7 @@ export interface ActionGroupSpecificProps {
   children?: ReactNode;
 }
 
-export const actionGroupSpecificProps = createProps<ActionGroupSpecificProps>({
+export const actionGroupSpecificProps = createPropsKeys<ActionGroupSpecificProps>({
   color: null,
   disabled: null,
   direction: null,
@@ -34,7 +34,7 @@ export const actionGroupSpecificProps = createProps<ActionGroupSpecificProps>({
   children: null,
 });
 
-export const actionGroupProps = mergeProps(
+export const actionGroupProps = mergePropsKeys(
   actionGroupSpecificProps,
   variantProps,
   sizeProps,
@@ -43,13 +43,13 @@ export const actionGroupProps = mergeProps(
   roundedProps,
 );
 
-export type ActionGroupProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof actionGroupProps>>;
+export type ActionGroupProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionGroupProps>>;
 
 export function ActionGroup(inProps: ActionGroupProps) {
   const [
     [localActionGroupSpecific, localVariant, localSize, localContentSize, localPadding, localRounded],
     wrapperProps,
-  ] = extractProps(inProps, actionGroupProps);
+  ] = extractProps(inProps, actionGroupProps.content);
 
   const { variant } = useVariant(localVariant, "surface");
 

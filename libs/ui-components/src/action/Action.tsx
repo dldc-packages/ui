@@ -1,6 +1,6 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
@@ -50,7 +50,7 @@ export interface ActionSpecificProps {
   render?: ReactElement;
 }
 
-export const actionSpecificProps = createProps<ActionSpecificProps>({
+export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
   "data-focus-visible": null,
   "data-hover": null,
   baseVariant: null,
@@ -66,7 +66,7 @@ export const actionSpecificProps = createProps<ActionSpecificProps>({
   render: null,
 });
 
-export const actionProps = mergeProps(
+export const actionProps = mergePropsKeys(
   actionSpecificProps,
   variantProps,
   paddingProps,
@@ -76,13 +76,13 @@ export const actionProps = mergeProps(
   contentSizeProps,
 );
 
-export type ActionProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof actionProps>>;
+export type ActionProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionProps>>;
 
 export function Action(inProps: ActionProps) {
   const [
     [localAction, localVariant, localPadding, localRounded, localSize, localActionContent, localContentSize],
     htmlProps,
-  ] = extractProps(inProps, actionProps);
+  ] = extractProps(inProps, actionProps.content);
 
   const {
     color,

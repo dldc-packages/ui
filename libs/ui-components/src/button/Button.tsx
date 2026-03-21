@@ -1,5 +1,5 @@
 import { createRender } from "@dldc/react-utils/create-render";
-import { createProps, extractAllProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { CSSProperties, ReactElement, ReactNode, Ref } from "react";
@@ -30,7 +30,7 @@ export interface ButtonSpecificProps {
   render?: ReactElement;
 }
 
-export const buttonSpecificProps = createProps<ButtonSpecificProps>({
+export const buttonSpecificProps = createPropsKeys<ButtonSpecificProps>({
   "data-focus-visible": null,
   "data-hover": null,
   color: null,
@@ -43,7 +43,7 @@ export const buttonSpecificProps = createProps<ButtonSpecificProps>({
   render: null,
 });
 
-export const buttonProps = mergeProps(
+export const buttonProps = mergePropsKeys(
   buttonSpecificProps,
   actionContentProps,
   contentSizeProps,
@@ -53,10 +53,10 @@ export const buttonProps = mergeProps(
   variantProps,
 );
 
-export type ButtonProps = ComponentPropsBaseWith<"button", TPropsSplittersTypes<typeof buttonProps>>;
+export type ButtonProps = ComponentPropsBaseWith<"button", TypeOfPropsKeys<typeof buttonProps>>;
 
 export function Button(inProps: ButtonProps) {
-  const [props, htmlProps] = extractAllProps(inProps, buttonProps);
+  const [props, htmlProps] = extractProps(inProps, buttonProps);
 
   const { type = "button", disabled = false, render, ref, ...actionProps } = props;
 

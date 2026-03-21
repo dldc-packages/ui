@@ -1,7 +1,7 @@
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { ReactElement } from "react";
 
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 import { Action } from "../action";
 import { TActionContentProps } from "../action-content";
 import { TContentSizeProps } from "../content-size";

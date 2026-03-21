@@ -1,4 +1,4 @@
-import { createProps, extractAllProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { ReactElement } from "react";
 
@@ -10,19 +10,19 @@ export interface GeometryPaperSpecificProps {
   children?: React.ReactNode;
 }
 
-export const geometryPaperSpecificProps = createProps<GeometryPaperSpecificProps>({
+export const geometryPaperSpecificProps = createPropsKeys<GeometryPaperSpecificProps>({
   render: null,
   children: null,
 });
 
-export const geometryPaperBaseProps = mergeProps(...geometryBaseProps, ...paperBaseProps);
+export const geometryPaperBaseProps = mergePropsKeys(geometryBaseProps, paperBaseProps);
 
-export const geometryPaperProps = mergeProps(...geometryPaperBaseProps, geometryPaperSpecificProps);
+export const geometryPaperProps = mergePropsKeys(geometryPaperBaseProps, geometryPaperSpecificProps);
 
-export type GeometryPaperProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof geometryPaperProps>>;
+export type GeometryPaperProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof geometryPaperProps>>;
 
 export function GeometryPaper(inProps: GeometryPaperProps) {
-  const [props, htmlProps] = extractAllProps(inProps, geometryPaperProps);
+  const [props, htmlProps] = extractProps(inProps, geometryPaperProps);
   const { background, children, ...rest } = props;
 
   return (

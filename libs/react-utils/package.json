@@ -12,7 +12,7 @@
     "./create-render": "./dist/create-render.js",
     "./default-provider": "./dist/default-provider.js",
     "./merge-props": "./dist/merge-props.js",
-    "./props-splitters": "./dist/props-splitters.js",
+    "./props-keys": "./dist/props-keys.js",
     "./types": "./dist/types.js",
     "./package.json": "./package.json"
   },

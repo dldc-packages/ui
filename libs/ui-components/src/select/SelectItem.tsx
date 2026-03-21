@@ -1,6 +1,7 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
@@ -8,7 +9,6 @@ import { selectItemStyles } from "@dldc/ui-styles/select";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 import { actionContentProps, useActionContent } from "../action-content";
 import {
   contentSizeProps,
@@ -36,7 +36,7 @@ export interface SelectItemSpecificProps {
   ref?: React.Ref<HTMLDivElement>;
 }
 
-export const selectItemSpecificProps = createProps<SelectItemSpecificProps>({
+export const selectItemSpecificProps = createPropsKeys<SelectItemSpecificProps>({
   disabled: null,
   color: null,
   render: null,
@@ -48,7 +48,7 @@ export const selectItemSpecificProps = createProps<SelectItemSpecificProps>({
   ref: null,
 });
 
-export const selectItemProps = mergeProps(
+export const selectItemProps = mergePropsKeys(
   actionContentProps,
   paddingProps,
   roundedProps,
@@ -57,13 +57,13 @@ export const selectItemProps = mergeProps(
   selectItemSpecificProps,
 );
 
-export type SelectItemProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof selectItemProps>>;
+export type SelectItemProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof selectItemProps>>;
 
 export function SelectItem(inProps: SelectItemProps) {
   const [
     [localActionContent, localPadding, localRounded, localSize, localContentSize, localSelectItemSpecific],
     htmlProps,
-  ] = extractProps(inProps, selectItemProps);
+  ] = extractProps(inProps, selectItemProps.content);
 
   const { color, disabled = false, ref, render, children, className } = localSelectItemSpecific;
 

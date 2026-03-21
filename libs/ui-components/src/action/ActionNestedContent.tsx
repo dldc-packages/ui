@@ -1,12 +1,12 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
 import clsx from "clsx";
 import { CSSProperties, ReactElement, ReactNode } from "react";
 
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 import { actionContentProps, useActionContent } from "../action-content/index";
 import {
   contentSizeProps,
@@ -25,14 +25,14 @@ export interface ActionNestedContentSpecificProps {
   children?: ReactNode;
 }
 
-export const actionNestedContentSpecificProps = createProps<ActionNestedContentSpecificProps>({
+export const actionNestedContentSpecificProps = createPropsKeys<ActionNestedContentSpecificProps>({
   render: null,
   className: null,
   style: null,
   children: null,
 });
 
-export const actionNestedContentProps = mergeProps(
+export const actionNestedContentProps = mergePropsKeys(
   actionNestedContentSpecificProps,
   actionContentProps,
   paddingProps,
@@ -40,17 +40,14 @@ export const actionNestedContentProps = mergeProps(
   contentSizeProps,
 );
 
-export type ActionNestedContentProps = ComponentPropsBaseWith<
-  "div",
-  TPropsSplittersTypes<typeof actionNestedContentProps>
->;
+export type ActionNestedContentProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionNestedContentProps>>;
 
 /**
  * This component lets you nest Action content
  */
 export function ActionNestedContent(inProps: ActionNestedContentProps) {
   const [[localActionNestedContentSpecific, localActionContent, localPadding, localSize, localContentSize], htmlProps] =
-    extractProps(inProps, actionNestedContentProps);
+    extractProps(inProps, actionNestedContentProps.content);
 
   const { children, style, className, render } = localActionNestedContentSpecific;
 

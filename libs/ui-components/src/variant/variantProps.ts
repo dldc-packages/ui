@@ -1,8 +1,8 @@
-import { createProps } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys } from "@dldc/react-utils/props-keys";
 
 import { TVariantProps } from "./types";
 
-export const variantProps = createProps<TVariantProps>({
+export const variantProps = createPropsKeys<TVariantProps>({
   hoverVariant: null,
   variant: null,
 });

@@ -1,7 +1,7 @@
-import { createProps } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys } from "@dldc/react-utils/props-keys";
 
 import { TPaddingProps } from "./types";
 
-export const paddingProps = createProps<TPaddingProps>({
+export const paddingProps = createPropsKeys<TPaddingProps>({
   padding: null,
 });

@@ -1,7 +1,7 @@
-import { createProps } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys } from "@dldc/react-utils/props-keys";
 
 import { TRoundedProps } from "./types";
 
-export const roundedProps = createProps<TRoundedProps>({
+export const roundedProps = createPropsKeys<TRoundedProps>({
   rounded: null,
 });

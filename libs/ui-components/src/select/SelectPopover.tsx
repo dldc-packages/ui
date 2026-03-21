@@ -1,4 +1,4 @@
-import { createProps, extractAllProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { selectPopoverStyles } from "@dldc/ui-styles/select";
 import { clsx } from "clsx";
@@ -14,19 +14,19 @@ export interface SelectPopoverSpecificProps {
   children?: ReactNode;
 }
 
-export const selectPopoverSpecificProps = createProps<SelectPopoverSpecificProps>({
+export const selectPopoverSpecificProps = createPropsKeys<SelectPopoverSpecificProps>({
   render: null,
   className: null,
   style: null,
   children: null,
 });
 
-export const selectPopoverProps = mergeProps(selectPopoverSpecificProps, ...geometryPaperBaseProps);
+export const selectPopoverProps = mergePropsKeys(selectPopoverSpecificProps, geometryPaperBaseProps);
 
-export type SelectPopoverProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof selectPopoverProps>>;
+export type SelectPopoverProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof selectPopoverProps>>;
 
 export function SelectPopover(inProps: SelectPopoverProps) {
-  const [props, htmlProps] = extractAllProps(inProps, selectPopoverProps);
+  const [props, htmlProps] = extractProps(inProps, selectPopoverProps);
 
   const { className, style, children, background, padding = 1, ...geometryPaperProps } = props;
 

@@ -1,7 +1,6 @@
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { createTraceAnimation, spinClass } from "@dldc/ui-styles/animations";
 import clsx from "clsx";
-
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type LoadingIcon = ComponentPropsBaseWith<
   "div",

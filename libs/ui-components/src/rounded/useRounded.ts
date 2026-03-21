@@ -1,7 +1,7 @@
 import { useCssVariable } from "@dldc/hooks/use-css-variable";
+import { TDefaultProviderValue } from "@dldc/react-utils/default-provider";
 import { parseMaybeSize } from "@dldc/ui-core/size";
 
-import { TDefaultProviderValue } from "../../../react-utils/src/default-provider";
 import { useDefaultRounded } from "./DefaultRoundedContext";
 import { useParentRoundedContext } from "./ParentRoundedContext";
 import { TRoundedProps, TRoundedPropValue } from "./types";

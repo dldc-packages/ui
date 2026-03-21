@@ -1,6 +1,6 @@
+import { TDefaultProviderValue } from "@dldc/react-utils/default-provider";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 
-import { TDefaultProviderValue } from "../../../react-utils/src/default-provider";
 import { useDefaultHoverVariant, useDefaultVariant } from "./DefaultVariantContext";
 import { useParentVariantContext } from "./ParentVariantContext";
 import { THoverVariantPropValue, TVariantProps, TVariantPropValue } from "./types";

@@ -1,10 +1,9 @@
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { sizeToRemString, TDesignSize } from "@dldc/ui-core/size";
 import { contentSizeVar } from "@dldc/ui-core/variables";
 import { proseStyles, TProseColor } from "@dldc/ui-styles/prose";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import clsx from "clsx";
-
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
 
 export type ProseProps = ComponentPropsBaseWith<
   "div",

@@ -1,4 +1,5 @@
-import { createDefaultProvider } from "../../../react-utils/src/default-provider";
+import { createDefaultProvider } from "@dldc/react-utils/default-provider";
+
 import { THoverVariantPropValue, TVariantPropValue } from "./types";
 
 export const { DefaultProvider: DefaultVariantProvider, useDefault: useDefaultVariant } =

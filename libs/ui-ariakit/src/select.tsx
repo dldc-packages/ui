@@ -1,5 +1,5 @@
 import * as AKSelect from "@ariakit/react/select";
-import { extractAllProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { extractProps, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ActionContentFragment } from "@dldc/ui-components/action-content";
 import * as CSelect from "@dldc/ui-components/select";
 import { ChevronDownIcon } from "lucide-react";
@@ -43,18 +43,15 @@ export function SelectLabel({ render, ...props }: SelectLabelProps) {
 }
 SelectLabel.displayName = "SelectLabel";
 
-export type SelectProps = Merge<AKSelect.SelectProps, TPropsSplittersTypes<typeof CSelect.selectProps>>;
+export type SelectProps = Merge<AKSelect.SelectProps, TypeOfPropsKeys<typeof CSelect.selectProps>>;
 export function Select(inProps: SelectProps) {
-  const [props, akProps] = extractAllProps(inProps, CSelect.selectProps);
-
+  const [props, akProps] = extractProps(inProps, CSelect.selectProps);
   const { children, render } = props;
-
   const defaultChildren = (
     <ActionContentFragment endIcon={<SelectArrow />}>
       <AKSelect.SelectValue />
     </ActionContentFragment>
   );
-
   return (
     <CSelect.Select render={<AKSelect.Select {...akProps} render={render} />} {...props}>
       {children ?? defaultChildren}
@@ -72,10 +69,9 @@ export function SelectPopover({ render, ...props }: SelectPopoverProps) {
 }
 SelectPopover.displayName = "SelectPopover";
 
-export type SelectItemProps = Merge<AKSelect.SelectItemProps, TPropsSplittersTypes<typeof CSelect.selectItemProps>>;
+export type SelectItemProps = Merge<AKSelect.SelectItemProps, TypeOfPropsKeys<typeof CSelect.selectItemProps>>;
 export function SelectItem(inProps: SelectItemProps) {
-  const [cProps, akProps] = extractAllProps(inProps, CSelect.selectItemProps);
-
+  const [cProps, akProps] = extractProps(inProps, CSelect.selectItemProps);
   return <CSelect.SelectItem render={<AKSelect.SelectItem {...akProps} />} {...cProps} />;
 }
 SelectItem.displayName = "SelectItem";

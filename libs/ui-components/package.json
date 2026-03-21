@@ -15,6 +15,7 @@
     "./content-size": "./dist/content-size/index.js",
     "./default-design-provider": "./dist/default-design-provider/index.js",
     "./design-wrapper": "./dist/design-wrapper/index.js",
+    "./dialog-container": "./dist/dialog-container/index.js",
     "./geometry": "./dist/geometry/index.js",
     "./geometry-paper": "./dist/geometry-paper/index.js",
     "./icon-box": "./dist/icon-box/index.js",

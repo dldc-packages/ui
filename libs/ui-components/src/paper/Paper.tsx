@@ -1,38 +1,37 @@
 import { createRender } from "@dldc/react-utils/create-render";
-import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TNeutralColorShade } from "@dldc/ui-core/colors";
 import { paperBaseClass, paperClass } from "@dldc/ui-styles/paper";
 import clsx from "clsx";
 import { ReactElement } from "react";
 
-import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
-
 export interface PaperBackgroundProps {
   background?: TNeutralColorShade;
 }
 
-export const paperBackgroundProps = createProps<PaperBackgroundProps>({
+export const paperBackgroundProps = createPropsKeys<PaperBackgroundProps>({
   background: null,
 });
 
-export const paperBaseProps = mergeProps(paperBackgroundProps);
+export const paperBaseProps = mergePropsKeys(paperBackgroundProps);
 
 export interface PaperSpecificProps {
   render?: ReactElement;
   className?: string;
 }
 
-export const paperSpecificProps = createProps<PaperSpecificProps>({
+export const paperSpecificProps = createPropsKeys<PaperSpecificProps>({
   render: null,
   className: null,
 });
 
-export const paperProps = mergeProps(...paperBaseProps, paperSpecificProps);
+export const paperProps = mergePropsKeys(...paperBaseProps.content, paperSpecificProps);
 
-export type PaperProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof paperProps>>;
+export type PaperProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof paperProps>>;
 
 export function Paper(inProps: PaperProps) {
-  const [[localPaperBackground, localPaperSpecific], htmlProps] = extractProps(inProps, paperProps);
+  const [[localPaperBackground, localPaperSpecific], htmlProps] = extractProps(inProps, paperProps.content);
 
   const { background } = localPaperBackground;
   const { className, render } = localPaperSpecific;
