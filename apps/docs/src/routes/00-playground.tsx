@@ -7,7 +7,7 @@ import { useState } from "react";
 
 import { StoryLayout } from "@/components/StoryLayout";
 
-export const Route = createFileRoute("/01-stories/00-playground")({
+export const Route = createFileRoute("/00-playground")({
   component: RouteComponent,
 });
 

@@ -7,7 +7,7 @@ import { cn } from "@/utils/styles";
 import { DefaultVariantProviderBasicWidget } from "@/widgets/default-providers/DefaultVariantProviderBasicWidget";
 import { ProvideColorPaletteWidget } from "@/widgets/default-providers/ProvideColorPaletteWidget";
 
-export const Route = createFileRoute("/01-stories/03-default-providers")({
+export const Route = createFileRoute("/01-components/03-default-providers")({
   component: RouteComponent,
 });
 

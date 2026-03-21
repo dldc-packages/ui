@@ -7,7 +7,7 @@ import { cn } from "@/utils/styles";
 import { DesignWrapperBasicWidget } from "@/widgets/design-wrapper/DesignWrapperBasicWidget";
 import { DesignWrapperPaginationWidget } from "@/widgets/design-wrapper/DesignWrapperPaginationWidget";
 
-export const Route = createFileRoute("/01-stories/04-design-wrapper")({
+export const Route = createFileRoute("/01-components/04-design-wrapper")({
   component: RouteComponent,
 });
 

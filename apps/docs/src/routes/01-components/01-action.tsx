@@ -22,7 +22,7 @@ import { ActionSlotsAlignementWidget } from "@/widgets/action/ActionSlotsAlignem
 import { ActionSlotsWidget } from "@/widgets/action/ActionSlotsWidget";
 import { ActionVariantsWidget } from "@/widgets/action/ActionVariantsWidget";
 
-export const Route = createFileRoute("/01-stories/01-action")({
+export const Route = createFileRoute("/01-components/01-action")({
   component: RouteComponent,
 });
 

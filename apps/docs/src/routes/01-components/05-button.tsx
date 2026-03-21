@@ -21,7 +21,7 @@ import { ButtonPaddingWidget } from "@/widgets/button/ButtonPaddingWidget";
 import { ButtonSizeWidget } from "@/widgets/button/ButtonSizeWidget";
 import { ButtonSlotsWidget } from "@/widgets/button/ButtonSlotsWidget";
 
-export const Route = createFileRoute("/01-stories/05-button")({
+export const Route = createFileRoute("/01-components/05-button")({
   component: RouteComponent,
 });
 

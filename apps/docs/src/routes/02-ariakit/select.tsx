@@ -7,7 +7,7 @@ import { AppleIcon, BananaIcon, CircleIcon, GrapeIcon } from "lucide-react";
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 
-export const Route = createFileRoute("/03-ariakit/select")({
+export const Route = createFileRoute("/02-ariakit/select")({
   component: RouteComponent,
 });
 

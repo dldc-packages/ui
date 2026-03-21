@@ -15,7 +15,7 @@ import { ActionGroupNestedWidget } from "@/widgets/action-group/ActionGroupNeste
 import { ActionGroupToolbarWidget } from "@/widgets/action-group/ActionGroupToolbarWidget";
 import { ActionGroupVariantsWidget } from "@/widgets/action-group/ActionGroupVariantsWidget";
 
-export const Route = createFileRoute("/01-stories/02-action-group")({
+export const Route = createFileRoute("/01-components/02-action-group")({
   component: RouteComponent,
 });
 
