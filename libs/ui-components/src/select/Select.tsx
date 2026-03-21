@@ -1,11 +1,14 @@
+import { extractAllProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
+
 import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
-import { Button, ButtonSpecificProps } from "../button";
+import { Button, buttonProps } from "../button";
 
-export type SelectSpecificProps = ButtonSpecificProps;
+export const selectProps = buttonProps;
 
-export type SelectProps = ComponentPropsBaseWith<"button", SelectSpecificProps & { render?: React.ReactElement }>;
+export type SelectProps = ComponentPropsBaseWith<"select", TPropsSplittersTypes<typeof selectProps>>;
 
-export function Select({ ...props }: SelectProps) {
-  return <Button {...props} />;
+export function Select(inProps: SelectProps) {
+  const [props, htmlProps] = extractAllProps(inProps, selectProps);
+  return <Button {...props} {...(htmlProps as any)} />;
 }
 Select.displayName = "Select";

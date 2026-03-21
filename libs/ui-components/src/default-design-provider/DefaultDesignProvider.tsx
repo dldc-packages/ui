@@ -1,27 +1,21 @@
-import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { applyProviders } from "@dldc/react-utils/apply-providers";
+import { extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { PropsWithChildren } from "react";
 
-import { applyProviders } from "../../../react-utils/src/apply-providers";
-import { contentSizeProps, DefaultContentSizeProvider, TContentSizeProps } from "../content-size";
-import { DefaultPaddingProvider, paddingProps, TPaddingProps } from "../padding";
-import { DefaultRoundedProvider, roundedProps, TRoundedProps } from "../rounded";
-import { DefaultSizeProvider, sizeProps, TSizeProps } from "../size";
-import { DefaultHoverVariantProvider, DefaultVariantProvider, TVariantProps, variantProps } from "../variant";
+import { contentSizeProps, DefaultContentSizeProvider } from "../content-size";
+import { DefaultPaddingProvider, paddingProps } from "../padding";
+import { DefaultRoundedProvider, roundedProps } from "../rounded";
+import { DefaultSizeProvider, sizeProps } from "../size";
+import { DefaultHoverVariantProvider, DefaultVariantProvider, variantProps } from "../variant";
 
-export type DefaultDesignProviderProps = PropsWithChildren<
-  TPaddingProps & TRoundedProps & TSizeProps & TContentSizeProps & TVariantProps
->;
+const defaultDesignProviderProps = mergeProps(variantProps, paddingProps, roundedProps, sizeProps, contentSizeProps);
+
+export type DefaultDesignProviderProps = PropsWithChildren<TPropsSplittersTypes<typeof defaultDesignProviderProps>>;
 
 export function DefaultDesignProvider(inProps: DefaultDesignProviderProps) {
-  const [{ localVariant, localPadding, localRounded, localSize, localContentSize }, props] = pipePropsSplitters(
+  const [[localVariant, localPadding, localRounded, localSize, localContentSize], props] = extractProps(
     inProps,
-    {
-      localVariant: variantProps,
-      localPadding: paddingProps,
-      localRounded: roundedProps,
-      localSize: sizeProps,
-      localContentSize: contentSizeProps,
-    },
+    defaultDesignProviderProps,
   );
 
   const { children } = props;

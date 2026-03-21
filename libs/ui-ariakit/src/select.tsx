@@ -1,4 +1,5 @@
 import * as AKSelect from "@ariakit/react/select";
+import { extractAllProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { ActionContentFragment } from "@dldc/ui-components/action-content";
 import * as CSelect from "@dldc/ui-components/select";
 import { ChevronDownIcon } from "lucide-react";
@@ -42,8 +43,12 @@ export function SelectLabel({ render, ...props }: SelectLabelProps) {
 }
 SelectLabel.displayName = "SelectLabel";
 
-export type SelectProps = Merge<AKSelect.SelectProps, CSelect.SelectSpecificProps & { render?: ReactElement }>;
-export function Select({ render, children, ...props }: SelectProps) {
+export type SelectProps = Merge<AKSelect.SelectProps, TPropsSplittersTypes<typeof CSelect.selectProps>>;
+export function Select(inProps: SelectProps) {
+  const [props, akProps] = extractAllProps(inProps, CSelect.selectProps);
+
+  const { children, render } = props;
+
   const defaultChildren = (
     <ActionContentFragment endIcon={<SelectArrow />}>
       <AKSelect.SelectValue />
@@ -51,7 +56,7 @@ export function Select({ render, children, ...props }: SelectProps) {
   );
 
   return (
-    <CSelect.Select render={<AKSelect.Select render={render} />} {...props}>
+    <CSelect.Select render={<AKSelect.Select {...akProps} render={render} />} {...props}>
       {children ?? defaultChildren}
     </CSelect.Select>
   );
@@ -67,11 +72,10 @@ export function SelectPopover({ render, ...props }: SelectPopoverProps) {
 }
 SelectPopover.displayName = "SelectPopover";
 
-export type SelectItemProps = Merge<
-  AKSelect.SelectItemProps,
-  CSelect.SelectItemSpecificProps & { render?: ReactElement }
->;
-export function SelectItem({ render, disabled, ...props }: SelectItemProps) {
-  return <CSelect.SelectItem render={<AKSelect.SelectItem disabled={disabled} render={render} />} {...props} />;
+export type SelectItemProps = Merge<AKSelect.SelectItemProps, TPropsSplittersTypes<typeof CSelect.selectItemProps>>;
+export function SelectItem(inProps: SelectItemProps) {
+  const [cProps, akProps] = extractAllProps(inProps, CSelect.selectItemProps);
+
+  return <CSelect.SelectItem render={<AKSelect.SelectItem {...akProps} />} {...cProps} />;
 }
 SelectItem.displayName = "SelectItem";

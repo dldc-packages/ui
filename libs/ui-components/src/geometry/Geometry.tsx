@@ -1,36 +1,52 @@
 import { createRender } from "@dldc/react-utils/create-render";
-import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { paddingInlineStyles } from "@dldc/ui-styles/padding";
 import { roundedBorderRadiusClass, roundedInlineStyles } from "@dldc/ui-styles/rounded";
 import clsx from "clsx";
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement, ReactNode } from "react";
 
-import { DefaultPaddingProvider, ParentPaddingContextProvider, TPaddingProps } from "../padding";
+import { DefaultPaddingProvider, ParentPaddingContextProvider } from "../padding";
 import { paddingProps } from "../padding/paddingProps";
 import { usePadding } from "../padding/usePadding";
-import {
-  DefaultRoundedProvider,
-  ParentRoundedContextProvider,
-  roundedProps,
-  TRoundedProps,
-  useRounded,
-} from "../rounded";
+import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
 
-export type GeometrySpecificProps = TPaddingProps &
-  TRoundedProps & {
-    skipProviders?: boolean;
-  };
+export interface GeometryProviderProps {
+  skipProviders?: boolean;
+}
 
-export type GeometryProps = ComponentPropsBaseWith<"div", GeometrySpecificProps & { render?: ReactElement }>;
+export const geometryProviderProps = createProps<GeometryProviderProps>({
+  skipProviders: null,
+});
+
+export interface GeometrySpecificProps {
+  render?: ReactElement;
+  className?: string;
+  style?: CSSProperties;
+  children?: ReactNode;
+}
+
+export const geometrySpecificProps = createProps<GeometrySpecificProps>({
+  render: null,
+  className: null,
+  style: null,
+  children: null,
+});
+
+export const geometryBaseProps = mergeProps(paddingProps, roundedProps, geometryProviderProps);
+
+export const geometryProps = mergeProps(...geometryBaseProps, geometrySpecificProps);
+
+export type GeometryProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof geometryProps>>;
 
 export function Geometry(inProps: GeometryProps) {
-  const [{ localPadding, localRounded }, props] = pipePropsSplitters(inProps, {
-    localPadding: paddingProps,
-    localRounded: roundedProps,
-  });
+  const [[localPadding, localRounded, localGeometryProvider, localGeometrySpecific], divProps] = extractProps(
+    inProps,
+    geometryProps,
+  );
 
-  const { className, style, children, skipProviders = false, render, ...divProps } = props;
+  const { className, style, children, render } = localGeometrySpecific;
+  const { skipProviders = false } = localGeometryProvider;
 
   const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName, nextRoundedDefaultContext } = useRounded(localRounded);

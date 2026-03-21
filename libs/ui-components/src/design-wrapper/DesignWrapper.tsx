@@ -1,30 +1,47 @@
 import { createRender } from "@dldc/react-utils/create-render";
-import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { contentSizeLineHeightClass } from "@dldc/ui-styles/content-size";
 import { clsx } from "clsx";
-import { ReactElement } from "react";
+import { CSSProperties, ReactElement, Ref } from "react";
 
-import { contentSizeProps, TContentSizeProps, useContentSize } from "../content-size";
+import { contentSizeProps, useContentSize } from "../content-size";
 import { DefaultDesignProvider } from "../default-design-provider";
-import { paddingProps, TPaddingProps, usePadding } from "../padding";
-import { roundedProps, TRoundedProps, useRounded } from "../rounded";
-import { sizeProps, TSizeProps, useSize } from "../size";
-import { TVariantProps, variantProps } from "../variant";
+import { paddingProps, usePadding } from "../padding";
+import { roundedProps, useRounded } from "../rounded";
+import { sizeProps, useSize } from "../size";
+import { variantProps } from "../variant";
 
-export type DesignWrapperProps = ComponentPropsBaseWith<
-  "div",
-  TPaddingProps &
-    TRoundedProps &
-    TSizeProps &
-    TContentSizeProps &
-    TVariantProps & {
-      color?: TPaletteColor;
-      render?: ReactElement;
-    }
->;
+export interface DesignWrapperSpecificProps {
+  color?: TPaletteColor;
+  render?: ReactElement;
+  className?: string;
+  style?: CSSProperties;
+  ref?: Ref<HTMLDivElement>;
+  children?: React.ReactNode;
+}
+
+export const designWrapperSpecificProps = createProps<DesignWrapperSpecificProps>({
+  color: null,
+  render: null,
+  className: null,
+  style: null,
+  ref: null,
+  children: null,
+});
+
+export const designWrapperProps = mergeProps(
+  variantProps,
+  paddingProps,
+  roundedProps,
+  sizeProps,
+  contentSizeProps,
+  designWrapperSpecificProps,
+);
+
+export type DesignWrapperProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof designWrapperProps>>;
 
 /**
  * Render an element, applying design context props and variables
@@ -33,23 +50,17 @@ export type DesignWrapperProps = ComponentPropsBaseWith<
  * @returns
  */
 export function DesignWrapper(inProps: DesignWrapperProps) {
-  const [{ localVariant, localPadding, localRounded, localSize, localContentSize }, props] = pipePropsSplitters(
-    inProps,
-    {
-      localVariant: variantProps,
-      localPadding: paddingProps,
-      localRounded: roundedProps,
-      localSize: sizeProps,
-      localContentSize: contentSizeProps,
-    },
-  );
+  const [
+    [localVariant, localPadding, localRounded, localSize, localContentSize, localDesignWrapperSpecific],
+    htmlProps,
+  ] = extractProps(inProps, designWrapperProps);
 
   const { padding, paddingVarName, parentPaddingVarName } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName } = useRounded(localRounded);
   const { sizeVarName, parentSizeVarName, size } = useSize(localSize);
   const { contentSize, contentSizeVarName, parentContentSizeVarName } = useContentSize(localContentSize);
 
-  const { color, className, style, ref, render, children, ...htmlProps } = props;
+  const { color, className, style, ref, render, children } = localDesignWrapperSpecific;
 
   const colorClass = color && dynamicColor[color];
 

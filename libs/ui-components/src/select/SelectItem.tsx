@@ -1,6 +1,6 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { pipePropsSplitters } from "@dldc/react-utils/props-splitters";
+import { createProps, extractProps, mergeProps, TPropsSplittersTypes } from "@dldc/react-utils/props-splitters";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
@@ -9,60 +9,63 @@ import clsx from "clsx";
 import { ReactElement } from "react";
 
 import { ComponentPropsBaseWith } from "../../../react-utils/src/types";
-import { actionContentProps, TActionContentProps, useActionContent } from "../action-content";
+import { actionContentProps, useActionContent } from "../action-content";
 import {
   contentSizeProps,
   DefaultContentSizeProvider,
   ParentContentSizeContextProvider,
-  TContentSizeProps,
   useContentSize,
 } from "../content-size";
-import {
-  DefaultPaddingProvider,
+import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
+import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
+import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
+
+export interface SelectItemSpecificProps {
+  disabled?: boolean;
+  color?: TPaletteColor;
+
+  render?: ReactElement;
+
+  // Data attributes
+  "data-hover"?: boolean;
+  "data-active-item"?: boolean;
+
+  children?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  ref?: React.Ref<HTMLDivElement>;
+}
+
+export const selectItemSpecificProps = createProps<SelectItemSpecificProps>({
+  disabled: null,
+  color: null,
+  render: null,
+  "data-hover": null,
+  "data-active-item": null,
+  children: null,
+  className: null,
+  style: null,
+  ref: null,
+});
+
+export const selectItemProps = mergeProps(
+  actionContentProps,
   paddingProps,
-  ParentPaddingContextProvider,
-  TPaddingProps,
-  usePadding,
-} from "../padding";
-import {
-  DefaultRoundedProvider,
-  ParentRoundedContextProvider,
   roundedProps,
-  TRoundedProps,
-  useRounded,
-} from "../rounded";
-import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, TSizeProps, useSize } from "../size";
+  sizeProps,
+  contentSizeProps,
+  selectItemSpecificProps,
+);
 
-export type SelectItemSpecificProps = TActionContentProps &
-  TPaddingProps &
-  TRoundedProps &
-  TSizeProps &
-  TContentSizeProps & {
-    disabled?: boolean;
-    color?: TPaletteColor;
-
-    render?: ReactElement;
-
-    // Data attributes
-    "data-hover"?: boolean;
-    "data-active-item"?: boolean;
-  };
-
-export type SelectItemProps = ComponentPropsBaseWith<"div", SelectItemSpecificProps>;
+export type SelectItemProps = ComponentPropsBaseWith<"div", TPropsSplittersTypes<typeof selectItemProps>>;
 
 export function SelectItem(inProps: SelectItemProps) {
-  const [{ localPadding, localRounded, localActionContent, localSize, localContentSize }, props] = pipePropsSplitters(
-    inProps,
-    {
-      localPadding: paddingProps,
-      localRounded: roundedProps,
-      localSize: sizeProps,
-      localActionContent: actionContentProps,
-      localContentSize: contentSizeProps,
-    },
-  );
+  const [
+    [localActionContent, localPadding, localRounded, localSize, localContentSize, localSelectItemSpecific],
+    htmlProps,
+  ] = extractProps(inProps, selectItemProps);
 
-  const { color, disabled = false, ref, render, children, className, ...htmlProps } = props;
+  const { color, disabled = false, ref, render, children, className } = localSelectItemSpecific;
 
   const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName, nextRoundedDefaultContext } = useRounded(localRounded);
