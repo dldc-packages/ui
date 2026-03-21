@@ -1,5 +1,16 @@
 # @dldc/ui-base
 
+## 1.2.0
+
+### Minor Changes
+
+- 99ae197: Force new version of all packages
+
+### Patch Changes
+
+- Updated dependencies [99ae197]
+  - @dldc/ui-components@1.3.0
+
 ## 1.1.0
 
 ### Minor Changes

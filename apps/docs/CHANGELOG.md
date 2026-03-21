@@ -1,5 +1,21 @@
 # @dldc/ui-docs
 
+## 1.3.0
+
+### Minor Changes
+
+- 99ae197: Force new version of all packages
+
+### Patch Changes
+
+- Updated dependencies [99ae197]
+  - @dldc/hooks@1.2.0
+  - @dldc/ui-ariakit@1.3.0
+  - @dldc/ui-components@1.3.0
+  - @dldc/ui-core@1.3.0
+  - @dldc/ui-patterns@1.3.0
+  - @dldc/ui-styles@1.3.0
+
 ## 1.2.0
 
 ### Minor Changes
