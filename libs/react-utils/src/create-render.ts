@@ -1,3 +1,4 @@
+import { isIterable } from "@dldc/utils/iterable";
 import {
   cloneElement,
   createElement,
@@ -8,7 +9,6 @@ import {
   ReactNode,
 } from "react";
 
-import { isIterable } from "@dldc/utils/iterable";
 import { mergeProps } from "./merge-props";
 
 /**
