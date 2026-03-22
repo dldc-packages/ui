@@ -14,9 +14,8 @@ export type {
 
 export type DialogProps = Merge<AKDialog.DialogProps, TypeOfPropsKeys<typeof CDialog.dialogProps>>;
 export function Dialog(inProps: DialogProps) {
-  const [props, akProps] = extractProps(inProps, CDialog.dialogProps);
-  const { children, render } = props;
-  return <CDialog.Dialog render={<AKDialog.Dialog {...akProps} render={render} />} {...props} />;
+  const [cProps, akProps] = extractProps(inProps, CDialog.dialogProps);
+  return <CDialog.Dialog {...cProps} render={<AKDialog.Dialog {...akProps} />} />;
 }
 Dialog.displayName = "Dialog";
 
@@ -24,7 +23,8 @@ export type DialogDismissProps = Merge<
   AKDialog.DialogDismissProps<"button">,
   TypeOfPropsKeys<typeof CButton.buttonProps>
 >;
-export function DialogDismiss({ render, ...props }: DialogDismissProps) {
-  return <CButton.Button render={<AKDialog.DialogDismiss render={render} />} {...props} />;
+export function DialogDismiss(inProps: DialogDismissProps) {
+  const [cProps, akProps] = extractProps(inProps, CButton.buttonProps);
+  return <CButton.Button {...cProps} render={<AKDialog.DialogDismiss {...akProps} />} />;
 }
 DialogDismiss.displayName = "DialogDismiss";

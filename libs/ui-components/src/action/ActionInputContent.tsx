@@ -8,7 +8,6 @@ export interface ActionInputContentSpecificProps {
   disabled?: boolean;
   onValueChange?: (value: string) => void;
   value?: string;
-  className?: string;
   onChange?: ComponentPropsBase<"input">["onChange"];
 }
 
@@ -17,7 +16,6 @@ const actionInputProps = mergePropsKeys(
     disabled: null,
     onValueChange: null,
     value: null,
-    className: null,
     onChange: null,
   }),
 );
@@ -25,8 +23,9 @@ const actionInputProps = mergePropsKeys(
 export type ActionInputContentProps = ComponentPropsBaseWith<"input", TypeOfPropsKeys<typeof actionInputProps>>;
 
 export function ActionInputContent(inProps: ActionInputContentProps) {
-  const [[localProps], htmlProps] = extractProps(inProps, actionInputProps.content);
-  const { className, onValueChange, onChange, disabled, value } = localProps;
+  const [[localProps], props] = extractProps(inProps, actionInputProps.content);
+  const { onValueChange, onChange, disabled, value } = localProps;
+  const { className, ...htmlProps } = props;
 
   const inputOnChange = useMemo(() => {
     if (!onValueChange && !onChange) {

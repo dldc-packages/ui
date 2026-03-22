@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ElementType } from "react";
+import { ComponentPropsWithRef, ElementType, ReactElement } from "react";
 import { Merge } from "type-fest";
 
 export type OmittedHTMLProps =
@@ -13,8 +13,11 @@ export type OmittedHTMLProps =
 
 /**
  * Omit common HTML attributes that are usually managed by design system props.
+ * Add render prop on all components as everything should be composable.
  */
-export type ComponentPropsBase<T extends ElementType> = Omit<ComponentPropsWithRef<T>, OmittedHTMLProps>;
+export type ComponentPropsBase<T extends ElementType> = Omit<ComponentPropsWithRef<T>, OmittedHTMLProps> & {
+  render?: ReactElement;
+};
 
 /**
  * Use `Merge` to combine HTML props with custom props, allowing custom props to override HTML props.

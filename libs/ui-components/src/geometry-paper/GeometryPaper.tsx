@@ -1,35 +1,21 @@
-import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { ReactElement } from "react";
 
-import { Geometry, geometryBaseProps } from "../geometry";
-import { Paper, paperBaseProps } from "../paper";
+import { Geometry, geometryProps } from "../geometry";
+import { Paper, paperProps } from "../paper";
 
-export interface GeometryPaperSpecificProps {
-  render?: ReactElement;
-  children?: React.ReactNode;
-}
-
-export const geometryPaperSpecificProps = createPropsKeys<GeometryPaperSpecificProps>({
-  render: null,
-  children: null,
-});
-
-export const geometryPaperBaseProps = mergePropsKeys(geometryBaseProps, paperBaseProps);
-
-export const geometryPaperProps = mergePropsKeys(geometryPaperBaseProps, geometryPaperSpecificProps);
+export const geometryPaperProps = mergePropsKeys(geometryProps, paperProps);
 
 export type GeometryPaperProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof geometryPaperProps>>;
 
 export function GeometryPaper(inProps: GeometryPaperProps) {
-  const [props, htmlProps] = extractProps(inProps, geometryPaperProps);
-  const { background, children, ...rest } = props;
+  const [[localGeometry, localPaper], props] = extractProps(inProps, geometryPaperProps.content);
+  const { background, children, ...htmlProps } = props;
 
   return (
-    <Paper background={background} render={<Geometry {...htmlProps} {...rest} />}>
+    <Paper {...localPaper} render={<Geometry {...localGeometry} {...htmlProps} />}>
       {children}
     </Paper>
   );
 }
-
 GeometryPaper.displayName = "GeometryPaper";

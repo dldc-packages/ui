@@ -8,7 +8,6 @@ import { Children, cloneElement, Fragment } from "react";
 import { contentSizeProps } from "../content-size";
 import { DesignWrapper } from "../design-wrapper";
 import { paddingProps } from "../padding";
-import { htmlBaseProps } from "../props";
 import { roundedProps } from "../rounded";
 import { sizeProps } from "../size";
 import { useVariant, variantProps } from "../variant";
@@ -30,7 +29,6 @@ export const actionGroupSpecificProps = createPropsKeys<ActionGroupSpecificProps
 });
 
 export const actionGroupProps = mergePropsKeys(
-  htmlBaseProps,
   actionGroupSpecificProps,
   variantProps,
   sizeProps,
@@ -42,22 +40,12 @@ export const actionGroupProps = mergePropsKeys(
 export type ActionGroupProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionGroupProps>>;
 
 export function ActionGroup(inProps: ActionGroupProps) {
-  const [
-    [
-      localHtmlBaseProps,
-      localActionGroupSpecific,
-      localVariant,
-      localSize,
-      localContentSize,
-      localPadding,
-      localRounded,
-    ],
-    wrapperProps,
-  ] = extractProps(inProps, actionGroupProps.content);
+  const [[localActionGroupSpecific, localVariant, localSize, localContentSize, localPadding, localRounded], props] =
+    extractProps(inProps, actionGroupProps.content);
 
   const { variant } = useVariant(localVariant, "surface");
 
-  const { children, className, style } = localHtmlBaseProps;
+  const { children, className, style, render, ...wrapperProps } = props;
   const {
     color,
     direction = "horizontal",
@@ -123,5 +111,4 @@ export function ActionGroup(inProps: ActionGroupProps) {
     </DesignWrapper>
   );
 }
-
 ActionGroup.displayName = "ActionGroup";

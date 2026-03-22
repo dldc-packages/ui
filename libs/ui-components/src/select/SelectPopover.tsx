@@ -1,34 +1,20 @@
-import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { selectPopoverStyles } from "@dldc/ui-styles/select";
 import { clsx } from "clsx";
-import { CSSProperties, ReactElement, ReactNode } from "react";
 
-import { GeometryPaper, geometryPaperBaseProps } from "../geometry-paper";
+import { GeometryPaper, geometryPaperProps } from "../geometry-paper";
 import { DefaultHoverVariantProvider, DefaultVariantProvider } from "../variant";
 
-export interface SelectPopoverSpecificProps {
-  render?: ReactElement;
-  className?: string;
-  style?: CSSProperties;
-  children?: ReactNode;
-}
-
-export const selectPopoverSpecificProps = createPropsKeys<SelectPopoverSpecificProps>({
-  render: null,
-  className: null,
-  style: null,
-  children: null,
-});
-
-export const selectPopoverProps = mergePropsKeys(selectPopoverSpecificProps, geometryPaperBaseProps);
+export const selectPopoverProps = mergePropsKeys(geometryPaperProps);
 
 export type SelectPopoverProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof selectPopoverProps>>;
 
 export function SelectPopover(inProps: SelectPopoverProps) {
-  const [props, htmlProps] = extractProps(inProps, selectPopoverProps);
+  const [[localGeometryPaper], props] = extractProps(inProps, selectPopoverProps.content);
 
-  const { className, style, children, background, padding = 1, ...geometryPaperProps } = props;
+  const { background, padding = 1, ...geometryPaperProps } = localGeometryPaper;
+  const { className, style, children, render, ...htmlProps } = props;
 
   const [popoverClass, popoverStyles] = selectPopoverStyles();
 
@@ -40,6 +26,7 @@ export function SelectPopover(inProps: SelectPopoverProps) {
       padding={padding}
       {...geometryPaperProps}
       {...htmlProps}
+      render={render}
     >
       <DefaultVariantProvider value="ghost">
         <DefaultHoverVariantProvider value="subtle">{children}</DefaultHoverVariantProvider>

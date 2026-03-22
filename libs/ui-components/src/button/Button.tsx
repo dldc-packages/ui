@@ -2,7 +2,6 @@ import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { CSSProperties, ReactElement, ReactNode, Ref } from "react";
 
 import { Action } from "../action";
 import { actionContentProps } from "../action-content";
@@ -21,13 +20,6 @@ export interface ButtonSpecificProps {
   // Data attributes
   "data-hover"?: boolean;
   "data-focus-visible"?: boolean;
-
-  children?: ReactNode;
-  style?: CSSProperties;
-  className?: string;
-
-  ref?: Ref<HTMLButtonElement>;
-  render?: ReactElement;
 }
 
 export const buttonSpecificProps = createPropsKeys<ButtonSpecificProps>({
@@ -36,11 +28,6 @@ export const buttonSpecificProps = createPropsKeys<ButtonSpecificProps>({
   color: null,
   disabled: null,
   type: null,
-  children: null,
-  style: null,
-  className: null,
-  ref: null,
-  render: null,
 });
 
 export const buttonProps = mergePropsKeys(
@@ -56,9 +43,10 @@ export const buttonProps = mergePropsKeys(
 export type ButtonProps = ComponentPropsBaseWith<"button", TypeOfPropsKeys<typeof buttonProps>>;
 
 export function Button(inProps: ButtonProps) {
-  const [props, htmlProps] = extractProps(inProps, buttonProps);
+  const [localButton, props] = extractProps(inProps, buttonProps);
 
-  const { type = "button", disabled = false, render, ref, ...actionProps } = props;
+  const { type = "button", disabled = false, ...actionProps } = localButton;
+  const { className, style, children, render, ref, ...htmlProps } = props;
 
   return (
     <Action

@@ -3,7 +3,7 @@ import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { labelStyles } from "@dldc/ui-styles/label";
 import clsx from "clsx";
 
-export type LabelSpecificProps = { disabled?: boolean; render?: React.ReactElement };
+export type LabelSpecificProps = { disabled?: boolean };
 
 export type LabelProps = ComponentPropsBaseWith<"label", LabelSpecificProps>;
 

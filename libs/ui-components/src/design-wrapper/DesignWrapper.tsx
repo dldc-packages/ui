@@ -5,7 +5,6 @@ import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
 import { actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { contentSizeLineHeightClass } from "@dldc/ui-styles/content-size";
 import { clsx } from "clsx";
-import { CSSProperties, ReactElement, Ref } from "react";
 
 import { contentSizeProps, useContentSize } from "../content-size";
 import { DefaultDesignProvider } from "../default-design-provider";
@@ -16,20 +15,10 @@ import { variantProps } from "../variant";
 
 export interface DesignWrapperSpecificProps {
   color?: TPaletteColor;
-  render?: ReactElement;
-  className?: string;
-  style?: CSSProperties;
-  ref?: Ref<HTMLDivElement>;
-  children?: React.ReactNode;
 }
 
 export const designWrapperSpecificProps = createPropsKeys<DesignWrapperSpecificProps>({
   color: null,
-  render: null,
-  className: null,
-  style: null,
-  ref: null,
-  children: null,
 });
 
 export const designWrapperProps = mergePropsKeys(
@@ -50,17 +39,16 @@ export type DesignWrapperProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<t
  * @returns
  */
 export function DesignWrapper(inProps: DesignWrapperProps) {
-  const [
-    [localVariant, localPadding, localRounded, localSize, localContentSize, localDesignWrapperSpecific],
-    htmlProps,
-  ] = extractProps(inProps, designWrapperProps.content);
+  const [[localVariant, localPadding, localRounded, localSize, localContentSize, localDesignWrapperSpecific], props] =
+    extractProps(inProps, designWrapperProps.content);
+
+  const { render, className, style, children, ref, ...htmlProps } = props;
+  const { color } = localDesignWrapperSpecific;
 
   const { padding, paddingVarName, parentPaddingVarName } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName } = useRounded(localRounded);
   const { sizeVarName, parentSizeVarName, size } = useSize(localSize);
   const { contentSize, contentSizeVarName, parentContentSizeVarName } = useContentSize(localContentSize);
-
-  const { color, className, style, ref, render, children } = localDesignWrapperSpecific;
 
   const colorClass = color && dynamicColor[color];
 

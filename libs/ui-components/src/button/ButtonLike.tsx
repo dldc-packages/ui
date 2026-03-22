@@ -1,28 +1,36 @@
+import { createPropsKeys, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { ReactElement } from "react";
 
 import { Action } from "../action";
-import { TActionContentProps } from "../action-content";
-import { TContentSizeProps } from "../content-size";
-import { TPaddingProps } from "../padding";
-import { TRoundedProps } from "../rounded";
-import { TSizeProps } from "../size";
-import { TVariantProps } from "../variant";
+import { actionContentProps } from "../action-content";
+import { contentSizeProps } from "../content-size";
+import { paddingProps } from "../padding";
+import { roundedProps } from "../rounded";
+import { sizeProps } from "../size";
+import { variantProps } from "../variant";
 
-export type ButtonLikeSpecificProps = TActionContentProps &
-  TPaddingProps &
-  TRoundedProps &
-  TSizeProps &
-  TContentSizeProps &
-  TVariantProps & {
-    disabled?: boolean;
-    color?: TPaletteColor;
+export interface ButtonLikeSpecificProps {
+  disabled?: boolean;
+  color?: TPaletteColor;
+}
 
-    render?: ReactElement;
-  };
+export const buttonLikeSpecificProps = createPropsKeys<ButtonLikeSpecificProps>({
+  color: null,
+  disabled: null,
+});
 
-export type ButtonLikeProps = ComponentPropsBaseWith<"div", ButtonLikeSpecificProps>;
+export const buttonLikeProps = mergePropsKeys(
+  buttonLikeSpecificProps,
+  actionContentProps,
+  contentSizeProps,
+  paddingProps,
+  roundedProps,
+  sizeProps,
+  variantProps,
+);
+
+export type ButtonLikeProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof buttonLikeProps>>;
 
 export function ButtonLike(inProps: ButtonLikeProps) {
   return <Action {...inProps} />;

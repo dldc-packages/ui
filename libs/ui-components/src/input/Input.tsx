@@ -2,7 +2,7 @@ import { useMergeRefs } from "@dldc/hooks/use-merge-refs";
 import { createRender } from "@dldc/react-utils/create-render";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { ReactElement, useCallback, useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import { Action, ActionInputContent } from "../action";
 import { TActionContentProps } from "../action-content";
@@ -32,8 +32,6 @@ export type InputSpecificProps = TActionContentProps &
     type?: string;
     readOnly?: boolean;
     required?: boolean;
-
-    render?: ReactElement;
 
     // Data attributes
     "data-hover"?: boolean;

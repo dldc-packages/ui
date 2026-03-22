@@ -1,11 +1,10 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
 import clsx from "clsx";
-import { CSSProperties, ReactElement, ReactNode } from "react";
 
 import { actionContentProps, useActionContent } from "../action-content/index";
 import {
@@ -18,27 +17,7 @@ import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, use
 import { ParentRoundedContextProvider, useRounded } from "../rounded";
 import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
 
-export interface ActionNestedContentSpecificProps {
-  render?: ReactElement;
-  className?: string;
-  style?: CSSProperties;
-  children?: ReactNode;
-}
-
-export const actionNestedContentSpecificProps = createPropsKeys<ActionNestedContentSpecificProps>({
-  render: null,
-  className: null,
-  style: null,
-  children: null,
-});
-
-export const actionNestedContentProps = mergePropsKeys(
-  actionNestedContentSpecificProps,
-  actionContentProps,
-  paddingProps,
-  sizeProps,
-  contentSizeProps,
-);
+export const actionNestedContentProps = mergePropsKeys(actionContentProps, paddingProps, sizeProps, contentSizeProps);
 
 export type ActionNestedContentProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionNestedContentProps>>;
 
@@ -46,10 +25,12 @@ export type ActionNestedContentProps = ComponentPropsBaseWith<"div", TypeOfProps
  * This component lets you nest Action content
  */
 export function ActionNestedContent(inProps: ActionNestedContentProps) {
-  const [[localActionNestedContentSpecific, localActionContent, localPadding, localSize, localContentSize], htmlProps] =
-    extractProps(inProps, actionNestedContentProps.content);
+  const [[localActionContent, localPadding, localSize, localContentSize], props] = extractProps(
+    inProps,
+    actionNestedContentProps.content,
+  );
 
-  const { children, style, className, render } = localActionNestedContentSpecific;
+  const { children, style, className, render, ...htmlProps } = props;
 
   const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName } = useRounded({});

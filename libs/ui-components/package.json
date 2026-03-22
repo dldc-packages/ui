@@ -24,7 +24,6 @@
     "./loading-icon": "./dist/loading-icon/index.js",
     "./padding": "./dist/padding/index.js",
     "./paper": "./dist/paper/index.js",
-    "./props": "./dist/props/index.js",
     "./prose": "./dist/prose/index.js",
     "./rounded": "./dist/rounded/index.js",
     "./scrollbars": "./dist/scrollbars/index.js",

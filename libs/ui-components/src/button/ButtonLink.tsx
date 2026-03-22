@@ -1,40 +1,52 @@
 import { createRender } from "@dldc/react-utils/create-render";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { ReactElement } from "react";
 
 import { Action } from "../action";
-import { TActionContentProps } from "../action-content";
-import { TContentSizeProps } from "../content-size";
-import { TPaddingProps } from "../padding";
-import { TRoundedProps } from "../rounded";
-import { TSizeProps } from "../size";
-import { TVariantProps } from "../variant";
+import { actionContentProps } from "../action-content";
+import { contentSizeProps } from "../content-size";
+import { paddingProps } from "../padding";
+import { roundedProps } from "../rounded";
+import { sizeProps } from "../size";
+import { variantProps } from "../variant";
 
-export type ButtonLinkProps = ComponentPropsBaseWith<
-  "a",
-  TActionContentProps &
-    TPaddingProps &
-    TRoundedProps &
-    TSizeProps &
-    TContentSizeProps &
-    TVariantProps & {
-      disabled?: boolean;
+export interface ButtonLinkSpecificProps {
+  disabled?: boolean;
 
-      color?: TPaletteColor;
+  color?: TPaletteColor;
 
-      render?: ReactElement;
+  // Data attributes
+  "data-hover"?: boolean;
+  "data-focus-visible"?: boolean;
+}
 
-      // Data attributes
-      "data-hover"?: boolean;
-      "data-focus-visible"?: boolean;
-    }
->;
+export const buttonLinkSpecificProps = createPropsKeys<ButtonLinkSpecificProps>({
+  "data-focus-visible": null,
+  "data-hover": null,
+  color: null,
+  disabled: null,
+});
+
+export const buttonLinkProps = mergePropsKeys(
+  buttonLinkSpecificProps,
+  actionContentProps,
+  contentSizeProps,
+  paddingProps,
+  roundedProps,
+  sizeProps,
+  variantProps,
+);
+
+export type ButtonLinkProps = ComponentPropsBaseWith<"a", TypeOfPropsKeys<typeof buttonLinkProps>>;
 
 export function ButtonLink(inProps: ButtonLinkProps) {
-  const { href, render, ...actionProps } = inProps;
+  const [localButton, props] = extractProps(inProps, buttonLinkProps);
 
-  return <Action {...(actionProps as any)} interactive render={createRender("a", render, { href })} />;
+  const { disabled = false, ...actionProps } = localButton;
+  const { className, style, children, render, ref, ...htmlProps } = props;
+
+  return <Action {...actionProps} disabled={disabled} interactive render={createRender("a", render, htmlProps)} />;
 }
 
 ButtonLink.displayName = "ButtonLink";

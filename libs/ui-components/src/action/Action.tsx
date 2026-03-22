@@ -7,7 +7,6 @@ import { TDesignVariant } from "@dldc/ui-core/variants";
 import { actionDesignClass, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
 import clsx from "clsx";
-import { Ref } from "react";
 
 import { actionContentProps, useActionContent } from "../action-content/index";
 import {
@@ -17,7 +16,6 @@ import {
   useContentSize,
 } from "../content-size";
 import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
-import { htmlBaseProps, renderProps } from "../props";
 import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
 import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
 import { DefaultHoverVariantProvider, DefaultVariantProvider, useVariant, variantProps } from "../variant";
@@ -43,7 +41,6 @@ export interface ActionSpecificProps {
   // Data attributes
   "data-hover"?: boolean;
   "data-focus-visible"?: boolean;
-  ref?: Ref<HTMLDivElement>;
 }
 
 export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
@@ -55,12 +52,9 @@ export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
   highlighted: null,
   interactive: null,
   disabled: null,
-  ref: null,
 });
 
 export const actionProps = mergePropsKeys(
-  htmlBaseProps,
-  renderProps,
   actionSpecificProps,
   variantProps,
   paddingProps,
@@ -74,32 +68,18 @@ export type ActionProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof a
 
 export function Action(inProps: ActionProps) {
   const [
-    [
-      localHtmlBaseProps,
-      localRender,
-      localAction,
-      localVariant,
-      localPadding,
-      localRounded,
-      localSize,
-      localActionContent,
-      localContentSize,
-    ],
-    htmlProps,
+    [localAction, localVariant, localPadding, localRounded, localSize, localActionContent, localContentSize],
+    props,
   ] = extractProps(inProps, actionProps.content);
 
-  const { className, style, children } = localHtmlBaseProps;
-  const { render } = localRender;
+  const { className, style, children, render, ref, ...htmlProps } = props;
   const {
     color,
     highlightColor = "red",
     highlighted = false,
-
     baseVariant = "surface",
     interactive = false,
-
     disabled = false,
-    ref,
   } = localAction;
 
   const isDisabledAndInteractive = disabled && interactive;

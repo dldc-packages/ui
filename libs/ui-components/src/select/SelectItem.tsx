@@ -7,7 +7,6 @@ import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-st
 import { actionContentClass } from "@dldc/ui-styles/action-content";
 import { selectItemStyles } from "@dldc/ui-styles/select";
 import clsx from "clsx";
-import { ReactElement } from "react";
 
 import { actionContentProps, useActionContent } from "../action-content";
 import {
@@ -24,28 +23,16 @@ export interface SelectItemSpecificProps {
   disabled?: boolean;
   color?: TPaletteColor;
 
-  render?: ReactElement;
-
   // Data attributes
   "data-hover"?: boolean;
   "data-active-item"?: boolean;
-
-  children?: React.ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
-  ref?: React.Ref<HTMLDivElement>;
 }
 
 export const selectItemSpecificProps = createPropsKeys<SelectItemSpecificProps>({
   disabled: null,
   color: null,
-  render: null,
   "data-hover": null,
   "data-active-item": null,
-  children: null,
-  className: null,
-  style: null,
-  ref: null,
 });
 
 export const selectItemProps = mergePropsKeys(
@@ -62,10 +49,11 @@ export type SelectItemProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<type
 export function SelectItem(inProps: SelectItemProps) {
   const [
     [localActionContent, localPadding, localRounded, localSize, localContentSize, localSelectItemSpecific],
-    htmlProps,
+    props,
   ] = extractProps(inProps, selectItemProps.content);
 
-  const { color, disabled = false, ref, render, children, className } = localSelectItemSpecific;
+  const { color, disabled = false } = localSelectItemSpecific;
+  const { style, ref, render, children, className, ...htmlProps } = props;
 
   const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName, nextRoundedDefaultContext } = useRounded(localRounded);
@@ -103,7 +91,7 @@ export function SelectItem(inProps: SelectItemProps) {
   return createRender("div", render, {
     ref,
     className: clsx(contentClass, actionLayoutStylesClasses, selectItemClassName, className),
-    style: { ...layoutInline, ...selectItemInline },
+    style: { ...layoutInline, ...selectItemInline, ...style },
     "data-disabled": disabled ? "" : undefined,
     "data-color": color,
     ...htmlProps,

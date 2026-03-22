@@ -4,7 +4,6 @@ import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { paddingInlineStyles } from "@dldc/ui-styles/padding";
 import { roundedBorderRadiusClass, roundedInlineStyles } from "@dldc/ui-styles/rounded";
 import clsx from "clsx";
-import { CSSProperties, ReactElement, ReactNode } from "react";
 
 import { DefaultPaddingProvider, ParentPaddingContextProvider } from "../padding";
 import { paddingProps } from "../padding/paddingProps";
@@ -19,33 +18,14 @@ export const geometryProviderProps = createPropsKeys<GeometryProviderProps>({
   skipProviders: null,
 });
 
-export interface GeometrySpecificProps {
-  render?: ReactElement;
-  className?: string;
-  style?: CSSProperties;
-  children?: ReactNode;
-}
-
-export const geometrySpecificProps = createPropsKeys<GeometrySpecificProps>({
-  render: null,
-  className: null,
-  style: null,
-  children: null,
-});
-
-export const geometryBaseProps = mergePropsKeys(paddingProps, roundedProps, geometryProviderProps);
-
-export const geometryProps = mergePropsKeys(...geometryBaseProps.content, geometrySpecificProps);
+export const geometryProps = mergePropsKeys(paddingProps, roundedProps, geometryProviderProps);
 
 export type GeometryProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof geometryProps>>;
 
 export function Geometry(inProps: GeometryProps) {
-  const [[localPadding, localRounded, localGeometryProvider, localGeometrySpecific], divProps] = extractProps(
-    inProps,
-    geometryProps.content,
-  );
+  const [[localPadding, localRounded, localGeometryProvider], props] = extractProps(inProps, geometryProps.content);
 
-  const { className, style, children, render } = localGeometrySpecific;
+  const { className, style, children, render, ...htmlProps } = props;
   const { skipProviders = false } = localGeometryProvider;
 
   const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
@@ -70,7 +50,7 @@ export function Geometry(inProps: GeometryProps) {
   });
 
   const content = createRender("div", render, {
-    ...divProps,
+    ...htmlProps,
     className: clsx(roundedBorderRadiusClass, className),
     style: { ...roundedInline, ...paddingInline, ...style },
     children,

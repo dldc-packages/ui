@@ -3,7 +3,6 @@ import { extractProps, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ActionContentFragment } from "@dldc/ui-components/action-content";
 import * as CSelect from "@dldc/ui-components/select";
 import { ChevronDownIcon } from "lucide-react";
-import { ReactElement } from "react";
 import { Merge } from "type-fest";
 
 export {
@@ -45,27 +44,25 @@ SelectLabel.displayName = "SelectLabel";
 
 export type SelectProps = Merge<AKSelect.SelectProps, TypeOfPropsKeys<typeof CSelect.selectProps>>;
 export function Select(inProps: SelectProps) {
-  const [props, akProps] = extractProps(inProps, CSelect.selectProps);
-  const { children, render } = props;
+  const [cProps, akProps] = extractProps(inProps, CSelect.selectProps);
+  const { children, ...restAkProps } = akProps;
   const defaultChildren = (
     <ActionContentFragment endIcon={<SelectArrow />}>
       <AKSelect.SelectValue />
     </ActionContentFragment>
   );
   return (
-    <CSelect.Select render={<AKSelect.Select {...akProps} render={render} />} {...props}>
+    <CSelect.Select render={<AKSelect.Select {...restAkProps} />} {...cProps}>
       {children ?? defaultChildren}
     </CSelect.Select>
   );
 }
 Select.displayName = "Select";
 
-export type SelectPopoverProps = Merge<
-  AKSelect.SelectPopoverProps,
-  CSelect.SelectPopoverSpecificProps & { render?: ReactElement }
->;
-export function SelectPopover({ render, ...props }: SelectPopoverProps) {
-  return <CSelect.SelectPopover render={<AKSelect.SelectPopover render={render} />} {...props} />;
+export type SelectPopoverProps = Merge<AKSelect.SelectPopoverProps, TypeOfPropsKeys<typeof CSelect.selectPopoverProps>>;
+export function SelectPopover(inProps: SelectPopoverProps) {
+  const [cProps, akProps] = extractProps(inProps, CSelect.selectPopoverProps);
+  return <CSelect.SelectPopover render={<AKSelect.SelectPopover {...akProps} />} {...cProps} />;
 }
 SelectPopover.displayName = "SelectPopover";
 
