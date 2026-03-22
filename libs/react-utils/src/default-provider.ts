@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useMemo } from "react";
+import { createContext, createElement, PropsWithChildren, useContext, useMemo } from "react";
 
 export interface TDefaultProviderItem<T> {
   value: T;
@@ -36,7 +36,7 @@ export function createDefaultProvider<T>(name: string): TCreateDefaultProviderRe
       }
       return [{ value, repeat }];
     }, [contextValue, value, repeat]);
-    return <DefaultContext value={normalizedValue}>{children}</DefaultContext>;
+    return createElement(DefaultContext.Provider, { value: normalizedValue }, children);
   }
   DefaultProvider.displayName = `${name}DefaultProvider`;
 

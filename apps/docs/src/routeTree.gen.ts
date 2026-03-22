@@ -15,6 +15,7 @@ import { Route as R02AriakitSelectRouteImport } from './routes/02-ariakit/select
 import { Route as R02AriakitCheckboxRouteImport } from './routes/02-ariakit/checkbox'
 import { Route as R02AriakitButtonRouteImport } from './routes/02-ariakit/button'
 import { Route as R02Ariakit00IntroRouteImport } from './routes/02-ariakit/00-intro'
+import { Route as R01Components10DialogRouteImport } from './routes/01-components/10-dialog'
 import { Route as R01Components09LoadingBlockRouteImport } from './routes/01-components/09-loading-block'
 import { Route as R01Components08ProseRouteImport } from './routes/01-components/08-prose'
 import { Route as R01Components07LoadingIconRouteImport } from './routes/01-components/07-loading-icon'
@@ -54,6 +55,11 @@ const R02AriakitButtonRoute = R02AriakitButtonRouteImport.update({
 const R02Ariakit00IntroRoute = R02Ariakit00IntroRouteImport.update({
   id: '/02-ariakit/00-intro',
   path: '/02-ariakit/00-intro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01Components10DialogRoute = R01Components10DialogRouteImport.update({
+  id: '/01-components/10-dialog',
+  path: '/01-components/10-dialog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R01Components09LoadingBlockRoute =
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/01-components/07-loading-icon': typeof R01Components07LoadingIconRoute
   '/01-components/08-prose': typeof R01Components08ProseRoute
   '/01-components/09-loading-block': typeof R01Components09LoadingBlockRoute
+  '/01-components/10-dialog': typeof R01Components10DialogRoute
   '/02-ariakit/00-intro': typeof R02Ariakit00IntroRoute
   '/02-ariakit/button': typeof R02AriakitButtonRoute
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
@@ -143,6 +150,7 @@ export interface FileRoutesByTo {
   '/01-components/07-loading-icon': typeof R01Components07LoadingIconRoute
   '/01-components/08-prose': typeof R01Components08ProseRoute
   '/01-components/09-loading-block': typeof R01Components09LoadingBlockRoute
+  '/01-components/10-dialog': typeof R01Components10DialogRoute
   '/02-ariakit/00-intro': typeof R02Ariakit00IntroRoute
   '/02-ariakit/button': typeof R02AriakitButtonRoute
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/01-components/07-loading-icon': typeof R01Components07LoadingIconRoute
   '/01-components/08-prose': typeof R01Components08ProseRoute
   '/01-components/09-loading-block': typeof R01Components09LoadingBlockRoute
+  '/01-components/10-dialog': typeof R01Components10DialogRoute
   '/02-ariakit/00-intro': typeof R02Ariakit00IntroRoute
   '/02-ariakit/button': typeof R02AriakitButtonRoute
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
@@ -182,6 +191,7 @@ export interface FileRouteTypes {
     | '/01-components/07-loading-icon'
     | '/01-components/08-prose'
     | '/01-components/09-loading-block'
+    | '/01-components/10-dialog'
     | '/02-ariakit/00-intro'
     | '/02-ariakit/button'
     | '/02-ariakit/checkbox'
@@ -200,6 +210,7 @@ export interface FileRouteTypes {
     | '/01-components/07-loading-icon'
     | '/01-components/08-prose'
     | '/01-components/09-loading-block'
+    | '/01-components/10-dialog'
     | '/02-ariakit/00-intro'
     | '/02-ariakit/button'
     | '/02-ariakit/checkbox'
@@ -218,6 +229,7 @@ export interface FileRouteTypes {
     | '/01-components/07-loading-icon'
     | '/01-components/08-prose'
     | '/01-components/09-loading-block'
+    | '/01-components/10-dialog'
     | '/02-ariakit/00-intro'
     | '/02-ariakit/button'
     | '/02-ariakit/checkbox'
@@ -237,6 +249,7 @@ export interface RootRouteChildren {
   R01Components07LoadingIconRoute: typeof R01Components07LoadingIconRoute
   R01Components08ProseRoute: typeof R01Components08ProseRoute
   R01Components09LoadingBlockRoute: typeof R01Components09LoadingBlockRoute
+  R01Components10DialogRoute: typeof R01Components10DialogRoute
   R02Ariakit00IntroRoute: typeof R02Ariakit00IntroRoute
   R02AriakitButtonRoute: typeof R02AriakitButtonRoute
   R02AriakitCheckboxRoute: typeof R02AriakitCheckboxRoute
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/02-ariakit/00-intro'
       fullPath: '/02-ariakit/00-intro'
       preLoaderRoute: typeof R02Ariakit00IntroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/10-dialog': {
+      id: '/01-components/10-dialog'
+      path: '/01-components/10-dialog'
+      fullPath: '/01-components/10-dialog'
+      preLoaderRoute: typeof R01Components10DialogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/01-components/09-loading-block': {
@@ -373,6 +393,7 @@ const rootRouteChildren: RootRouteChildren = {
   R01Components07LoadingIconRoute: R01Components07LoadingIconRoute,
   R01Components08ProseRoute: R01Components08ProseRoute,
   R01Components09LoadingBlockRoute: R01Components09LoadingBlockRoute,
+  R01Components10DialogRoute: R01Components10DialogRoute,
   R02Ariakit00IntroRoute: R02Ariakit00IntroRoute,
   R02AriakitButtonRoute: R02AriakitButtonRoute,
   R02AriakitCheckboxRoute: R02AriakitCheckboxRoute,

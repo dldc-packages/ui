@@ -6,7 +6,7 @@ import { withLayer } from "../utils/layer";
 
 export const paperBaseClass = style(
   withLayer({
-    overflow: "hidden",
+    // overflow: "hidden",
     borderWidth: sizeToRemString("0__x"),
     borderColor: opacity(colorsVars.white, 10),
   }),

@@ -16,7 +16,7 @@
     "./backdrop": "./dist/backdrop/index.js",
     "./checkbox": "./dist/checkbox/index.js",
     "./content-size": "./dist/content-size/index.js",
-    "./dialog-container": "./dist/dialog-container/index.js",
+    "./dialog": "./dist/dialog/index.js",
     "./ellipsis": "./dist/ellipsis/index.js",
     "./icon": "./dist/icon/index.js",
     "./label": "./dist/label/index.js",

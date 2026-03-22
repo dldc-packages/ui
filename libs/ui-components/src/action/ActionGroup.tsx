@@ -3,11 +3,12 @@ import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { actionGroupSeparatorStyles, actionGroupStylesClass } from "@dldc/ui-styles/action-group";
 import clsx from "clsx";
-import { Children, cloneElement, CSSProperties, Fragment, ReactNode } from "react";
+import { Children, cloneElement, Fragment } from "react";
 
 import { contentSizeProps } from "../content-size";
 import { DesignWrapper } from "../design-wrapper";
 import { paddingProps } from "../padding";
+import { htmlBaseProps } from "../props";
 import { roundedProps } from "../rounded";
 import { sizeProps } from "../size";
 import { useVariant, variantProps } from "../variant";
@@ -18,9 +19,6 @@ export interface ActionGroupSpecificProps {
   direction?: "horizontal" | "vertical";
   roundedEnds?: "start" | "end" | "both" | "none";
   innerDividers?: "none" | "partial" | "full";
-  className?: string;
-  style?: CSSProperties;
-  children?: ReactNode;
 }
 
 export const actionGroupSpecificProps = createPropsKeys<ActionGroupSpecificProps>({
@@ -29,12 +27,10 @@ export const actionGroupSpecificProps = createPropsKeys<ActionGroupSpecificProps
   direction: null,
   roundedEnds: null,
   innerDividers: null,
-  className: null,
-  style: null,
-  children: null,
 });
 
 export const actionGroupProps = mergePropsKeys(
+  htmlBaseProps,
   actionGroupSpecificProps,
   variantProps,
   sizeProps,
@@ -47,20 +43,26 @@ export type ActionGroupProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typ
 
 export function ActionGroup(inProps: ActionGroupProps) {
   const [
-    [localActionGroupSpecific, localVariant, localSize, localContentSize, localPadding, localRounded],
+    [
+      localHtmlBaseProps,
+      localActionGroupSpecific,
+      localVariant,
+      localSize,
+      localContentSize,
+      localPadding,
+      localRounded,
+    ],
     wrapperProps,
   ] = extractProps(inProps, actionGroupProps.content);
 
   const { variant } = useVariant(localVariant, "surface");
 
+  const { children, className, style } = localHtmlBaseProps;
   const {
     color,
     direction = "horizontal",
     innerDividers = "full",
     roundedEnds = "both",
-    className,
-    children,
-    style,
     // TODO: handle disabled
     // disabled,
   } = localActionGroupSpecific;

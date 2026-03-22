@@ -4,12 +4,12 @@ import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import estreePlugin from "prettier/plugins/estree";
 import tsPlugin from "prettier/plugins/typescript";
 import { format } from "prettier/standalone";
-import { cloneElement, useEffect, useState } from "react";
+import { cloneElement, useEffect, useState, type ReactNode } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import {
+  codeToHast,
   type BundledLanguage,
   type BundledTheme,
-  codeToHast,
   type LanguageRegistration,
   type SpecialLanguage,
   type StringLiteralUnion,
@@ -27,7 +27,7 @@ interface CodeHighlightProps {
 }
 
 export function CodeHighlight({ language, theme, children }: CodeHighlightProps) {
-  const [highlightedCode, setHighlightedCode] = useState<React.ReactNode | null>(null);
+  const [highlightedCode, setHighlightedCode] = useState<ReactNode | null>(null);
 
   useEffect(() => {
     if (!language) return;

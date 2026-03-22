@@ -5,7 +5,7 @@
 
 import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
 import { Scrollbars } from "@dldc/ui-components/scrollbars";
-import { useCallback, useState } from "react";
+import { useCallback, useState, type ReactNode } from "react";
 import { Fragment } from "react/jsx-runtime";
 
 export interface HeighligedCellParams<TRow, TColumn> {
@@ -19,7 +19,7 @@ export interface HeighligedCellParams<TRow, TColumn> {
 export interface HighlightedGridProps<TRow, TColumn> {
   rowsDims?: TRow[];
   columnsDims?: TColumn[];
-  renderCell: (params: HeighligedCellParams<TRow, TColumn>) => React.ReactNode;
+  renderCell: (params: HeighligedCellParams<TRow, TColumn>) => ReactNode;
   onHighlightedCell?: (params: HeighligedCellParams<TRow, TColumn>) => void;
   className?: string;
 }

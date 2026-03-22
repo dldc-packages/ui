@@ -1,11 +1,12 @@
 import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
+import type { ReactNode } from "react";
 
 import { Menu } from "./Menu";
 
 const MENU_VISIBLE = true;
 
 interface RootLayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function RootLayout({ children }: RootLayoutProps) {

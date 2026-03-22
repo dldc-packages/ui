@@ -7,7 +7,7 @@ import { TDesignVariant } from "@dldc/ui-core/variants";
 import { actionDesignClass, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { actionContentClass } from "@dldc/ui-styles/action-content";
 import clsx from "clsx";
-import { CSSProperties, ReactElement, ReactNode, Ref } from "react";
+import { Ref } from "react";
 
 import { actionContentProps, useActionContent } from "../action-content/index";
 import {
@@ -17,6 +17,7 @@ import {
   useContentSize,
 } from "../content-size";
 import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
+import { htmlBaseProps, renderProps } from "../props";
 import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
 import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
 import { DefaultHoverVariantProvider, DefaultVariantProvider, useVariant, variantProps } from "../variant";
@@ -42,12 +43,7 @@ export interface ActionSpecificProps {
   // Data attributes
   "data-hover"?: boolean;
   "data-focus-visible"?: boolean;
-  children?: ReactNode;
-  style?: CSSProperties;
-  className?: string;
   ref?: Ref<HTMLDivElement>;
-
-  render?: ReactElement;
 }
 
 export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
@@ -59,14 +55,12 @@ export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
   highlighted: null,
   interactive: null,
   disabled: null,
-  children: null,
-  className: null,
-  style: null,
   ref: null,
-  render: null,
 });
 
 export const actionProps = mergePropsKeys(
+  htmlBaseProps,
+  renderProps,
   actionSpecificProps,
   variantProps,
   paddingProps,
@@ -80,10 +74,22 @@ export type ActionProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof a
 
 export function Action(inProps: ActionProps) {
   const [
-    [localAction, localVariant, localPadding, localRounded, localSize, localActionContent, localContentSize],
+    [
+      localHtmlBaseProps,
+      localRender,
+      localAction,
+      localVariant,
+      localPadding,
+      localRounded,
+      localSize,
+      localActionContent,
+      localContentSize,
+    ],
     htmlProps,
   ] = extractProps(inProps, actionProps.content);
 
+  const { className, style, children } = localHtmlBaseProps;
+  const { render } = localRender;
   const {
     color,
     highlightColor = "red",
@@ -92,12 +98,8 @@ export function Action(inProps: ActionProps) {
     baseVariant = "surface",
     interactive = false,
 
-    children,
     disabled = false,
-    style,
-    className,
     ref,
-    render,
   } = localAction;
 
   const isDisabledAndInteractive = disabled && interactive;

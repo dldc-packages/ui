@@ -2,7 +2,7 @@ import { Button } from "@dldc/ui-ariakit/button";
 import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
 import type { TDesignSize } from "@dldc/ui-core/size";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type HTMLAttributes } from "react";
 
 import { CodeHighlight } from "@/components/CodeHighlight";
 import { HighlightedGrid } from "@/components/HighlightedGrid";
@@ -37,7 +37,7 @@ const functionCode = [
   `}`,
 ].join("\n");
 
-export function DesignWrapperPaginationWidget({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export function DesignWrapperPaginationWidget({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   const sizes: TDesignSize[] = ["7", "8", "9", "10", "12"];
   const [highlighted, setHighlighted] = useState<TDesignSize | null>(null);
 

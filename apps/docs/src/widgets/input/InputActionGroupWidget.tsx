@@ -2,7 +2,7 @@ import { ActionGroup } from "@dldc/ui-components/action";
 import { Button, ButtonLike } from "@dldc/ui-components/button";
 import { Input } from "@dldc/ui-components/input";
 import { SearchIcon, SendIcon, UserIcon } from "lucide-react";
-import { useId, useState, type ComponentPropsWithRef } from "react";
+import { useId, useState, type ComponentPropsWithRef, type ReactElement } from "react";
 
 import { cn } from "@/utils/styles";
 
@@ -12,7 +12,7 @@ import { printElement } from "../../utils/printElement";
 
 type Example = {
   label: string;
-  element: React.ReactElement;
+  element: ReactElement;
 };
 
 export function InputActionGroupWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
