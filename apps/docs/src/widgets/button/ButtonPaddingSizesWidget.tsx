@@ -1,4 +1,4 @@
-import { Button } from "@dldc/ui-ariakit/button";
+import { Button } from "@dldc/ui-components/button";
 import type { TDesignSize } from "@dldc/ui-core/size";
 import { HouseIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";

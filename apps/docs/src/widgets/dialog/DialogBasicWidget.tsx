@@ -10,7 +10,7 @@ import { cn } from "@/utils/styles";
 export function DialogBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const [show, setShow] = useState(false);
 
-  const button = <Button onClick={() => setShow((s) => !s)}>{show ? "Hide" : "Show"} Dialog</Button>;
+  const button = <Button onClick={() => setShow((s) => !s)}>{show ? "Hide Dialog" : "Show Dialog"}</Button>;
   const element = (
     <Dialog>
       {button}

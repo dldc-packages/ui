@@ -7,6 +7,11 @@ export type ButtonProps = Merge<AKButton.ButtonProps, TypeOfPropsKeys<typeof CBu
 
 export function Button(inProps: ButtonProps) {
   const [cProps, akProps] = extractProps(inProps, CButton.buttonProps);
-  return <CButton.Button render={<AKButton.Button {...akProps} />} {...cProps} />;
+  const { children, ...restAkProps } = akProps;
+  return (
+    <CButton.Button render={<AKButton.Button {...restAkProps} />} {...cProps}>
+      {children}
+    </CButton.Button>
+  );
 }
 Button.displayName = "Button";

@@ -46,7 +46,7 @@ export function Button(inProps: ButtonProps) {
   const [localButton, props] = extractProps(inProps, buttonProps);
 
   const { type = "button", disabled = false, ...actionProps } = localButton;
-  const { className, style, children, render, ref, ...htmlProps } = props;
+  const { render, ref, ...htmlProps } = props;
 
   return (
     <Action

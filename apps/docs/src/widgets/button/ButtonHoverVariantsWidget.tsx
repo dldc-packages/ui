@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from "@dldc/ui-ariakit/button";
+import { Button, type ButtonProps } from "@dldc/ui-components/button";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState, type ComponentPropsWithRef } from "react";
 

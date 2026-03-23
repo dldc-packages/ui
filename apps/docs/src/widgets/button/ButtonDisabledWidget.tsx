@@ -1,4 +1,4 @@
-import { Button } from "@dldc/ui-ariakit/button";
+import { Button } from "@dldc/ui-components/button";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
