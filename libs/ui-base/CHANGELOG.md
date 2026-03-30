@@ -1,5 +1,13 @@
 # @dldc/ui-base
 
+## 1.2.1
+
+### Patch Changes
+
+- adc4fbb: Force publish all
+- Updated dependencies [adc4fbb]
+  - @dldc/ui-components@1.4.1
+
 ## 1.2.0
 
 ### Minor Changes

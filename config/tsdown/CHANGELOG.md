@@ -1,5 +1,11 @@
 # @config/tsdown
 
+## 1.2.1
+
+### Patch Changes
+
+- adc4fbb: Force publish all
+
 ## 1.2.0
 
 ### Minor Changes

@@ -1,5 +1,18 @@
 # @dldc/ui-docs
 
+## 1.4.1
+
+### Patch Changes
+
+- adc4fbb: Force publish all
+- Updated dependencies [adc4fbb]
+  - @dldc/hooks@1.2.1
+  - @dldc/ui-ariakit@1.4.1
+  - @dldc/ui-components@1.4.1
+  - @dldc/ui-core@1.4.1
+  - @dldc/ui-patterns@1.3.1
+  - @dldc/ui-styles@1.4.1
+
 ## 1.4.0
 
 ### Minor Changes
