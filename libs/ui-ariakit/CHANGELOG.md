@@ -1,5 +1,22 @@
 # @dldc/ui-ariakit
 
+## 1.4.0
+
+### Minor Changes
+
+- 949ad94: Update Dialog component
+
+### Patch Changes
+
+- fd28eb9: Improve types and props
+- 9f46a9a: Minor fixes on button
+- Updated dependencies [949ad94]
+- Updated dependencies [dc6d51a]
+- Updated dependencies [fd28eb9]
+- Updated dependencies [9f46a9a]
+  - @dldc/ui-components@1.4.0
+  - @dldc/react-utils@1.2.0
+
 ## 1.3.0
 
 ### Minor Changes
