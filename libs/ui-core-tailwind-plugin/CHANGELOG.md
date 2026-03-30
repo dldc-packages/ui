@@ -1,5 +1,13 @@
 # @dldc/ui-core-tailwind-plugin
 
+## 1.3.2
+
+### Patch Changes
+
+- adc4fbb: Force publish all
+- Updated dependencies [adc4fbb]
+  - @dldc/ui-core@1.4.1
+
 ## 1.3.1
 
 ### Patch Changes

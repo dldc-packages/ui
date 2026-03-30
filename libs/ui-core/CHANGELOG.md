@@ -1,5 +1,13 @@
 # @dldc/ui-core
 
+## 1.4.1
+
+### Patch Changes
+
+- adc4fbb: Force publish all
+- Updated dependencies [adc4fbb]
+  - @dldc/utils@1.2.1
+
 ## 1.4.0
 
 ### Minor Changes

@@ -1,5 +1,17 @@
 # @dldc/ui-patterns
 
+## 1.3.1
+
+### Patch Changes
+
+- adc4fbb: Force publish all
+- Updated dependencies [adc4fbb]
+  - @dldc/ui-ariakit@1.4.1
+  - @dldc/ui-components@1.4.1
+  - @dldc/ui-core@1.4.1
+  - @dldc/ui-styles@1.4.1
+  - @dldc/utils@1.2.1
+
 ## 1.3.0
 
 ### Minor Changes
