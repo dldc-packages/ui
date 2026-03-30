@@ -1,7 +1,7 @@
 import { cloneElement, createElement, Fragment, ReactElement, ReactNode } from "react";
 
 export function applyProviders(
-  ...providers: (ReactElement | undefined | null)[]
+  ...providers: (ReactElement | undefined | null | false)[]
 ): (children: ReactNode | undefined) => ReactElement {
   const filteredProviders = providers.filter((provider): provider is ReactElement => !!provider);
   if (filteredProviders.length === 0) {

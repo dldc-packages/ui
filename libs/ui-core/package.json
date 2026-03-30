@@ -12,6 +12,7 @@
     "./conditions": "./dist/conditions.js",
     "./helpers": "./dist/helpers/index.js",
     "./size": "./dist/size/index.js",
+    "./typography": "./dist/typography/index.js",
     "./variables": "./dist/variables/index.js",
     "./variants": "./dist/variants/index.js",
     "./package.json": "./package.json",

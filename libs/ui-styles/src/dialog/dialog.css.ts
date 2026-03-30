@@ -68,18 +68,10 @@ globalStyle(
 );
 
 export const dialogSizeVariantsClass = styleVariants({
-  sm: withLayer({
-    maxWidth: 460,
-  }),
-  md: withLayer({
-    maxWidth: 600,
-  }),
-  lg: withLayer({
-    maxWidth: 800,
-  }),
-  xl: withLayer({
-    maxWidth: 1200,
-  }),
+  sm: withLayer({ maxWidth: 460 }),
+  md: withLayer({ maxWidth: 600 }),
+  lg: withLayer({ maxWidth: 800 }),
+  xl: withLayer({ maxWidth: 1200 }),
   full: withLayer({}),
 });
 

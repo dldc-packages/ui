@@ -1,11 +1,10 @@
 import { contentSizeVar } from "@dldc/ui-core/variables";
-import { globalStyle, style } from "@vanilla-extract/css";
+import { globalStyle, style, styleVariants } from "@vanilla-extract/css";
 
 import { withLayer } from "../utils/layer";
 
 export const iconClass = style(
   withLayer({
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -14,6 +13,14 @@ export const iconClass = style(
     height: contentSizeVar,
   }),
 );
+
+export const iconDisplayVariantClass = styleVariants({
+  flex: withLayer({ display: "flex" }),
+  inlineFlex: withLayer({
+    display: "inline-flex",
+    verticalAlign: "text-bottom",
+  }),
+});
 
 globalStyle(
   `${iconClass} > *`,

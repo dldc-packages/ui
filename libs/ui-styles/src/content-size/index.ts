@@ -1,4 +1,3 @@
-export * from "./contentSize.css";
 import * as css from "@dldc/css-builder";
 import { UNIT_IN_REM_STRING } from "@dldc/ui-core/size";
 import { contentSizeVar } from "@dldc/ui-core/variables";
@@ -6,6 +5,10 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import { MIN_AUTO_HEIGHT } from "../size";
 import { CSSProperties } from "../utils/types";
+
+import { contentSizeLineHeightClass } from "./contentSize.css";
+
+export { contentSizeLineHeightClass };
 
 interface TContentSizeInlineStylesOptions {
   contentSizeVarName: string;

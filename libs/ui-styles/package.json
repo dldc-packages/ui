@@ -30,6 +30,7 @@
     "./size": "./dist/size/index.js",
     "./stack": "./dist/stack/index.js",
     "./tooltip": "./dist/tooltip/index.js",
+    "./typography": "./dist/typography/index.js",
     "./package.json": "./package.json",
     "./styles.css": "./dist/styles.css"
   },

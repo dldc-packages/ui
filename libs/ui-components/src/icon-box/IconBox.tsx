@@ -10,6 +10,7 @@ export type IconBoxProps = ComponentPropsBaseWith<
     alt?: string;
     color?: string;
     size?: TDesignSize;
+    inline?: boolean;
   }
 >;
 
@@ -20,10 +21,11 @@ export function IconBox(props: IconBoxProps) {
     size,
     className,
     style,
+    inline = false,
     ...htmlProps
   } = props;
 
-  const [iconClas, inlineStyles] = iconStyles(size);
+  const [iconClas, inlineStyles] = iconStyles(size, inline);
 
   return (
     <div className={clsx(iconClas, className)} style={{ ...inlineStyles, ...style }} {...htmlProps}>
