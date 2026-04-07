@@ -12,14 +12,6 @@ import { fontWeightVariantsClass } from "./typography.css";
 
 export { fontWeightVariantsClass };
 
-// export interface TypographyStylesParams {
-//   fontWeight: TFontWeight | null;
-// }
-
-// export function typographyClassStyles({ fontWeight }: TypographyStylesParams) {
-//   return clsx(contentSizeLineHeightClass, fontWeight ? fontWeightVariantsClass[fontWeight] : null);
-// }
-
 export interface TypographyStylesParams {
   contentSize: number | null;
   fontSize: number | null;
@@ -36,8 +28,8 @@ export function typographyStyles({
   parentContentSizeVarName,
   defaultContentSize,
   fontSize,
-}: TypographyStylesParams): [classname: string, styles: CSSProperties, infos: { contentSizeSet: boolean }] {
-  const [typographyContentSizeClass, typographyContentSizeInline, { contentSizeSet }] = typographyContentSizeStyles({
+}: TypographyStylesParams): [classname: string, styles: CSSProperties] {
+  const [typographyContentSizeClass, typographyContentSizeInline] = typographyContentSizeStyles({
     contentSize,
     contentSizeVarName,
     parentContentSizeVarName,
@@ -48,7 +40,6 @@ export function typographyStyles({
   return [
     clsx(fontWeight ? fontWeightVariantsClass[fontWeight] : null, typographyContentSizeClass),
     { ...typographyContentSizeInline, ...typographyFontSizeInlineStyles({ fontSize }) },
-    { contentSizeSet },
   ];
 }
 
@@ -66,7 +57,7 @@ function typographyContentSizeStyles({
   parentContentSizeVarName,
   defaultContentSize,
   fontSize,
-}: TypographyContentSizeStylesParams): [classname: string, styles: CSSProperties, infos: { contentSizeSet: boolean }] {
+}: TypographyContentSizeStylesParams): [classname: string, styles: CSSProperties] {
   const contentSizeVarVal = contentSizeVarValue({
     contentSize,
     parentContentSizeVarName,
@@ -74,7 +65,7 @@ function typographyContentSizeStyles({
     fontSize,
   });
   if (contentSizeVarVal === null) {
-    return ["", {}, { contentSizeSet: false }];
+    return ["", {}];
   }
   return [
     contentSizeLineHeightClass,
@@ -82,7 +73,6 @@ function typographyContentSizeStyles({
       [contentSizeVarName]: css.serialize(contentSizeVarVal),
       [contentSizeVar]: css.serialize(css.multiply(css.var(contentSizeVarName), UNIT_IN_REM_STRING)),
     }),
-    { contentSizeSet: true },
   ];
 }
 
