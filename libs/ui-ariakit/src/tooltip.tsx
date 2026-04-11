@@ -6,7 +6,7 @@ export type { TooltipAnchorProps, TooltipArrowProps, TooltipProviderProps } from
 
 export type TooltipProps = AKTooltip.TooltipProps;
 
-export function Tooltip({ render, ...akProps }: TooltipProps) {
+export function Tooltip({ ...akProps }: TooltipProps) {
   return <CTooltip.Tooltip render={<AKTooltip.Tooltip {...akProps} />} />;
 }
 Tooltip.displayName = "Tooltip";

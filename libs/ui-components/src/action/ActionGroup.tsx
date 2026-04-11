@@ -87,6 +87,7 @@ export function ActionGroup(inProps: ActionGroupProps) {
       {...localContentSize}
       {...localPadding}
       {...localRounded}
+      render={render}
     >
       {Children.map(childrenFiltered, (child, i) => {
         if (!child) return null;

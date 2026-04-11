@@ -10,7 +10,7 @@ export type GeometryPaperProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<t
 
 export function GeometryPaper(inProps: GeometryPaperProps) {
   const [[localGeometry, localPaper], props] = extractProps(inProps, geometryPaperProps.content);
-  const { background, children, ...htmlProps } = props;
+  const { children, ...htmlProps } = props;
 
   return (
     <Paper {...localPaper} render={<Geometry {...localGeometry} {...htmlProps} />}>

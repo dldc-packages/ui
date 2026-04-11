@@ -44,7 +44,7 @@ export function ButtonLink(inProps: ButtonLinkProps) {
   const [localButton, props] = extractProps(inProps, buttonLinkProps);
 
   const { disabled = false, ...actionProps } = localButton;
-  const { className, style, children, render, ref, ...htmlProps } = props;
+  const { render, ...htmlProps } = props;
 
   return <Action {...actionProps} disabled={disabled} interactive render={createRender("a", render, htmlProps)} />;
 }
