@@ -10,7 +10,7 @@ import { cn } from "@/utils/styles";
 export function DialogBasicWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const [show, setShow] = useState(false);
 
-  const button = <Button onClick={() => setShow((s) => !s)}>{show ? "Hide Dialog" : "Show Dialog"}</Button>;
+  const button = <Button onClick={() => setShow((s) => !s)}>Toggle Dialog</Button>;
   const element = (
     <Dialog>
       {button}
@@ -21,7 +21,7 @@ export function DialogBasicWidget({ className, ...props }: ComponentPropsWithRef
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
-        {printElement(element)}
+        {printElement(element, { replacePropsRaw: { onClick: "" } })}
       </CodeHighlight>
       <GeometryPaper background="900" className="p-3" rounded="2" skipProviders>
         {button}
