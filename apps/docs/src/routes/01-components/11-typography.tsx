@@ -8,6 +8,8 @@ import { TypographyBasicWidget } from "@/widgets/typography/TypographyBasicWidge
 import { TypographyContentAndFontSizeWidget } from "@/widgets/typography/TypographyContentAndFontSizeWidget";
 import { TypographyContentSizeWidget } from "@/widgets/typography/TypographyContentSizeWidget";
 import { TypographyFontSizeWidget } from "@/widgets/typography/TypographyFontSizeWidget";
+import { TypographyFontWeightWidget } from "@/widgets/typography/TypographyFontWeightWidget";
+import { TypographyNestedWidget } from "@/widgets/typography/TypographyNestedWidget";
 
 export const Route = createFileRoute("/01-components/11-typography")({
   component: RouteComponent,
@@ -35,7 +37,6 @@ function RouteComponent() {
 
         <h2>Basic Usage</h2>
         <p>Start with the default component and add props only when you need to adapt the text to the local context.</p>
-
         <TypographyBasicWidget className={cn(notProseClass, proseBleedClass)} />
 
         <h2>Content Size</h2>
@@ -52,25 +53,33 @@ function RouteComponent() {
         </p>
         <TypographyFontSizeWidget className={cn(notProseClass, proseBleedClass)} />
 
-        <h2>Using contentSize and fontSize Together</h2>
+        <h2>
+          Using <code>contentSize</code> and <code>fontSize</code> together
+        </h2>
         <p>
           You can combine both props when you want explicit control over text size and line height at the same time.
           This is useful for fine-tuning dense or highly constrained layouts.
         </p>
         <TypographyContentAndFontSizeWidget className={cn(notProseClass, proseBleedClass)} />
 
-        <h2>Props Overview</h2>
-        <ul>
-          <li>
-            <code>contentSize</code>: semantic size scale used to control line height.
-          </li>
-          <li>
-            <code>fontSize</code>: explicit font-size override. If used alone, line height is computed automatically.
-          </li>
-          <li>
-            <code>fontWeight</code>: controls text weight (regular, medium, bold, etc.).
-          </li>
-        </ul>
+        <h2>Font Weight</h2>
+        <p>
+          <code>fontWeight</code> controls visual emphasis without changing the layout rhythm. Use it for hierarchy,
+          contrast, and emphasis while keeping the same size scale.
+        </p>
+        <TypographyFontWeightWidget className={cn(notProseClass, proseBleedClass)} />
+
+        <h2>Nested Typography</h2>
+        <p>
+          You can nest <code>Typography</code> components inside each other. Nested components will inherit the sizing (
+          <code>contentSize</code> and <code>fontSize</code>) of the parent <code>Typography</code>.
+        </p>
+        <p>
+          <strong>Note:</strong> <code>Typography</code> renders a <code>&lt;p&gt;</code> by default, when nesting, make
+          sure to set <code>render=&lt;span /&gt;</code> on the child component to avoid invalid <code>&lt;p&gt;</code>{" "}
+          inside <code>&lt;p&gt;</code> markup.
+        </p>
+        <TypographyNestedWidget className={cn(notProseClass, proseBleedClass)} />
       </Prose>
     </StoryLayout>
   );
