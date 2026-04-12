@@ -2,6 +2,7 @@ import React from "react";
 
 export interface PrintElementOptions {
   replacePropsRaw?: Record<string, any>;
+  replaceChildrenReferences?: Map<any, string>;
 }
 
 /**
@@ -11,6 +12,10 @@ export interface PrintElementOptions {
 export function printElement(element: React.ReactElement, options: PrintElementOptions = {}): string {
   if (!element) {
     return "";
+  }
+
+  if (options.replaceChildrenReferences && options.replaceChildrenReferences.has(element)) {
+    return options.replaceChildrenReferences.get(element) || "";
   }
 
   // Get the component name

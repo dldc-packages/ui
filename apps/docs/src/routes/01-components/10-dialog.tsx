@@ -6,6 +6,8 @@ import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { DialogBasicWidget } from "@/widgets/dialog/DialogBasicWidget";
 import { DialogContainerBasicWidget } from "@/widgets/dialog/DialogContainerBasicWidget";
+import { DialogNoScrollWidget } from "@/widgets/dialog/DialogNoScrollWidget";
+import { DialogScrollWidget } from "@/widgets/dialog/DialogScrollWidget";
 import { DialogSizeWidget } from "@/widgets/dialog/DialogSizeWidget";
 
 export const Route = createFileRoute("/01-components/10-dialog")({
@@ -52,6 +54,20 @@ function RouteComponent() {
           <code> sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code>, and <code>full</code>.
         </p>
         <DialogSizeWidget className={cn(notProseClass, proseBleedClass)} />
+
+        <h3>Scroll Behavior</h3>
+        <p>
+          <code>Dialog</code> uses a scrollable <code>DialogRoot</code> wrapper. When dialog content is taller than the
+          viewport, you can scroll the dialog layer and still keep the dialog properly positioned.
+        </p>
+        <DialogScrollWidget className={cn(notProseClass, proseBleedClass)} />
+
+        <h4>Using scrollable=false</h4>
+        <p>
+          Set <code>scrollable=&#123;false&#125;</code> when you do not want the dialog layer to scroll. In that case,
+          handle overflow inside your dialog content.
+        </p>
+        <DialogNoScrollWidget className={cn(notProseClass, proseBleedClass)} />
       </Prose>
     </StoryLayout>
   );

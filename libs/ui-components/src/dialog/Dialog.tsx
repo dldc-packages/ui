@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { GeometryPaper, geometryPaperProps } from "../geometry-paper";
 import { DialogPositioner } from "./DialogPositioner";
 import { DialogRoot } from "./DialogRoot";
+import { dialogScrollableProps } from "./dialogScrollableProps";
 import { dialogSizeProps } from "./dialogSizeProps";
 
 export interface DialogLayoutProps {
@@ -16,14 +17,23 @@ export const dialogLayoutProps = createPropsKeys<DialogLayoutProps>({
   noLayout: null,
 });
 
-export const dialogProps = mergePropsKeys(dialogSizeProps, dialogLayoutProps, geometryPaperProps);
+export const dialogProps = mergePropsKeys(
+  dialogSizeProps,
+  dialogScrollableProps,
+  dialogLayoutProps,
+  geometryPaperProps,
+);
 
 export type DialogProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof dialogProps>>;
 
 export function Dialog(inProps: DialogProps) {
-  const [[localDialogSize, localDialogLayout, localGeometryPaper], props] = extractProps(inProps, dialogProps.content);
+  const [[localDialogSize, localDialogScrollable, localDialogLayout, localGeometryPaper], props] = extractProps(
+    inProps,
+    dialogProps.content,
+  );
 
   const { noLayout = false } = localDialogLayout;
+  const { scrollable = true } = localDialogScrollable;
   const { className, style, children, render, ...htmlProps } = props;
   const { size = "md" } = localDialogSize;
   const { background = "925", padding = 4, rounded = 5, ...geometryPaperProps } = localGeometryPaper;
@@ -31,7 +41,7 @@ export function Dialog(inProps: DialogProps) {
   const dialogClassname = dialogClass({ size, layout: !noLayout });
 
   return (
-    <DialogRoot scrollable>
+    <DialogRoot scrollable={scrollable}>
       <DialogPositioner>
         <GeometryPaper
           className={clsx(dialogClassname, className)}

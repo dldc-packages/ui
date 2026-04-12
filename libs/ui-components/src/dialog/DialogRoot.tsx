@@ -1,18 +1,12 @@
 import { createRender } from "@dldc/react-utils/create-render";
-import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { dialogRootStyles } from "@dldc/ui-styles/dialog";
 import clsx from "clsx";
 
-export interface DialogRootSpecificProps {
-  scrollable?: boolean;
-}
+import { dialogScrollableProps } from "./dialogScrollableProps";
 
-const dialogRootSpecificProps = createPropsKeys<DialogRootSpecificProps>({
-  scrollable: null,
-});
-
-const dialogRootProps = mergePropsKeys(dialogRootSpecificProps);
+const dialogRootProps = mergePropsKeys(dialogScrollableProps);
 
 export type DialogRootProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof dialogRootProps>>;
 
