@@ -16,6 +16,8 @@ import {
   type ThemeRegistrationAny,
 } from "shiki/bundle/web";
 
+import { cn } from "@/utils/styles";
+
 export type TShikiLanguage = LanguageRegistration | StringLiteralUnion<BundledLanguage | SpecialLanguage> | undefined;
 
 export type TShikiTheme = ThemeRegistrationAny | StringLiteralUnion<BundledTheme>;
@@ -24,9 +26,10 @@ interface CodeHighlightProps {
   language: TShikiLanguage;
   theme: TShikiTheme;
   children: string;
+  className?: string;
 }
 
-export function CodeHighlight({ language, theme, children }: CodeHighlightProps) {
+export function CodeHighlight({ language, theme, children, className }: CodeHighlightProps) {
   const [highlightedCode, setHighlightedCode] = useState<ReactNode | null>(null);
 
   useEffect(() => {
@@ -102,7 +105,7 @@ export function CodeHighlight({ language, theme, children }: CodeHighlightProps)
   }, [language, theme, children]);
 
   return (
-    <Geometry className="h-full w-full overflow-hidden bg-neutral-800" rounded="2" skipProviders>
+    <Geometry className={cn("h-full w-full overflow-hidden bg-neutral-800", className)} rounded="2" skipProviders>
       <Scrollbars className="h-full w-full">
         <div className="h-full w-full *:h-full *:p-4 *:text-sm">{highlightedCode}</div>
       </Scrollbars>
