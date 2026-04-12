@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface PrintElementOptions {
-  replacePropsRow?: Record<string, any>;
+  replacePropsRaw?: Record<string, any>;
 }
 
 /**
@@ -79,8 +79,8 @@ function formatProps(props: Record<string, any>, options: PrintElementOptions): 
   const propEntries = Object.entries(props);
   const propStrings = propEntries
     .map(([key, value]) => {
-      if (options?.replacePropsRow && key in options.replacePropsRow) {
-        return options.replacePropsRow[key];
+      if (options?.replacePropsRaw && key in options.replacePropsRaw) {
+        return options.replacePropsRaw[key];
       }
       if (value === true) {
         // Boolean prop set to true - use shortcut
@@ -105,8 +105,8 @@ function formatProps(props: Record<string, any>, options: PrintElementOptions): 
 }
 
 function formatChildren(children: any, options: PrintElementOptions): string {
-  if (options.replacePropsRow && options.replacePropsRow.children) {
-    return options.replacePropsRow.children;
+  if (options.replacePropsRaw && options.replacePropsRaw.children) {
+    return options.replacePropsRaw.children;
   }
 
   if (!children) {
@@ -118,7 +118,7 @@ function formatChildren(children: any, options: PrintElementOptions): string {
   }
 
   if (React.isValidElement(children)) {
-    return printElement(children);
+    return printElement(children, options);
   }
 
   if (Array.isArray(children)) {
@@ -127,7 +127,7 @@ function formatChildren(children: any, options: PrintElementOptions): string {
         if (typeof child === "string") {
           return child;
         } else if (React.isValidElement(child)) {
-          return printElement(child);
+          return printElement(child, options);
         } else {
           return String(child);
         }

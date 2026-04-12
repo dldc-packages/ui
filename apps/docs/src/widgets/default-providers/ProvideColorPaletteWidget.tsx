@@ -21,7 +21,7 @@ export function ProvideColorPaletteWidget({ className, ...props }: ComponentProp
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {printElement(element, {
-          replacePropsRow: { className: `className={dynamicColor.red}` },
+          replacePropsRaw: { className: `className={dynamicColor.red}` },
         })}
       </CodeHighlight>
       <GeometryPaper background="900" className="p-3" rounded="2" skipProviders>

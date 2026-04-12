@@ -35,7 +35,7 @@ export function ActionGroupColorsWidget({ className, ...props }: ComponentPropsW
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
           ? printElement(renderElement(highlighted.color, highlighted.variant), {
-              replacePropsRow: { children: "{/* ... */}" },
+              replacePropsRaw: { children: "{/* ... */}" },
             })
           : "// Hover a button group to see the code"}
       </CodeHighlight>
