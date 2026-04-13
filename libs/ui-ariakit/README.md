@@ -1,5 +1,5 @@
 # @dldc/ui-ariakit
 
-> Re-exporting Ariakit components with default render prop set to @dldc/ui-components versions
+> Ariakit behavior components pre-configured with `@dldc/ui-components` as render targets. This library bridges accessibility and behavior (from Ariakit) with visual design and defaults (from ui-components).
 
-Note that `render` prop won't override the `@dldc/ui-components` version but instead compose with it. If you don't want the `@dldc/ui-components` version to be used, you can use Ariakit components directly.
+Each component exports the Ariakit public API while using `@dldc/ui-components` as the default render. Note that the `render` prop composes rather than replaces: your custom render is passed to the inner Ariakit component, which is itself rendered inside the Dldc wrapper.

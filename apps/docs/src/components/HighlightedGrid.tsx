@@ -81,7 +81,7 @@ export function HighlightedGrid<TRow, TColumn>({
                   const params: HeighligedCellParams<TRow, TColumn> = { key, row, column, rowIndex, columnIndex };
                   return (
                     <div
-                      className="relative"
+                      className="relative grid items-center justify-start"
                       style={{ gridColumn: columnOffset + columnIndex, gridRow: rowOffset + rowIndex }}
                       key={key}
                       onPointerEnter={() => onHightlighted(params)}

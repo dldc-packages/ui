@@ -8,6 +8,7 @@
   "type": "module",
   "types": "./dist/index.d.ts",
   "exports": {
+    "./dialog": "./dist/dialog/index.js",
     "./loading-block": "./dist/loading-block/index.js",
     "./select": "./dist/select/index.js",
     "./package.json": "./package.json"
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "@ariakit/react": "catalog:",
+    "@dldc/react-utils": "workspace:^",
     "@dldc/ui-ariakit": "workspace:^",
     "@dldc/ui-components": "workspace:^",
     "@dldc/ui-core": "workspace:^",

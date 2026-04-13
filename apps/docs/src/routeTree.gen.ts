@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as R00PlaygroundRouteImport } from './routes/00-playground'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R03Patterns00IntroRouteImport } from './routes/03-patterns/00-intro'
 import { Route as R02AriakitSelectRouteImport } from './routes/02-ariakit/select'
 import { Route as R02AriakitDialogRouteImport } from './routes/02-ariakit/dialog'
 import { Route as R02AriakitCheckboxRouteImport } from './routes/02-ariakit/checkbox'
@@ -37,6 +38,11 @@ const R00PlaygroundRoute = R00PlaygroundRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R03Patterns00IntroRoute = R03Patterns00IntroRouteImport.update({
+  id: '/03-patterns/00-intro',
+  path: '/03-patterns/00-intro',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R02AriakitSelectRoute = R02AriakitSelectRouteImport.update({
@@ -151,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
   '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
+  '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -172,6 +179,7 @@ export interface FileRoutesByTo {
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
   '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
+  '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -194,6 +202,7 @@ export interface FileRoutesById {
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
   '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
+  '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/checkbox'
     | '/02-ariakit/dialog'
     | '/02-ariakit/select'
+    | '/03-patterns/00-intro'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -238,6 +248,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/checkbox'
     | '/02-ariakit/dialog'
     | '/02-ariakit/select'
+    | '/03-patterns/00-intro'
   id:
     | '__root__'
     | '/'
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/checkbox'
     | '/02-ariakit/dialog'
     | '/02-ariakit/select'
+    | '/03-patterns/00-intro'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -281,6 +293,7 @@ export interface RootRouteChildren {
   R02AriakitCheckboxRoute: typeof R02AriakitCheckboxRoute
   R02AriakitDialogRoute: typeof R02AriakitDialogRoute
   R02AriakitSelectRoute: typeof R02AriakitSelectRoute
+  R03Patterns00IntroRoute: typeof R03Patterns00IntroRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -297,6 +310,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/03-patterns/00-intro': {
+      id: '/03-patterns/00-intro'
+      path: '/03-patterns/00-intro'
+      fullPath: '/03-patterns/00-intro'
+      preLoaderRoute: typeof R03Patterns00IntroRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/02-ariakit/select': {
@@ -441,6 +461,7 @@ const rootRouteChildren: RootRouteChildren = {
   R02AriakitCheckboxRoute: R02AriakitCheckboxRoute,
   R02AriakitDialogRoute: R02AriakitDialogRoute,
   R02AriakitSelectRoute: R02AriakitSelectRoute,
+  R03Patterns00IntroRoute: R03Patterns00IntroRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

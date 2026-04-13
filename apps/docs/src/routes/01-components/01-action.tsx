@@ -221,7 +221,7 @@ function RouteComponent() {
         </table>
         <p>
           This fractional system applies to all size-related props including <code>size</code>, <code>contentSize</code>
-          ,<code>rounded</code>, and <code>padding</code>.
+          , <code>rounded</code>, and <code>padding</code>.
         </p>
 
         <h2>Content Size</h2>
@@ -257,7 +257,12 @@ function RouteComponent() {
           <code>contentSize</code> decreases to maintain the overall size of the Action.
         </p>
         <p>
-          Of course you can also set the <code>contentSize</code> manually:
+          It might look like the <code>padding</code> is applied on all four sides but that's not actually the case. The
+          padding is applied on the horizontal axis only. The vertical padding is just a consequence of the automatic{" "}
+          <code>contentSize</code> adjustment to maintain the overall size of the Action.
+        </p>
+        <p>
+          You can see this if you set a fixed <code>contentSize</code> and then increase the <code>padding</code>:
         </p>
         <ActionPaddingFixContentSizeWidget className={cn(notProseClass, proseBleedClass)} />
 

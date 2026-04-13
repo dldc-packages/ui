@@ -547,6 +547,9 @@ importers:
       '@ariakit/react':
         specifier: 'catalog:'
         version: 0.4.25(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@dldc/react-utils':
+        specifier: workspace:^
+        version: link:../react-utils
       '@dldc/ui-ariakit':
         specifier: workspace:^
         version: link:../ui-ariakit

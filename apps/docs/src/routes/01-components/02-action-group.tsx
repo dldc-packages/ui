@@ -46,14 +46,14 @@ function RouteComponent() {
 
         <h2>Mixed Content</h2>
         <p>
-          <code>ActionGroup</code> can any component that extends from <code>Action</code>, allowing you to mix
+          <code>ActionGroup</code> can contain any component that extends from <code>Action</code>, allowing you to mix
           different types of actions and content within the same group.
         </p>
         <ActionGroupMixedContentWidget className={cn(notProseClass, proseBleedClass)} />
 
         <h2>Dividers</h2>
         <p>
-          Control visual separators between buttons with the <code>innerDividers</code> prop. This prop as 3 possible
+          Control visual separators between buttons with the <code>innerDividers</code> prop. This prop has 3 possible
           values:
         </p>
         <ul>

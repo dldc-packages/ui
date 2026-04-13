@@ -17,8 +17,8 @@ function RouteComponent() {
       <Prose invert>
         <h1>Default Providers</h1>
         <p>
-          The different design properties of the design suystem (height, contentHeight, rounded, padding, variant) each
-          expose a component to chnage the default value for all the children components. These providers are named{" "}
+          The different design properties of the design system (height, contentHeight, rounded, padding, variant) each
+          expose a component to change the default value for all the children components. These providers are named{" "}
           <code>Default[Property]Provider</code>
         </p>
 

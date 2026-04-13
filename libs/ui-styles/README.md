@@ -1,3 +1,3 @@
 # @dldc/ui-styles
 
-> Styles exportes as classnames for DLDC design system components and patterns.
+> CSS code, functions, and constants that define the DLDC design system. This is the foundation layer that provides all visual tokens, spacing, typography, and utility functions used by higher-level libraries.
