@@ -1,5 +1,36 @@
 # @dldc/ui-docs
 
+## 1.5.0
+
+### Minor Changes
+
+- 8081913: Improve typography doc
+
+### Patch Changes
+
+- 708ee31: Add Dialog scrollable prop and document dialog scroll behavior examples.
+- 138dbfd: Add Ariakit dialog documentation and align dialog wrappers with dldc button, typography, backdrop, and render behavior.
+- 8342dd7: Improve Ariakit intro documentation and code examples.
+- 3b20b74: Add a composed dialog API to ui-patterns and update docs/readmes to clarify the architecture layers from ui-styles to ui-patterns.
+- 66cef5e: Upgrade deps
+- f8b820b: Clean up docs element-printing options by renaming `replacePropsRow` to `replacePropsRaw` and update related widgets.
+
+  Simplify `DialogPositioner` props in `@dldc/ui-components/dialog` to use base div props.
+
+- 0c3955f: Improve Dialog documentation with high-level vs low-level guidance and add interactive examples, including the Dialog size prop (`sm`, `md`, `lg`, `xl`, `full`).
+- 72721c3: Document that dialog components do not manage body scroll lock or backdrop.
+- Updated dependencies [708ee31]
+- Updated dependencies [138dbfd]
+- Updated dependencies [3b20b74]
+- Updated dependencies [66cef5e]
+- Updated dependencies [f8b820b]
+- Updated dependencies [ac02046]
+  - @dldc/ui-components@1.5.0
+  - @dldc/ui-ariakit@1.4.2
+  - @dldc/ui-patterns@1.4.0
+  - @dldc/ui-styles@1.4.2
+  - @dldc/ui-core@1.4.2
+
 ## 1.4.1
 
 ### Patch Changes
@@ -22,6 +53,7 @@
 ### Patch Changes
 
 - dc6d51a: Add typography primitives across core, styles, and components.
+
   - Introduce `Typography` in `@dldc/ui-components` with content-size, font-size, and font-weight support.
   - Add shared typography types in `@dldc/ui-core` and export typography style helpers in `@dldc/ui-styles`.
   - Update icon styles/components to support inline icon rendering.

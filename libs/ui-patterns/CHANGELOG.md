@@ -1,5 +1,26 @@
 # @dldc/ui-patterns
 
+## 1.4.0
+
+### Minor Changes
+
+- 3b20b74: Add a composed dialog API to ui-patterns and update docs/readmes to clarify the architecture layers from ui-styles to ui-patterns.
+
+### Patch Changes
+
+- Updated dependencies [708ee31]
+- Updated dependencies [138dbfd]
+- Updated dependencies [3b20b74]
+- Updated dependencies [66cef5e]
+- Updated dependencies [f8b820b]
+- Updated dependencies [78c7c15]
+- Updated dependencies [ac02046]
+  - @dldc/ui-components@1.5.0
+  - @dldc/ui-ariakit@1.4.2
+  - @dldc/ui-styles@1.4.2
+  - @dldc/react-utils@1.2.2
+  - @dldc/ui-core@1.4.2
+
 ## 1.3.1
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @dldc/ui-ariakit
 
+## 1.4.2
+
+### Patch Changes
+
+- 138dbfd: Add Ariakit dialog documentation and align dialog wrappers with dldc button, typography, backdrop, and render behavior.
+- 3b20b74: Add a composed dialog API to ui-patterns and update docs/readmes to clarify the architecture layers from ui-styles to ui-patterns.
+- Updated dependencies [708ee31]
+- Updated dependencies [138dbfd]
+- Updated dependencies [3b20b74]
+- Updated dependencies [66cef5e]
+- Updated dependencies [f8b820b]
+- Updated dependencies [78c7c15]
+- Updated dependencies [ac02046]
+  - @dldc/ui-components@1.5.0
+  - @dldc/react-utils@1.2.2
+
 ## 1.4.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @dldc/ui-styles
 
+## 1.4.2
+
+### Patch Changes
+
+- 3b20b74: Add a composed dialog API to ui-patterns and update docs/readmes to clarify the architecture layers from ui-styles to ui-patterns.
+- 66cef5e: Upgrade deps
+- Updated dependencies [66cef5e]
+- Updated dependencies [ac02046]
+  - @dldc/ui-core@1.4.2
+
 ## 1.4.1
 
 ### Patch Changes

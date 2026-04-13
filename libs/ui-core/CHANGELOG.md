@@ -1,5 +1,12 @@
 # @dldc/ui-core
 
+## 1.4.2
+
+### Patch Changes
+
+- 66cef5e: Upgrade deps
+- ac02046: Support Action hover and focus-visible styling via data attributes.
+
 ## 1.4.1
 
 ### Patch Changes
