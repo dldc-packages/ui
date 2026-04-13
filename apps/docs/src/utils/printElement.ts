@@ -70,7 +70,7 @@ function getComponentName(type: any): string {
 
 function getDisplayName(type: any): string {
   if (!type.displayName) {
-    return `${type.name}[MISSING_DISPLAY_NAME]`;
+    return `MISSING_DISPLAY_NAME_${type.name}`;
   }
   // React component
   return type.displayName;

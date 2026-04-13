@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as R00PlaygroundRouteImport } from './routes/00-playground'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R02AriakitSelectRouteImport } from './routes/02-ariakit/select'
+import { Route as R02AriakitDialogRouteImport } from './routes/02-ariakit/dialog'
 import { Route as R02AriakitCheckboxRouteImport } from './routes/02-ariakit/checkbox'
 import { Route as R02AriakitButtonRouteImport } from './routes/02-ariakit/button'
 import { Route as R02Ariakit00IntroRouteImport } from './routes/02-ariakit/00-intro'
@@ -41,6 +42,11 @@ const IndexRoute = IndexRouteImport.update({
 const R02AriakitSelectRoute = R02AriakitSelectRouteImport.update({
   id: '/02-ariakit/select',
   path: '/02-ariakit/select',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R02AriakitDialogRoute = R02AriakitDialogRouteImport.update({
+  id: '/02-ariakit/dialog',
+  path: '/02-ariakit/dialog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R02AriakitCheckboxRoute = R02AriakitCheckboxRouteImport.update({
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/02-ariakit/00-intro': typeof R02Ariakit00IntroRoute
   '/02-ariakit/button': typeof R02AriakitButtonRoute
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
+  '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
 }
 export interface FileRoutesByTo {
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/02-ariakit/00-intro': typeof R02Ariakit00IntroRoute
   '/02-ariakit/button': typeof R02AriakitButtonRoute
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
+  '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
 }
 export interface FileRoutesById {
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/02-ariakit/00-intro': typeof R02Ariakit00IntroRoute
   '/02-ariakit/button': typeof R02AriakitButtonRoute
   '/02-ariakit/checkbox': typeof R02AriakitCheckboxRoute
+  '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
 }
 export interface FileRouteTypes {
@@ -206,6 +215,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/00-intro'
     | '/02-ariakit/button'
     | '/02-ariakit/checkbox'
+    | '/02-ariakit/dialog'
     | '/02-ariakit/select'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/00-intro'
     | '/02-ariakit/button'
     | '/02-ariakit/checkbox'
+    | '/02-ariakit/dialog'
     | '/02-ariakit/select'
   id:
     | '__root__'
@@ -246,6 +257,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/00-intro'
     | '/02-ariakit/button'
     | '/02-ariakit/checkbox'
+    | '/02-ariakit/dialog'
     | '/02-ariakit/select'
   fileRoutesById: FileRoutesById
 }
@@ -267,6 +279,7 @@ export interface RootRouteChildren {
   R02Ariakit00IntroRoute: typeof R02Ariakit00IntroRoute
   R02AriakitButtonRoute: typeof R02AriakitButtonRoute
   R02AriakitCheckboxRoute: typeof R02AriakitCheckboxRoute
+  R02AriakitDialogRoute: typeof R02AriakitDialogRoute
   R02AriakitSelectRoute: typeof R02AriakitSelectRoute
 }
 
@@ -291,6 +304,13 @@ declare module '@tanstack/react-router' {
       path: '/02-ariakit/select'
       fullPath: '/02-ariakit/select'
       preLoaderRoute: typeof R02AriakitSelectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/02-ariakit/dialog': {
+      id: '/02-ariakit/dialog'
+      path: '/02-ariakit/dialog'
+      fullPath: '/02-ariakit/dialog'
+      preLoaderRoute: typeof R02AriakitDialogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/02-ariakit/checkbox': {
@@ -419,6 +439,7 @@ const rootRouteChildren: RootRouteChildren = {
   R02Ariakit00IntroRoute: R02Ariakit00IntroRoute,
   R02AriakitButtonRoute: R02AriakitButtonRoute,
   R02AriakitCheckboxRoute: R02AriakitCheckboxRoute,
+  R02AriakitDialogRoute: R02AriakitDialogRoute,
   R02AriakitSelectRoute: R02AriakitSelectRoute,
 }
 export const routeTree = rootRouteImport

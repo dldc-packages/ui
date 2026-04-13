@@ -6,12 +6,7 @@ import { Merge } from "type-fest";
 export type ButtonProps = Merge<AKButton.ButtonProps, TypeOfPropsKeys<typeof CButton.buttonProps>>;
 
 export function Button(inProps: ButtonProps) {
-  const [cProps, akProps] = extractProps(inProps, CButton.buttonProps);
-  const { children, ...restAkProps } = akProps;
-  return (
-    <CButton.Button render={<AKButton.Button {...restAkProps} />} {...cProps}>
-      {children}
-    </CButton.Button>
-  );
+  const [cProps, { children, ...akProps }] = extractProps(inProps, CButton.buttonProps);
+  return <CButton.Button render={<AKButton.Button {...akProps} />} {...cProps} children={children} />;
 }
 Button.displayName = "Button";

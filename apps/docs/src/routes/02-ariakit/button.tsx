@@ -1,6 +1,7 @@
 import { Button } from "@dldc/ui-ariakit/button";
 import { Prose } from "@dldc/ui-components/prose";
 import { createFileRoute } from "@tanstack/react-router";
+import { HouseIcon } from "lucide-react";
 
 import { StoryLayout } from "@/components/StoryLayout";
 
@@ -16,7 +17,10 @@ function RouteComponent() {
         <p>
           Renders <code>Ariakit.Button</code> with a render of <code>Button</code>
         </p>
-        <Button>Button</Button>
+        <div className="flex flex-row gap-3">
+          <Button>Button</Button>
+          <Button startIcon={<HouseIcon />}>Button</Button>
+        </div>
       </Prose>
     </StoryLayout>
   );
