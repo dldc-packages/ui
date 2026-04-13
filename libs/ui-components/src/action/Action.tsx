@@ -80,6 +80,8 @@ export function Action(inProps: ActionProps) {
     baseVariant = "surface",
     interactive = false,
     disabled = false,
+    "data-hover": dataHover,
+    "data-focus-visible": dataFocusVisible,
   } = localAction;
 
   const isDisabledAndInteractive = disabled && interactive;
@@ -132,6 +134,8 @@ export function Action(inProps: ActionProps) {
     className: clsx(designClass, actionLayoutStylesClasses, contentClass, className),
     style: { ...layoutInline, ...style },
     "aria-disabled": isDisabledAndInteractive,
+    "data-hover": dataHover,
+    "data-focus-visible": dataFocusVisible,
     ref,
     ...htmlProps,
     children: applyProviders(

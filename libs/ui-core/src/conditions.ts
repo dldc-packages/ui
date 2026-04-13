@@ -2,7 +2,7 @@ export const isHover = `:is(:hover, [data-hover])`;
 export const isDisabled = `:is(:disabled, [disabled], [data-disabled], [aria-disabled=true])`;
 export const isFocusWithin = `:is(:focus-within, [data-focus-within])`;
 export const isFocusVisible = `:is(:focus-visible, [data-focus-visible])`;
-export const isFocusWithinVisible = `:is(:focus-visible, :has(:focus-visible))`;
+export const isFocusWithinVisible = `:is(:focus-visible, [data-focus-visible], :has(:focus-visible, [data-focus-visible]))`;
 export const isFocus = `:is(:focus, [data-focus])`;
 export const isBefore = "::before";
 export const isAfter = "::after";
