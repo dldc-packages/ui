@@ -1,6 +1,6 @@
 {
   "name": "@dldc/ui-core-tailwind-plugin",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": false,
   "repository": {
     "url": "https://github.com/dldc-packages/ui"

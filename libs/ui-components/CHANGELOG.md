@@ -1,5 +1,29 @@
 # @dldc/ui-components
 
+## 1.5.0
+
+### Minor Changes
+
+- 708ee31: Add Dialog scrollable prop and document dialog scroll behavior examples.
+
+### Patch Changes
+
+- 138dbfd: Add Ariakit dialog documentation and align dialog wrappers with dldc button, typography, backdrop, and render behavior.
+- 3b20b74: Add a composed dialog API to ui-patterns and update docs/readmes to clarify the architecture layers from ui-styles to ui-patterns.
+- 66cef5e: Upgrade deps
+- f8b820b: Clean up docs element-printing options by renaming `replacePropsRow` to `replacePropsRaw` and update related widgets.
+
+  Simplify `DialogPositioner` props in `@dldc/ui-components/dialog` to use base div props.
+
+- ac02046: Support Action hover and focus-visible styling via data attributes.
+- Updated dependencies [3b20b74]
+- Updated dependencies [66cef5e]
+- Updated dependencies [78c7c15]
+- Updated dependencies [ac02046]
+  - @dldc/ui-styles@1.4.2
+  - @dldc/react-utils@1.2.2
+  - @dldc/ui-core@1.4.2
+
 ## 1.4.1
 
 ### Patch Changes
