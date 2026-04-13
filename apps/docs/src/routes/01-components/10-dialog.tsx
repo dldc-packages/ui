@@ -25,6 +25,10 @@ function RouteComponent() {
           accessibility behavior, or dismissal logic.
         </p>
         <p>
+          They also do not manage body scroll lock or backdrop rendering. Compose those behaviors in your dialog state
+          layer (for example with a headless dialog implementation).
+        </p>
+        <p>
           For behavior, compose them with a headless dialog implementation such as <code>@dldc/ui-ariakit/dialog</code>.
         </p>
 

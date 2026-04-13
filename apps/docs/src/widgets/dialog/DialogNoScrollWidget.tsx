@@ -42,10 +42,6 @@ export function DialogNoScrollWidget({ className, ...props }: ComponentPropsWith
       </CodeHighlight>
 
       <GeometryPaper background="900" className="space-y-3 p-3" rounded="2" skipProviders>
-        <p className="text-sm text-neutral-300">
-          With <code>scrollable=&#123;false&#125;</code>, the root layer does not scroll. Put overflow handling inside
-          your dialog body.
-        </p>
         <Button color="orange" onClick={() => setShow(true)}>
           Open Non-Scrollable Root Dialog
         </Button>
