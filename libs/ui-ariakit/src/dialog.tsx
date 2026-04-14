@@ -27,14 +27,7 @@ export type DialogHeadingProps = Merge<
 >;
 export function DialogHeading(inProps: DialogHeadingProps) {
   const [cProps, akProps] = extractProps(inProps, CTypography.typographyProps);
-  return (
-    <CTypography.Typography
-      contentSize="6"
-      fontWeight="semibold"
-      {...cProps}
-      render={<AKDialog.DialogHeading {...akProps} />}
-    />
-  );
+  return <CTypography.Typography fontWeight="semibold" {...cProps} render={<AKDialog.DialogHeading {...akProps} />} />;
 }
 DialogHeading.displayName = "DialogHeading";
 

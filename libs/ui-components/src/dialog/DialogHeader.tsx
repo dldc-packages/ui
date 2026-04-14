@@ -45,7 +45,10 @@ export function DialogHeader(inProps: DialogHeaderProps) {
 
   const { paddingVarName, nextPaddingDefaultContext } = usePadding({});
   const { sizeVarName } = useSize({});
-  const { contentSize, contentSizeVarName, nextContentSizeDefaultContext } = useContentSize(localContentSize);
+  const { contentSize, contentSizeVarName, nextContentSizeDefaultContext, parentContentSizeVarName } = useContentSize({
+    contentSize: 8,
+    ...localContentSize,
+  });
 
   const [dialogHeaderClass, dialogHeaderInline] = dialogHeaderStyles();
 
@@ -54,6 +57,7 @@ export function DialogHeader(inProps: DialogHeaderProps) {
     contentSizeVarName,
     paddingVarName,
     sizeVarName,
+    parentContentSizeVarName,
   });
 
   const content = (

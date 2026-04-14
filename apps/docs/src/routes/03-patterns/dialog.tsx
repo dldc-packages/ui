@@ -39,9 +39,7 @@ function RouteComponent() {
           <li>
             A required <code>title</code> prop rendered as the dialog heading
           </li>
-          <li>
-            Full compatibility with base Ariakit dialog props
-          </li>
+          <li>Full compatibility with base Ariakit dialog props</li>
         </ul>
 
         <h2>Example</h2>
@@ -53,24 +51,25 @@ function RouteComponent() {
 
 function DialogPatternExample() {
   const example = (
-    <UIDialog.DialogProvider>
-      <UIDialog.DialogDisclosure startIcon={<Trash2Icon />}>Delete project</UIDialog.DialogDisclosure>
+    <Dialog
+      title="Delete project?"
+      size="sm"
+      disclosure={<UIDialog.DialogDisclosure startIcon={<Trash2Icon />}>Delete project</UIDialog.DialogDisclosure>}
+      startIcon={<Trash2Icon />}
+    >
+      <UIDialog.DialogDescription>
+        This action permanently removes the project and cannot be undone.
+      </UIDialog.DialogDescription>
 
-      <Dialog title="Delete project?" size="sm">
-        <UIDialog.DialogDescription>
-          This action permanently removes the project and cannot be undone.
-        </UIDialog.DialogDescription>
-
-        <div className="mt-4 flex justify-end gap-2">
-          <UIDialog.DialogDismiss variant="ghost" startIcon={<XIcon />}>
-            Cancel
-          </UIDialog.DialogDismiss>
-          <UIDialog.DialogDismiss color="red" startIcon={<Trash2Icon />}>
-            Delete
-          </UIDialog.DialogDismiss>
-        </div>
-      </Dialog>
-    </UIDialog.DialogProvider>
+      <div className="mt-4 flex justify-end gap-2">
+        <UIDialog.DialogDismiss variant="ghost" startIcon={<XIcon />}>
+          Cancel
+        </UIDialog.DialogDismiss>
+        <UIDialog.DialogDismiss color="red" startIcon={<Trash2Icon />}>
+          Delete
+        </UIDialog.DialogDismiss>
+      </div>
+    </Dialog>
   );
 
   return (
