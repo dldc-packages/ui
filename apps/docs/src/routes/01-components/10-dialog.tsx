@@ -6,6 +6,7 @@ import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { DialogBasicWidget } from "@/widgets/dialog/DialogBasicWidget";
 import { DialogContainerBasicWidget } from "@/widgets/dialog/DialogContainerBasicWidget";
+import { DialogHeaderWidget } from "@/widgets/dialog/DialogHeaderWidget";
 import { DialogNoScrollWidget } from "@/widgets/dialog/DialogNoScrollWidget";
 import { DialogScrollWidget } from "@/widgets/dialog/DialogScrollWidget";
 import { DialogSizeWidget } from "@/widgets/dialog/DialogSizeWidget";
@@ -72,6 +73,20 @@ function RouteComponent() {
           handle overflow inside your dialog content.
         </p>
         <DialogNoScrollWidget className={cn(notProseClass, proseBleedClass)} />
+
+        <h2>DialogHeader</h2>
+
+        <p>
+          <code>DialogHeader</code> is a layout-only header row for dialog content. It does not add dialog semantics or
+          behavior by itself, so use it when you want the styling and content-size propagation without wrapping content
+          in headless dialog primitives.
+        </p>
+        <p>
+          The component accepts a <code>title</code> plus optional icon props or richer slot props on both sides of the
+          title.
+        </p>
+
+        <DialogHeaderWidget className={cn(notProseClass, proseBleedClass)} />
       </Prose>
     </StoryLayout>
   );

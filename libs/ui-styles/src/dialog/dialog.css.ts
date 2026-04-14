@@ -83,3 +83,20 @@ export const dialogLayoutClass = style(
     padding: paddingVar,
   }),
 );
+
+export const dialogFooterClass = style(
+  withLayer({
+    display: "inline-flex",
+    justifyContent: "flex-end",
+    gap: paddingVar,
+  }),
+);
+
+export const dialogHeaderClass = style(
+  withLayer({
+    display: "flex",
+    alignItems: "center",
+    gap: paddingVar,
+    minWidth: 0,
+  }),
+);

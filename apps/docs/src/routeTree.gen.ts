@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as R00PlaygroundRouteImport } from './routes/00-playground'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R03PatternsDialogRouteImport } from './routes/03-patterns/dialog'
 import { Route as R03Patterns00IntroRouteImport } from './routes/03-patterns/00-intro'
 import { Route as R02AriakitSelectRouteImport } from './routes/02-ariakit/select'
 import { Route as R02AriakitDialogRouteImport } from './routes/02-ariakit/dialog'
@@ -38,6 +39,11 @@ const R00PlaygroundRoute = R00PlaygroundRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R03PatternsDialogRoute = R03PatternsDialogRouteImport.update({
+  id: '/03-patterns/dialog',
+  path: '/03-patterns/dialog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R03Patterns00IntroRoute = R03Patterns00IntroRouteImport.update({
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
   '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
+  '/03-patterns/dialog': typeof R03PatternsDialogRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -180,6 +187,7 @@ export interface FileRoutesByTo {
   '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
   '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
+  '/03-patterns/dialog': typeof R03PatternsDialogRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -203,6 +211,7 @@ export interface FileRoutesById {
   '/02-ariakit/dialog': typeof R02AriakitDialogRoute
   '/02-ariakit/select': typeof R02AriakitSelectRoute
   '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
+  '/03-patterns/dialog': typeof R03PatternsDialogRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -227,6 +236,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/dialog'
     | '/02-ariakit/select'
     | '/03-patterns/00-intro'
+    | '/03-patterns/dialog'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -249,6 +259,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/dialog'
     | '/02-ariakit/select'
     | '/03-patterns/00-intro'
+    | '/03-patterns/dialog'
   id:
     | '__root__'
     | '/'
@@ -271,6 +282,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/dialog'
     | '/02-ariakit/select'
     | '/03-patterns/00-intro'
+    | '/03-patterns/dialog'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -294,6 +306,7 @@ export interface RootRouteChildren {
   R02AriakitDialogRoute: typeof R02AriakitDialogRoute
   R02AriakitSelectRoute: typeof R02AriakitSelectRoute
   R03Patterns00IntroRoute: typeof R03Patterns00IntroRoute
+  R03PatternsDialogRoute: typeof R03PatternsDialogRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -310,6 +323,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/03-patterns/dialog': {
+      id: '/03-patterns/dialog'
+      path: '/03-patterns/dialog'
+      fullPath: '/03-patterns/dialog'
+      preLoaderRoute: typeof R03PatternsDialogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/03-patterns/00-intro': {
@@ -462,6 +482,7 @@ const rootRouteChildren: RootRouteChildren = {
   R02AriakitDialogRoute: R02AriakitDialogRoute,
   R02AriakitSelectRoute: R02AriakitSelectRoute,
   R03Patterns00IntroRoute: R03Patterns00IntroRoute,
+  R03PatternsDialogRoute: R03PatternsDialogRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

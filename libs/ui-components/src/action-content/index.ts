@@ -1,2 +1,2 @@
+export * from "../icon-slot/IconSlot";
 export * from "./ActionContentFragment";
-export * from "./ActionSideSlot";

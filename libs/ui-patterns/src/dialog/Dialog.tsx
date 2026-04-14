@@ -1,28 +1,28 @@
-import { createPropsKeys, extractProps, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import * as UIDialog from "@dldc/ui-ariakit/dialog";
 import { ReactNode } from "react";
 import { Merge } from "type-fest";
 
 import { DialogHeader } from "./DialogHeader";
 
-export interface DialogSpecificProps {
-  title: string | ReactNode;
-}
+export type DialogProps = Merge<
+  UIDialog.DialogProps,
+  {
+    header?: ReactNode;
+    footer?: ReactNode;
 
-export const dialogSpecificProps = createPropsKeys<DialogSpecificProps>({
-  title: null,
-});
-
-export type DialogProps = Merge<UIDialog.DialogProps, TypeOfPropsKeys<typeof dialogSpecificProps>>;
+    // DialogHeader props
+    title: string | ReactNode;
+  }
+>;
 
 export function Dialog(inProps: DialogProps) {
-  const [localDialogSpecific, props] = extractProps(inProps, dialogSpecificProps);
-  const { title } = localDialogSpecific;
-  const { children, ...dialogProps } = props;
+  const { title, children, header, ...dialogProps } = inProps;
+
+  const resolvedHeader = header ?? <DialogHeader title={title} />;
 
   return (
     <UIDialog.Dialog {...dialogProps}>
-      <DialogHeader title={title} />
+      {resolvedHeader}
       {children}
     </UIDialog.Dialog>
   );

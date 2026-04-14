@@ -1,38 +1,32 @@
-import { createPropsKeys, extractProps, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import * as UIDialog from "@dldc/ui-ariakit/dialog";
-import { ActionNestedContent } from "@dldc/ui-components/action";
+import { DialogHeader as UIComponentsDialogHeader } from "@dldc/ui-components/dialog";
 import { XIcon } from "lucide-react";
-import { ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 
-export interface DialogHeaderSpecificProps {
-  title: string | ReactNode;
-  startIcon?: ReactNode;
-}
-
-export const dialogHeaderProps = createPropsKeys<DialogHeaderSpecificProps>({
-  title: null,
-  startIcon: null,
-});
-
-export type DialogHeaderProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof dialogHeaderProps>>;
+export type DialogHeaderProps = ComponentPropsBaseWith<
+  "div",
+  {
+    title: string | ReactNode;
+    startIcon?: ReactNode;
+    endAction?: ReactNode;
+  }
+>;
 
 export function DialogHeader(inProps: DialogHeaderProps) {
-  const [localDialogHeaderSpecific, props] = extractProps(inProps, dialogHeaderProps);
-  const { title, startIcon } = localDialogHeaderSpecific;
-  const { children, render, ...htmlProps } = props;
+  const { title, startIcon, endAction, ...htmlProps } = inProps;
 
   return (
-    <ActionNestedContent startIcon={startIcon} {...htmlProps}>
-      <UIDialog.DialogHeading>{title}</UIDialog.DialogHeading>
-      <UIDialog.DialogDismiss startIcon={<XIcon />} />
-    </ActionNestedContent>
+    <UIComponentsDialogHeader
+      title={<UIDialog.DialogHeading>{title}</UIDialog.DialogHeading>}
+      startIcon={startIcon}
+      endSlot={
+        <Fragment>
+          {endAction}
+          <UIDialog.DialogDismiss startIcon={<XIcon />} />
+        </Fragment>
+      }
+      {...htmlProps}
+    />
   );
-
-  // return createRender("div", render, {
-  //   ...htmlProps,
-  //   children: (
-
-  //   )
-  // });
 }

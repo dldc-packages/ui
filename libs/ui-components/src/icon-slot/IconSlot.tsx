@@ -4,7 +4,7 @@ import { Fragment } from "react/jsx-runtime";
 import { IconBox } from "../icon-box/IconBox";
 import { LoadingIcon } from "../loading-icon";
 
-type ActionSideSlotProps = {
+type IconSlotProps = {
   /**
    * If slot is defined, it takes precedence over all other props.
    */
@@ -18,7 +18,7 @@ type ActionSideSlotProps = {
   className?: string;
 };
 
-export function ActionSideSlot(props: ActionSideSlotProps) {
+export function IconSlot(props: IconSlotProps) {
   const { slot, icon, loading, isItemMainIcon, isIconOnly, style, className } = props;
 
   if (slot) {
@@ -39,4 +39,4 @@ export function ActionSideSlot(props: ActionSideSlotProps) {
   return null;
 }
 
-ActionSideSlot.displayName = "ActionSideSlot";
+IconSlot.displayName = "IconSlot";

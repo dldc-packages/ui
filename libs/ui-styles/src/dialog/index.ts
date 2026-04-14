@@ -3,6 +3,8 @@ import clsx from "clsx";
 import { CSSProperties } from "../utils/types";
 
 import {
+  dialogFooterClass,
+  dialogHeaderClass,
   dialogLayoutClass,
   dialogPositionerClass,
   dialogRootClass,
@@ -29,4 +31,12 @@ export interface DialogStylesParams {
 
 export function dialogClass({ size, layout }: DialogStylesParams): string {
   return clsx(dialogSizeVariantsClass[size], layout && dialogLayoutClass);
+}
+
+export function dialogHeaderStyles(): [className: string, styles: CSSProperties] {
+  return [dialogHeaderClass, {}];
+}
+
+export function dialogFooterStyles(): [className: string, styles: CSSProperties] {
+  return [dialogFooterClass, {}];
 }

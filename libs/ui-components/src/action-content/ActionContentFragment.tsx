@@ -3,7 +3,7 @@ import { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-conten
 import { ellipsisClass } from "@dldc/ui-styles/ellipsis";
 import { Fragment } from "react/jsx-runtime";
 
-import { ActionSideSlot } from "./ActionSideSlot";
+import { IconSlot } from "../icon-slot/IconSlot";
 
 export type TActionContentPaddingMode = "auto" | TActionContentPaddingModeResolved;
 
@@ -81,7 +81,7 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
   const fragment = (
     <Fragment>
       {hasStartSlot && (
-        <ActionSideSlot icon={startIcon} loading={loading} slot={startSlot} isItemMainIcon isIconOnly={iconOnly} />
+        <IconSlot icon={startIcon} loading={loading} slot={startSlot} isItemMainIcon isIconOnly={iconOnly} />
       )}
       {hasChildren &&
         (typeof content === "string" ? (
@@ -92,7 +92,7 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
           content
         ))}
       {hasEndSlot && (
-        <ActionSideSlot
+        <IconSlot
           icon={endIcon}
           slot={endSlot}
           isItemMainIcon={false}
