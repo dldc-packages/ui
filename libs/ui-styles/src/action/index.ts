@@ -56,12 +56,12 @@ interface ActionLayoutStylesParams {
   parentRoundedVarName: string | null;
   defaultRounded: number;
 
-  size: number | null;
+  size: null | number | "autoFromContent";
   sizeVarName: string;
   parentSizeVarName: string | null;
   defaultSize: number;
 
-  contentSize: number | null;
+  contentSize: null | number | "parentSize";
   contentSizeVarName: string;
   parentContentSizeVarName: string | null;
 }
@@ -105,14 +105,17 @@ export function actionLayoutStylesInline({
       parentContentSizeVarName,
       parentPaddingVarName,
       parentSizeVarName,
+      paddingVarName,
       size,
       sizeVarName,
+      contentSizeVarName,
     }),
     ...contentSizeInlineStyles({
       contentSize,
       contentSizeVarName,
       paddingVarName,
       sizeVarName,
+      parentContentSizeVarName,
     }),
   };
 }

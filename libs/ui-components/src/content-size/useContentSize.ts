@@ -1,15 +1,15 @@
 import { useCssVariable } from "@dldc/hooks/use-css-variable";
 import { TDefaultProviderValue } from "@dldc/react-utils/default-provider";
-import { parseMaybeSize } from "@dldc/ui-core/size";
 
 import { useDefaultContentSize } from "./DefaultContentSizeContext";
 import { useParentContentSizeContext } from "./ParentContentSizeContext";
+import { parseContentSizeProps } from "./parseContentSizeProps";
 import { TContentSizeProps, TContentSizePropValue } from "./types";
 
 export interface TUseContentSizeResult {
   contentSizeVarName: string;
   parentContentSizeVarName: string | null;
-  contentSize: number | null;
+  contentSize: number | null | "parentSize";
   nextContentSizeDefaultContext: TDefaultProviderValue<TContentSizePropValue> | undefined;
 }
 
@@ -23,7 +23,7 @@ export function useContentSize(inProps: TContentSizeProps): TUseContentSizeResul
   return {
     contentSizeVarName,
     parentContentSizeVarName: parentContentSize?.contentSizeVarName ?? null,
-    contentSize: parseMaybeSize(inProps.contentSize ?? defaultContentSize),
+    contentSize: parseContentSizeProps(inProps.contentSize ?? defaultContentSize),
     nextContentSizeDefaultContext,
   };
 }

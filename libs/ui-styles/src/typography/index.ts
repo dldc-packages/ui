@@ -13,7 +13,7 @@ import { fontWeightVariantsClass } from "./typography.css";
 export { fontWeightVariantsClass };
 
 export interface TypographyStylesParams {
-  contentSize: number | null;
+  contentSize: null | number | "parentSize";
   fontSize: number | null;
   fontWeight: TFontWeight | null;
   contentSizeVarName: string;
@@ -44,7 +44,7 @@ export function typographyStyles({
 }
 
 interface TypographyContentSizeStylesParams {
-  contentSize: number | null;
+  contentSize: null | number | "parentSize";
   contentSizeVarName: string;
   parentContentSizeVarName: string | null;
   defaultContentSize: number;
@@ -91,7 +91,7 @@ function typographyFontSizeInlineStyles({ fontSize }: TypographyFontSizeInlineSt
 }
 
 export interface TContentSizeVarValueParams {
-  contentSize: number | null;
+  contentSize: null | number | "parentSize";
   parentContentSizeVarName: string | null;
   defaultContentSize: number;
   fontSize: number | null;
@@ -103,9 +103,18 @@ function contentSizeVarValue({
   defaultContentSize,
   fontSize,
 }: TContentSizeVarValueParams) {
-  if (contentSize !== null) {
+  if (contentSize === "parentSize") {
+    // Note: this is the default behavior of typography: take contentSize of parent content-size.
+    // we handle this case only for sake of completeness
+    if (parentContentSizeVarName) {
+      return css.var(parentContentSizeVarName);
+    }
+    return null;
+  }
+  if (typeof contentSize === "number") {
     return css.number(contentSize);
   }
+  contentSize satisfies null;
   if (fontSize !== null) {
     // Compute contentSize (lineHeight) from fontSize
     return css.roundDown(css.multiply(css.number(fontSize), 1.4), UNIT_IN_REM);
@@ -114,5 +123,5 @@ function contentSizeVarValue({
   if (!parentContentSizeVarName) {
     return css.number(defaultContentSize);
   }
-  return null;
+  return css.var(parentContentSizeVarName);
 }

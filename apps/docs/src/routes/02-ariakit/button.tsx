@@ -20,6 +20,7 @@ function RouteComponent() {
         <div className="flex flex-row gap-3">
           <Button>Button</Button>
           <Button startIcon={<HouseIcon />}>Button</Button>
+          <Button startIcon={<HouseIcon />} />
         </div>
       </Prose>
     </StoryLayout>

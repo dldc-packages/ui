@@ -39,22 +39,24 @@ function RouteComponent() {
         <p>
           Padding {roundToQuarter(padding)} - Inner Padding {roundToQuarter(innerPadding)}
         </p>
-        <Action
-          startSlot={<Action startIcon={<HouseIcon />} variant="solid" />}
-          rounded={8}
-          size={20}
-          paddingMode="icon"
-          padding={padding}
-        >
-          <span>Hello</span>
-          <ActionNestedContent
-            padding={innerPadding}
-            endSlot={<Action startIcon={<HouseIcon />} variant="solid" />}
-            className="flex-1"
+        <div className="flex flex-col gap-3">
+          <Action
+            startSlot={<Action startIcon={<HouseIcon />} variant="solid" />}
+            rounded={8}
+            size={20}
+            paddingMode="icon"
+            padding={padding}
           >
-            World
-          </ActionNestedContent>
-        </Action>
+            <span>Hello</span>
+            <ActionNestedContent
+              padding={innerPadding}
+              endSlot={<Action startIcon={<HouseIcon />} variant="solid" />}
+              className="flex-1"
+            >
+              World
+            </ActionNestedContent>
+          </Action>
+        </div>
       </Prose>
     </StoryLayout>
   );

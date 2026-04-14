@@ -30,6 +30,7 @@ import { Route as R01Components03DefaultProvidersRouteImport } from './routes/01
 import { Route as R01Components02ActionGroupRouteImport } from './routes/01-components/02-action-group'
 import { Route as R01Components01ActionRouteImport } from './routes/01-components/01-action'
 import { Route as R01Components00IntroRouteImport } from './routes/01-components/00-intro'
+import { Route as R01Components99Advanced00SizeAutoFromContentRouteImport } from './routes/01-components/99-advanced/00-size-auto-from-content'
 
 const R00PlaygroundRoute = R00PlaygroundRouteImport.update({
   id: '/00-playground',
@@ -142,6 +143,12 @@ const R01Components00IntroRoute = R01Components00IntroRouteImport.update({
   path: '/01-components/00-intro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R01Components99Advanced00SizeAutoFromContentRoute =
+  R01Components99Advanced00SizeAutoFromContentRouteImport.update({
+    id: '/01-components/99-advanced/00-size-auto-from-content',
+    path: '/01-components/99-advanced/00-size-auto-from-content',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -165,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/02-ariakit/select': typeof R02AriakitSelectRoute
   '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
   '/03-patterns/dialog': typeof R03PatternsDialogRoute
+  '/01-components/99-advanced/00-size-auto-from-content': typeof R01Components99Advanced00SizeAutoFromContentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -188,6 +196,7 @@ export interface FileRoutesByTo {
   '/02-ariakit/select': typeof R02AriakitSelectRoute
   '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
   '/03-patterns/dialog': typeof R03PatternsDialogRoute
+  '/01-components/99-advanced/00-size-auto-from-content': typeof R01Components99Advanced00SizeAutoFromContentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -212,6 +221,7 @@ export interface FileRoutesById {
   '/02-ariakit/select': typeof R02AriakitSelectRoute
   '/03-patterns/00-intro': typeof R03Patterns00IntroRoute
   '/03-patterns/dialog': typeof R03PatternsDialogRoute
+  '/01-components/99-advanced/00-size-auto-from-content': typeof R01Components99Advanced00SizeAutoFromContentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/select'
     | '/03-patterns/00-intro'
     | '/03-patterns/dialog'
+    | '/01-components/99-advanced/00-size-auto-from-content'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/select'
     | '/03-patterns/00-intro'
     | '/03-patterns/dialog'
+    | '/01-components/99-advanced/00-size-auto-from-content'
   id:
     | '__root__'
     | '/'
@@ -283,6 +295,7 @@ export interface FileRouteTypes {
     | '/02-ariakit/select'
     | '/03-patterns/00-intro'
     | '/03-patterns/dialog'
+    | '/01-components/99-advanced/00-size-auto-from-content'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -307,6 +320,7 @@ export interface RootRouteChildren {
   R02AriakitSelectRoute: typeof R02AriakitSelectRoute
   R03Patterns00IntroRoute: typeof R03Patterns00IntroRoute
   R03PatternsDialogRoute: typeof R03PatternsDialogRoute
+  R01Components99Advanced00SizeAutoFromContentRoute: typeof R01Components99Advanced00SizeAutoFromContentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -458,6 +472,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R01Components00IntroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/01-components/99-advanced/00-size-auto-from-content': {
+      id: '/01-components/99-advanced/00-size-auto-from-content'
+      path: '/01-components/99-advanced/00-size-auto-from-content'
+      fullPath: '/01-components/99-advanced/00-size-auto-from-content'
+      preLoaderRoute: typeof R01Components99Advanced00SizeAutoFromContentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -483,6 +504,8 @@ const rootRouteChildren: RootRouteChildren = {
   R02AriakitSelectRoute: R02AriakitSelectRoute,
   R03Patterns00IntroRoute: R03Patterns00IntroRoute,
   R03PatternsDialogRoute: R03PatternsDialogRoute,
+  R01Components99Advanced00SizeAutoFromContentRoute:
+    R01Components99Advanced00SizeAutoFromContentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

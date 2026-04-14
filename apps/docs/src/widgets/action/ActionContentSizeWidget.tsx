@@ -13,24 +13,22 @@ export function ActionContentSizeWidget({ className, ...props }: ComponentPropsW
 
   const [highlighted, setHighlighted] = useState<TDesignSize | null>();
 
+  function renderElement(contentSize: TDesignSize, key?: string) {
+    return (
+      <Action key={key} size="12" contentSize={contentSize}>
+        Content {contentSize}
+      </Action>
+    );
+  }
+
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
-        {highlighted
-          ? printElement(
-              <Action size="12" contentSize={highlighted}>
-                Content {highlighted}
-              </Action>,
-            )
-          : "// Hover an element to see the code"}
+        {highlighted ? printElement(renderElement(highlighted)) : "// Hover an element to see the code"}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={contentSizes}
-        renderCell={({ row: contentSize, key }) => (
-          <Action key={key} size="12" contentSize={contentSize}>
-            Content {contentSize}
-          </Action>
-        )}
+        renderCell={({ row: contentSize, key }) => renderElement(contentSize, key)}
         onHighlightedCell={(cell) => setHighlighted(cell?.row ?? null)}
       />
     </div>

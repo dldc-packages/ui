@@ -17,7 +17,7 @@ export interface TPaddingInlineStylesOptions {
   paddingVarName: string;
   padding: number | null;
   defaultPadding: number;
-  contentSize: number | null;
+  contentSize: null | number | "parentSize";
   sizeVarName: string | null;
   contentSizeVarName: string | null;
 }
@@ -37,7 +37,7 @@ interface TPaddingVarValueParams {
   padding: number | null;
   defaultPadding: number;
   sizeVarName: string | null;
-  contentSize: number | null;
+  contentSize: null | number | "parentSize";
   contentSizeVarName: string | null;
 }
 
