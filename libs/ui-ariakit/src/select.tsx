@@ -69,6 +69,6 @@ SelectPopover.displayName = "SelectPopover";
 export type SelectItemProps = Merge<AKSelect.SelectItemProps, TypeOfPropsKeys<typeof CSelect.selectItemProps>>;
 export function SelectItem(inProps: SelectItemProps) {
   const [cProps, akProps] = extractProps(inProps, CSelect.selectItemProps);
-  return <CSelect.SelectItem render={<AKSelect.SelectItem {...akProps} />} {...cProps} />;
+  return <CSelect.SelectItem render={<AKSelect.SelectItem disabled={cProps.disabled} {...akProps} />} {...cProps} />;
 }
 SelectItem.displayName = "SelectItem";
