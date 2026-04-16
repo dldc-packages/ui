@@ -1,5 +1,20 @@
 # @dldc/ui-base
 
+## 1.3.0
+
+### Minor Changes
+
+- c15c818: Refactor to extract item from action
+
+### Patch Changes
+
+- Updated dependencies [7c4e40b]
+- Updated dependencies [c15c818]
+- Updated dependencies [6fc97ce]
+- Updated dependencies [381e1de]
+- Updated dependencies [93d5df1]
+  - @dldc/ui-components@1.6.0
+
 ## 1.2.1
 
 ### Patch Changes

@@ -1,5 +1,21 @@
 # @dldc/ui-styles
 
+## 1.5.0
+
+### Minor Changes
+
+- 7c4e40b: Add reusable dialog header and footer primitives and a higher-level dialog pattern.
+- c15c818: Refactor to extract item from action
+- 6fc97ce: Add parent-aware content sizing and auto-from-content sizing for Action-based components.
+- 93d5df1: Improve doc and fix providers issue
+
+### Patch Changes
+
+- Updated dependencies [c15c818]
+- Updated dependencies [93d5df1]
+  - @dldc/ui-core@1.5.0
+  - @dldc/utils@1.3.0
+
 ## 1.4.2
 
 ### Patch Changes

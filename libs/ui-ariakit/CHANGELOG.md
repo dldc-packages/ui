@@ -1,5 +1,23 @@
 # @dldc/ui-ariakit
 
+## 1.5.0
+
+### Minor Changes
+
+- c15c818: Refactor to extract item from action
+
+### Patch Changes
+
+- 381e1de: Simplify the dialog pattern API around built-in disclosure and header composition.
+- 2127c88: Forward SelectItem disabled state to the underlying Ariakit SelectItem renderer.
+- Updated dependencies [7c4e40b]
+- Updated dependencies [c15c818]
+- Updated dependencies [6fc97ce]
+- Updated dependencies [381e1de]
+- Updated dependencies [93d5df1]
+  - @dldc/ui-components@1.6.0
+  - @dldc/react-utils@1.3.0
+
 ## 1.4.2
 
 ### Patch Changes

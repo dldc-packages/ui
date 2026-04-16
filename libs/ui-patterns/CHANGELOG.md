@@ -1,5 +1,28 @@
 # @dldc/ui-patterns
 
+## 1.5.0
+
+### Minor Changes
+
+- 7c4e40b: Add reusable dialog header and footer primitives and a higher-level dialog pattern.
+- c15c818: Refactor to extract item from action
+- 381e1de: Simplify the dialog pattern API around built-in disclosure and header composition.
+
+### Patch Changes
+
+- Updated dependencies [7c4e40b]
+- Updated dependencies [c15c818]
+- Updated dependencies [6fc97ce]
+- Updated dependencies [381e1de]
+- Updated dependencies [2127c88]
+- Updated dependencies [93d5df1]
+  - @dldc/ui-components@1.6.0
+  - @dldc/ui-styles@1.5.0
+  - @dldc/react-utils@1.3.0
+  - @dldc/ui-ariakit@1.5.0
+  - @dldc/ui-core@1.5.0
+  - @dldc/utils@1.3.0
+
 ## 1.4.0
 
 ### Minor Changes
