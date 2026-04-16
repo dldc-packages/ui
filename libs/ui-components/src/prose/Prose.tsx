@@ -1,9 +1,9 @@
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { sizeToRemString, TDesignSize } from "@dldc/ui-core/size";
 import { contentSizeVar } from "@dldc/ui-core/variables";
-import { proseStyles, TProseColor } from "@dldc/ui-styles/prose";
+import { createProseLook, TProseColor } from "@dldc/ui-styles/prose";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
-import clsx from "clsx";
 
 export type ProseProps = ComponentPropsBaseWith<
   "div",
@@ -14,12 +14,15 @@ export type ProseProps = ComponentPropsBaseWith<
   }
 >;
 
-export function Prose({ color, invert, className, size = 7, ...props }: ProseProps) {
-  const proseClass = proseStyles({ color, invert });
+export function Prose({ color, invert, className, style, size = 7, ...props }: ProseProps) {
+  const proseLook = createProseLook({ color, invert });
   return (
     <div
-      className={clsx(proseClass, className)}
-      style={size ? assignInlineVars({ [contentSizeVar]: sizeToRemString(size) }) : undefined}
+      {...mergeLooks(
+        proseLook,
+        look(null, size ? assignInlineVars({ [contentSizeVar]: sizeToRemString(size) }) : undefined),
+        look(className, style),
+      )}
       {...props}
     />
   );

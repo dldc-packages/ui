@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { CSSProperties } from "../utils/types";
+import { look, TLook } from "../utils/look";
 
 import {
   dialogFooterClass,
@@ -12,31 +12,31 @@ import {
   dialogSizeVariantsClass,
 } from "./dialog.css";
 
-export interface DialogRootStylesParams {
+export interface TCreateDialogRootLookParams {
   scrollable: boolean;
 }
 
-export function dialogRootStyles({ scrollable }: DialogRootStylesParams): [className: string, styles: CSSProperties] {
-  return [clsx(dialogRootClass, dialogRootScrollableVariantsClass[scrollable ? "scrollable" : "noScrollable"]), {}];
+export function createDialogRootLook({ scrollable }: TCreateDialogRootLookParams): TLook {
+  return look(clsx(dialogRootClass, dialogRootScrollableVariantsClass[scrollable ? "scrollable" : "noScrollable"]));
 }
 
-export function dialogPositionerStyles(): [className: string, styles: CSSProperties] {
-  return [dialogPositionerClass, {}];
+export function createDialogPositionerLook(): TLook {
+  return look(dialogPositionerClass);
 }
 
-export interface DialogStylesParams {
+export interface TCreateDialogLookParams {
   layout: boolean;
   size: "sm" | "md" | "lg" | "xl" | "full";
 }
 
-export function dialogClass({ size, layout }: DialogStylesParams): string {
-  return clsx(dialogSizeVariantsClass[size], layout && dialogLayoutClass);
+export function createDialogLook({ size, layout }: TCreateDialogLookParams): TLook {
+  return look(clsx(dialogSizeVariantsClass[size], layout && dialogLayoutClass));
 }
 
-export function dialogHeaderStyles(): [className: string, styles: CSSProperties] {
-  return [dialogHeaderClass, {}];
+export function createDialogHeaderLook(): TLook {
+  return look(dialogHeaderClass);
 }
 
-export function dialogFooterStyles(): [className: string, styles: CSSProperties] {
-  return [dialogFooterClass, {}];
+export function createDialogFooterLook(): TLook {
+  return look(dialogFooterClass);
 }

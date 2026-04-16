@@ -3,18 +3,18 @@ import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
-import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
-import { actionContentClass } from "@dldc/ui-styles/action-content";
-import { selectItemStyles } from "@dldc/ui-styles/select";
-import clsx from "clsx";
+import { createItemLook } from "@dldc/ui-styles/item";
+import { createItemContentLook } from "@dldc/ui-styles/item-content";
+import { createSelectItemLook } from "@dldc/ui-styles/select";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
-import { actionContentProps, useActionContent } from "../action-content";
 import {
   contentSizeProps,
   DefaultContentSizeProvider,
   ParentContentSizeContextProvider,
   useContentSize,
 } from "../content-size";
+import { itemContentProps, useItemContent } from "../item-content";
 import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
 import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
 import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
@@ -36,7 +36,7 @@ export const selectItemSpecificProps = createPropsKeys<SelectItemSpecificProps>(
 });
 
 export const selectItemProps = mergePropsKeys(
-  actionContentProps,
+  itemContentProps,
   paddingProps,
   roundedProps,
   sizeProps,
@@ -60,9 +60,9 @@ export function SelectItem(inProps: SelectItemProps) {
   const { sizeVarName, parentSizeVarName, size, nextSizeDefaultContext } = useSize(localSize);
   const { contentSize, contentSizeVarName, parentContentSizeVarName, nextContentSizeDefaultContext } =
     useContentSize(localContentSize);
-  const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(localActionContent, children);
+  const { startPaddingMode, endPaddingMode, fragment, noLayout } = useItemContent(localActionContent, children);
 
-  const layoutInline = actionLayoutStylesInline({
+  const itemLook = createItemLook({
     defaultSize: 7,
     defaultRounded: 2,
     defaultPadding: 1,
@@ -80,18 +80,13 @@ export function SelectItem(inProps: SelectItemProps) {
     parentContentSizeVarName,
   });
 
-  const contentClass = actionContentClass({
-    startPaddingMode,
-    endPaddingMode,
-    noLayout,
-  });
+  const itemContentLook = createItemContentLook({ startPaddingMode, endPaddingMode, noLayout });
 
-  const [selectItemClassName, selectItemInline] = selectItemStyles({ color, disabled });
+  const selectItemLook = createSelectItemLook({ color, disabled });
 
   return createRender("div", render, {
     ref,
-    className: clsx(contentClass, actionLayoutStylesClasses, selectItemClassName, className),
-    style: { ...layoutInline, ...selectItemInline, ...style },
+    ...mergeLooks(itemLook, itemContentLook, selectItemLook, look(className, style)),
     "data-disabled": disabled ? "" : undefined,
     "data-color": color,
     ...htmlProps,

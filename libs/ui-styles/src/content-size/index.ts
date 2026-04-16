@@ -4,13 +4,13 @@ import { contentSizeVar } from "@dldc/ui-core/variables";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
 import { MIN_AUTO_HEIGHT } from "../size";
-import { CSSProperties } from "../utils/types";
+import { look, TLook } from "../utils/look";
 
 import { contentSizeLineHeightClass } from "./contentSize.css";
 
 export { contentSizeLineHeightClass };
 
-interface TContentSizeInlineStylesOptions {
+interface TContentSizeLookParams {
   contentSizeVarName: string;
   contentSize: null | number | "parentSize";
   parentContentSizeVarName: string | null;
@@ -18,19 +18,22 @@ interface TContentSizeInlineStylesOptions {
   sizeVarName: string;
 }
 
-export function contentSizeInlineStyles({
+export function createContentSizeLook({
   contentSizeVarName,
   contentSize,
   paddingVarName,
   sizeVarName,
   parentContentSizeVarName,
-}: TContentSizeInlineStylesOptions): CSSProperties {
-  return assignInlineVars({
-    [contentSizeVarName]: css.maybeSerialize(
-      contentSizeVarValue({ contentSize, paddingVarName, sizeVarName, parentContentSizeVarName }),
-    ),
-    [contentSizeVar]: css.serialize(css.multiply(css.var(contentSizeVarName), UNIT_IN_REM_STRING)),
-  });
+}: TContentSizeLookParams): TLook {
+  return look(
+    null,
+    assignInlineVars({
+      [contentSizeVarName]: css.maybeSerialize(
+        contentSizeVarValue({ contentSize, paddingVarName, sizeVarName, parentContentSizeVarName }),
+      ),
+      [contentSizeVar]: css.serialize(css.multiply(css.var(contentSizeVarName), UNIT_IN_REM_STRING)),
+    }),
+  );
 }
 
 interface TContentSizeVarValueParams {

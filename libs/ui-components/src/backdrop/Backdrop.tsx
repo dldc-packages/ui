@@ -1,9 +1,11 @@
 import { ComponentPropsBase } from "@dldc/react-utils/types";
-import { backdropClass } from "@dldc/ui-styles/backdrop";
-import clsx from "clsx";
+import { createBackdropLook } from "@dldc/ui-styles/backdrop";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
 export type BackdropProps = ComponentPropsBase<"div">;
 
-export function Backdrop({ className, ...props }: BackdropProps) {
-  return <div className={clsx(backdropClass, className)} {...props} />;
+export function Backdrop({ className, style, ...props }: BackdropProps) {
+  const backdropLook = createBackdropLook();
+
+  return <div {...mergeLooks(backdropLook, look(className, style))} {...props} />;
 }

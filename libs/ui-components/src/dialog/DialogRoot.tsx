@@ -1,8 +1,8 @@
 import { createRender } from "@dldc/react-utils/create-render";
 import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { dialogRootStyles } from "@dldc/ui-styles/dialog";
-import clsx from "clsx";
+import { createDialogRootLook } from "@dldc/ui-styles/dialog";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
 import { dialogScrollableProps } from "./dialogScrollableProps";
 
@@ -16,11 +16,10 @@ export function DialogRoot(inProps: DialogRootProps) {
   const { scrollable = false } = localDialogRoot;
   const { render, className, style, children, ...htmlProps } = props;
 
-  const [dialogRootClass, dialogRootInline] = dialogRootStyles({ scrollable });
+  const dialogRootLook = createDialogRootLook({ scrollable });
 
   return createRender("div", render, {
-    className: clsx(dialogRootClass, className),
-    style: { ...dialogRootInline, ...style },
+    ...mergeLooks(dialogRootLook, look(className, style)),
     children,
     ...htmlProps,
   });

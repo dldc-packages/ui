@@ -4,7 +4,7 @@ import { style, styleVariants } from "@vanilla-extract/css";
 import { paddingVar } from "../padding";
 import { withLayer } from "../utils/layer";
 
-export const actionContentLayoutClass = style(
+export const itemContentLayoutClass = style(
   withLayer({
     display: "inline-flex",
     flexDirection: "row",
@@ -14,13 +14,13 @@ export const actionContentLayoutClass = style(
   }),
 );
 
-export const actionContentStartPaddingClass = styleVariants({
+export const itemContentStartPaddingClass = styleVariants({
   icon: withLayer({ paddingLeft: paddingVar }),
   text: withLayer({ paddingLeft: css.serialize(css.multiply(paddingVar, 1.5)) }),
   none: withLayer({ paddingLeft: 0 }),
 });
 
-export const actionContentEndPaddingClass = styleVariants({
+export const itemContentEndPaddingClass = styleVariants({
   icon: withLayer({ paddingRight: paddingVar }),
   text: withLayer({ paddingRight: css.serialize(css.multiply(paddingVar, 1.5)) }),
   none: withLayer({ paddingRight: 0 }),

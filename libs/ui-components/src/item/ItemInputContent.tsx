@@ -1,18 +1,18 @@
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBase, ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { actionInputContentClass } from "@dldc/ui-styles/action-input";
-import clsx from "clsx";
+import { createItemInputLook } from "@dldc/ui-styles/item-input";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 import { useMemo } from "react";
 
-export interface ActionInputContentSpecificProps {
+export interface ItemInputContentSpecificProps {
   disabled?: boolean;
   onValueChange?: (value: string) => void;
   value?: string;
   onChange?: ComponentPropsBase<"input">["onChange"];
 }
 
-const actionInputProps = mergePropsKeys(
-  createPropsKeys<ActionInputContentSpecificProps>({
+const itemInputProps = mergePropsKeys(
+  createPropsKeys<ItemInputContentSpecificProps>({
     disabled: null,
     onValueChange: null,
     value: null,
@@ -20,12 +20,12 @@ const actionInputProps = mergePropsKeys(
   }),
 );
 
-export type ActionInputContentProps = ComponentPropsBaseWith<"input", TypeOfPropsKeys<typeof actionInputProps>>;
+export type ItemInputContentProps = ComponentPropsBaseWith<"input", TypeOfPropsKeys<typeof itemInputProps>>;
 
-export function ActionInputContent(inProps: ActionInputContentProps) {
-  const [[localProps], props] = extractProps(inProps, actionInputProps.content);
+export function ItemInputContent(inProps: ItemInputContentProps) {
+  const [[localProps], props] = extractProps(inProps, itemInputProps.content);
   const { onValueChange, onChange, disabled, value } = localProps;
-  const { className, ...htmlProps } = props;
+  const { className, style, ...htmlProps } = props;
 
   const inputOnChange = useMemo(() => {
     if (!onValueChange && !onChange) {
@@ -37,9 +37,11 @@ export function ActionInputContent(inProps: ActionInputContentProps) {
     };
   }, [onChange, onValueChange]);
 
+  const itemInputLook = createItemInputLook();
+
   return (
     <input
-      className={clsx(actionInputContentClass, className)}
+      {...mergeLooks(itemInputLook, look(className, style))}
       onChange={inputOnChange}
       disabled={disabled}
       value={value}
@@ -48,4 +50,4 @@ export function ActionInputContent(inProps: ActionInputContentProps) {
   );
 }
 
-ActionInputContent.displayName = "ActionInputContent";
+ItemInputContent.displayName = "ItemInputContent";

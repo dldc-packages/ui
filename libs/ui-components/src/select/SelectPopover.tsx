@@ -1,7 +1,7 @@
 import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { selectPopoverStyles } from "@dldc/ui-styles/select";
-import { clsx } from "clsx";
+import { createSelectPopoverLook } from "@dldc/ui-styles/select";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
 import { GeometryPaper, geometryPaperProps } from "../geometry-paper";
 import { DefaultHoverVariantProvider, DefaultVariantProvider } from "../variant";
@@ -16,14 +16,13 @@ export function SelectPopover(inProps: SelectPopoverProps) {
   const { background, padding = 1, ...geometryPaperProps } = localGeometryPaper;
   const { className, style, children, render, ...htmlProps } = props;
 
-  const [popoverClass, popoverStyles] = selectPopoverStyles();
+  const selectPopoverLook = createSelectPopoverLook();
 
   return (
     <GeometryPaper
       background={background}
-      className={clsx(popoverClass, className)}
-      style={{ ...popoverStyles, ...style }}
       padding={padding}
+      {...mergeLooks(selectPopoverLook, look(className, style))}
       {...geometryPaperProps}
       {...htmlProps}
       render={render}

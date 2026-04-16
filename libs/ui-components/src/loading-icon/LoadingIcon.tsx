@@ -1,5 +1,5 @@
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { createTraceAnimation, spinClass } from "@dldc/ui-styles/animations";
+import { createTraceAnimationLook, spinClass } from "@dldc/ui-styles/animations";
 import clsx from "clsx";
 
 export type LoadingIcon = ComponentPropsBaseWith<
@@ -12,7 +12,7 @@ export type LoadingIcon = ComponentPropsBaseWith<
 >;
 
 export function LoadingIcon({ color = "currentColor", size = 24, strokeWidth = 2 }: LoadingIcon) {
-  const [traceClass, traceInline] = createTraceAnimation(46);
+  const traceAnimationLook = createTraceAnimationLook({ length: 46 });
 
   return (
     <svg
@@ -31,7 +31,7 @@ export function LoadingIcon({ color = "currentColor", size = 24, strokeWidth = 2
       aria-label="Loading"
       aria-busy="true"
     >
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" className={traceClass} style={traceInline} />
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" {...traceAnimationLook} />
     </svg>
   );
 }

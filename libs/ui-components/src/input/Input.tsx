@@ -4,15 +4,16 @@ import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { useCallback, useRef } from "react";
 
-import { Action, ActionInputContent } from "../action";
-import { TActionContentProps } from "../action-content";
+import { Action } from "../action";
 import { TContentSizeProps } from "../content-size";
+import { ItemInputContent } from "../item";
+import { TItemContentProps } from "../item-content";
 import { TPaddingProps } from "../padding";
 import { TRoundedProps } from "../rounded";
 import { TSizeProps } from "../size";
 import { TVariantProps } from "../variant";
 
-export type InputSpecificProps = TActionContentProps &
+export type InputSpecificProps = TItemContentProps &
   TPaddingProps &
   TRoundedProps &
   TSizeProps &
@@ -76,7 +77,7 @@ export function Input({
   const shouldPassIdDown = !children && id;
 
   const childrenResolved = children ?? (
-    <ActionInputContent
+    <ItemInputContent
       id={shouldPassIdDown ? id : undefined}
       value={value}
       onChange={onChange}

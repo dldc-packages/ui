@@ -1,11 +1,16 @@
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
-import { CSSProperties } from "../utils/types";
+import { look, TLook } from "../utils/look";
 
 import { spinClass, traceClass, traceLengthVar } from "./animations.css";
 
 export { spinClass };
 
-export function createTraceAnimation(length: number): [classNames: string, styles: CSSProperties] {
-  return [traceClass, assignInlineVars({ [traceLengthVar]: `${length}px` })];
+export interface TTraceAnimationLookParams {
+  length: number;
+}
+
+export function createTraceAnimationLook(params: TTraceAnimationLookParams): TLook {
+  const { length } = params;
+  return look(traceClass, assignInlineVars({ [traceLengthVar]: `${length}px` }));
 }

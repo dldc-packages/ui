@@ -3,7 +3,7 @@ import { UNIT_IN_REM, UNIT_IN_REM_STRING } from "@dldc/ui-core/size";
 import { roundedVar } from "@dldc/ui-core/variables";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
-import { CSSProperties } from "../utils/types";
+import { look, TLook } from "../utils/look";
 
 import { roundedBorderRadiusClass } from "./rounded.css";
 
@@ -13,7 +13,7 @@ const EXP_DECAY = 0.7;
 const MIN_AUTO_ROUNDED = 0.25;
 const AUTO_ROUNDED_FACTOR = 0.25;
 
-export interface TRoundedInlineStylesOptions {
+export interface TCreateRoundedLookParams {
   roundedVarName: string | null;
   parentPaddingVarName: string | null;
   parentRoundedVarName: string | null;
@@ -22,33 +22,36 @@ export interface TRoundedInlineStylesOptions {
   sizeVarName: string | null;
 }
 
-export function roundedInlineStyles({
+export function createRoundedLook({
   roundedVarName,
   defaultRounded,
   parentPaddingVarName,
   parentRoundedVarName,
   rounded,
   sizeVarName,
-}: TRoundedInlineStylesOptions): CSSProperties {
+}: TCreateRoundedLookParams): TLook | null {
   if (!roundedVarName) {
-    return {};
+    return null;
   }
 
-  return assignInlineVars({
-    [roundedVarName]: css.maybeSerialize(
-      roundedVarValue({
-        rounded,
-        parentPaddingVarName,
-        parentRoundedVarName,
-        defaultRounded,
-        sizeVarName,
-      }),
-    ),
-    [roundedVar]: css.serialize(css.multiply(css.var(roundedVarName), UNIT_IN_REM_STRING)),
-  });
+  return look(
+    null,
+    assignInlineVars({
+      [roundedVarName]: css.maybeSerialize(
+        roundedVarValue({
+          rounded,
+          parentPaddingVarName,
+          parentRoundedVarName,
+          defaultRounded,
+          sizeVarName,
+        }),
+      ),
+      [roundedVar]: css.serialize(css.multiply(css.var(roundedVarName), UNIT_IN_REM_STRING)),
+    }),
+  );
 }
 
-export interface TRoundedVarValueParams {
+interface TRoundedVarValueParams {
   rounded: number | "autoFromSize" | null;
   parentPaddingVarName: string | null;
   parentRoundedVarName: string | null;
@@ -56,7 +59,7 @@ export interface TRoundedVarValueParams {
   defaultRounded: number;
 }
 
-export function roundedVarValue({
+function roundedVarValue({
   rounded,
   parentRoundedVarName,
   parentPaddingVarName,

@@ -1,5 +1,5 @@
 import { Action } from "@dldc/ui-components/action";
-import type { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
+import type { TItemContentPaddingModeResolved } from "@dldc/ui-styles/item-content";
 import { useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -9,11 +9,11 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 export function ActionDirectionalPaddingWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const paddings: TActionContentPaddingModeResolved[] = ["text", "icon", "none"];
+  const paddings: TItemContentPaddingModeResolved[] = ["text", "icon", "none"];
   const propName = ["startPaddingMode", "endPaddingMode"];
 
   const [highlighted, setHighlighted] = useState<{
-    padding: TActionContentPaddingModeResolved;
+    padding: TItemContentPaddingModeResolved;
     propName: (typeof propName)[number];
   } | null>();
 

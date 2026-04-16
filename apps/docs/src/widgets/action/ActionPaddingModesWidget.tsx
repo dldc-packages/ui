@@ -1,5 +1,5 @@
 import { Action } from "@dldc/ui-components/action";
-import type { TActionContentPaddingMode } from "@dldc/ui-components/action-content";
+import type { TItemContentPaddingMode } from "@dldc/ui-components/item-content";
 import { UserIcon } from "lucide-react";
 import { useState, type ComponentPropsWithRef } from "react";
 
@@ -10,7 +10,7 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 export function ActionPaddingModesWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const paddingModes: TActionContentPaddingMode[] = ["auto", "text", "icon", "none"];
+  const paddingModes: TItemContentPaddingMode[] = ["auto", "text", "icon", "none"];
   const examples = [
     { props: { children: "Hello World" } },
     { props: { startIcon: <UserIcon /> } },
@@ -18,7 +18,7 @@ export function ActionPaddingModesWidget({ className, ...props }: ComponentProps
   ];
 
   const [highlighted, setHighlighted] = useState<{
-    padding: TActionContentPaddingMode;
+    padding: TItemContentPaddingMode;
     example: (typeof examples)[number];
   } | null>();
 

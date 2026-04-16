@@ -3,7 +3,7 @@ import { UNIT_IN_REM, UNIT_IN_REM_STRING } from "@dldc/ui-core/size";
 import { paddingVar } from "@dldc/ui-core/variables";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
-import { CSSProperties } from "../utils/types";
+import { look, TLook } from "../utils/look";
 
 import { paddingSpacing } from "./padding.css";
 
@@ -13,7 +13,7 @@ const SIZE_PADDING_PITCH = 0.36;
 const SIZE_PADDING_OFFSET = -0.74;
 const MIN_AUTO_PADDING = 0;
 
-export interface TPaddingInlineStylesOptions {
+export interface TCreatePaddingLookParams {
   paddingVarName: string;
   padding: number | null;
   defaultPadding: number;
@@ -22,15 +22,18 @@ export interface TPaddingInlineStylesOptions {
   contentSizeVarName: string | null;
 }
 
-export function paddingInlineStyles(options: TPaddingInlineStylesOptions): CSSProperties {
+export function createPaddingLook(options: TCreatePaddingLookParams): TLook {
   const { paddingVarName, padding, defaultPadding, sizeVarName, contentSize, contentSizeVarName } = options;
 
-  return assignInlineVars({
-    [paddingVarName]: css.maybeSerialize(
-      paddingVarValue({ padding, sizeVarName, contentSize, contentSizeVarName, defaultPadding }),
-    ),
-    [paddingVar]: css.serialize(css.multiply(css.var(paddingVarName), UNIT_IN_REM_STRING)),
-  });
+  return look(
+    null,
+    assignInlineVars({
+      [paddingVarName]: css.maybeSerialize(
+        paddingVarValue({ padding, sizeVarName, contentSize, contentSizeVarName, defaultPadding }),
+      ),
+      [paddingVar]: css.serialize(css.multiply(css.var(paddingVarName), UNIT_IN_REM_STRING)),
+    }),
+  );
 }
 
 interface TPaddingVarValueParams {
@@ -41,7 +44,7 @@ interface TPaddingVarValueParams {
   contentSizeVarName: string | null;
 }
 
-export function paddingVarValue({
+function paddingVarValue({
   padding,
   sizeVarName,
   contentSize,

@@ -9,7 +9,6 @@
   "types": "./dist/index.d.ts",
   "exports": {
     "./action": "./dist/action/index.js",
-    "./action-content": "./dist/action-content/index.js",
     "./backdrop": "./dist/backdrop/index.js",
     "./button": "./dist/button/index.js",
     "./content-size": "./dist/content-size/index.js",
@@ -21,6 +20,8 @@
     "./icon-box": "./dist/icon-box/index.js",
     "./icon-slot": "./dist/icon-slot/index.js",
     "./input": "./dist/input/index.js",
+    "./item": "./dist/item/index.js",
+    "./item-content": "./dist/item-content/index.js",
     "./label": "./dist/label/index.js",
     "./loading-icon": "./dist/loading-icon/index.js",
     "./padding": "./dist/padding/index.js",
@@ -38,7 +39,8 @@
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",
-    "typecheck": "tsgo --noEmit"
+    "typecheck": "tsgo --noEmit",
+    "typecheck:watch": "tsgo --noEmit --watch"
   },
   "dependencies": {
     "@dldc/hooks": "workspace:^",

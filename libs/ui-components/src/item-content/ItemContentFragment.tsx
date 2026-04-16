@@ -1,13 +1,14 @@
 import { createPropsKeys } from "@dldc/react-utils/props-keys";
-import { TActionContentPaddingModeResolved } from "@dldc/ui-styles/action-content";
-import { ellipsisClass } from "@dldc/ui-styles/ellipsis";
+import { createEllipsisLook } from "@dldc/ui-styles/ellipsis";
+import { TItemContentPaddingModeResolved } from "@dldc/ui-styles/item-content";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 import { Fragment } from "react/jsx-runtime";
 
 import { IconSlot } from "../icon-slot/IconSlot";
 
-export type TActionContentPaddingMode = "auto" | TActionContentPaddingModeResolved;
+export type TItemContentPaddingMode = "auto" | TItemContentPaddingModeResolved;
 
-export interface TActionContentProps {
+export interface TItemContentProps {
   startIcon?: React.ReactNode;
   loading?: boolean;
   startSlot?: React.ReactNode;
@@ -17,7 +18,7 @@ export interface TActionContentProps {
   /**
    * Apply padding to both sides of the content.
    */
-  paddingMode?: TActionContentPaddingMode;
+  paddingMode?: TItemContentPaddingMode;
 
   /**
    * Reduce left padding so the icon is squarely aligned.
@@ -26,7 +27,7 @@ export interface TActionContentProps {
    * - You pass a custom content that has a start icon
    * - You pass a startSlot that is not an icon
    */
-  startPaddingMode?: TActionContentPaddingMode;
+  startPaddingMode?: TItemContentPaddingMode;
 
   /**
    * Reduce right padding so the icon is squarely aligned.
@@ -35,7 +36,7 @@ export interface TActionContentProps {
    * - You pass a custom content that has an end icon
    * - You pass an endSlot that is not an icon
    */
-  endPaddingMode?: TActionContentPaddingMode;
+  endPaddingMode?: TItemContentPaddingMode;
 
   /**
    * If true, the padding and gap are not applied.
@@ -43,14 +44,14 @@ export interface TActionContentProps {
   noLayout?: boolean;
 }
 
-export interface TActionContentResult {
+export interface TItemContentResult {
   fragment: React.ReactNode;
-  startPaddingMode: TActionContentPaddingModeResolved;
-  endPaddingMode: TActionContentPaddingModeResolved;
+  startPaddingMode: TItemContentPaddingModeResolved;
+  endPaddingMode: TItemContentPaddingModeResolved;
   noLayout: boolean;
 }
 
-export function useActionContent(props: TActionContentProps, content?: React.ReactNode): TActionContentResult {
+export function useItemContent(props: TItemContentProps, content?: React.ReactNode): TItemContentResult {
   const {
     startIcon,
     loading,
@@ -71,11 +72,11 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
   const isEmpty = !hasStartSlot && !hasChildren && !hasEndSlot;
 
   const defaultStartPadding = noLayout ? "none" : isEmpty ? "icon" : iconOnly ? "icon" : hasStartSlot ? "icon" : "text";
-  const startPaddingResolved: TActionContentPaddingModeResolved =
+  const startPaddingResolved: TItemContentPaddingModeResolved =
     startPaddingMode === "auto" ? defaultStartPadding : startPaddingMode;
 
   const defaultEndPadding = noLayout ? "none" : isEmpty ? "icon" : iconOnly ? "icon" : hasEndSlot ? "icon" : "text";
-  const endPaddingResolved: TActionContentPaddingModeResolved =
+  const endPaddingResolved: TItemContentPaddingModeResolved =
     endPaddingMode === "auto" ? defaultEndPadding : endPaddingMode;
 
   const fragment = (
@@ -85,9 +86,7 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
       )}
       {hasChildren &&
         (typeof content === "string" ? (
-          <span className={ellipsisClass} style={{ flex: 1, textAlign: "left" }}>
-            {content}
-          </span>
+          <span {...mergeLooks(createEllipsisLook(), look(null, { flex: 1, textAlign: "left" }))}>{content}</span>
         ) : (
           content
         ))}
@@ -111,7 +110,7 @@ export function useActionContent(props: TActionContentProps, content?: React.Rea
   };
 }
 
-export const actionContentProps = createPropsKeys<TActionContentProps>({
+export const itemContentProps = createPropsKeys<TItemContentProps>({
   startIcon: null,
   startSlot: null,
   endIcon: null,
@@ -123,8 +122,8 @@ export const actionContentProps = createPropsKeys<TActionContentProps>({
   noLayout: null,
 });
 
-export function ActionContentFragment(props: TActionContentProps & { children?: React.ReactNode }) {
-  return useActionContent(props, props.children).fragment;
+export function ItemContentFragment(props: TItemContentProps & { children?: React.ReactNode }) {
+  return useItemContent(props, props.children).fragment;
 }
 
-ActionContentFragment.displayName = "ActionContentFragment";
+ItemContentFragment.displayName = "ItemContentFragment";

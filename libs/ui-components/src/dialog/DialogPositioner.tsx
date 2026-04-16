@@ -1,18 +1,17 @@
 import { createRender } from "@dldc/react-utils/create-render";
 import { ComponentPropsBase } from "@dldc/react-utils/types";
-import { dialogPositionerStyles } from "@dldc/ui-styles/dialog";
-import clsx from "clsx";
+import { createDialogPositionerLook } from "@dldc/ui-styles/dialog";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
 export type DialogPositionerProps = ComponentPropsBase<"div">;
 
 export function DialogPositioner(props: DialogPositionerProps) {
   const { render, className, style, children, ...htmlProps } = props;
 
-  const [dialogPositionerClass, dialogPositionerInline] = dialogPositionerStyles();
+  const dialogPositionerLook = createDialogPositionerLook();
 
   return createRender("div", render, {
-    className: clsx(dialogPositionerClass, className),
-    style: { ...dialogPositionerInline, ...style },
+    ...mergeLooks(dialogPositionerLook, look(className, style)),
     children,
     ...htmlProps,
   });

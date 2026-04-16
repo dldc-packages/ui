@@ -1,6 +1,6 @@
 import * as AKSelect from "@ariakit/react/select";
 import { extractProps, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
-import { ActionContentFragment } from "@dldc/ui-components/action-content";
+import { ItemContentFragment } from "@dldc/ui-components/item-content";
 import * as CSelect from "@dldc/ui-components/select";
 import { ChevronDownIcon } from "lucide-react";
 import { Merge } from "type-fest";
@@ -47,9 +47,9 @@ export function Select(inProps: SelectProps) {
   const [cProps, akProps] = extractProps(inProps, CSelect.selectProps);
   const { children, ...restAkProps } = akProps;
   const defaultChildren = (
-    <ActionContentFragment endIcon={<SelectArrow />}>
+    <ItemContentFragment endIcon={<SelectArrow />}>
       <AKSelect.SelectValue />
-    </ActionContentFragment>
+    </ItemContentFragment>
   );
   return (
     <CSelect.Select render={<AKSelect.Select {...restAkProps} />} {...cProps}>

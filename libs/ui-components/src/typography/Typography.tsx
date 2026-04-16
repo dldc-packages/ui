@@ -4,8 +4,9 @@ import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { parseMaybeSize, TDesignSize } from "@dldc/ui-core/size";
 import { TFontWeight } from "@dldc/ui-core/typography";
-import { typographyStyles } from "@dldc/ui-styles/typography";
-import clsx from "clsx";
+import { createTypographyLook } from "@dldc/ui-styles/typography";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
+import { useMemo } from "react";
 
 import {
   contentSizeProps,
@@ -46,18 +47,21 @@ export function Typography(inProps: TypographyProps) {
 
   const provideContentSize = contentSize !== null || parentContentSizeVarName === null;
 
-  const [typographyClass, typographyInline] = typographyStyles({
-    contentSize,
-    fontSize,
-    fontWeight,
-    contentSizeVarName,
-    parentContentSizeVarName,
-    defaultContentSize: 4,
-  });
+  const typographyLook = useMemo(
+    () =>
+      createTypographyLook({
+        contentSize,
+        fontSize,
+        fontWeight,
+        contentSizeVarName,
+        parentContentSizeVarName,
+        defaultContentSize: 4,
+      }),
+    [fontSize, fontWeight, contentSizeVarName, contentSize, parentContentSizeVarName],
+  );
 
   return createRender("span", render, {
-    style: { ...typographyInline, ...style },
-    className: clsx(className, typographyClass),
+    ...mergeLooks(typographyLook, look(className, style)),
     ...htmlProps,
     children: applyProviders(
       nextContentSizeDefaultContext && <DefaultContentSizeProvider contextValue={nextContentSizeDefaultContext} />,

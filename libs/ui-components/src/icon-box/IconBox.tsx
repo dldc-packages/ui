@@ -1,7 +1,7 @@
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TDesignSize } from "@dldc/ui-core/size";
-import { iconStyles } from "@dldc/ui-styles/icon";
-import clsx from "clsx";
+import { createIconLook } from "@dldc/ui-styles/icon";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
 export type IconBoxProps = ComponentPropsBaseWith<
   "div",
@@ -25,10 +25,10 @@ export function IconBox(props: IconBoxProps) {
     ...htmlProps
   } = props;
 
-  const [iconClas, inlineStyles] = iconStyles(size, inline);
+  const iconLook = createIconLook({ size, inline });
 
   return (
-    <div className={clsx(iconClas, className)} style={{ ...inlineStyles, ...style }} {...htmlProps}>
+    <div {...mergeLooks(iconLook, look(className, style))} {...htmlProps}>
       {icon}
     </div>
   );

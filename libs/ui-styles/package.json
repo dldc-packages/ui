@@ -9,9 +9,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     "./action": "./dist/action/index.js",
-    "./action-content": "./dist/action-content/index.js",
     "./action-group": "./dist/action-group/index.js",
-    "./action-input": "./dist/action-input/index.js",
     "./animations": "./dist/animations/index.js",
     "./backdrop": "./dist/backdrop/index.js",
     "./checkbox": "./dist/checkbox/index.js",
@@ -19,9 +17,12 @@
     "./dialog": "./dist/dialog/index.js",
     "./ellipsis": "./dist/ellipsis/index.js",
     "./icon": "./dist/icon/index.js",
+    "./item": "./dist/item/index.js",
+    "./item-content": "./dist/item-content/index.js",
+    "./item-group": "./dist/item-group/index.js",
+    "./item-input": "./dist/item-input/index.js",
     "./label": "./dist/label/index.js",
     "./loading-block": "./dist/loading-block/index.js",
-    "./modal": "./dist/modal/index.js",
     "./padding": "./dist/padding/index.js",
     "./paper": "./dist/paper/index.js",
     "./prose": "./dist/prose/index.js",
@@ -31,13 +32,15 @@
     "./stack": "./dist/stack/index.js",
     "./tooltip": "./dist/tooltip/index.js",
     "./typography": "./dist/typography/index.js",
+    "./utils": "./dist/utils/index.js",
     "./package.json": "./package.json",
     "./styles.css": "./dist/styles.css"
   },
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",
-    "typecheck": "tsgo --noEmit"
+    "typecheck": "tsgo --noEmit",
+    "typecheck:watch": "tsgo --noEmit --watch"
   },
   "dependencies": {
     "@dldc/css-builder": "catalog:",

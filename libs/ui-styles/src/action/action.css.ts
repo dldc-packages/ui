@@ -7,13 +7,10 @@ import {
   _focusWithinVisible,
   _hover,
   isAfter,
-  isDisabled,
-  isFocusWithin,
-  isHover,
 } from "@dldc/ui-core/conditions";
 import { sizeToRemString } from "@dldc/ui-core/size";
 import { TDesignVariant } from "@dldc/ui-core/variants";
-import { ComplexStyleRule, createVar, fallbackVar, globalStyle, style, styleVariants } from "@vanilla-extract/css";
+import { ComplexStyleRule, createVar, fallbackVar, style, styleVariants } from "@vanilla-extract/css";
 
 import { varsWithLayer, withLayer } from "../utils/layer";
 
@@ -33,32 +30,14 @@ export const focusBackgroundColorVar = createVar("focus-background-color");
 
 export const actionClass = style(
   withLayer({
-    display: "inline-flex",
-    flexDirection: "row",
-    alignItems: "center",
-    outline: "none",
-    position: "relative",
     backgroundColor: backgroundColorVar,
     color: fallbackVar(textColorVar, dynamicColorVars[200]),
 
     selectors: {
       // Used for focus and highlight border
-      [_after]: {
-        borderRadius: "inherit",
-        ["cornerShape" as any]: "inherit",
-        pointerEvents: "none",
-        content: "''",
-        position: "absolute",
-        inset: 0,
-      },
+      [_after]: {},
       // Used for visual border for input and surface variants
       [_before]: {
-        borderRadius: "inherit",
-        ["cornerShape" as any]: "inherit",
-        pointerEvents: "none",
-        content: "''",
-        position: "absolute",
-        inset: 0,
         borderWidth: borderWidthVar,
         borderColor: borderColorVar,
       },
@@ -184,18 +163,18 @@ export const actionInteractiveClass = style(
 );
 
 // Make icon slightly transparent by default, fully opaque on hover/focus
-globalStyle(`${actionClass} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
-globalStyle(`${actionInteractiveClass}${isHover} [data-item-main-icon]`, withLayer({ opacity: 1 }));
-globalStyle(`${actionInteractiveClass}${isFocusWithin} [data-item-main-icon]`, withLayer({ opacity: 1 }));
-globalStyle(`${actionInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
-// SVG don't like opacity on fill color, so instead we set color + opacity
-globalStyle(
-  `${actionInteractiveClass}${isDisabled} svg`,
-  withLayer({
-    color: colorsVars.neutral[200],
-    opacity: 0.4,
-  }),
-);
+// globalStyle(`${actionClass} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
+// globalStyle(`${actionInteractiveClass}${isHover} [data-item-main-icon]`, withLayer({ opacity: 1 }));
+// globalStyle(`${actionInteractiveClass}${isFocusWithin} [data-item-main-icon]`, withLayer({ opacity: 1 }));
+// globalStyle(`${actionInteractiveClass}${isHover}${isDisabled} [data-item-main-icon]`, withLayer({ opacity: 0.6 }));
+// // SVG don't like opacity on fill color, so instead we set color + opacity
+// globalStyle(
+//   `${actionInteractiveClass}${isDisabled} svg`,
+//   withLayer({
+//     color: colorsVars.neutral[200],
+//     opacity: 0.4,
+//   }),
+// );
 
 export const actionHighlightClass = style(
   withLayer({

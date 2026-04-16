@@ -1,9 +1,9 @@
 import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { paddingInlineStyles } from "@dldc/ui-styles/padding";
-import { roundedBorderRadiusClass, roundedInlineStyles } from "@dldc/ui-styles/rounded";
-import clsx from "clsx";
+import { createPaddingLook } from "@dldc/ui-styles/padding";
+import { createRoundedLook } from "@dldc/ui-styles/rounded";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
 import { DefaultPaddingProvider, ParentPaddingContextProvider } from "../padding";
 import { paddingProps } from "../padding/paddingProps";
@@ -31,7 +31,7 @@ export function Geometry(inProps: GeometryProps) {
   const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
   const { rounded, roundedVarName, parentRoundedVarName, nextRoundedDefaultContext } = useRounded(localRounded);
 
-  const paddingInline = paddingInlineStyles({
+  const paddingLook = createPaddingLook({
     paddingVarName,
     padding,
     defaultPadding: 1,
@@ -40,7 +40,7 @@ export function Geometry(inProps: GeometryProps) {
     sizeVarName: null,
   });
 
-  const roundedInline = roundedInlineStyles({
+  const roundedLook = createRoundedLook({
     roundedVarName,
     parentPaddingVarName,
     parentRoundedVarName,
@@ -51,8 +51,7 @@ export function Geometry(inProps: GeometryProps) {
 
   const content = createRender("div", render, {
     ...htmlProps,
-    className: clsx(roundedBorderRadiusClass, className),
-    style: { ...roundedInline, ...paddingInline, ...style },
+    ...mergeLooks(roundedLook, paddingLook, look(className, style)),
     children,
   });
 

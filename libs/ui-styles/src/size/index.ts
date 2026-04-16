@@ -3,15 +3,15 @@ import { UNIT_IN_REM_STRING } from "@dldc/ui-core/size";
 import { sizeVar } from "@dldc/ui-core/variables";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 
-import { CSSProperties } from "../utils/types";
+import { TLook, look } from "../utils/look";
 
-import { sizeMinSizeClass } from "./size.css";
+import { sizeMinHeightClass, sizeMinSizeClass } from "./size.css";
 
-export { sizeMinSizeClass };
+export { sizeMinHeightClass, sizeMinSizeClass };
 
 export const MIN_AUTO_HEIGHT = 1;
 
-export interface TSizeStylesOptions {
+export interface TCreateSizeLookParams {
   size: null | number | "autoFromContent";
   sizeVarName: string;
   paddingVarName: string;
@@ -22,7 +22,7 @@ export interface TSizeStylesOptions {
   contentSizeVarName: string | null;
 }
 
-export function sizeInlineStyles({
+export function createSizeLook({
   size,
   sizeVarName,
   parentSizeVarName,
@@ -31,21 +31,24 @@ export function sizeInlineStyles({
   defaultSize,
   parentContentSizeVarName,
   contentSizeVarName,
-}: TSizeStylesOptions): CSSProperties {
-  return assignInlineVars({
-    [sizeVarName]: css.maybeSerialize(
-      sizeVarValue({
-        size,
-        defaultSize,
-        paddingVarName,
-        parentSizeVarName,
-        parentPaddingVarName,
-        parentContentSizeVarName,
-        contentSizeVarName,
-      }),
-    ),
-    [sizeVar]: css.serialize(css.multiply(css.var(sizeVarName), UNIT_IN_REM_STRING)),
-  });
+}: TCreateSizeLookParams): TLook {
+  return look(
+    null,
+    assignInlineVars({
+      [sizeVarName]: css.maybeSerialize(
+        sizeVarValue({
+          size,
+          defaultSize,
+          paddingVarName,
+          parentSizeVarName,
+          parentPaddingVarName,
+          parentContentSizeVarName,
+          contentSizeVarName,
+        }),
+      ),
+      [sizeVar]: css.serialize(css.multiply(css.var(sizeVarName), UNIT_IN_REM_STRING)),
+    }),
+  );
 }
 
 interface TSizeVarValueParams {

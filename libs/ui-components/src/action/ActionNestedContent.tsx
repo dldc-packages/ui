@@ -2,22 +2,22 @@ import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
 import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
-import { actionContentClass } from "@dldc/ui-styles/action-content";
-import clsx from "clsx";
+import { createItemLook } from "@dldc/ui-styles/item";
+import { createItemContentLook } from "@dldc/ui-styles/item-content";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
-import { actionContentProps, useActionContent } from "../action-content/index";
 import {
   contentSizeProps,
   DefaultContentSizeProvider,
   ParentContentSizeContextProvider,
   useContentSize,
 } from "../content-size";
+import { itemContentProps, useItemContent } from "../item-content/index";
 import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
 import { ParentRoundedContextProvider, useRounded } from "../rounded";
 import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
 
-export const actionNestedContentProps = mergePropsKeys(actionContentProps, paddingProps, sizeProps, contentSizeProps);
+export const actionNestedContentProps = mergePropsKeys(itemContentProps, paddingProps, sizeProps, contentSizeProps);
 
 export type ActionNestedContentProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionNestedContentProps>>;
 
@@ -37,9 +37,9 @@ export function ActionNestedContent(inProps: ActionNestedContentProps) {
   const { sizeVarName, parentSizeVarName, size, nextSizeDefaultContext } = useSize(localSize);
   const { contentSize, contentSizeVarName, parentContentSizeVarName, nextContentSizeDefaultContext } =
     useContentSize(localContentSize);
-  const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(localActionContent, children);
+  const { startPaddingMode, endPaddingMode, fragment, noLayout } = useItemContent(localActionContent, children);
 
-  const layoutInline = actionLayoutStylesInline({
+  const itemLook = createItemLook({
     defaultSize: 7,
     defaultRounded: 2,
     defaultPadding: 1,
@@ -57,15 +57,14 @@ export function ActionNestedContent(inProps: ActionNestedContentProps) {
     parentContentSizeVarName,
   });
 
-  const contentClass = actionContentClass({
+  const itemContentLook = createItemContentLook({
     startPaddingMode,
     endPaddingMode,
     noLayout,
   });
 
   return createRender("div", render, {
-    className: clsx(actionLayoutStylesClasses, contentClass, className),
-    style: { ...layoutInline, ...style },
+    ...mergeLooks(itemLook, itemContentLook, look(className, style)),
     ...htmlProps,
     children: applyProviders(
       nextPaddingDefaultContext && <DefaultPaddingProvider contextValue={nextPaddingDefaultContext} />,

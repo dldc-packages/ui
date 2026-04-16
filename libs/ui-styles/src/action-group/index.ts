@@ -4,58 +4,47 @@ import { assignInlineVars } from "@vanilla-extract/dynamic";
 import { clsx } from "clsx";
 
 import { paddingVar } from "../padding";
-import { CSSProperties } from "../utils/types";
+import { look, TLook } from "../utils/look";
 
 import { actionVariantsClass } from "../action/action.css";
 import {
   actionGroupClass,
-  actionGroupDirectionClass,
   actionGroupSeparatorActionVariantClass,
-  actionGroupSeparatorClass,
-  actionGroupSeparatorDirectionClass,
   actionGroupSeparatorVariantClass,
   actionGroupVariantsClass,
   partialSeparatorPaddingVar,
 } from "./actionGroup.css";
 
-export interface ActionGroupStylesParams {
-  direction: "horizontal" | "vertical";
+export interface TCreateActionGroupLookParams {
   color: TPaletteColor | undefined;
   variant: TDesignVariant;
 }
 
-export function actionGroupStylesClass(params: ActionGroupStylesParams): string {
-  const { direction, color, variant } = params;
+export function createActionGroupLook(params: TCreateActionGroupLookParams): TLook {
+  const { color, variant } = params;
 
-  return clsx(
-    actionGroupClass,
-    actionGroupDirectionClass[direction],
-    actionVariantsClass[variant], // This will only set variants variables
-    actionGroupVariantsClass[variant],
-    color && dynamicColor[color],
+  return look(
+    clsx(
+      actionGroupClass,
+      actionVariantsClass[variant], // This will only set variants variables
+      actionGroupVariantsClass[variant],
+      color && dynamicColor[color],
+    ),
   );
 }
 
-export interface ActionGroupSeparatorStylesParams {
-  direction: "horizontal" | "vertical";
+export interface TCreateActionGroupSeparatorLookParams {
   variant: TDesignVariant;
   separatorVariant: "none" | "partial" | "full";
 }
 
-export function actionGroupSeparatorStyles(
-  params: ActionGroupSeparatorStylesParams,
-): [className: string, styles: CSSProperties] {
-  const { direction, variant, separatorVariant } = params;
+export function createActionGroupSeparatorLook(params: TCreateActionGroupSeparatorLookParams): TLook {
+  const { variant, separatorVariant } = params;
 
-  return [
-    clsx(
-      actionGroupSeparatorClass,
-      actionGroupSeparatorDirectionClass[direction],
-      actionGroupSeparatorActionVariantClass[variant],
-      actionGroupSeparatorVariantClass[separatorVariant],
-    ),
+  return look(
+    clsx(actionGroupSeparatorActionVariantClass[variant], actionGroupSeparatorVariantClass[separatorVariant]),
     assignInlineVars({
       [partialSeparatorPaddingVar]: paddingVar,
     }),
-  ];
+  );
 }

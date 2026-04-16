@@ -4,20 +4,10 @@ import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
-import { actionDesignClass, actionLayoutStylesClasses, actionLayoutStylesInline } from "@dldc/ui-styles/action";
-import { actionContentClass } from "@dldc/ui-styles/action-content";
-import clsx from "clsx";
+import { createActionLook } from "@dldc/ui-styles/action";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 
-import { actionContentProps, useActionContent } from "../action-content/index";
-import {
-  contentSizeProps,
-  DefaultContentSizeProvider,
-  ParentContentSizeContextProvider,
-  useContentSize,
-} from "../content-size";
-import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
-import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
-import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
+import { Item, itemProps } from "../item";
 import { DefaultHoverVariantProvider, DefaultVariantProvider, useVariant, variantProps } from "../variant";
 
 export interface ActionSpecificProps {
@@ -54,23 +44,12 @@ export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
   disabled: null,
 });
 
-export const actionProps = mergePropsKeys(
-  actionSpecificProps,
-  variantProps,
-  paddingProps,
-  roundedProps,
-  sizeProps,
-  actionContentProps,
-  contentSizeProps,
-);
+export const actionProps = mergePropsKeys(actionSpecificProps, variantProps, itemProps);
 
 export type ActionProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionProps>>;
 
 export function Action(inProps: ActionProps) {
-  const [
-    [localAction, localVariant, localPadding, localRounded, localSize, localActionContent, localContentSize],
-    props,
-  ] = extractProps(inProps, actionProps.content);
+  const [[localAction, localVariant, localItem], props] = extractProps(inProps, actionProps.content);
 
   const { className, style, children, render, ref, ...htmlProps } = props;
   const {
@@ -86,36 +65,12 @@ export function Action(inProps: ActionProps) {
 
   const isDisabledAndInteractive = disabled && interactive;
 
-  const { padding, paddingVarName, parentPaddingVarName, nextPaddingDefaultContext } = usePadding(localPadding);
-  const { rounded, roundedVarName, parentRoundedVarName, nextRoundedDefaultContext } = useRounded(localRounded);
-  const { sizeVarName, parentSizeVarName, size, nextSizeDefaultContext } = useSize(localSize);
-  const { contentSize, contentSizeVarName, parentContentSizeVarName, nextContentSizeDefaultContext } =
-    useContentSize(localContentSize);
   const { hoverVariant, variant, nextHoverVariantDefaultContext, nextVariantDefaultContext } = useVariant(
     localVariant,
     baseVariant,
   );
-  const { startPaddingMode, endPaddingMode, fragment, noLayout } = useActionContent(localActionContent, children);
 
-  const layoutInline = actionLayoutStylesInline({
-    defaultSize: 7,
-    defaultRounded: 2,
-    defaultPadding: 1,
-    padding,
-    paddingVarName,
-    parentPaddingVarName,
-    parentRoundedVarName,
-    parentSizeVarName,
-    rounded,
-    roundedVarName,
-    size,
-    sizeVarName,
-    contentSize,
-    contentSizeVarName,
-    parentContentSizeVarName,
-  });
-
-  const designClass = actionDesignClass({
+  const actionLook = createActionLook({
     variant,
     color,
     hoverVariant,
@@ -124,32 +79,18 @@ export function Action(inProps: ActionProps) {
     highlighted,
   });
 
-  const contentClass = actionContentClass({
-    startPaddingMode,
-    endPaddingMode,
-    noLayout,
-  });
-
-  return createRender("div", render, {
-    className: clsx(designClass, actionLayoutStylesClasses, contentClass, className),
-    style: { ...layoutInline, ...style },
+  return createRender(Item, render, {
+    ...localItem,
+    ...mergeLooks(actionLook, look(className, style)),
     "aria-disabled": isDisabledAndInteractive,
     "data-hover": dataHover,
     "data-focus-visible": dataFocusVisible,
     ref,
     ...htmlProps,
     children: applyProviders(
-      nextPaddingDefaultContext && <DefaultPaddingProvider contextValue={nextPaddingDefaultContext} />,
-      nextRoundedDefaultContext && <DefaultRoundedProvider contextValue={nextRoundedDefaultContext} />,
-      nextSizeDefaultContext && <DefaultSizeProvider contextValue={nextSizeDefaultContext} />,
-      nextContentSizeDefaultContext && <DefaultContentSizeProvider contextValue={nextContentSizeDefaultContext} />,
       nextVariantDefaultContext && <DefaultVariantProvider contextValue={nextVariantDefaultContext} />,
       nextHoverVariantDefaultContext && <DefaultHoverVariantProvider contextValue={nextHoverVariantDefaultContext} />,
-      <ParentPaddingContextProvider paddingVarName={paddingVarName} />,
-      <ParentRoundedContextProvider roundedVarName={roundedVarName} />,
-      <ParentSizeContextProvider sizeVarName={sizeVarName} />,
-      <ParentContentSizeContextProvider contentSizeVarName={contentSizeVarName} />,
-    )(fragment),
+    )(children),
   });
 }
 

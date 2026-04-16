@@ -1,7 +1,7 @@
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { dialogClass } from "@dldc/ui-styles/dialog";
-import clsx from "clsx";
+import { createDialogLook } from "@dldc/ui-styles/dialog";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 import { ReactElement } from "react";
 
 import { GeometryPaper, geometryPaperProps } from "../geometry-paper";
@@ -41,14 +41,13 @@ export function Dialog(inProps: DialogProps) {
   const { size = "md" } = localDialogSize;
   const { background = "925", padding = 4, rounded = 5, ...geometryPaperProps } = localGeometryPaper;
 
-  const dialogClassname = dialogClass({ size, layout: !noLayout });
+  const dialogLook = createDialogLook({ size, layout: !noLayout });
 
   return (
     <DialogRoot scrollable={scrollable} render={render}>
       <DialogPositioner>
         <GeometryPaper
-          className={clsx(dialogClassname, className)}
-          style={style}
+          {...mergeLooks(dialogLook, look(className, style))}
           background={background}
           rounded={rounded}
           padding={padding}

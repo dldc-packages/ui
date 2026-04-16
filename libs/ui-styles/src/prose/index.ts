@@ -1,5 +1,7 @@
 import clsx from "clsx";
 
+import { look, TLook } from "../utils/look";
+
 import {
   notProseBleedClass,
   notProseClass,
@@ -16,11 +18,11 @@ export { notProseBleedClass, notProseClass, notProseContentClass, proseBleedClas
 
 export type TProseColor = keyof typeof proseColor;
 
-export interface ProseStylesOptions {
+export interface TCreateProseLookParams {
   color?: TProseColor;
   invert?: boolean;
 }
 
-export function proseStyles({ color = "neutral", invert = false }: ProseStylesOptions = {}): string {
-  return clsx(proseBaseClass, proseSizeDynamicClass, (invert ? proseColorInvert : proseColor)[color]);
+export function createProseLook({ color = "neutral", invert = false }: TCreateProseLookParams = {}): TLook {
+  return look(clsx(proseBaseClass, proseSizeDynamicClass, (invert ? proseColorInvert : proseColor)[color]));
 }

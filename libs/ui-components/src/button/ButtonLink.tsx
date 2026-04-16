@@ -4,8 +4,8 @@ import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 
 import { Action } from "../action";
-import { actionContentProps } from "../action-content";
 import { contentSizeProps } from "../content-size";
+import { itemContentProps } from "../item-content";
 import { paddingProps } from "../padding";
 import { roundedProps } from "../rounded";
 import { sizeProps } from "../size";
@@ -30,7 +30,7 @@ export const buttonLinkSpecificProps = createPropsKeys<ButtonLinkSpecificProps>(
 
 export const buttonLinkProps = mergePropsKeys(
   buttonLinkSpecificProps,
-  actionContentProps,
+  itemContentProps,
   contentSizeProps,
   paddingProps,
   roundedProps,

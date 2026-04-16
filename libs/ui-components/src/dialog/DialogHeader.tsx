@@ -2,18 +2,18 @@ import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
-import { contentSizeInlineStyles, contentSizeLineHeightClass } from "@dldc/ui-styles/content-size";
-import { dialogHeaderStyles } from "@dldc/ui-styles/dialog";
-import clsx from "clsx";
+import { createContentSizeLook } from "@dldc/ui-styles/content-size";
+import { createDialogHeaderLook } from "@dldc/ui-styles/dialog";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 import { ReactNode } from "react";
 
-import { IconSlot } from "../action-content";
 import {
   contentSizeProps,
   DefaultContentSizeProvider,
   ParentContentSizeContextProvider,
   useContentSize,
 } from "../content-size";
+import { IconSlot } from "../icon-slot";
 import { DefaultPaddingProvider, usePadding } from "../padding";
 import { useSize } from "../size";
 
@@ -50,9 +50,9 @@ export function DialogHeader(inProps: DialogHeaderProps) {
     ...localContentSize,
   });
 
-  const [dialogHeaderClass, dialogHeaderInline] = dialogHeaderStyles();
+  const dialogHeaderLook = createDialogHeaderLook();
 
-  const layoutInline = contentSizeInlineStyles({
+  const contentSizeLook = createContentSizeLook({
     contentSize,
     contentSizeVarName,
     paddingVarName,
@@ -73,8 +73,7 @@ export function DialogHeader(inProps: DialogHeaderProps) {
     "div",
     render as any,
     {
-      className: clsx(contentSizeLineHeightClass, dialogHeaderClass, className),
-      style: { ...layoutInline, ...dialogHeaderInline, ...style },
+      ...mergeLooks(dialogHeaderLook, contentSizeLook, look(className, style)),
       ...htmlProps,
       children: applyProviders(
         nextPaddingDefaultContext && <DefaultPaddingProvider contextValue={nextPaddingDefaultContext} />,

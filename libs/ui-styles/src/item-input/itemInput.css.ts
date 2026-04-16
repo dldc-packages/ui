@@ -3,7 +3,7 @@ import { style } from "@vanilla-extract/css";
 
 import { withLayer } from "../utils/layer";
 
-export const actionInputContentClass = style(
+export const itemInputContentClass = style(
   withLayer({
     outline: "none",
     alignSelf: "stretch",

@@ -1,13 +1,15 @@
+import { look, TLook } from "../utils/look";
+
 import { stackClass } from "./stack.css";
 
 export { stackClass };
 
-export type TStackParams = Parameters<typeof stackClass>[0];
+export type TCreateStackLookParams = Parameters<typeof stackClass>[0];
 
-export function hStackClass(params?: Omit<TStackParams, "direction">): string {
-  return stackClass({ direction: "row", ...params });
+export function createHStackLook(params?: Omit<TCreateStackLookParams, "direction">): TLook {
+  return look(stackClass({ direction: "row", ...params }));
 }
 
-export function vStackClass(params?: Omit<TStackParams, "direction">): string {
-  return stackClass({ direction: "column", ...params });
+export function createVStackLook(params?: Omit<TCreateStackLookParams, "direction">): TLook {
+  return look(stackClass({ direction: "column", ...params }));
 }

@@ -5,6 +5,7 @@ import { contentSizeVar } from "@dldc/ui-core/variables";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import clsx from "clsx";
 
+import { look, mergeLooks, TLook } from "../utils/look";
 import { CSSProperties } from "../utils/types";
 
 import { contentSizeLineHeightClass } from "../content-size/contentSize.css";
@@ -12,7 +13,7 @@ import { fontWeightVariantsClass } from "./typography.css";
 
 export { fontWeightVariantsClass };
 
-export interface TypographyStylesParams {
+export interface TCreateTypographyLookParams {
   contentSize: null | number | "parentSize";
   fontSize: number | null;
   fontWeight: TFontWeight | null;
@@ -21,29 +22,27 @@ export interface TypographyStylesParams {
   defaultContentSize: number;
 }
 
-export function typographyStyles({
+export function createTypographyLook({
   fontWeight,
   contentSize,
   contentSizeVarName,
   parentContentSizeVarName,
   defaultContentSize,
   fontSize,
-}: TypographyStylesParams): [classname: string, styles: CSSProperties] {
-  const [typographyContentSizeClass, typographyContentSizeInline] = typographyContentSizeStyles({
-    contentSize,
-    contentSizeVarName,
-    parentContentSizeVarName,
-    defaultContentSize,
-    fontSize,
-  });
-
-  return [
-    clsx(fontWeight ? fontWeightVariantsClass[fontWeight] : null, typographyContentSizeClass),
-    { ...typographyContentSizeInline, ...typographyFontSizeInlineStyles({ fontSize }) },
-  ];
+}: TCreateTypographyLookParams): TLook {
+  return mergeLooks(
+    look(clsx(fontWeight ? fontWeightVariantsClass[fontWeight] : null), typographyFontSizeInlineStyles({ fontSize })),
+    typographyContentSizeLook({
+      contentSize,
+      contentSizeVarName,
+      parentContentSizeVarName,
+      defaultContentSize,
+      fontSize,
+    }),
+  );
 }
 
-interface TypographyContentSizeStylesParams {
+interface TTypographyContentSizeLookParams {
   contentSize: null | number | "parentSize";
   contentSizeVarName: string;
   parentContentSizeVarName: string | null;
@@ -51,13 +50,13 @@ interface TypographyContentSizeStylesParams {
   fontSize: number | null;
 }
 
-function typographyContentSizeStyles({
+function typographyContentSizeLook({
   contentSize,
   contentSizeVarName,
   parentContentSizeVarName,
   defaultContentSize,
   fontSize,
-}: TypographyContentSizeStylesParams): [classname: string, styles: CSSProperties] {
+}: TTypographyContentSizeLookParams): TLook | null {
   const contentSizeVarVal = contentSizeVarValue({
     contentSize,
     parentContentSizeVarName,
@@ -65,15 +64,15 @@ function typographyContentSizeStyles({
     fontSize,
   });
   if (contentSizeVarVal === null) {
-    return ["", {}];
+    return null;
   }
-  return [
+  return look(
     contentSizeLineHeightClass,
     assignInlineVars({
       [contentSizeVarName]: css.serialize(contentSizeVarVal),
       [contentSizeVar]: css.serialize(css.multiply(css.var(contentSizeVarName), UNIT_IN_REM_STRING)),
     }),
-  ];
+  );
 }
 
 interface TypographyFontSizeInlineStylesParams {

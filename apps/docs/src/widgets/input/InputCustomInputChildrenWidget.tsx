@@ -1,6 +1,6 @@
-import { ActionInputContent } from "@dldc/ui-components/action";
 import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
 import { Input } from "@dldc/ui-components/input";
+import { ItemInputContent } from "@dldc/ui-components/item";
 import { type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -11,7 +11,7 @@ import { printElement } from "../../utils/printElement";
 export function InputCustomInputChildrenWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
   const example = (
     <Input>
-      <ActionInputContent placeholder="Enter text..." maxLength={20} autoComplete="off" />
+      <ItemInputContent placeholder="Enter text..." maxLength={20} autoComplete="off" />
     </Input>
   );
 

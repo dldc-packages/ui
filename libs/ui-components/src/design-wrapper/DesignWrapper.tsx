@@ -2,8 +2,9 @@ import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { dynamicColor, TPaletteColor } from "@dldc/ui-core/colors";
-import { actionLayoutStylesInline } from "@dldc/ui-styles/action";
 import { contentSizeLineHeightClass } from "@dldc/ui-styles/content-size";
+import { createItemLook } from "@dldc/ui-styles/item";
+import { look, mergeLooks } from "@dldc/ui-styles/utils";
 import { clsx } from "clsx";
 
 import { contentSizeProps, useContentSize } from "../content-size";
@@ -53,7 +54,7 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
   const colorClass = color && dynamicColor[color];
 
   // Compute CSS vars same as Action to get CSS vars available for any child, even if not using Action or other components
-  const layoutInline = actionLayoutStylesInline({
+  const itemLook = createItemLook({
     defaultSize: 7,
     defaultRounded: 2,
     defaultPadding: 1,
@@ -74,8 +75,7 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
   return (
     <DefaultDesignProvider {...localVariant} {...localSize} {...localContentSize} {...localPadding} {...localRounded}>
       {createRender("div", render, {
-        className: clsx(colorClass, contentSizeLineHeightClass, className),
-        style: { ...layoutInline, ...style },
+        ...mergeLooks(itemLook, look(clsx(colorClass, contentSizeLineHeightClass)), look(className, style)),
         ref,
         ...htmlProps,
         children,
