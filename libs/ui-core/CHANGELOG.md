@@ -1,5 +1,17 @@
 # @dldc/ui-core
 
+## 1.5.0
+
+### Minor Changes
+
+- c15c818: Refactor to extract item from action
+- 93d5df1: Improve doc and fix providers issue
+
+### Patch Changes
+
+- Updated dependencies [c15c818]
+  - @dldc/utils@1.3.0
+
 ## 1.4.2
 
 ### Patch Changes

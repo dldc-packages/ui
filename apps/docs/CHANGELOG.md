@@ -1,5 +1,27 @@
 # @dldc/ui-docs
 
+## 1.6.0
+
+### Minor Changes
+
+- c15c818: Refactor to extract item from action
+- 93d5df1: Improve doc and fix providers issue
+
+### Patch Changes
+
+- Updated dependencies [7c4e40b]
+- Updated dependencies [c15c818]
+- Updated dependencies [6fc97ce]
+- Updated dependencies [381e1de]
+- Updated dependencies [2127c88]
+- Updated dependencies [93d5df1]
+  - @dldc/ui-components@1.6.0
+  - @dldc/ui-patterns@1.5.0
+  - @dldc/ui-styles@1.5.0
+  - @dldc/ui-ariakit@1.5.0
+  - @dldc/ui-core@1.5.0
+  - @dldc/hooks@1.3.0
+
 ## 1.5.0
 
 ### Minor Changes

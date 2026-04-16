@@ -1,5 +1,17 @@
 # @dldc/ui-core-tailwind-plugin
 
+## 1.4.0
+
+### Minor Changes
+
+- c15c818: Refactor to extract item from action
+
+### Patch Changes
+
+- Updated dependencies [c15c818]
+- Updated dependencies [93d5df1]
+  - @dldc/ui-core@1.5.0
+
 ## 1.3.3
 
 ### Patch Changes

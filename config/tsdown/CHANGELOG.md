@@ -1,5 +1,11 @@
 # @config/tsdown
 
+## 1.3.0
+
+### Minor Changes
+
+- c15c818: Refactor to extract item from action
+
 ## 1.2.1
 
 ### Patch Changes
