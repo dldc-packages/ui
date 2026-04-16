@@ -8,7 +8,7 @@ import { LoadingIconBasicWidget } from "@/widgets/LoadingIconBasicWidget";
 import { LoadingIconSizesWidget } from "@/widgets/LoadingIconSizesWidget";
 import { LoadingIconStrokeWidthWidget } from "@/widgets/LoadingIconStrokeWidthWidget";
 
-export const Route = createFileRoute("/01-components/07-loading-icon")({
+export const Route = createFileRoute("/01-components/loading-icon")({
   component: RouteComponent,
 });
 

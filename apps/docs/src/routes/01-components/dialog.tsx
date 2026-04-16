@@ -11,7 +11,7 @@ import { DialogNoScrollWidget } from "@/widgets/dialog/DialogNoScrollWidget";
 import { DialogScrollWidget } from "@/widgets/dialog/DialogScrollWidget";
 import { DialogSizeWidget } from "@/widgets/dialog/DialogSizeWidget";
 
-export const Route = createFileRoute("/01-components/10-dialog")({
+export const Route = createFileRoute("/01-components/dialog")({
   component: RouteComponent,
 });
 

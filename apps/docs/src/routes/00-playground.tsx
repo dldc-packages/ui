@@ -1,9 +1,9 @@
-import { Action, ActionNestedContent } from "@dldc/ui-components/action";
+import { Action } from "@dldc/ui-components/action";
+import { Button } from "@dldc/ui-components/button";
+import { Item } from "@dldc/ui-components/item";
 import { Prose } from "@dldc/ui-components/prose";
-import { roundToQuarter } from "@dldc/ui-core/size";
 import { createFileRoute } from "@tanstack/react-router";
-import { HouseIcon } from "lucide-react";
-import { useState } from "react";
+import { CircleIcon } from "lucide-react";
 
 import { StoryLayout } from "@/components/StoryLayout";
 
@@ -12,51 +12,20 @@ export const Route = createFileRoute("/00-playground")({
 });
 
 function RouteComponent() {
-  const [padding, setPadding] = useState(1);
-  const [innerPadding, setInnerPadding] = useState(1);
-
   return (
     <StoryLayout>
       <Prose invert>
         <h1>Playground</h1>
-        <input
-          type="range"
-          min="0"
-          max="32"
-          step="0.1"
-          value={padding}
-          onChange={(e) => setPadding(Number(e.target.value))}
-        />
-        <input
-          type="range"
-          min="0"
-          max="32"
-          step="0.1"
-          value={innerPadding}
-          onChange={(e) => setInnerPadding(Number(e.target.value))}
-        />
+        <Item startIcon={<CircleIcon />} className="bg-white/5" padding="2">
+          Hello Item
+        </Item>
+        <Action startIcon={<CircleIcon />} className="bg-white/5" padding="2">
+          Hello Action
+        </Action>
 
-        <p>
-          Padding {roundToQuarter(padding)} - Inner Padding {roundToQuarter(innerPadding)}
-        </p>
-        <div className="flex flex-col gap-3">
-          <Action
-            startSlot={<Action startIcon={<HouseIcon />} variant="solid" />}
-            rounded={8}
-            size={20}
-            paddingMode="icon"
-            padding={padding}
-          >
-            <span>Hello</span>
-            <ActionNestedContent
-              padding={innerPadding}
-              endSlot={<Action startIcon={<HouseIcon />} variant="solid" />}
-              className="flex-1"
-            >
-              World
-            </ActionNestedContent>
-          </Action>
-        </div>
+        <Button startIcon={<CircleIcon />} className="bg-white/5" padding="2">
+          Hello Button
+        </Button>
       </Prose>
     </StoryLayout>
   );

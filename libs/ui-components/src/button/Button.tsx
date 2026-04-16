@@ -46,7 +46,7 @@ export function Button(inProps: ButtonProps) {
   const [localButton, props] = extractProps(inProps, buttonProps);
 
   const { type = "button", disabled = false, ...actionProps } = localButton;
-  const { render, ref, ...htmlProps } = props;
+  const { render, ref, children, ...htmlProps } = props;
 
   return (
     <Action
@@ -55,7 +55,9 @@ export function Button(inProps: ButtonProps) {
       interactive
       {...actionProps}
       {...(htmlProps as any)}
-    />
+    >
+      {children}
+    </Action>
   );
 }
 

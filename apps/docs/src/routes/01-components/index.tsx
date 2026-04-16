@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { StoryLayout } from "@/components/StoryLayout";
 
-export const Route = createFileRoute("/01-components/00-intro")({
+export const Route = createFileRoute("/01-components/")({
   component: RouteComponent,
 });
 

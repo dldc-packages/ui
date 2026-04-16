@@ -35,7 +35,7 @@ export function createRoundedLook({
   }
 
   return look(
-    null,
+    roundedBorderRadiusClass,
     assignInlineVars({
       [roundedVarName]: css.maybeSerialize(
         roundedVarValue({
@@ -70,7 +70,7 @@ function roundedVarValue({
     return css.number(rounded);
   }
   // Compute auto-rounded from size if we don't have parent rounded or parent padding, or if we are in autoFromSize mode
-  if (rounded === "autoFromSize" || !parentRoundedVarName || !parentPaddingVarName) {
+  if (rounded === "autoFromSize") {
     if (!sizeVarName) {
       return css.number(defaultRounded);
     }
@@ -79,6 +79,10 @@ function roundedVarValue({
       css.roundDown(css.multiply(css.var(sizeVarName), AUTO_ROUNDED_FACTOR), UNIT_IN_REM),
     );
   }
+  if (!parentRoundedVarName || !parentPaddingVarName) {
+    return css.number(defaultRounded);
+  }
+
   // Auto-rounded is computed with an exponential decay depending on the ratio between parent padding and parent rounded
   return css.max(
     MIN_AUTO_ROUNDED,

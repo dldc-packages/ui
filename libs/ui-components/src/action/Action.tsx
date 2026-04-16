@@ -1,13 +1,17 @@
-import { applyProviders } from "@dldc/react-utils/apply-providers";
-import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { TPaletteColor } from "@dldc/ui-core/colors";
 import { TDesignVariant } from "@dldc/ui-core/variants";
 import { createActionLook } from "@dldc/ui-styles/action";
 import { look, mergeLooks } from "@dldc/ui-styles/utils";
+import { ReactElement } from "react";
 
-import { Item, itemProps } from "../item";
+import { contentSizeProps } from "../content-size";
+import { Item } from "../item";
+import { itemContentProps } from "../item-content";
+import { paddingProps } from "../padding";
+import { roundedProps } from "../rounded";
+import { sizeProps } from "../size";
 import { DefaultHoverVariantProvider, DefaultVariantProvider, useVariant, variantProps } from "../variant";
 
 export interface ActionSpecificProps {
@@ -31,6 +35,8 @@ export interface ActionSpecificProps {
   // Data attributes
   "data-hover"?: boolean;
   "data-focus-visible"?: boolean;
+
+  extraProviders?: (ReactElement | undefined | null | false)[];
 }
 
 export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
@@ -42,9 +48,14 @@ export const actionSpecificProps = createPropsKeys<ActionSpecificProps>({
   highlighted: null,
   interactive: null,
   disabled: null,
+  extraProviders: null,
 });
 
-export const actionProps = mergePropsKeys(actionSpecificProps, variantProps, itemProps);
+export const actionProps = mergePropsKeys(
+  actionSpecificProps,
+  variantProps,
+  mergePropsKeys(paddingProps, roundedProps, sizeProps, itemContentProps, contentSizeProps),
+);
 
 export type ActionProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof actionProps>>;
 
@@ -59,6 +70,7 @@ export function Action(inProps: ActionProps) {
     baseVariant = "surface",
     interactive = false,
     disabled = false,
+    extraProviders = [],
     "data-hover": dataHover,
     "data-focus-visible": dataFocusVisible,
   } = localAction;
@@ -79,19 +91,27 @@ export function Action(inProps: ActionProps) {
     highlighted,
   });
 
-  return createRender(Item, render, {
-    ...localItem,
-    ...mergeLooks(actionLook, look(className, style)),
-    "aria-disabled": isDisabledAndInteractive,
-    "data-hover": dataHover,
-    "data-focus-visible": dataFocusVisible,
-    ref,
-    ...htmlProps,
-    children: applyProviders(
-      nextVariantDefaultContext && <DefaultVariantProvider contextValue={nextVariantDefaultContext} />,
-      nextHoverVariantDefaultContext && <DefaultHoverVariantProvider contextValue={nextHoverVariantDefaultContext} />,
-    )(children),
-  });
+  return (
+    <Item
+      render={render}
+      {...localItem}
+      {...mergeLooks(actionLook, look(className, style))}
+      aria-disabled={isDisabledAndInteractive}
+      data-hover={dataHover}
+      data-focus-visible={dataFocusVisible}
+      ref={ref}
+      extraProviders={[
+        ...extraProviders,
+        nextVariantDefaultContext && <DefaultVariantProvider key="variant" contextValue={nextVariantDefaultContext} />,
+        nextHoverVariantDefaultContext && (
+          <DefaultHoverVariantProvider key="hoverVariant" contextValue={nextHoverVariantDefaultContext} />
+        ),
+      ]}
+      {...htmlProps}
+    >
+      {children}
+    </Item>
+  );
 }
 
 Action.displayName = "Action";

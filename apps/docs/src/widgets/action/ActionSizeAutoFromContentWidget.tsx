@@ -1,6 +1,6 @@
 import { Action } from "@dldc/ui-components/action";
 import { Button } from "@dldc/ui-components/button";
-import { HouseIcon, XIcon } from "lucide-react";
+import { CircleIcon } from "lucide-react";
 import { cloneElement, useState, type ComponentPropsWithRef } from "react";
 
 import { cn } from "@/utils/styles";
@@ -10,20 +10,27 @@ import { HighlightedGrid } from "../../components/HighlightedGrid";
 import { printElement } from "../../utils/printElement";
 
 const examples = [
-  <Action key="1" size={14} startIcon={<HouseIcon />} endSlot={<Button startIcon={<XIcon />} variant="ghost" />}>
+  <Action
+    key="1"
+    rounded="autoFromSize"
+    size={14}
+    startIcon={<CircleIcon />}
+    endSlot={<Button startIcon={<CircleIcon />} variant="ghost" />}
+  >
     Hello
   </Action>,
   <Action
     key="2"
     size={14}
-    startIcon={<HouseIcon />}
+    rounded="autoFromSize"
+    startIcon={<CircleIcon />}
     endSlot={
       <Button
         padding="2"
         className="-mx-paddingVar"
         contentSize="parentSize"
         size="autoFromContent"
-        startIcon={<XIcon />}
+        startIcon={<CircleIcon />}
         variant="ghost"
       />
     }

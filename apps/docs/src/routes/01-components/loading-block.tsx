@@ -6,7 +6,7 @@ import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { LoadingBlockBasicWidget } from "@/widgets/LoadingBlockBasicWidget";
 
-export const Route = createFileRoute("/01-components/09-loading-block")({
+export const Route = createFileRoute("/01-components/loading-block")({
   component: RouteComponent,
 });
 

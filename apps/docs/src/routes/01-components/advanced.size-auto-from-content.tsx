@@ -6,7 +6,7 @@ import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
 import { ActionSizeAutoFromContentWidget } from "@/widgets/action/ActionSizeAutoFromContentWidget";
 
-export const Route = createFileRoute("/01-components/99-advanced/00-size-auto-from-content")({
+export const Route = createFileRoute("/01-components/advanced/size-auto-from-content")({
   component: RouteComponent,
 });
 

@@ -8,6 +8,8 @@ import { Scrollbars } from "@dldc/ui-components/scrollbars";
 import { useCallback, useState, type ReactNode } from "react";
 import { Fragment } from "react/jsx-runtime";
 
+import { cn } from "@/utils/styles";
+
 export interface HeighligedCellParams<TRow, TColumn> {
   key: string;
   row: TRow;
@@ -22,6 +24,7 @@ export interface HighlightedGridProps<TRow, TColumn> {
   renderCell: (params: HeighligedCellParams<TRow, TColumn>) => ReactNode;
   onHighlightedCell?: (params: HeighligedCellParams<TRow, TColumn>) => void;
   className?: string;
+  cellClassName?: string;
 }
 
 export function HighlightedGrid<TRow, TColumn>({
@@ -30,6 +33,7 @@ export function HighlightedGrid<TRow, TColumn>({
   renderCell,
   onHighlightedCell,
   className,
+  cellClassName,
 }: HighlightedGridProps<TRow, TColumn>) {
   const hasRows = rowsDims && rowsDims.length > 0;
   const hasColumns = columnsDims && columnsDims.length > 0;
@@ -81,7 +85,7 @@ export function HighlightedGrid<TRow, TColumn>({
                   const params: HeighligedCellParams<TRow, TColumn> = { key, row, column, rowIndex, columnIndex };
                   return (
                     <div
-                      className="relative grid items-center justify-start"
+                      className={cn("relative grid items-center justify-start", cellClassName)}
                       style={{ gridColumn: columnOffset + columnIndex, gridRow: rowOffset + rowIndex }}
                       key={key}
                       onPointerEnter={() => onHightlighted(params)}

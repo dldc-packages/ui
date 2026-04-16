@@ -11,7 +11,7 @@ import { TypographyFontSizeWidget } from "@/widgets/typography/TypographyFontSiz
 import { TypographyFontWeightWidget } from "@/widgets/typography/TypographyFontWeightWidget";
 import { TypographyNestedWidget } from "@/widgets/typography/TypographyNestedWidget";
 
-export const Route = createFileRoute("/01-components/11-typography")({
+export const Route = createFileRoute("/01-components/typography")({
   component: RouteComponent,
 });
 

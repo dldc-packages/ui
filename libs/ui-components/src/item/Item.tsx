@@ -1,10 +1,11 @@
 import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
-import { extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
+import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { createItemLook } from "@dldc/ui-styles/item";
 import { createItemContentLook } from "@dldc/ui-styles/item-content";
 import { look, mergeLooks } from "@dldc/ui-styles/utils";
+import { ReactElement } from "react";
 
 import {
   contentSizeProps,
@@ -17,15 +18,28 @@ import { DefaultPaddingProvider, paddingProps, ParentPaddingContextProvider, use
 import { DefaultRoundedProvider, ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
 import { DefaultSizeProvider, ParentSizeContextProvider, sizeProps, useSize } from "../size";
 
-export const itemProps = mergePropsKeys(paddingProps, roundedProps, sizeProps, itemContentProps, contentSizeProps);
+export interface ItemSpecificProps {
+  extraProviders?: (ReactElement | undefined | null | false)[];
+}
+
+const itemSpecificProps = createPropsKeys<ItemSpecificProps>({
+  extraProviders: null,
+});
+
+export const itemProps = mergePropsKeys(
+  itemSpecificProps,
+  paddingProps,
+  roundedProps,
+  sizeProps,
+  itemContentProps,
+  contentSizeProps,
+);
 
 export type ItemProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<typeof itemProps>>;
 
 export function Item(inProps: ItemProps) {
-  const [[localPadding, localRounded, localSize, localItemContent, localContentSize], props] = extractProps(
-    inProps,
-    itemProps.content,
-  );
+  const [[localItemSpecific, localPadding, localRounded, localSize, localItemContent, localContentSize], props] =
+    extractProps(inProps, itemProps.content);
 
   const { className, style, children, render, ref, ...htmlProps } = props;
 
@@ -35,6 +49,8 @@ export function Item(inProps: ItemProps) {
   const { contentSize, contentSizeVarName, parentContentSizeVarName, nextContentSizeDefaultContext } =
     useContentSize(localContentSize);
   const { startPaddingMode, endPaddingMode, fragment, noLayout } = useItemContent(localItemContent, children);
+
+  const { extraProviders = [] } = localItemSpecific;
 
   const itemLook = createItemLook({
     defaultSize: 7,
@@ -65,6 +81,7 @@ export function Item(inProps: ItemProps) {
     ref,
     ...htmlProps,
     children: applyProviders(
+      ...extraProviders,
       nextPaddingDefaultContext && <DefaultPaddingProvider contextValue={nextPaddingDefaultContext} />,
       nextRoundedDefaultContext && <DefaultRoundedProvider contextValue={nextRoundedDefaultContext} />,
       nextSizeDefaultContext && <DefaultSizeProvider contextValue={nextSizeDefaultContext} />,

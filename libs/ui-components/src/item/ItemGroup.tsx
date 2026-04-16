@@ -1,9 +1,10 @@
+import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
 import { createItemGroupLook, createItemGroupSeparatorLook } from "@dldc/ui-styles/item-group";
 import { look, mergeLooks, TLook } from "@dldc/ui-styles/utils";
-import { Children, cloneElement, Fragment } from "react";
+import { Children, cloneElement, Fragment, ReactElement } from "react";
 
 import { contentSizeProps } from "../content-size";
 import { DefaultDesignProvider } from "../default-design-provider";
@@ -16,6 +17,7 @@ export interface ItemGroupSpecificProps {
   roundedEnds?: "start" | "end" | "both" | "none";
   noDividers?: boolean;
   dividerLook?: TLook;
+  extraProviders?: (ReactElement | undefined | null | false)[];
 }
 
 export const itemGroupSpecificProps = createPropsKeys<ItemGroupSpecificProps>({
@@ -23,6 +25,7 @@ export const itemGroupSpecificProps = createPropsKeys<ItemGroupSpecificProps>({
   roundedEnds: null,
   noDividers: null,
   dividerLook: null,
+  extraProviders: null,
 });
 
 export const itemGroupProps = mergePropsKeys(
@@ -42,7 +45,13 @@ export function ItemGroup(inProps: ItemGroupProps) {
   );
 
   const { children, className, style, render, ...htmlProps } = props;
-  const { direction = "horizontal", roundedEnds = "both", noDividers = false, dividerLook } = localItemGroupSpecific;
+  const {
+    direction = "horizontal",
+    roundedEnds = "both",
+    noDividers = false,
+    dividerLook,
+    extraProviders = [],
+  } = localItemGroupSpecific;
 
   const childrenFiltered = Children.toArray(children).filter((c) => c);
   const childrenLength = Children.count(childrenFiltered);
@@ -89,7 +98,7 @@ export function ItemGroup(inProps: ItemGroupProps) {
 
     children: (
       <DefaultDesignProvider {...localSize} {...localContentSize} {...localPadding} {...localRounded}>
-        {childContent}
+        {applyProviders(...extraProviders)(childContent)}
       </DefaultDesignProvider>
     ),
   });

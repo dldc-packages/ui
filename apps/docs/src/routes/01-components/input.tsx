@@ -17,7 +17,7 @@ import { InputPlaceholderWidget } from "@/widgets/input/InputPlaceholderWidget";
 import { InputSizeWidget } from "@/widgets/input/InputSizeWidget";
 import { InputVariantsWidget } from "@/widgets/input/InputVariantsWidget";
 
-export const Route = createFileRoute("/01-components/06-input")({
+export const Route = createFileRoute("/01-components/input")({
   component: RouteComponent,
 });
 
