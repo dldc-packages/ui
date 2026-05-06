@@ -1,8 +1,6 @@
-import { defineConfig } from "tsdown";
+import { defineLibraryConfig } from "@config/tsdown";
 
-export default defineConfig({
+export default defineLibraryConfig({
   entry: ["src/*.{ts,tsx}", "./src/*/index.{ts,tsx}"],
-  platform: "neutral",
-  dts: true,
-  exports: true,
+  vanillaExtract: true,
 });

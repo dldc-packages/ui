@@ -1,4 +1,4 @@
-import { Action, type ActionProps } from "@dldc/ui-components/action";
+import { Action } from "@dldc/ui-components/action";
 import type { TPaletteColor } from "@dldc/ui-core/colors";
 import type { TDesignVariant } from "@dldc/ui-core/variants";
 import { useState, type ComponentPropsWithRef } from "react";
@@ -36,28 +36,28 @@ export function ActionColorsWidget({ className, ...props }: ComponentPropsWithRe
   ];
   const variants: TDesignVariant[] = ["solid", "surface", "subtle", "ghost", "input"];
 
-  const [highlighted, setHighlighted] = useState<ActionProps | null>();
+  const [highlighted, setHighlighted] = useState<{ color: TPaletteColor; variant: TDesignVariant } | null>(null);
+
+  function renderElement(color: TPaletteColor, variant: TDesignVariant, key?: string) {
+    return (
+      <Action key={key} color={color} variant={variant} size="7">
+        {color}
+      </Action>
+    );
+  }
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
         {highlighted
-          ? printElement(
-              <Action color={highlighted.color} variant={highlighted.variant}>
-                {highlighted.color}
-              </Action>,
-            )
+          ? printElement(renderElement(highlighted.color, highlighted.variant))
           : "// Hover an element to see the code"}
       </CodeHighlight>
       <HighlightedGrid
         rowsDims={variants}
         columnsDims={colors}
-        renderCell={({ row: variant, column: color, key }) => (
-          <Action key={key} variant={variant} color={color} size="7">
-            {color}
-          </Action>
-        )}
-        onHighlightedCell={(cell) => setHighlighted(cell ? { color: cell?.column, variant: cell?.row } : null)}
+        renderCell={({ row: variant, column: color, key }) => renderElement(color, variant, key)}
+        onHighlightedCell={(cell) => setHighlighted(cell ? { color: cell.column, variant: cell.row } : null)}
       />
     </div>
   );

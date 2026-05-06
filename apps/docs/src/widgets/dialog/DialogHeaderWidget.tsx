@@ -1,69 +1,46 @@
-import { Button, ButtonLike } from "@dldc/ui-components/button";
-import { DialogHeader } from "@dldc/ui-components/dialog";
-import { ChevronRightIcon, Settings2Icon, SparklesIcon, XIcon } from "lucide-react";
-import { useState, type ComponentPropsWithRef, type ReactElement } from "react";
+import { Button } from "@dldc/ui-components/button";
+import { DesignWrapper } from "@dldc/ui-components/design-wrapper";
+import { Dialog } from "@dldc/ui-components/dialog";
+import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
+import { IconBox } from "@dldc/ui-components/icon-box";
+import { Typography } from "@dldc/ui-components/typography";
+import { SparklesIcon, XIcon } from "lucide-react";
+import { useState, type ComponentPropsWithRef } from "react";
 
 import { CodeHighlight } from "@/components/CodeHighlight";
-import { HighlightedGrid } from "@/components/HighlightedGrid";
 import { printElement } from "@/utils/printElement";
 import { cn } from "@/utils/styles";
 
-type DialogHeaderExample = {
-  label: string;
-  element: ReactElement;
-};
-
-// TODO: Rework to put inside a Dialog !
-
 export function DialogHeaderWidget({ className, ...props }: ComponentPropsWithRef<"div">) {
-  const examples: DialogHeaderExample[] = [
-    {
-      label: "Basic",
-      element: <DialogHeader title="Project settings" />,
-    },
-    {
-      label: "Icons",
-      element: <DialogHeader title="Workspace" startIcon={<Settings2Icon />} endIcon={<ChevronRightIcon />} />,
-    },
-    {
-      label: "Slots",
-      element: (
-        <DialogHeader
-          title="Billing"
-          startSlot={<ButtonLike variant="solid" startIcon={<SparklesIcon />} />}
-          endSlot={<ButtonLike variant="surface" startIcon={<XIcon />} />}
-        />
-      ),
-    },
-    {
-      label: "Content Size",
-      element: (
-        <DialogHeader
-          title="Large title scale"
-          startIcon={<SparklesIcon />}
-          contentSize="5"
-          endSlot={<Button variant="ghost">Done</Button>}
-        />
-      ),
-    },
-  ];
+  const [show, setShow] = useState(false);
 
-  const [highlighted, setHighlighted] = useState<DialogHeaderExample>(examples[0]);
+  const element = (
+    <Dialog scrollable={false} className="flex max-h-full flex-col overflow-hidden" padding="2">
+      <DesignWrapper size="10" padding="0" className="p-paddingVar gap-paddingVar flex flex-row">
+        <DesignWrapper padding="2x" className="p-paddingVar gap-paddingVar flex flex-row">
+          <IconBox icon={<SparklesIcon />} />
+          <Typography fontWeight="semibold">This is a dialog</Typography>
+        </DesignWrapper>
+        <Button padding="2x" variant="ghost" startIcon={<XIcon />} className="ml-auto" onClick={() => setShow(false)} />
+      </DesignWrapper>
+      <div className="p-2x pt-0">
+        <p>Content</p>
+      </div>
+    </Dialog>
+  );
 
   return (
     <div className={cn("grid grid-cols-2 gap-4", className)} {...props}>
       <CodeHighlight language="jsx" theme="dark-plus">
-        {printElement(highlighted.element)}
+        {printElement(element)}
       </CodeHighlight>
-      <HighlightedGrid
-        rowsDims={examples}
-        renderCell={({ row, key }) => (
-          <div key={key} className="w-[300px] bg-white/5">
-            {row.element}
-          </div>
-        )}
-        onHighlightedCell={(cell) => setHighlighted(cell.row)}
-      />
+
+      <GeometryPaper background="900" className="space-y-3 p-3" rounded="2" skipProviders>
+        <Button color="orange" onClick={() => setShow(true)}>
+          Open Dialog with header
+        </Button>
+        {show && element}
+      </GeometryPaper>
     </div>
   );
 }

@@ -22,6 +22,10 @@ function RouteComponent() {
           components into a cohesive unit. It automatically handles border radius adjustments and spacing to create
           seamless visual connections between items.
         </p>
+        <p>
+          You are not supposed to use <code>ItemGroup</code> directly but rather use one of the components built on top
+          of it such as <code>ActionGroup</code>.
+        </p>
 
         <h2>Basic Usage</h2>
         <p>

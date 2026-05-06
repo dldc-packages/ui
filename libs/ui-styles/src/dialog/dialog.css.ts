@@ -91,12 +91,3 @@ export const dialogFooterClass = style(
     gap: paddingVar,
   }),
 );
-
-export const dialogHeaderClass = style(
-  withLayer({
-    display: "flex",
-    alignItems: "center",
-    gap: paddingVar,
-    minWidth: 0,
-  }),
-);

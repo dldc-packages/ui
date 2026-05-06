@@ -1,3 +1,4 @@
+import { applyProviders } from "@dldc/react-utils/apply-providers";
 import { createRender } from "@dldc/react-utils/create-render";
 import { createPropsKeys, extractProps, mergePropsKeys, TypeOfPropsKeys } from "@dldc/react-utils/props-keys";
 import { ComponentPropsBaseWith } from "@dldc/react-utils/types";
@@ -7,12 +8,10 @@ import { createItemLook } from "@dldc/ui-styles/item";
 import { look, mergeLooks } from "@dldc/ui-styles/utils";
 import { clsx } from "clsx";
 
-import { contentSizeProps, useContentSize } from "../content-size";
-import { DefaultDesignProvider } from "../default-design-provider";
-import { paddingProps, usePadding } from "../padding";
-import { roundedProps, useRounded } from "../rounded";
-import { sizeProps, useSize } from "../size";
-import { variantProps } from "../variant";
+import { contentSizeProps, ParentContentSizeContextProvider, useContentSize } from "../content-size";
+import { paddingProps, ParentPaddingContextProvider, usePadding } from "../padding";
+import { ParentRoundedContextProvider, roundedProps, useRounded } from "../rounded";
+import { ParentSizeContextProvider, sizeProps, useSize } from "../size";
 
 export interface DesignWrapperSpecificProps {
   color?: TPaletteColor;
@@ -23,7 +22,6 @@ export const designWrapperSpecificProps = createPropsKeys<DesignWrapperSpecificP
 });
 
 export const designWrapperProps = mergePropsKeys(
-  variantProps,
   paddingProps,
   roundedProps,
   sizeProps,
@@ -40,8 +38,10 @@ export type DesignWrapperProps = ComponentPropsBaseWith<"div", TypeOfPropsKeys<t
  * @returns
  */
 export function DesignWrapper(inProps: DesignWrapperProps) {
-  const [[localVariant, localPadding, localRounded, localSize, localContentSize, localDesignWrapperSpecific], props] =
-    extractProps(inProps, designWrapperProps.content);
+  const [[localPadding, localRounded, localSize, localContentSize, localDesignWrapperSpecific], props] = extractProps(
+    inProps,
+    designWrapperProps.content,
+  );
 
   const { render, className, style, children, ref, ...htmlProps } = props;
   const { color } = localDesignWrapperSpecific;
@@ -72,16 +72,17 @@ export function DesignWrapper(inProps: DesignWrapperProps) {
     parentContentSizeVarName,
   });
 
-  return (
-    <DefaultDesignProvider {...localVariant} {...localSize} {...localContentSize} {...localPadding} {...localRounded}>
-      {createRender("div", render, {
-        ...mergeLooks(itemLook, look(clsx(colorClass, contentSizeLineHeightClass)), look(className, style)),
-        ref,
-        ...htmlProps,
-        children,
-      })}
-    </DefaultDesignProvider>
-  );
+  return createRender("div", render, {
+    ...mergeLooks(itemLook, look(clsx(colorClass, contentSizeLineHeightClass)), look(className, style)),
+    ref,
+    ...htmlProps,
+    children: applyProviders(
+      <ParentPaddingContextProvider paddingVarName={paddingVarName} />,
+      <ParentRoundedContextProvider roundedVarName={roundedVarName} />,
+      <ParentSizeContextProvider sizeVarName={sizeVarName} />,
+      <ParentContentSizeContextProvider contentSizeVarName={contentSizeVarName} />,
+    )(children),
+  });
 }
 
 DesignWrapper.displayName = "DesignWrapper";

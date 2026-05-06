@@ -1,6 +1,6 @@
 import { Prose } from "@dldc/ui-components/prose";
 import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { StoryLayout } from "@/components/StoryLayout";
 import { cn } from "@/utils/styles";
@@ -32,26 +32,19 @@ function RouteComponent() {
       <Prose invert>
         <h1>Action</h1>
         <p>
-          <code>Action</code> is the basis for interactive UI elements such as <code>Button</code>,{" "}
-          <code>ListItem</code>, <code>Input</code>, <code>MenuItem</code> and more. It provide the following
-          functionalities:
+          <code>Action</code> is based on the{" "}
+          <Link to="/01-components/00-item">
+            <code>Item</code>
+          </Link>{" "}
+          component and inherits all of its features such as automatic border radius and spacing adjustments when
+          nested. On top of that, <code>Action</code> visual styling width different variants and colors.
         </p>
-        <ul>
-          <li>
-            Variants: <code>solid</code>, <code>surface</code>, <code>subtle</code>, <code>ghost</code>,{" "}
-            <code>input</code>
-          </li>
-          <li>Color variants</li>
-          <li>Automatic padding and content sizing based on the size, with support for manual overrides</li>
-          <li>
-            Auto size and radius for nested <code>Action</code>s
-          </li>
-          <li>Interactive states (or not): hover, focus, disabled</li>
-          <li>Content padding and gap</li>
-        </ul>
         <p>
           You are not supposed to use <code>Action</code> directly but rather use one of the components built on top of
-          it.
+          it such as{" "}
+          <Link to="/01-components/button">
+            <code>Button</code>
+          </Link>
         </p>
 
         <h2>Basic</h2>

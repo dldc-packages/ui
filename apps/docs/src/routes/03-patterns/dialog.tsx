@@ -1,15 +1,10 @@
-import * as UIDialog from "@dldc/ui-ariakit/dialog";
-import { GeometryPaper } from "@dldc/ui-components/geometry-paper";
 import { Prose } from "@dldc/ui-components/prose";
-import { Dialog } from "@dldc/ui-patterns/dialog";
 import { notProseClass, proseBleedClass } from "@dldc/ui-styles/prose";
 import { createFileRoute } from "@tanstack/react-router";
-import { Trash2Icon, XIcon } from "lucide-react";
 
-import { CodeHighlight } from "@/components/CodeHighlight";
 import { StoryLayout } from "@/components/StoryLayout";
-import { printElement } from "@/utils/printElement";
 import { cn } from "@/utils/styles";
+import { DialogPatternWidget } from "@/widgets/dialog-pattern/DialogPatternWidget";
 
 export const Route = createFileRoute("/03-patterns/dialog")({
   component: RouteComponent,
@@ -43,44 +38,8 @@ function RouteComponent() {
         </ul>
 
         <h2>Example</h2>
-        <DialogPatternExample />
+        <DialogPatternWidget className={cn(notProseClass, proseBleedClass)} />
       </Prose>
     </StoryLayout>
-  );
-}
-
-function DialogPatternExample() {
-  const example = (
-    <Dialog
-      title="Delete project?"
-      size="sm"
-      disclosure={<UIDialog.DialogDisclosure startIcon={<Trash2Icon />}>Delete project</UIDialog.DialogDisclosure>}
-      startIcon={<Trash2Icon />}
-    >
-      <UIDialog.DialogDescription>
-        This action permanently removes the project and cannot be undone.
-      </UIDialog.DialogDescription>
-
-      <div className="mt-4 flex justify-end gap-2">
-        <UIDialog.DialogDismiss variant="ghost" startIcon={<XIcon />}>
-          Cancel
-        </UIDialog.DialogDismiss>
-        <UIDialog.DialogDismiss color="red" startIcon={<Trash2Icon />}>
-          Delete
-        </UIDialog.DialogDismiss>
-      </div>
-    </Dialog>
-  );
-
-  return (
-    <div className={cn(notProseClass, proseBleedClass, "grid grid-cols-1 gap-4 *:min-h-[260px] lg:grid-cols-2")}>
-      <CodeHighlight language="jsx" theme="dark-plus">
-        {printElement(example)}
-      </CodeHighlight>
-
-      <GeometryPaper background="900" className="p-4" rounded="2" skipProviders>
-        <div className="flex h-full items-start justify-center pt-6">{example}</div>
-      </GeometryPaper>
-    </div>
   );
 }

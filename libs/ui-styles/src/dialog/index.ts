@@ -4,7 +4,6 @@ import { look, TLook } from "../utils/look";
 
 import {
   dialogFooterClass,
-  dialogHeaderClass,
   dialogLayoutClass,
   dialogPositionerClass,
   dialogRootClass,
@@ -31,10 +30,6 @@ export interface TCreateDialogLookParams {
 
 export function createDialogLook({ size, layout }: TCreateDialogLookParams): TLook {
   return look(clsx(dialogSizeVariantsClass[size], layout && dialogLayoutClass));
-}
-
-export function createDialogHeaderLook(): TLook {
-  return look(dialogHeaderClass);
 }
 
 export function createDialogFooterLook(): TLook {

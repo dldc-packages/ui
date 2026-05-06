@@ -3,6 +3,7 @@
 
 @import "@dldc/ui-core/styles.css";
 @import "@dldc/ui-styles/styles.css";
+@import "@dldc/ui-patterns/styles.css";
 @import "overlayscrollbars/overlayscrollbars.css";
 
-@layer theme, base, dldc.ui-core, dldc.ui-styles, components, utilities;
+@layer theme, base, dldc.ui-core, dldc.ui-styles, dldc.ui-patterns, components, utilities;

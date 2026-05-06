@@ -29,13 +29,7 @@ export function DesignWrapperBasicWidget({ className, ...props }: ComponentProps
       key: "with",
       label: "With wrapper",
       element: (
-        <DesignWrapper
-          variant="solid"
-          color="blue"
-          size="10"
-          contentSize="7"
-          className="flex flex-row items-center gap-2"
-        >
+        <DesignWrapper color="blue" size="10" padding="1" className="flex flex-row items-center gap-2">
           <Action>Action</Action>
           <Button>Button</Button>
           <Input placeholder="Input" />
