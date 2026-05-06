@@ -35,7 +35,6 @@
 ### Patch Changes
 
 - dc6d51a: Add typography primitives across core, styles, and components.
-
   - Introduce `Typography` in `@dldc/ui-components` with content-size, font-size, and font-weight support.
   - Add shared typography types in `@dldc/ui-core` and export typography style helpers in `@dldc/ui-styles`.
   - Update icon styles/components to support inline icon rendering.

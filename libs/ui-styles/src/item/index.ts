@@ -83,6 +83,4 @@ export function createItemLook(params: TCreateItemLookParams): TLook {
       parentContentSizeVarName,
     }),
   );
-
-  look(clsx(itemClass, roundedBorderRadiusClass, sizeMinHeightClass, contentSizeLineHeightClass), {});
 }
