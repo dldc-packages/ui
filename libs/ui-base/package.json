@@ -5,8 +5,10 @@
   "repository": {
     "url": "https://github.com/dldc-packages/ui"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
-  "types": "./dist/index.d.ts",
   "exports": {
     "./button": "./dist/button.js",
     "./checkbox": "./dist/checkbox.js",

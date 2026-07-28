@@ -5,8 +5,10 @@
   "repository": {
     "url": "https://github.com/dldc-packages/ui"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
-  "types": "./dist/demo.d.ts",
   "exports": {
     "./apply-providers": "./dist/apply-providers.js",
     "./create-provider": "./dist/create-provider.js",

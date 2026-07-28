@@ -5,8 +5,10 @@
   "repository": {
     "url": "https://github.com/dldc-packages/ui"
   },
+  "files": [
+    "dist"
+  ],
   "type": "module",
-  "types": "./dist/demo.d.ts",
   "exports": {
     "./iterable": "./dist/iterable.js",
     "./keys-of-type": "./dist/keys-of-type.js",
