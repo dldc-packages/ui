@@ -37,8 +37,8 @@
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",
-    "typecheck": "tsgo --noEmit",
-    "typecheck:watch": "tsgo --noEmit --watch"
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "@ariakit/react": "catalog:",
@@ -54,7 +54,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@typescript/native-preview": "catalog:",
+    "typescript": "catalog:",
     "tsdown": "catalog:"
   }
 }

@@ -14,8 +14,8 @@
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",
-    "typecheck": "tsgo --noEmit",
-    "typecheck:watch": "tsgo --noEmit --watch"
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "@dldc/ui-core": "workspace:^",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
-    "@typescript/native-preview": "catalog:",
+    "typescript": "catalog:",
     "tsdown": "catalog:"
   }
 }

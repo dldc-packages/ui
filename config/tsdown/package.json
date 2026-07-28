@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsdown",
     "build:watch": "tsdown --watch",
-    "typecheck": "tsgo --noEmit",
-    "typecheck:watch": "tsgo --noEmit --watch"
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "@vanilla-extract/rollup-plugin": "catalog:",
@@ -22,6 +22,6 @@
   "devDependencies": {
     "@config/typescript": "workspace:^",
     "@types/node": "catalog:",
-    "@typescript/native-preview": "catalog:"
+    "typescript": "catalog:"
   }
 }

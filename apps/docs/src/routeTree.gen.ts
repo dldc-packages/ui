@@ -9,39 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as R00PlaygroundRouteImport } from './routes/00-playground'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R00PlaygroundRouteImport } from './routes/00-playground'
 import { Route as R01ComponentsIndexRouteImport } from './routes/01-components/index'
-import { Route as R03PatternsDialogRouteImport } from './routes/03-patterns/dialog'
-import { Route as R03Patterns00IntroRouteImport } from './routes/03-patterns/00-intro'
-import { Route as R02AriakitSelectRouteImport } from './routes/02-ariakit/select'
-import { Route as R02AriakitDialogRouteImport } from './routes/02-ariakit/dialog'
-import { Route as R02AriakitCheckboxRouteImport } from './routes/02-ariakit/checkbox'
-import { Route as R02AriakitButtonRouteImport } from './routes/02-ariakit/button'
-import { Route as R02Ariakit00IntroRouteImport } from './routes/02-ariakit/00-intro'
-import { Route as R01ComponentsTypographyRouteImport } from './routes/01-components/typography'
-import { Route as R01ComponentsProseRouteImport } from './routes/01-components/prose'
-import { Route as R01ComponentsLoadingIconRouteImport } from './routes/01-components/loading-icon'
-import { Route as R01ComponentsLoadingBlockRouteImport } from './routes/01-components/loading-block'
-import { Route as R01ComponentsInputRouteImport } from './routes/01-components/input'
-import { Route as R01ComponentsDialogRouteImport } from './routes/01-components/dialog'
-import { Route as R01ComponentsDesignWrapperRouteImport } from './routes/01-components/design-wrapper'
-import { Route as R01ComponentsDefaultProvidersRouteImport } from './routes/01-components/default-providers'
-import { Route as R01ComponentsButtonRouteImport } from './routes/01-components/button'
-import { Route as R01ComponentsActionGroupRouteImport } from './routes/01-components/action-group'
-import { Route as R01ComponentsActionRouteImport } from './routes/01-components/action'
-import { Route as R01Components00ItemGroupRouteImport } from './routes/01-components/00-item-group'
 import { Route as R01Components00ItemRouteImport } from './routes/01-components/00-item'
+import { Route as R01Components00ItemGroupRouteImport } from './routes/01-components/00-item-group'
+import { Route as R01ComponentsActionRouteImport } from './routes/01-components/action'
+import { Route as R01ComponentsActionGroupRouteImport } from './routes/01-components/action-group'
+import { Route as R01ComponentsButtonRouteImport } from './routes/01-components/button'
+import { Route as R01ComponentsDefaultProvidersRouteImport } from './routes/01-components/default-providers'
+import { Route as R01ComponentsDesignWrapperRouteImport } from './routes/01-components/design-wrapper'
+import { Route as R01ComponentsDialogRouteImport } from './routes/01-components/dialog'
+import { Route as R01ComponentsInputRouteImport } from './routes/01-components/input'
+import { Route as R01ComponentsLoadingBlockRouteImport } from './routes/01-components/loading-block'
+import { Route as R01ComponentsLoadingIconRouteImport } from './routes/01-components/loading-icon'
+import { Route as R01ComponentsProseRouteImport } from './routes/01-components/prose'
+import { Route as R01ComponentsTypographyRouteImport } from './routes/01-components/typography'
+import { Route as R02Ariakit00IntroRouteImport } from './routes/02-ariakit/00-intro'
+import { Route as R02AriakitButtonRouteImport } from './routes/02-ariakit/button'
+import { Route as R02AriakitCheckboxRouteImport } from './routes/02-ariakit/checkbox'
+import { Route as R02AriakitDialogRouteImport } from './routes/02-ariakit/dialog'
+import { Route as R02AriakitSelectRouteImport } from './routes/02-ariakit/select'
+import { Route as R03Patterns00IntroRouteImport } from './routes/03-patterns/00-intro'
+import { Route as R03PatternsDialogRouteImport } from './routes/03-patterns/dialog'
 import { Route as R01ComponentsAdvancedSizeAutoFromContentRouteImport } from './routes/01-components/advanced.size-auto-from-content'
 
-const R00PlaygroundRoute = R00PlaygroundRouteImport.update({
-  id: '/00-playground',
-  path: '/00-playground',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R00PlaygroundRoute = R00PlaygroundRouteImport.update({
+  id: '/00-playground',
+  path: '/00-playground',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R01ComponentsIndexRoute = R01ComponentsIndexRouteImport.update({
@@ -49,99 +49,9 @@ const R01ComponentsIndexRoute = R01ComponentsIndexRouteImport.update({
   path: '/01-components/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const R03PatternsDialogRoute = R03PatternsDialogRouteImport.update({
-  id: '/03-patterns/dialog',
-  path: '/03-patterns/dialog',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R03Patterns00IntroRoute = R03Patterns00IntroRouteImport.update({
-  id: '/03-patterns/00-intro',
-  path: '/03-patterns/00-intro',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R02AriakitSelectRoute = R02AriakitSelectRouteImport.update({
-  id: '/02-ariakit/select',
-  path: '/02-ariakit/select',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R02AriakitDialogRoute = R02AriakitDialogRouteImport.update({
-  id: '/02-ariakit/dialog',
-  path: '/02-ariakit/dialog',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R02AriakitCheckboxRoute = R02AriakitCheckboxRouteImport.update({
-  id: '/02-ariakit/checkbox',
-  path: '/02-ariakit/checkbox',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R02AriakitButtonRoute = R02AriakitButtonRouteImport.update({
-  id: '/02-ariakit/button',
-  path: '/02-ariakit/button',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R02Ariakit00IntroRoute = R02Ariakit00IntroRouteImport.update({
-  id: '/02-ariakit/00-intro',
-  path: '/02-ariakit/00-intro',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R01ComponentsTypographyRoute = R01ComponentsTypographyRouteImport.update({
-  id: '/01-components/typography',
-  path: '/01-components/typography',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R01ComponentsProseRoute = R01ComponentsProseRouteImport.update({
-  id: '/01-components/prose',
-  path: '/01-components/prose',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R01ComponentsLoadingIconRoute =
-  R01ComponentsLoadingIconRouteImport.update({
-    id: '/01-components/loading-icon',
-    path: '/01-components/loading-icon',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const R01ComponentsLoadingBlockRoute =
-  R01ComponentsLoadingBlockRouteImport.update({
-    id: '/01-components/loading-block',
-    path: '/01-components/loading-block',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const R01ComponentsInputRoute = R01ComponentsInputRouteImport.update({
-  id: '/01-components/input',
-  path: '/01-components/input',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R01ComponentsDialogRoute = R01ComponentsDialogRouteImport.update({
-  id: '/01-components/dialog',
-  path: '/01-components/dialog',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R01ComponentsDesignWrapperRoute =
-  R01ComponentsDesignWrapperRouteImport.update({
-    id: '/01-components/design-wrapper',
-    path: '/01-components/design-wrapper',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const R01ComponentsDefaultProvidersRoute =
-  R01ComponentsDefaultProvidersRouteImport.update({
-    id: '/01-components/default-providers',
-    path: '/01-components/default-providers',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const R01ComponentsButtonRoute = R01ComponentsButtonRouteImport.update({
-  id: '/01-components/button',
-  path: '/01-components/button',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R01ComponentsActionGroupRoute =
-  R01ComponentsActionGroupRouteImport.update({
-    id: '/01-components/action-group',
-    path: '/01-components/action-group',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const R01ComponentsActionRoute = R01ComponentsActionRouteImport.update({
-  id: '/01-components/action',
-  path: '/01-components/action',
+const R01Components00ItemRoute = R01Components00ItemRouteImport.update({
+  id: '/01-components/00-item',
+  path: '/01-components/00-item',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R01Components00ItemGroupRoute =
@@ -150,9 +60,99 @@ const R01Components00ItemGroupRoute =
     path: '/01-components/00-item-group',
     getParentRoute: () => rootRouteImport,
   } as any)
-const R01Components00ItemRoute = R01Components00ItemRouteImport.update({
-  id: '/01-components/00-item',
-  path: '/01-components/00-item',
+const R01ComponentsActionRoute = R01ComponentsActionRouteImport.update({
+  id: '/01-components/action',
+  path: '/01-components/action',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01ComponentsActionGroupRoute =
+  R01ComponentsActionGroupRouteImport.update({
+    id: '/01-components/action-group',
+    path: '/01-components/action-group',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R01ComponentsButtonRoute = R01ComponentsButtonRouteImport.update({
+  id: '/01-components/button',
+  path: '/01-components/button',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01ComponentsDefaultProvidersRoute =
+  R01ComponentsDefaultProvidersRouteImport.update({
+    id: '/01-components/default-providers',
+    path: '/01-components/default-providers',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R01ComponentsDesignWrapperRoute =
+  R01ComponentsDesignWrapperRouteImport.update({
+    id: '/01-components/design-wrapper',
+    path: '/01-components/design-wrapper',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R01ComponentsDialogRoute = R01ComponentsDialogRouteImport.update({
+  id: '/01-components/dialog',
+  path: '/01-components/dialog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01ComponentsInputRoute = R01ComponentsInputRouteImport.update({
+  id: '/01-components/input',
+  path: '/01-components/input',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01ComponentsLoadingBlockRoute =
+  R01ComponentsLoadingBlockRouteImport.update({
+    id: '/01-components/loading-block',
+    path: '/01-components/loading-block',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R01ComponentsLoadingIconRoute =
+  R01ComponentsLoadingIconRouteImport.update({
+    id: '/01-components/loading-icon',
+    path: '/01-components/loading-icon',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R01ComponentsProseRoute = R01ComponentsProseRouteImport.update({
+  id: '/01-components/prose',
+  path: '/01-components/prose',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R01ComponentsTypographyRoute = R01ComponentsTypographyRouteImport.update({
+  id: '/01-components/typography',
+  path: '/01-components/typography',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R02Ariakit00IntroRoute = R02Ariakit00IntroRouteImport.update({
+  id: '/02-ariakit/00-intro',
+  path: '/02-ariakit/00-intro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R02AriakitButtonRoute = R02AriakitButtonRouteImport.update({
+  id: '/02-ariakit/button',
+  path: '/02-ariakit/button',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R02AriakitCheckboxRoute = R02AriakitCheckboxRouteImport.update({
+  id: '/02-ariakit/checkbox',
+  path: '/02-ariakit/checkbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R02AriakitDialogRoute = R02AriakitDialogRouteImport.update({
+  id: '/02-ariakit/dialog',
+  path: '/02-ariakit/dialog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R02AriakitSelectRoute = R02AriakitSelectRouteImport.update({
+  id: '/02-ariakit/select',
+  path: '/02-ariakit/select',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R03Patterns00IntroRoute = R03Patterns00IntroRouteImport.update({
+  id: '/03-patterns/00-intro',
+  path: '/03-patterns/00-intro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R03PatternsDialogRoute = R03PatternsDialogRouteImport.update({
+  id: '/03-patterns/dialog',
+  path: '/03-patterns/dialog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R01ComponentsAdvancedSizeAutoFromContentRoute =
@@ -351,18 +351,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/00-playground': {
-      id: '/00-playground'
-      path: '/00-playground'
-      fullPath: '/00-playground'
-      preLoaderRoute: typeof R00PlaygroundRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/00-playground': {
+      id: '/00-playground'
+      path: '/00-playground'
+      fullPath: '/00-playground'
+      preLoaderRoute: typeof R00PlaygroundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/01-components/': {
@@ -372,130 +372,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R01ComponentsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/03-patterns/dialog': {
-      id: '/03-patterns/dialog'
-      path: '/03-patterns/dialog'
-      fullPath: '/03-patterns/dialog'
-      preLoaderRoute: typeof R03PatternsDialogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/03-patterns/00-intro': {
-      id: '/03-patterns/00-intro'
-      path: '/03-patterns/00-intro'
-      fullPath: '/03-patterns/00-intro'
-      preLoaderRoute: typeof R03Patterns00IntroRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/02-ariakit/select': {
-      id: '/02-ariakit/select'
-      path: '/02-ariakit/select'
-      fullPath: '/02-ariakit/select'
-      preLoaderRoute: typeof R02AriakitSelectRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/02-ariakit/dialog': {
-      id: '/02-ariakit/dialog'
-      path: '/02-ariakit/dialog'
-      fullPath: '/02-ariakit/dialog'
-      preLoaderRoute: typeof R02AriakitDialogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/02-ariakit/checkbox': {
-      id: '/02-ariakit/checkbox'
-      path: '/02-ariakit/checkbox'
-      fullPath: '/02-ariakit/checkbox'
-      preLoaderRoute: typeof R02AriakitCheckboxRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/02-ariakit/button': {
-      id: '/02-ariakit/button'
-      path: '/02-ariakit/button'
-      fullPath: '/02-ariakit/button'
-      preLoaderRoute: typeof R02AriakitButtonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/02-ariakit/00-intro': {
-      id: '/02-ariakit/00-intro'
-      path: '/02-ariakit/00-intro'
-      fullPath: '/02-ariakit/00-intro'
-      preLoaderRoute: typeof R02Ariakit00IntroRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/typography': {
-      id: '/01-components/typography'
-      path: '/01-components/typography'
-      fullPath: '/01-components/typography'
-      preLoaderRoute: typeof R01ComponentsTypographyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/prose': {
-      id: '/01-components/prose'
-      path: '/01-components/prose'
-      fullPath: '/01-components/prose'
-      preLoaderRoute: typeof R01ComponentsProseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/loading-icon': {
-      id: '/01-components/loading-icon'
-      path: '/01-components/loading-icon'
-      fullPath: '/01-components/loading-icon'
-      preLoaderRoute: typeof R01ComponentsLoadingIconRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/loading-block': {
-      id: '/01-components/loading-block'
-      path: '/01-components/loading-block'
-      fullPath: '/01-components/loading-block'
-      preLoaderRoute: typeof R01ComponentsLoadingBlockRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/input': {
-      id: '/01-components/input'
-      path: '/01-components/input'
-      fullPath: '/01-components/input'
-      preLoaderRoute: typeof R01ComponentsInputRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/dialog': {
-      id: '/01-components/dialog'
-      path: '/01-components/dialog'
-      fullPath: '/01-components/dialog'
-      preLoaderRoute: typeof R01ComponentsDialogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/design-wrapper': {
-      id: '/01-components/design-wrapper'
-      path: '/01-components/design-wrapper'
-      fullPath: '/01-components/design-wrapper'
-      preLoaderRoute: typeof R01ComponentsDesignWrapperRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/default-providers': {
-      id: '/01-components/default-providers'
-      path: '/01-components/default-providers'
-      fullPath: '/01-components/default-providers'
-      preLoaderRoute: typeof R01ComponentsDefaultProvidersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/button': {
-      id: '/01-components/button'
-      path: '/01-components/button'
-      fullPath: '/01-components/button'
-      preLoaderRoute: typeof R01ComponentsButtonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/action-group': {
-      id: '/01-components/action-group'
-      path: '/01-components/action-group'
-      fullPath: '/01-components/action-group'
-      preLoaderRoute: typeof R01ComponentsActionGroupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/01-components/action': {
-      id: '/01-components/action'
-      path: '/01-components/action'
-      fullPath: '/01-components/action'
-      preLoaderRoute: typeof R01ComponentsActionRouteImport
+    '/01-components/00-item': {
+      id: '/01-components/00-item'
+      path: '/01-components/00-item'
+      fullPath: '/01-components/00-item'
+      preLoaderRoute: typeof R01Components00ItemRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/01-components/00-item-group': {
@@ -505,11 +386,130 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R01Components00ItemGroupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/01-components/00-item': {
-      id: '/01-components/00-item'
-      path: '/01-components/00-item'
-      fullPath: '/01-components/00-item'
-      preLoaderRoute: typeof R01Components00ItemRouteImport
+    '/01-components/action': {
+      id: '/01-components/action'
+      path: '/01-components/action'
+      fullPath: '/01-components/action'
+      preLoaderRoute: typeof R01ComponentsActionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/action-group': {
+      id: '/01-components/action-group'
+      path: '/01-components/action-group'
+      fullPath: '/01-components/action-group'
+      preLoaderRoute: typeof R01ComponentsActionGroupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/button': {
+      id: '/01-components/button'
+      path: '/01-components/button'
+      fullPath: '/01-components/button'
+      preLoaderRoute: typeof R01ComponentsButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/default-providers': {
+      id: '/01-components/default-providers'
+      path: '/01-components/default-providers'
+      fullPath: '/01-components/default-providers'
+      preLoaderRoute: typeof R01ComponentsDefaultProvidersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/design-wrapper': {
+      id: '/01-components/design-wrapper'
+      path: '/01-components/design-wrapper'
+      fullPath: '/01-components/design-wrapper'
+      preLoaderRoute: typeof R01ComponentsDesignWrapperRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/dialog': {
+      id: '/01-components/dialog'
+      path: '/01-components/dialog'
+      fullPath: '/01-components/dialog'
+      preLoaderRoute: typeof R01ComponentsDialogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/input': {
+      id: '/01-components/input'
+      path: '/01-components/input'
+      fullPath: '/01-components/input'
+      preLoaderRoute: typeof R01ComponentsInputRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/loading-block': {
+      id: '/01-components/loading-block'
+      path: '/01-components/loading-block'
+      fullPath: '/01-components/loading-block'
+      preLoaderRoute: typeof R01ComponentsLoadingBlockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/loading-icon': {
+      id: '/01-components/loading-icon'
+      path: '/01-components/loading-icon'
+      fullPath: '/01-components/loading-icon'
+      preLoaderRoute: typeof R01ComponentsLoadingIconRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/prose': {
+      id: '/01-components/prose'
+      path: '/01-components/prose'
+      fullPath: '/01-components/prose'
+      preLoaderRoute: typeof R01ComponentsProseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/01-components/typography': {
+      id: '/01-components/typography'
+      path: '/01-components/typography'
+      fullPath: '/01-components/typography'
+      preLoaderRoute: typeof R01ComponentsTypographyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/02-ariakit/00-intro': {
+      id: '/02-ariakit/00-intro'
+      path: '/02-ariakit/00-intro'
+      fullPath: '/02-ariakit/00-intro'
+      preLoaderRoute: typeof R02Ariakit00IntroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/02-ariakit/button': {
+      id: '/02-ariakit/button'
+      path: '/02-ariakit/button'
+      fullPath: '/02-ariakit/button'
+      preLoaderRoute: typeof R02AriakitButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/02-ariakit/checkbox': {
+      id: '/02-ariakit/checkbox'
+      path: '/02-ariakit/checkbox'
+      fullPath: '/02-ariakit/checkbox'
+      preLoaderRoute: typeof R02AriakitCheckboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/02-ariakit/dialog': {
+      id: '/02-ariakit/dialog'
+      path: '/02-ariakit/dialog'
+      fullPath: '/02-ariakit/dialog'
+      preLoaderRoute: typeof R02AriakitDialogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/02-ariakit/select': {
+      id: '/02-ariakit/select'
+      path: '/02-ariakit/select'
+      fullPath: '/02-ariakit/select'
+      preLoaderRoute: typeof R02AriakitSelectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/03-patterns/00-intro': {
+      id: '/03-patterns/00-intro'
+      path: '/03-patterns/00-intro'
+      fullPath: '/03-patterns/00-intro'
+      preLoaderRoute: typeof R03Patterns00IntroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/03-patterns/dialog': {
+      id: '/03-patterns/dialog'
+      path: '/03-patterns/dialog'
+      fullPath: '/03-patterns/dialog'
+      preLoaderRoute: typeof R03PatternsDialogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/01-components/advanced/size-auto-from-content': {
