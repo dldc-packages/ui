@@ -1,5 +1,14 @@
 # @dldc/ui-ariakit
 
+## 1.5.2
+
+### Patch Changes
+
+- 2c4dcd3: Fix fmt
+- Updated dependencies [2c4dcd3]
+  - @dldc/ui-components@1.7.1
+  - @dldc/react-utils@1.3.2
+
 ## 1.5.1
 
 ### Patch Changes
