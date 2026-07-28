@@ -1,5 +1,14 @@
 # @dldc/ui-ariakit
 
+## 1.5.3
+
+### Patch Changes
+
+- 44b3200: Fix published packages missing dist: add a `files` allowlist (`["dist"]`) to each package so npm includes the built output instead of falling back to `.gitignore` (which excludes `dist`). Also remove stray top-level `types` fields pointing to non-existent entry files.
+- Updated dependencies [44b3200]
+  - @dldc/ui-components@1.7.2
+  - @dldc/react-utils@1.3.3
+
 ## 1.5.2
 
 ### Patch Changes

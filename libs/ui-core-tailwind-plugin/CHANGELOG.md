@@ -1,5 +1,13 @@
 # @dldc/ui-core-tailwind-plugin
 
+## 1.4.3
+
+### Patch Changes
+
+- 44b3200: Fix published packages missing dist: add a `files` allowlist (`["dist"]`) to each package so npm includes the built output instead of falling back to `.gitignore` (which excludes `dist`). Also remove stray top-level `types` fields pointing to non-existent entry files.
+- Updated dependencies [44b3200]
+  - @dldc/ui-core@1.5.3
+
 ## 1.4.2
 
 ### Patch Changes
