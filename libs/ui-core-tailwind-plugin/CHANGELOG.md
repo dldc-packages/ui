@@ -1,5 +1,14 @@
 # @dldc/ui-core-tailwind-plugin
 
+## 1.4.1
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+- b37b004: Upgrade deps
+- Updated dependencies [04711d5]
+  - @dldc/ui-core@1.5.1
+
 ## 1.4.0
 
 ### Minor Changes
@@ -34,6 +43,7 @@
 ### Patch Changes
 
 - dc6d51a: Add typography primitives across core, styles, and components.
+
   - Introduce `Typography` in `@dldc/ui-components` with content-size, font-size, and font-weight support.
   - Add shared typography types in `@dldc/ui-core` and export typography style helpers in `@dldc/ui-styles`.
   - Update icon styles/components to support inline icon rendering.

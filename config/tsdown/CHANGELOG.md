@@ -1,5 +1,11 @@
 # @config/tsdown
 
+## 1.3.1
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+
 ## 1.3.0
 
 ### Minor Changes

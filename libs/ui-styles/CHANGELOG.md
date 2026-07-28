@@ -1,5 +1,19 @@
 # @dldc/ui-styles
 
+## 1.6.0
+
+### Minor Changes
+
+- ade0946: Dialog pattern and widget
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+- b37b004: Upgrade deps
+- Updated dependencies [04711d5]
+  - @dldc/ui-core@1.5.1
+  - @dldc/utils@1.3.1
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @config/typescript
 
+## 1.2.2
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+
 ## 1.2.1
 
 ### Patch Changes

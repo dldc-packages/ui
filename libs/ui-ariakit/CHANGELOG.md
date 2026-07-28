@@ -1,5 +1,17 @@
 # @dldc/ui-ariakit
 
+## 1.5.1
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+- Updated dependencies [04711d5]
+- Updated dependencies [ade0946]
+- Updated dependencies [e60b588]
+- Updated dependencies [b37b004]
+  - @dldc/react-utils@1.3.1
+  - @dldc/ui-components@1.7.0
+
 ## 1.5.0
 
 ### Minor Changes

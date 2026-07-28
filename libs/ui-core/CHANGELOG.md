@@ -1,5 +1,13 @@
 # @dldc/ui-core
 
+## 1.5.1
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+- Updated dependencies [04711d5]
+  - @dldc/utils@1.3.1
+
 ## 1.5.0
 
 ### Minor Changes
