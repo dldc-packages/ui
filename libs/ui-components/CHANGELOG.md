@@ -1,5 +1,24 @@
 # @dldc/ui-components
 
+## 1.7.0
+
+### Minor Changes
+
+- ade0946: Dialog pattern and widget
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+- Updated dependencies [04711d5]
+- Updated dependencies [ade0946]
+- Updated dependencies [e60b588]
+- Updated dependencies [b37b004]
+  - @dldc/hooks@1.3.1
+  - @dldc/react-utils@1.3.1
+  - @dldc/ui-core@1.5.1
+  - @dldc/ui-styles@1.6.0
+  - @dldc/utils@1.3.1
+
 ## 1.6.0
 
 ### Minor Changes

@@ -1,5 +1,25 @@
 # @dldc/ui-docs
 
+## 1.7.0
+
+### Minor Changes
+
+- ade0946: Dialog pattern and widget
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+- b37b004: Upgrade deps
+- Updated dependencies [04711d5]
+- Updated dependencies [ade0946]
+- Updated dependencies [b37b004]
+  - @dldc/hooks@1.3.1
+  - @dldc/ui-ariakit@1.5.1
+  - @dldc/ui-components@1.7.0
+  - @dldc/ui-core@1.5.1
+  - @dldc/ui-patterns@1.6.0
+  - @dldc/ui-styles@1.6.0
+
 ## 1.6.0
 
 ### Minor Changes
@@ -75,6 +95,7 @@
 ### Patch Changes
 
 - dc6d51a: Add typography primitives across core, styles, and components.
+
   - Introduce `Typography` in `@dldc/ui-components` with content-size, font-size, and font-weight support.
   - Add shared typography types in `@dldc/ui-core` and export typography style helpers in `@dldc/ui-styles`.
   - Update icon styles/components to support inline icon rendering.

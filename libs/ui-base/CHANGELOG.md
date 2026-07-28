@@ -1,5 +1,14 @@
 # @dldc/ui-base
 
+## 1.3.1
+
+### Patch Changes
+
+- 04711d5: Upgrade deps
+- Updated dependencies [04711d5]
+- Updated dependencies [ade0946]
+  - @dldc/ui-components@1.7.0
+
 ## 1.3.0
 
 ### Minor Changes
