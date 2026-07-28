@@ -9,7 +9,7 @@
   "types": "./dist/demo.d.ts",
   "exports": {
     "./apply-providers": "./dist/apply-providers.js",
-    "./craate-provider": "./dist/craate-provider.js",
+    "./create-provider": "./dist/create-provider.js",
     "./create-render": "./dist/create-render.js",
     "./default-provider": "./dist/default-provider.js",
     "./merge-props": "./dist/merge-props.js",
