@@ -1,5 +1,13 @@
 # @dldc/ui-base
 
+## 1.3.2
+
+### Patch Changes
+
+- 2c4dcd3: Fix fmt
+- Updated dependencies [2c4dcd3]
+  - @dldc/ui-components@1.7.1
+
 ## 1.3.1
 
 ### Patch Changes

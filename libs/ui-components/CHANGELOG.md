@@ -1,5 +1,17 @@
 # @dldc/ui-components
 
+## 1.7.1
+
+### Patch Changes
+
+- 2c4dcd3: Fix fmt
+- Updated dependencies [2c4dcd3]
+  - @dldc/react-utils@1.3.2
+  - @dldc/ui-styles@1.6.1
+  - @dldc/ui-core@1.5.2
+  - @dldc/hooks@1.3.2
+  - @dldc/utils@1.3.2
+
 ## 1.7.0
 
 ### Minor Changes

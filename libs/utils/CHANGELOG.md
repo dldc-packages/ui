@@ -1,5 +1,11 @@
 # @dldc/utils
 
+## 1.3.2
+
+### Patch Changes
+
+- 2c4dcd3: Fix fmt
+
 ## 1.3.1
 
 ### Patch Changes

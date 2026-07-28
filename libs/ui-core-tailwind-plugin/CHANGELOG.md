@@ -1,5 +1,13 @@
 # @dldc/ui-core-tailwind-plugin
 
+## 1.4.2
+
+### Patch Changes
+
+- 2c4dcd3: Fix fmt
+- Updated dependencies [2c4dcd3]
+  - @dldc/ui-core@1.5.2
+
 ## 1.4.1
 
 ### Patch Changes
