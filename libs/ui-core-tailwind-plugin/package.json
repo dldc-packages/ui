@@ -24,7 +24,7 @@
   "devDependencies": {
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
-    "typescript": "catalog:",
-    "tsdown": "catalog:"
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   }
 }

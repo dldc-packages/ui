@@ -34,7 +34,7 @@
     "@config/tsdown": "workspace:^",
     "@config/typescript": "workspace:*",
     "@types/node": "catalog:",
-    "typescript": "catalog:",
-    "tsdown": "catalog:"
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   }
 }
